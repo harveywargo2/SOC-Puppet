@@ -46,9 +46,9 @@ def sentinel_mgt_oath_token(tenant_id: str, client_id: str, client_secret: str):
     return auth_token
 
 
-def sentinel_list_logic(bearer_token: str, subscriptionId: str, resourceGroupName: str, workspaceName: str, apiVersion: str):
+def sentinel_list_logic(bearer_token: str, sub_id: str, rgn: str, wks_name: str, api: str):
     # '2023-02-01' API is the latest stable release
-    api_call_url = f'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules?api-version={apiVersion}'
+    api_call_url = f'https://management.azure.com/subscriptions/{sub_id}/resourceGroups/{rgn}/providers/Microsoft.OperationalInsights/workspaces/{wks_name}/providers/Microsoft.SecurityInsights/alertRules?api-version={api}'
     req_headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -60,8 +60,8 @@ def sentinel_list_logic(bearer_token: str, subscriptionId: str, resourceGroupNam
     return json_object
 
 
-def sentinel_list_logic_flat_df(bearer_token: str, subscriptionId: str, resourceGroupName: str, workspaceName: str):
-    jsonobj = sentinel_list_logic(bearer_token, subscriptionId, resourceGroupName, workspaceName)
+def sentinel_list_logic_flat_df(bearer_token: str, sub_id: str, rgn: str, wks_name: str, api: str):
+    jsonobj = sentinel_list_logic(bearer_token, sub_id, rgn, wks_name, api)
     raw_df = pd.read_json(jsonobj, orient='columns')
 
     raw_df = pd.concat([raw_df, raw_df['value'].apply(pd.Series)], axis=1)
