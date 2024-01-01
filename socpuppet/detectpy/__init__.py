@@ -1,1 +1,1 @@
-from socpuppet.detectpy.mde.net import *
+from socpuppet.detectpy.os_windows.net.net_kql import *
