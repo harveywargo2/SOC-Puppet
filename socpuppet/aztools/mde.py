@@ -20,11 +20,11 @@ def mde_mgt_oauth_token(tenant_id: str, client_id: str, client_secret: str):
 
 
 def mde_run_hunting_query(token: str, query_data: object):
-    api_call_url = f"https://graph.microsoft.com/v1.0/security/runHuntingQuery"
+    api_call_url = f'https://graph.microsoft.com/v1.0/security/runHuntingQuery'
     headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
 
     api_call_response = requests.request('POST', api_call_url, headers=headers, json=query_data).json()
