@@ -1,4 +1,4 @@
 import socpuppet.aztools
-import socpuppet.kqlpy
+import socpuppet.detectpy
 
 
