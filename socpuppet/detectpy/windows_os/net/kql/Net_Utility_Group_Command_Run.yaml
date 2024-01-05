@@ -1,7 +1,7 @@
 ---
 title: Net Utility Group Command Run
 uid: WIN-LOLUTL-S0039-NET-P0001
-detectCon: SinglePatternMatch-5
+detectCon: SLLM-5
 detectUseCase: WIN-LOLUTL-S0039-NET
 metaData:
   - AtkTech: T1069.001
