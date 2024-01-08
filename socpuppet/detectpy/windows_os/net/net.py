@@ -9,7 +9,7 @@ kql_path = os.path.join(mod_path, 'kql')
 sigma_path = os.path.join(mod_path, 'sigma')
 
 
-def net_utl_group_cmd_run(x='1d'):
+def net_kql_group_cmd_run(x='1d'):
     with open(os.path.join(kql_path, 'Net_Utility_Group_Command_Run.yaml'), 'r') as file:
         data = yaml.safe_load(file)
 
