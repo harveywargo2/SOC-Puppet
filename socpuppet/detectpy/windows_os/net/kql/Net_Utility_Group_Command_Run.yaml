@@ -1,12 +1,12 @@
 ---
 title: Net Utility Group Command Run
-uid: WIN-LOLUTL-S0039-NET-P0001
-detectCon: SLLM-5
-detectUseCase: WIN-LOLUTL-S0039-NET
+uid: NET_P0001_KQL-WIN_LOLUTL-S0039
+detectCon: SingleLogLineMatch-5
+detectUseCase: WIN_LOLUTL-S0039_NET
 metaData:
-  - AtkTech: T1069.001
-  - AtkSoft: S0039
-dataFlow: MSFT Defender Endpoint <ON> Windows OS <LOGS> Process Creation Events <FWDS--> DeviceProcessEvents Table
+  - atkTech: T1069.001
+  - atkSoft: S0039
+dataFlow: MSFT Defender Endpoint <ON> Windows OS <LOGS> Process Creation Events <FWDTO--> DeviceProcessEvents Table
 kqlTable: DeviceProcessEvents
 kqlQuery: |
   | where FileName has_any ('net', 'net1', 'cmd', 'powershell')
