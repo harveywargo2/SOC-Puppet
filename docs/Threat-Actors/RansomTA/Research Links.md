@@ -10,12 +10,7 @@
 
 
 ## Lockbit
-- [Lockbit TTPs - DFIR - JUN/2020](https://thedfirreport.com/2020/06/10/lockbit-ransomware-why-you-no-spread/)
-- [Lockbit TTPs - SentinelOne - JUL/2022](https://www.sentinelone.com/blog/living-off-windows-defender-lockbit-ransomware-sideloads-cobalt-strike-through-microsoft-security-tool/)
-- [Lockbit TTPs - IC3 - FEB/2022](https://www.ic3.gov/Media/News/2022/220204.pdf)
-- [Lockbit TTPs - SentinelLabs - APR/2022](https://www.sentinelone.com/labs/lockbit-ransomware-side-loads-cobalt-strike-beacon-with-legitimate-vmware-utility/)
-- [Lockbit TTPs - ThreatMon - OCT/2023](https://threatmon.io/blog/lockbit-2-0-ransomware-analysis/)
-- [Lockbit TTPs - CISA - JUN/2023](https://www.cisa.gov/sites/default/files/2023-06/aa23-165a_understanding_TA_LockBit.pdf)
+
 
 
 

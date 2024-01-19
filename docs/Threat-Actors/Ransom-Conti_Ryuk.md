@@ -1,10 +1,10 @@
 
 ## DFIR (CommandLine-Detect-Samples-IOC)
-> - https://thedfirreport.com/2022/04/04/stolen-images-campaign-ends-in-conti-ransomware/
-> - https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/
-> - https://thedfirreport.com/2020/10/18/ryuk-in-5-hours/
-> - https://thedfirreport.com/2020/10/08/ryuks-return/#:~:text=The%20Ryuk%20group%20went%20from,Rubeus%20to%20accomplish%20their%20objective.
-> - https://thedfirreport.com/2021/11/29/continuing-the-bazar-ransomware-story/
+- https://thedfirreport.com/2022/04/04/stolen-images-campaign-ends-in-conti-ransomware/
+- https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/
+- https://thedfirreport.com/2020/10/18/ryuk-in-5-hours/
+- https://thedfirreport.com/2020/10/08/ryuks-return/#:~:text=The%20Ryuk%20group%20went%20from,Rubeus%20to%20accomplish%20their%20objective.
+- https://thedfirreport.com/2021/11/29/continuing-the-bazar-ransomware-story/
 
 
 SIGMA
@@ -51,7 +51,7 @@ Tools
 - ProcessHacker
 
 ## Github Playbook Leak (CommandLine)
-> https://github.com/DISREL/Conti-Leaked-Playbook-TTPs/blob/main/Conti-Leaked-Playbook-TTPs.pdf
+- https://github.com/DISREL/Conti-Leaked-Playbook-TTPs/blob/main/Conti-Leaked-Playbook-TTPs.pdf
 
 Tools
 - NGROK
@@ -60,10 +60,10 @@ Tools
 - Atera Agent
 
 ## Talos
-> https://blog.talosintelligence.com/conti-leak-translation/)
+- https://blog.talosintelligence.com/conti-leak-translation/)
 
 ## BleepingComputer (Tools)
-> https://www.bleepingcomputer.com/news/security/translated-conti-ransomware-playbook-gives-insight-into-attacks/
+- https://www.bleepingcomputer.com/news/security/translated-conti-ransomware-playbook-gives-insight-into-attacks/
 
 Tools
 - Armitage
@@ -78,4 +78,3 @@ Tools
 - RouterScan
 - AnyDesk
 - Atera
-- 

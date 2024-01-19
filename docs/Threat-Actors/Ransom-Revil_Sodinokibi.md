@@ -1,5 +1,5 @@
 ## DFIR (Tools)
-> https://thedfirreport.com/2021/03/29/sodinokibi-aka-revil-ransomware/
+- https://thedfirreport.com/2021/03/29/sodinokibi-aka-revil-ransomware/
 
 SIGMA
 - https://github.com/Neo23x0/sigma/blob/master/rules/windows/process_creation/win_susp_powershell_enc_cmd.yml
