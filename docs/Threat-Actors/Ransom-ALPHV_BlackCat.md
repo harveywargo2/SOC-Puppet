@@ -28,7 +28,7 @@ The BlackCat configuration is stored in JSON form and is decrypted at runtime. I
 
 
 ## MSFT (CommandLine-Tools-Alerts-Detections-IOC-Samples)
-> https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)
+- https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)
 
 Notes 
 - Initial Access: remote desktop applications and compromised credentials
@@ -61,10 +61,10 @@ M365D AV/EDR
 - BlackCat ransomware
 
 ## Varonic (CommandLine-IOC-TechAnalysis)
-> https://www.varonis.com/blog/blackcat-ransomware
+- https://www.varonis.com/blog/blackcat-ransomware
 
 ## Office of Information Security (Tools)
-> https://www.hhs.gov/sites/default/files/royal-blackcat-ransomware-tlpclear.pdf
+- https://www.hhs.gov/sites/default/files/royal-blackcat-ransomware-tlpclear.pdf
 
 Tool List
 - ADRecon 
@@ -85,7 +85,7 @@ Tool List
 - Stealbit
 
 ## Palo Alto Unit 42 (Tools)
-> https://unit42.paloaltonetworks.com/blackcat-ransomware/
+- https://unit42.paloaltonetworks.com/blackcat-ransomware/
 
 Associated Tools
 - Mimikatz
@@ -96,20 +96,20 @@ Associated Tools
 - Fileshredder
 
 ## IC3 (IOC-Samples)
-> https://www.ic3.gov/Media/News/2022/220420.pdf
+- https://www.ic3.gov/Media/News/2022/220420.pdf
 
 ## Cyber Reason (CommandLine-IOC-Samples)
-> https://www.cybereason.com/blog/cybereason-vs.-blackcat-ransomware
+- https://www.cybereason.com/blog/cybereason-vs.-blackcat-ransomware
 
 Notes
 - direct to ip callback to URL patterns
 
 ## Kaspersky 
-> https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2022/06/23093553/Common-TTPs-of-the-modern-ransomware_low-res.pdf
+- https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2022/06/23093553/Common-TTPs-of-the-modern-ransomware_low-res.pdf
 
 
 ## SOPHOS (TechAnalysis-Tools)
-> https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck
+- https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck
 
 Tools 
 - Anydesk
@@ -125,7 +125,7 @@ Tools
 
 
 ## Talos (Tools-CommandLine)
-> https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/
+- https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/
 
 Tools
 - Reverse SSH Tunnel

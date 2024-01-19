@@ -1,6 +1,6 @@
 
 ## Trend Micro (IOC-Tools)
-> https://www.trendmicro.com/vinfo/us/security/news/ransomware-spotlight/ransomware-spotlight-blackbyte
+- https://www.trendmicro.com/vinfo/us/security/news/ransomware-spotlight/ransomware-spotlight-blackbyte
 
 Tools
 - WinRar Archive
@@ -9,7 +9,7 @@ Tools
 - Certutil
 
 ## Microsoft (Tools-IOC-Detections-)
-> https://www.microsoft.com/en-us/security/blog/2023/07/06/the-five-day-job-a-blackbyte-ransomware-intrusion-case-study/
+- https://www.microsoft.com/en-us/security/blog/2023/07/06/the-five-day-job-a-blackbyte-ransomware-intrusion-case-study/
 
 Tools
 - NetScan
@@ -39,19 +39,19 @@ EDR
 - ‘Blackbyte’ ransomware was detected
 
 ## PicusSecurity (CommandLine-IOC-Samples)
-> https://www.picussecurity.com/resource/ttps-used-by-blackbyte-ransomware-targeting-critical-infrastructure
+- https://www.picussecurity.com/resource/ttps-used-by-blackbyte-ransomware-targeting-critical-infrastructure
 
 ## Unit 42 (CommandLind-Tools)
-> https://unit42.paloaltonetworks.com/blackbyte-ransomware/
+- https://unit42.paloaltonetworks.com/blackbyte-ransomware/
 
 ## TrustWave (CommandLine-IOC-Samples)
-> https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/blackbyte-ransomware-pt-1-in-depth-analysis/
+- https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/blackbyte-ransomware-pt-1-in-depth-analysis/
 
 ## RedCanary (CommandLine-IOC-Samples-Detection)
-> https://redcanary.com/blog/blackbyte-ransomware/
+- https://redcanary.com/blog/blackbyte-ransomware/
 
 Tools
 - Cobalt Strike
 
 ## IC3 (IOC-Samples-CommandLine)
-> https://www.ic3.gov/Media/News/2022/220211.pdf
+- https://www.ic3.gov/Media/News/2022/220211.pdf

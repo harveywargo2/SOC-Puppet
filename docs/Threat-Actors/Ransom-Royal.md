@@ -1,6 +1,6 @@
 
 ## OIS (TechAnalysis)
-> https://www.hhs.gov/sites/default/files/royal-blackcat-ransomware-tlpclear.pdf
+- https://www.hhs.gov/sites/default/files/royal-blackcat-ransomware-tlpclear.pdf
 
 Tools
 - Coblat Strike
@@ -16,7 +16,7 @@ Tools
 
 
 ## Microsoft (Detect-CommandLine)
-> https://www.microsoft.com/en-us/security/blog/2022/11/17/dev-0569-finds-new-ways-to-deliver-royal-ransomware-various-payloads/
+- https://www.microsoft.com/en-us/security/blog/2022/11/17/dev-0569-finds-new-ways-to-deliver-royal-ransomware-various-payloads/
 
 AntiVirus
 - Trojan:Win32/Gozi
@@ -43,7 +43,7 @@ EDR
 - An active ‘NSudo’ hacktool process was detected while executing
 
 ## TrendMicro (TechAnalysis-IOC-Samples)
-> https://www.trendmicro.com/en_us/research/22/l/conti-team-one-splinter-group-resurfaces-as-royal-ransomware-wit.html
+- https://www.trendmicro.com/en_us/research/22/l/conti-team-one-splinter-group-resurfaces-as-royal-ransomware-wit.html
 
 ## Cyber Reason (IOC)
-> https://www.cybereason.com/blog/royal-ransomware-analysis
+- https://www.cybereason.com/blog/royal-ransomware-analysis
