@@ -1,7 +1,6 @@
 import os
 import yaml
-
-
+import socpuppet.detectpy.kql_qbuild as kbuild
 
 # Path Variables for Module
 mod_path = os.path.dirname(os.path.abspath(__file__))
@@ -9,12 +8,16 @@ kql_path = os.path.join(mod_path, 'kql')
 sigma_path = os.path.join(mod_path, 'sigma')
 
 
-def net_kql_group_cmd_run(x='1d'):
-    with open(os.path.join(kql_path, 'Net_Utility_Group_Command_Run.yaml'), 'r') as file:
-        data = yaml.safe_load(file)
+def net_group_cmd(*, type='kql', kql_ago='1d'):
 
-    logic = data.get('kqlTable') + f'| where Timestamp >= ago({x})' + data.get('kqlQuery')
-    logic_dict = {'query': logic}
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_group_cmd.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
 
-    return logic_dict
+        output = kbuild.kql_single_table_query_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+
+    return output
 
