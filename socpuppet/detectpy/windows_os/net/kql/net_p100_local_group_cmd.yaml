@@ -1,8 +1,8 @@
 ---
-title: Net CLT Group Command
-pid: NET_P0001_KQL-WIN_LOLUTL_S0039
-detectCon: Single_Log_Line_Match-5
-detectUseCase: WIN_LOLUTL-S0039_NET
+title: Net Local Group Command
+pid: NET_P100_KQL-WIN_LOLCMD_S0039
+detectCon: Single_Log_Line_Match-3
+detectUseCase: WIN_LOLCMD-S0039_NET
 metaData:
   - attackTechnique: T1069.001
   - attackSoftware: S0039
@@ -10,5 +10,4 @@ dataFlow: MSFT Defender Endpoint <ON> Windows OS <LOGS> Process Creation Events 
 kqlTable: DeviceProcessEvents
 kqlQuery: |
   | where FileName has_any ('net', 'net1')
-    and ProcessCommandLine has 'net'
-    and ProcessCommandLine has_any ('group', 'groups')
+  | where ProcessCommandLine has_any ('localgroup', 'localgroups')

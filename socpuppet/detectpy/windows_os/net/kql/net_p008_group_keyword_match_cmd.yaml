@@ -1,0 +1,15 @@
+---
+title: Net Group Keyword Match Command
+pid: NET_P008_KQL-WIN_LOLCMD_S0039
+detectCon: Single_Log_Line_Match-4
+detectUseCase: WIN_LOLCMD-S0039_NET
+metaData:
+  - attackTechnique: T1069.002
+  - attackSoftware: S0039
+dataFlow: MSFT Defender Endpoint <ON> Windows OS <LOGS> Process Creation Events <FWD> DeviceProcessEvents Table
+kqlTable: DeviceProcessEvents
+kqlQuery: |
+  | where FileName has_any ('net', 'net1')
+  | where ProcessCommandLine has_any ('group', 'groups')
+  | where ProcessCommandLine has_any ('/dom', '/domain')
+  | where ProcessCommandLine has_any (KeywordList)
