@@ -1,0 +1,27 @@
+---
+title: cmd_used_to_add_user_to_local_group
+pid: net_p2001
+description:
+  - net.exe command line tool can be used to add user to a local group
+  - see net_references.md
+metaData:
+  attackTechnique: t1136.001
+  attackSoftware: s0039
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has_any ('net', 'net1')
+    | where ProcessCommandLine has_any ('localgroup', 'localgroups')
+    | where ProcessCommandLine has_any ('add', '/add')

@@ -1,0 +1,28 @@
+---
+title: cmd_used_to_list_users_in_domain_computers_group
+pid: net_p1004
+description:
+  - net.exe command line tool can be used to discover users in a active directory group
+  - see net_references.md
+metaData:
+  attackTechnique: t1069.002
+  attackSoftware: s0039
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 4
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has_any ('net', 'net1')
+    | where ProcessCommandLine has_any ('group', 'groups')
+    | where ProcessCommandLine has_any ('/dom', '/domain')
+    | where ProcessCommandLine has_all ('domain', 'computers')
