@@ -1,0 +1,18 @@
+---
+title:
+pid:
+description:
+metaData:
+  attackTechnique:
+  attackSoftware:
+  detectUseCase:
+  detectType:
+  detectCon:
+  platform:
+  dataFlow:
+  tags:
+    -
+kqlDetect:
+  kqlVar:
+  kqlTable:
+  kqlQuery: |

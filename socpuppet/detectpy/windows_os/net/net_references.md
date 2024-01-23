@@ -1,5 +1,11 @@
 # Net Command Line Utility in Windows
 
+Net Command Line Utility is commonly used by Cyber Threat Actors to 
+1. Perform AD Enumeration
+2. Discovery of Users Information
+3. Discovery of System Information 
+4. Discovery of Password Policy
+4. Modify Local Groups & Users
 
 
 ## References
@@ -8,6 +14,3 @@
 - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490717(v=technet.10)?redirectedfrom=MSDN
 - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490718(v=technet.10)
 
-
-## Patterns 
-### NET_P0001 - 
