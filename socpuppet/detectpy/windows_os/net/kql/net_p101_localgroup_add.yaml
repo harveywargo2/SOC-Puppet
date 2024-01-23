@@ -1,6 +1,6 @@
 ---
-title: Net Local Group Command
-pid: NET_P100_KQL-WIN_LOLCMD_S0039
+title: Net Command Used To Add User To A Local Group
+pid: NET_P101_KQL-WIN_LOLCMD_S0039
 detectCon: Single_Log_Line_Match-3
 detectUseCase: WIN_LOLCMD-S0039_NET
 metaData:
@@ -11,3 +11,4 @@ kqlTable: DeviceProcessEvents
 kqlQuery: |
   | where FileName has_any ('net', 'net1')
   | where ProcessCommandLine has_any ('localgroup', 'localgroups')
+  | where ProcessCommandLine has_any ('add', '/add')

@@ -1,6 +1,6 @@
 ---
-title: Net Group "Domain Guests" Command
-pid: NET_P006_KQL-WIN_LOLCMD_S0039
+title: Net Command Used To List Domain Groups
+pid: NET_P001_KQL-WIN_LOLCMD_S0039
 detectCon: Single_Log_Line_Match-4
 detectUseCase: WIN_LOLCMD-S0039_NET
 metaData:
@@ -12,4 +12,3 @@ kqlQuery: |
   | where FileName has_any ('net', 'net1')
   | where ProcessCommandLine has_any ('group', 'groups')
   | where ProcessCommandLine has_any ('/dom', '/domain')
-  | where ProcessCommandLine has_all ('domain', 'guests')
