@@ -1,6 +1,6 @@
 ---
 title: cmd_used_to_view_all_shared_resources
-pid: net_p4000
+pid: net_p4002
 description:
   - net.exe command line tool can be used view resources on network
   - The net view /all command in Windows is used to display a list of all shared resources and computers on your local network

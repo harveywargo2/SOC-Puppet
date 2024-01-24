@@ -297,3 +297,27 @@ def net_p4002_cmd_used_to_view_all_shared_resources_domain(*, type='kql', kql_ag
 
     return output
 
+
+def net_p5000_cmd_used_to_stop_service(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p5000_cmd_used_to_stop_service.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+def net_p5001_cmd_used_to_stop_defender_service(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p5001_cmd_used_to_stop_defender_service.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output

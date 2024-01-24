@@ -1,12 +1,11 @@
 ---
-title: cmd_used_to_view_all_file_print_share_devices
-pid: net_p4001
+title: cmd_used_to_stop_service
+pid: net_p5000
 description:
-  - net.exe command line tool can be used view resources on network
-  - command will only show a list of computers available on your domain or workgroup that have file and printer sharing enabled
+  - net.exe command line tool can be used to stop services on device
   - see net_references.md
 metaData:
-  attackTechnique: t1087.001
+  attackTechnique:
   attackSoftware: s0039
   detectUseCase:
   detectType: single_line_match
@@ -24,4 +23,4 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_all ('view')
+    | where ProcessCommandLine has_all ('stop')

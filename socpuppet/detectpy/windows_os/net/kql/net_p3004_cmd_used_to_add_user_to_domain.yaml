@@ -1,6 +1,6 @@
 ---
 title: cmd_used_to_add_user_to_domain
-pid: net_p3003
+pid: net_p3004
 description:
   - net.exe command line tool can be used to create a user account on a domain
   - see net_references.md
