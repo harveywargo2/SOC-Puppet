@@ -192,3 +192,42 @@ def net_p2005_cmd_used_to_add_user_to_local_group_rdp(*, type='kql', kql_ago='1d
 
     return output
 
+
+def net_p3000_cmd_used_to_list_users_on_device(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p3000_cmd_used_to_list_users_on_device.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def net_p3001_cmd_used_to_list_users_on_domain(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p3001_cmd_used_to_list_users_on_domain.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def net_p3002_cmd_used_to_list_details_of_admin_user(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p3002_cmd_used_to_list_details_of_admin_user.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+

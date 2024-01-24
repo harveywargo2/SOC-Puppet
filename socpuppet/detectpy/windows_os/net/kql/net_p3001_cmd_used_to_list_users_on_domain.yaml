@@ -1,15 +1,16 @@
 ---
-title: cmd_used_to_add_user_to_local_group_administrator
-pid: net_p2004
+title: cmd_used_to_list_users_on_domain
+pid: net_p3001
 description:
-  - net.exe command line tool can be used to add user to administrators local group
+  - net.exe command line tool can be used to list user accounts on a domain
+  - if a user is provided will match checking password policy for user provided
   - see net_references.md
 metaData:
-  attackTechnique: t1087.001
+  attackTechnique: t1087.002
   attackSoftware: s0039
   detectUseCase:
   detectType: single_line_match
-  detectCon: 4
+  detectCon: 5
   platform: windows_os
   dataFlow:
     - msft defender endpoint or m365d agent <on>
@@ -23,6 +24,5 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('localgroup', 'localgroups')
-    | where ProcessCommandLine has ('administrators')
-    | where ProcessCommandLine has_any ('add', '/add')
+    | where ProcessCommandLine has_any ('user', 'users')
+    | where ProcessCommandLine has_any ('/dom', '/domain')

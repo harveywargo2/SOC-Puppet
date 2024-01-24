@@ -1,8 +1,16 @@
 # DetectCon
 
-DetectCon is a rating tag
-Urgency: This is the likely
--  
+DetectCon is a rating tag to help weight your detections 
+
+#### Urgency
+- This is the suggested speed at which a SOC analyst should prioritize this alert
+- 
+
+#### Analyst Load
+- How much additional DFIR/Investigation is put on the analyst before declaration of Incident
+
+#### Fidelity
+- 
 
 
 ## Detect Con Numerical Rating 
