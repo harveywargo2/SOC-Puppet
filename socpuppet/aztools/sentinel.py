@@ -5,7 +5,6 @@ import json
 from datetime import datetime
 
 
-
 def azmonitor_oath_token(tenant_id: str, client_id: str, client_secret: str):
     auth_resp = soc.aztools.oauth_azure_monitor(tenant_id, client_id, client_secret)
     auth_token = soc.aztools.oauth_bearer_token(auth_resp)
@@ -46,8 +45,8 @@ def sentinel_mgt_oath_token(tenant_id: str, client_id: str, client_secret: str):
     return auth_token
 
 
-def sentinel_list_logic(bearer_token: str, sub_id: str, rgn: str, wks_name: str, api: str):
-    # '2023-02-01' API is the latest stable release
+def sentinel_list_logic(bearer_token: str, sub_id: str, rgn: str, wks_name: str, api='2023-02-01'):
+    # '2023-02-01' API is the latest stable release so default to that if no arg is input
     api_call_url = f'https://management.azure.com/subscriptions/{sub_id}/resourceGroups/{rgn}/providers/Microsoft.OperationalInsights/workspaces/{wks_name}/providers/Microsoft.SecurityInsights/alertRules?api-version={api}'
 
     req_headers = {

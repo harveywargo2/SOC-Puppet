@@ -5,8 +5,6 @@ import json
 from datetime import datetime
 
 
-
-
 def mde_oath_token(tenant_id: str, client_id: str, client_secret: str):
     auth_resp = soc.aztools.oauth_graph(tenant_id, client_id, client_secret)
     auth_token = soc.aztools.oauth_bearer_token(auth_resp)
