@@ -1,0 +1,31 @@
+---
+title: cmd_used_and_piped_to_file
+pid: net_p0001
+description:
+  - net.exe command line tool can be used to perform user and or domain discovery techniques
+  - the output can be stored to a file for exfil
+  - see net_references.md
+metaData:
+  attackTechnique:
+  attackSoftware: s0039
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has_any ('net', 'net1')
+    | where ProcessCommandLine has_any ('user', 'users', 'groups', 'group', '/dom', '/domain')
+    | where ProcessCommandLine !has 'use'
+    | where ProcessCommandLine contains 'C$'
+      or ProcessCommandLine contains '>'
+      or ProcessCommandLine contains '>>'

@@ -1,11 +1,11 @@
 ---
-title: cmd_used_to_list_users_in_local_group_administrators
-pid: net_p2002
+title: cmd_used_to_stop_defender_service
+pid: net_p5001
 description:
-  - net.exe command line tool can be used to discover users in administrators local group
+  - net.exe command line tool can be used to stop services on device
   - see net_references.md
 metaData:
-  attackTechnique: t1069.001
+  attackTechnique:
   attackSoftware: s0039
   detectUseCase:
   detectType: single_line_match
@@ -23,5 +23,6 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('localgroup', 'localgroups')
-    | where ProcessCommandLine has ('administrators')
+    | where ProcessCommandLine has_all ('stop')
+    | where ProcessCommandLine has_any ('WindDefend')
+      or ProcessCommandLine has_all ('security', 'center')

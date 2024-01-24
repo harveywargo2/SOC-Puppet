@@ -10,7 +10,7 @@ metaData:
   attackSoftware: s0039
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 4
   platform: windows_os
   dataFlow:
     - msft defender endpoint or m365d agent <on>

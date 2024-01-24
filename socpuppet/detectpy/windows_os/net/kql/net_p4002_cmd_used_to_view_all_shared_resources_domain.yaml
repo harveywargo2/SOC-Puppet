@@ -1,11 +1,12 @@
 ---
-title: cmd_used_to_list_users_in_local_group_administrators
-pid: net_p2002
+title: cmd_used_to_view_all_shared_resources
+pid: net_p4002
 description:
-  - net.exe command line tool can be used to discover users in administrators local group
+  - net.exe command line tool can be used view resources on network
+  - The net view /all command in Windows is used to display a list of all shared resources and computers on your local network
   - see net_references.md
 metaData:
-  attackTechnique: t1069.001
+  attackTechnique: t1087.001
   attackSoftware: s0039
   detectUseCase:
   detectType: single_line_match
@@ -23,5 +24,5 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('localgroup', 'localgroups')
-    | where ProcessCommandLine has ('administrators')
+    | where ProcessCommandLine has_all ('view', '/all')
+    | where ProcessCommandLine has_any ('/dom', '/domain')
