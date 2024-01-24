@@ -8,6 +8,20 @@ kql_path = os.path.join(mod_path, 'kql')
 sigma_path = os.path.join(mod_path, 'sigma')
 
 
+
+def net_p0001_cmd_used_and_piped_to_file(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p0001_cmd_used_and_piped_to_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
 def net_p1000_cmd_used_to_list_groups_on_domain(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
@@ -219,10 +233,62 @@ def net_p3001_cmd_used_to_list_users_on_domain(*, type='kql', kql_ago='1d'):
     return output
 
 
-def net_p3002_cmd_used_to_list_details_of_admin_user(*, type='kql', kql_ago='1d'):
+def net_p3003_cmd_used_to_add_user_to_device(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
-        with open(os.path.join(kql_path, 'net_p3002_cmd_used_to_list_details_of_admin_user.yaml'), 'r') as file:
+        with open(os.path.join(kql_path, 'net_p3003_cmd_used_to_add_user_to_device.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def net_p3004_cmd_used_to_add_user_to_domain(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p3004_cmd_used_to_add_user_to_domain.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def net_p4000_cmd_used_to_view_all_shared_resources(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p4000_cmd_used_to_view_all_shared_resources.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def net_p4001_cmd_used_to_view_file_print_share_devices(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p4001_cmd_used_to_view_file_print_share_devices.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def net_p4002_cmd_used_to_view_all_shared_resources_domain(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(kql_path, 'net_p4002_cmd_used_to_view_all_shared_resources_domain.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago)
