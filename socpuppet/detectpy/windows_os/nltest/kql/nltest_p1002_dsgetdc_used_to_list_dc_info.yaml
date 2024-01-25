@@ -1,0 +1,26 @@
+---
+title: dsgetdc_used_to_list_dc_info
+pid: net_1002
+description:
+  - nltest can be used to list domain controller info
+  - see nltest_references.md
+metaData:
+  attackTechnique: t1018
+  attackSoftware: s0359
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has 'nltest'
+    | where ProcessCommandLine has 'dsgetdc'
