@@ -23,4 +23,4 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('user', 'users)
+    | where ProcessCommandLine has_any ('user', 'users')

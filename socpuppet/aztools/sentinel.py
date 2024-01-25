@@ -5,13 +5,13 @@ import json
 from datetime import datetime
 
 
-def azmonitor_oath_token(tenant_id: str, client_id: str, client_secret: str):
-    auth_resp = soc.aztools.oauth_azure_monitor(tenant_id, client_id, client_secret)
+def azmonitor_oath_token(*, tenant_id, client_id, client_secret):
+    auth_resp = soc.aztools.oauth_azure_monitor(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
     auth_token = soc.aztools.oauth_bearer_token(auth_resp)
     return auth_token
 
 
-def azmonitor_run_query(token: str, workspace_id: str, query_data: object):
+def azmonitor_run_query(*, token, workspace_id, query_data):
     api_call_url = f'https://api.loganalytics.azure.com/v1/workspaces/{workspace_id}/query'
     headers = {
         'Authorization': f'Bearer {token}',
@@ -23,8 +23,8 @@ def azmonitor_run_query(token: str, workspace_id: str, query_data: object):
     return api_call_response
 
 
-def azmonitor_query_run_df(token: str, workspace_id: str, query_data: object):
-    data = azmonitor_run_query(token, workspace_id, query_data)
+def azmonitor_query_run_df(*, token, workspace_id, query_data):
+    data = azmonitor_run_query(token=token, workspace_id=workspace_id, query_data=query_data)
 
     df_col_names = []
 
@@ -39,15 +39,15 @@ def azmonitor_query_run_df(token: str, workspace_id: str, query_data: object):
     return df_output
 
 
-def sentinel_mgt_oath_token(tenant_id: str, client_id: str, client_secret: str):
-    auth_resp = soc.aztools.oauth_arm(tenant_id, client_id, client_secret)
+def sentinel_mgt_oath_token(*, tenant_id, client_id, client_secret):
+    auth_resp = soc.aztools.oauth_arm(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
     auth_token = soc.aztools.oauth_bearer_token(auth_resp)
     return auth_token
 
 
-def sentinel_list_logic(bearer_token: str, sub_id: str, rgn: str, wks_name: str, api='2023-02-01'):
+def sentinel_list_logic(*, bearer_token, sub_id, resource_groupname, workspace_name, api='2023-02-01'):
     # '2023-02-01' API is the latest stable release so default to that if no arg is input
-    api_call_url = f'https://management.azure.com/subscriptions/{sub_id}/resourceGroups/{rgn}/providers/Microsoft.OperationalInsights/workspaces/{wks_name}/providers/Microsoft.SecurityInsights/alertRules?api-version={api}'
+    api_call_url = f'https://management.azure.com/subscriptions/{sub_id}/resourceGroups/{resource_groupname}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/providers/Microsoft.SecurityInsights/alertRules?api-version={api}'
 
     req_headers = {
         'Content-Type': 'application/json',
@@ -60,8 +60,14 @@ def sentinel_list_logic(bearer_token: str, sub_id: str, rgn: str, wks_name: str,
     return json_object
 
 
-def sentinel_list_logic_flat_df(bearer_token: str, sub_id: str, rgn: str, wks_name: str, api: str):
-    jsonobj = sentinel_list_logic(bearer_token, sub_id, rgn, wks_name, api)
+def sentinel_list_logic_flat_df(*, bearer_token, sub_id, resource_groupname, workspace_name, api='2023-02-01'):
+
+    jsonobj = sentinel_list_logic(bearer_token=bearer_token,
+                                  sub_id=sub_id,
+                                  resource_groupname=resource_groupname,
+                                  workspace_name=workspace_name,
+                                  api=api)
+
     raw_df = pd.read_json(jsonobj, orient='columns')
 
     raw_df = pd.concat([raw_df, raw_df['value'].apply(pd.Series)], axis=1)
