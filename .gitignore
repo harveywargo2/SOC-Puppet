@@ -3,6 +3,9 @@
 **/dumps/**
 **/test/**
 
+# Ignore XLSX Being Open
+~$*
+
 #Environment Variables via Dot-Env Loads
 **.env
 
