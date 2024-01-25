@@ -1,7 +1,7 @@
 import requests
 
 
-def oauth_graph(tenant_id: str, client_id: str, client_secret: str):
+def oauth_graph(*, tenant_id, client_id, client_secret):
     auth_url = f'https://login.windows.net/{tenant_id}/oauth2/token'
 
     resource_url = 'https://graph.microsoft.com'
@@ -20,7 +20,7 @@ def oauth_graph(tenant_id: str, client_id: str, client_secret: str):
     return auth_response
 
 
-def oauth_m365d_mde(tenant_id: str, client_id: str, client_secret: str):
+def oauth_m365d_mde(*, tenant_id, client_id, client_secret):
     auth_url = f'https://login.windows.net/{tenant_id}/oauth2/token'
 
     resource_url = 'https://api.securitycenter.windows.com'
@@ -39,7 +39,7 @@ def oauth_m365d_mde(tenant_id: str, client_id: str, client_secret: str):
     return auth_response
 
 
-def oauth_m365d_mtp(tenant_id: str, client_id: str, client_secret: str):
+def oauth_m365d_mtp(*, tenant_id, client_id, client_secret):
     auth_url = f'https://login.windows.net/{tenant_id}/oauth2/token'
 
     resource_url = 'https://security.microsoft.com/mtp/'
@@ -58,7 +58,7 @@ def oauth_m365d_mtp(tenant_id: str, client_id: str, client_secret: str):
     return auth_response
 
 
-def oauth_azure_monitor(tenant_id: str, client_id: str, client_secret: str):
+def oauth_azure_monitor(*, tenant_id, client_id, client_secret):
     auth_url = f'https://login.windows.net/{tenant_id}/oauth2/token'
 
     resource_url = 'https://api.loganalytics.io'
@@ -77,7 +77,7 @@ def oauth_azure_monitor(tenant_id: str, client_id: str, client_secret: str):
     return auth_response
 
 
-def oauth_arm(tenant_id: str, client_id: str, client_secret: str):
+def oauth_arm(*, tenant_id, client_id, client_secret):
     auth_url = f'https://login.windows.net/{tenant_id}/oauth2/token'
 
     resource_url = 'https://management.azure.com'
@@ -96,7 +96,7 @@ def oauth_arm(tenant_id: str, client_id: str, client_secret: str):
     return auth_response
 
 
-def oauth_bearer_token(auth_response: str):
+def oauth_bearer_token(auth_response):
     auth_token = auth_response['access_token']
     return auth_token
 

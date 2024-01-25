@@ -1,0 +1,28 @@
+---
+title: cmd_potential_dump_to_file
+pid: net_p0002
+description:
+  - net.exe command line tool output saved to file on disk
+  - the output can be stored to a file for exfil
+  - see net_references.md
+metaData:
+  attackTechnique:
+  attackSoftware: s0039
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceFileEvents
+  kqlQuery: |
+    | where InitiatingProcessFileName has_any ('net', 'net1')
+    | where FileName has_any ('.txt', '.text', '.xlsx', '.xls', '.doc', '.docx', '.rtf', 
+      '.eml', '.py', '.md', '.html', '.rft', '.log', '.msg')

@@ -1,15 +1,15 @@
 ---
-title: cmd_used_to_list_users_on_device
-pid: net_p3000
+title: dclist_used_to_list_domain_controllers
+pid: net_1000
 description:
-  - net.exe command line tool can be used to list user accounts on a device
-  - see net_references.md
+  - nltest can be used to list domain controllers
+  - see nltest_references.md
 metaData:
-  attackTechnique: t1087.001
-  attackSoftware: s0039
+  attackTechnique: t1018
+  attackSoftware: s0359
   detectUseCase:
   detectType: single_line_match
-  detectCon: 5
+  detectCon: 2
   platform: windows_os
   dataFlow:
     - msft defender endpoint or m365d agent <on>
@@ -22,5 +22,5 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('user', 'users')
+    | where FileName has 'nltest'
+    | where ProcessCommandLine has 'dclist'

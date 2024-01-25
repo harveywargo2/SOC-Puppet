@@ -5,21 +5,19 @@ import json
 from datetime import datetime
 
 
-
-
-def mde_oath_token(tenant_id: str, client_id: str, client_secret: str):
-    auth_resp = soc.aztools.oauth_graph(tenant_id, client_id, client_secret)
+def mde_oath_token(*, tenant_id, client_id, client_secret):
+    auth_resp = soc.aztools.oauth_graph(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
     auth_token = soc.aztools.oauth_bearer_token(auth_resp)
     return auth_token
 
 
-def mde_mgt_oauth_token(tenant_id: str, client_id: str, client_secret: str):
-    auth_resp = soc.aztools.oauth_m365d_mtp(tenant_id, client_id, client_secret)
+def mde_mgt_oauth_token(*, tenant_id: str, client_id: str, client_secret: str):
+    auth_resp = soc.aztools.oauth_m365d_mtp(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
     auth_token = soc.aztools.oauth_bearer_token(auth_resp)
     return auth_token
 
 
-def mde_run_hunting_query(token: str, query_data: object):
+def mde_run_hunting_query(*, token, query_data):
     api_call_url = f'https://graph.microsoft.com/v1.0/security/runHuntingQuery'
     headers = {
         'Authorization': f'Bearer {token}',
@@ -32,14 +30,18 @@ def mde_run_hunting_query(token: str, query_data: object):
     return api_call_response
 
 
-def mde_run_hunting_query_df(token: str, query_data: dict):
-    output = mde_run_hunting_query(token, query_data)
+def mde_run_hunting_query_df(*, token, query_data):
+    output = mde_run_hunting_query(token=token, query_data=query_data)
     mde_df = pd.DataFrame.from_dict(output['results'])
 
     return mde_df
 
 
-def mde_list_hunting_logic(token: str):
+def mde_list_hunting_logic(*, token):
+    """
+    :param token: (string) bearer/auth token
+    :return: (dict)
+    """
     api_call_url = 'https://api.security.microsoft.com/api/CustomDetections'
     req_headers = {
             'Content-Type': 'application/json',
@@ -51,8 +53,8 @@ def mde_list_hunting_logic(token: str):
     return json.dumps(api_call_response)
 
 
-def mde_list_hunting_logic_flat_df(token: str):
-    data = mde_list_hunting_logic(token)
+def mde_list_hunting_logic_flat_df(*, token):
+    data = mde_list_hunting_logic(token=token)
     mde_df = pd.read_json(data)
     mde_df = pd.concat([mde_df, mde_df['value'].apply(pd.Series)], axis=1)
     mde_df = mde_df.drop('value', axis=1)
