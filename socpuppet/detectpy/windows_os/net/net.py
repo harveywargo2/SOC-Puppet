@@ -21,6 +21,19 @@ def net_p0001_cmd_used_and_piped_to_file(*, type='kql', kql_ago='1d'):
     return output
 
 
+def net_p0002_potential_dump_to_file(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(net_kql_path, 'net_p0002_potential_dump_to_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
 def net_p1000_cmd_used_to_list_groups_on_domain(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
@@ -344,6 +357,7 @@ def net_p5000_cmd_used_to_stop_service(*, type='kql', kql_ago='1d'):
 
     return output
 
+
 def net_p5001_cmd_used_to_stop_defender_service(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
@@ -356,3 +370,4 @@ def net_p5001_cmd_used_to_stop_defender_service(*, type='kql', kql_ago='1d'):
         output = f'type={type} not supported'
 
     return output
+
