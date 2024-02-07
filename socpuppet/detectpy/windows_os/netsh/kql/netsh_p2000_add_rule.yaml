@@ -1,13 +1,13 @@
 ---
-title: disable_windows_firewall
-pid: netsh_p0002
-description: disable windows firewall
+title: add_rule
+pid: netsh_p2000
+description: add windows firewall rule
 metaData:
   attackTechnique: t1562.004
   attackSoftware: s0108
   detectUseCase:
   detectType: single_line_match
-  detectCon: 4
+  detectCon: 5
   platform: windows_os
   dataFlow:
     - msft defender endpoint or m365d agent <on>
@@ -21,4 +21,5 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has ('netsh')
-    | where ProcessCommandLine has_all ('firewall', 'set', 'opmode', 'disable')
+    | where ProcessCommandLine has_any ('advfirewall', 'firewall')
+    | where ProcessCommandLine has_all ('rule', 'add')

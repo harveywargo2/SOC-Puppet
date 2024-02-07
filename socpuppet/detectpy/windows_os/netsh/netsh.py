@@ -92,3 +92,17 @@ def netsh_p1003_mod_firewall_rule_network_discovery_enable(*, type='kql', kql_ag
 
     return output
 
+
+def netsh_p2000_add_rule(*, type='kql', kql_ago='1d'):
+
+    if type == 'kql':
+        with open(os.path.join(netsh_kql_path,
+                               'netsh_p2000_add_rule.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago)
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
