@@ -1,0 +1,29 @@
+---
+title: disable_windows_firewall
+pid: netsh_p0001
+description: sets all firewall profiles to off
+metaData:
+  attackTechnique: t1562.004
+  attackSoftware: s0108
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has ('netsh')
+    | where ProcessCommandLine has_all ('advfirewall', 'set', 'state', 'off')
+    | where ProcessCommandLine has_any ('allprofiles', 
+      'Currentprofile', 
+      'Domainprofile', 
+      'Privateprofile', 
+      'Publciprofile')
