@@ -7,7 +7,24 @@ Net Command Line Utility is commonly used by Cyber Threat Actors to
 4. Discovery of Password Policy
 4. Modify Local Groups & Users
 
+
+## References
+- [Mitre Attack Software - S0039](https://attack.mitre.org/software/S0039/)
+- https://learn.microsoft.com/en-US/troubleshoot/windows-server/networking/net-commands-on-operating-systems
+- https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490717(v=technet.10)?redirectedfrom=MSDN
+- https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490718(v=technet.10)
+
+
+
+## Threat Intel References
+- https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
+- https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-136a
+- https://github.com/DISREL/Conti-Leaked-Playbook-TTPs/blob/main/Conti-Leaked-Playbook-TTPs.pdf
+
+
 ## Bardic Inspirations (Summarized Output from Google Bard AI)
+- bard.google
+
 The `net view /all /domain` command in Windows combines two functions to provide a comprehensive overview of shared resources within a specified domain:
 
 Here's a breakdown of its components:
@@ -46,11 +63,4 @@ The `net view /all` command relies on NetBIOS for communication.
 - If NetBIOS is disabled on your network or the target computer, you might not get accurate results.
 - Running this command might generate some network traffic, especially if you're targeting a large number of computers.
 - Some older versions of Windows might not support the /all switch.
-
-## References
-- [Mitre Attack Software - S0039](https://attack.mitre.org/software/S0039/)
-- https://learn.microsoft.com/en-US/troubleshoot/windows-server/networking/net-commands-on-operating-systems
-- https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490717(v=technet.10)?redirectedfrom=MSDN
-- https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490718(v=technet.10)
-- bard.google
 

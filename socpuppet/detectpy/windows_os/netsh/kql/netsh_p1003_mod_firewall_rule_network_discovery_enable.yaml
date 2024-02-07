@@ -1,0 +1,26 @@
+---
+title: mod_firewall_rule_network_discovery_enable
+pid: netsh_p1003
+description: enables network discovery feature on windows by modifying firewall rules
+metaData:
+  attackTechnique: t1562.004
+  attackSoftware: s0108
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has ('netsh')
+    | where ProcessCommandLine has_any ('advfirewall', 'firewall') 
+    | where ProcessCommandLine has_all ('rule', 'set', 'enable', 'yes')
+    | where ProcessCommandLine has_all ('group', 'network', 'discovery')

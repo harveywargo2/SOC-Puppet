@@ -1,7 +1,9 @@
 # NLTEST - Network Location Test
-## Reference LInks
+## Reference Links
 - https://ss64.com/nt/nltest.html
 - bard.google.com
+
+## Threat Intel References
 
 ## Bardic Inspirations 
 - `nltest`: A Windows command-line utility for managing and troubleshooting network logins and domain trusts.
