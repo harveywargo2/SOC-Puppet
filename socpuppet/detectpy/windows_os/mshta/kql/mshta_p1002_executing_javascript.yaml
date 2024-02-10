@@ -1,0 +1,25 @@
+---
+title: executing_javascript
+pid: mshta_p1002
+description: mshta executing javascript
+metaData:
+  attackTechnique: t1218.005
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'mshta.exe'
+    | where ProcessCommandLine has_all ('javascript', 'GetObject', 'script')
+    
