@@ -1,0 +1,25 @@
+---
+title: executing_cpl_file
+pid: control_p1000
+description: abusing control.exe to execute cpl file
+metaData:
+  attackTechnique: t1218.002
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'control.exe'
+    | where ProcessCommandLine contains '.cpl'
+    

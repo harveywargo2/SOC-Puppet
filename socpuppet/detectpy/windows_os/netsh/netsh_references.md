@@ -1,7 +1,6 @@
 
 
-## Bardic Inspirations 
-- bard.google.com
+## Gemini gemini.google.com
 
 
 The command `netsh firewall set service type =remotedesktop mode = enable` 

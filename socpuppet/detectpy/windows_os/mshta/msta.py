@@ -9,7 +9,7 @@ mshta_kql_path = os.path.join(mshta_path, 'kql')
 mshta_sigma_path = os.path.join(mshta_path, 'sigma')
 
 
-def mshta(*, type='kql', kql_ago='1d'):
+def mshta_p1000_executing_vbs(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
         with open(os.path.join(mshta_kql_path,
