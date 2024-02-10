@@ -1,9 +1,9 @@
 ---
-title: executing_ps1
-pid: hh_p1000
-description: open powershell script with HTML help
+title: pcwdiag_executing_xml
+pid: msdt_p1001
+description: MSDT executing a xml file
 metaData:
-  attackTechnique: t1218.001
+  attackTechnique: t1218
   attackSoftware:
   detectUseCase:
   detectType: single_line_match
@@ -16,9 +16,12 @@ metaData:
     - DeviceProcessEvents <data table>
   tags:
     - lol
+    - cve-2022-30190
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'hh.exe'
-    | where ProcessCommandLine contains '.ps1'
+    | where FileName =~ 'msdt.exe'
+    | where ProcessCommandLine has_all ('msdt', 'PCWDiagnostic', '-af', '.xml')
+    | where InitiatingProcessFileName !~ 'pcwrun.exe'
+    

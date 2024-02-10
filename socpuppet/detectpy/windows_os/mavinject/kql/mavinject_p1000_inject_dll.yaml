@@ -1,9 +1,9 @@
 ---
-title: executing_ps1
-pid: hh_p1000
-description: open powershell script with HTML help
+title: pcwdiag_executing_xml
+pid: mavinject_p1000
+description: MAVINJECT injecting arbitrary dll file
 metaData:
-  attackTechnique: t1218.001
+  attackTechnique: t1218
   attackSoftware:
   detectUseCase:
   detectType: single_line_match
@@ -20,5 +20,7 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'hh.exe'
-    | where ProcessCommandLine contains '.ps1'
+    | where FileName =~ 'mavinject.exe'
+    | where ProcessCommandLine has_all ('INJECTRUNNING', '.dll')
+    | where InitiatingProcessFileName !~ 'appvclient.exe'
+    

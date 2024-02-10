@@ -1,6 +1,6 @@
 ---
 title: executing_chm
-pid: control_p1001
+pid: hh_p1001
 description: open .CHM compiled HTML files with HH.exe HTML help
 metaData:
   attackTechnique: t1218.001
