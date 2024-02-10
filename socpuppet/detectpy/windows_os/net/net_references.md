@@ -15,24 +15,23 @@ Net Command Line Utility is commonly used by Cyber Threat Actors to
 - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490718(v=technet.10)
 
 
-
 ## Threat Intel References
 - https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
 - https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-136a
 - https://github.com/DISREL/Conti-Leaked-Playbook-TTPs/blob/main/Conti-Leaked-Playbook-TTPs.pdf
 
 
-## Bardic Inspirations (Summarized Output from Google Bard AI)
-- bard.google
+## Gemini gemini.google.com
 
-The `net view /all /domain` command in Windows combines two functions to provide a comprehensive overview of shared resources within a specified domain:
+The `net view /all /domain` 
+command in Windows combines two functions to provide a comprehensive overview of shared resources within a specified domain:
 
 Here's a breakdown of its components:
 
 `net view`: As you know, this base command lists shared resources and computers on the network.
 By itself, this command will only show a list of computers available on your domain or workgroup that have file and printer sharing enabled. It hides less visible resources.
 
-`/all`: Switches output to iclude
+`/all`: Switches output to include
 - All shared resources: This includes hidden administrative shares like C$, D$, IPC$, etc., which are usually hidden for security reasons.
 - Hidden resources: These are resources that are shared but not advertised for browsing.
 - Offline client caching settings: This shows how remote computers can access the shared resources while offline.
