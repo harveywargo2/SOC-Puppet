@@ -1,0 +1,26 @@
+---
+title: hklm_lsa_dump
+pid: reg_p1001
+description: Dump LSA from Registry
+metaData:
+  attackTechnique: t1003.004
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'reg.exe'
+    | where ProcessCommandLine has_all('hklm', 'save')
+    | where ProcessCommandLine has_any('policy' , 'secrets' , 'security')
+    

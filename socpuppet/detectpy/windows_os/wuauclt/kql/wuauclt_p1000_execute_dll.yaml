@@ -1,7 +1,7 @@
 ---
 title: executing_dll
 pid: wuauclt_p1000
-description: infdefaultinstall
+description: wuauclt executing dll
 metaData:
   attackTechnique: t1218
   attackSoftware:

@@ -1,0 +1,24 @@
+---
+title: create_file
+pid: comsvcs_p1002
+description: comsvcs creating a file
+metaData:
+  attackTechnique: t1003.001
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceFileEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceFileEvents
+  kqlQuery: | 
+    | where ActionType =~ 'FileCreated'
+    | where InitiatingProcessCommandLine has_all ('rundll32' , 'comsvcs')
