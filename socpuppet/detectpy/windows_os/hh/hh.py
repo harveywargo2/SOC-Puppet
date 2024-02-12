@@ -16,7 +16,7 @@ def hh_p1000_executing_ps1(*, type='kql', kql_ago='1d'):
                                'hh_p1000_executing_ps1.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -30,7 +30,7 @@ def hh_p1001_executing_chm(*, type='kql', kql_ago='1d'):
                                'hh_p1001_executing_chm.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

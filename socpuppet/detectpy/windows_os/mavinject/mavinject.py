@@ -16,7 +16,7 @@ def mavinject_p1000_inject_dll(*, type='kql', kql_ago='1d'):
                                'mavinject_p1000_inject_dll.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

@@ -16,7 +16,7 @@ def keymgr_p1000_dump_creds(*, type='kql', kql_ago='1d'):
                                'keymgr_p1000_dump_creds.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

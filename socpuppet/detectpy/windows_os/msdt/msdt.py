@@ -16,7 +16,7 @@ def msdt_p1000_follina_0day(*, type='kql', kql_ago='1d'):
                                'msdt_p1000_follina_0day.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -30,7 +30,7 @@ def msdt_p1001_pcwdiag_executing_xml(*, type='kql', kql_ago='1d'):
                                'msdt_p1001_pcwdiag_executing_xml.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

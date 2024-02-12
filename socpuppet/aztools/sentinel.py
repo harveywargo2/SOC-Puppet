@@ -23,7 +23,7 @@ def azmonitor_run_query(*, token, workspace_id, query_data):
     return api_call_response
 
 
-def azmonitor_query_run_df(*, token, workspace_id, query_data):
+def azmonitor_run_query_df(*, token, workspace_id, query_data):
     data = azmonitor_run_query(token=token, workspace_id=workspace_id, query_data=query_data)
 
     df_col_names = []

@@ -16,7 +16,7 @@ def mshta_p1000_executing_hta(*, type='kql', kql_ago='1d'):
                                'mshta_p1000_executing_hta.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -30,7 +30,7 @@ def mshta_p1001_executing_vbs(*, type='kql', kql_ago='1d'):
                                'mshta_p1001_executing_vbs.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -44,7 +44,7 @@ def mshta_p1002_executing_javascript(*, type='kql', kql_ago='1d'):
                                'mshta_p1002_executing_javascript.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

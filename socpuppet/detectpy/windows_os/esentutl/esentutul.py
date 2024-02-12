@@ -16,7 +16,7 @@ def esentutl_p1000_copy_sam(*, type='kql', kql_ago='1d'):
                                'esentutl_p1000_copy_sam.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -30,7 +30,7 @@ def esentutl_p1001_copy_ntds(*, type='kql', kql_ago='1d'):
                                'esentutl_p1001_copy_ntds.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

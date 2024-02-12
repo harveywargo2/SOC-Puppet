@@ -4,16 +4,16 @@ import socpuppet.detectpy.kql_qbuild as kbuild
 
 
 # Path Variables for Module
-comsvcs_path = os.path.dirname(os.path.abspath(__file__))
-comsvcs_kql_path = os.path.join(comsvcs_path, 'kql')
-comsvcs_sigma_path = os.path.join(comsvcs_path, 'sigma')
+mimikatz_path = os.path.dirname(os.path.abspath(__file__))
+mimikatz_kql_path = os.path.join(mimikatz_path, 'kql')
+mimikatz_sigma_path = os.path.join(mimikatz_path, 'sigma')
 
 
-def comsvcs_p1000_minidump(*, type='kql', kql_ago='1d'):
+def mimikatz_p0001_file_a(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
-        with open(os.path.join(comsvcs_kql_path,
-                               'comsvcs_p1000_minidump.yaml'), 'r') as file:
+        with open(os.path.join(mimikatz_kql_path,
+                               'mimikatz_p0001_file_a.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -23,11 +23,11 @@ def comsvcs_p1000_minidump(*, type='kql', kql_ago='1d'):
     return output
 
 
-def comsvcs_p1001_rundll32(*, type='kql', kql_ago='1d'):
+def mimikatz_p0002_file_b(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
-        with open(os.path.join(comsvcs_kql_path,
-                               'comsvcs_p1001_rundll32.yaml'), 'r') as file:
+        with open(os.path.join(mimikatz_kql_path,
+                               'mimikatz_p0002_file_b.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -37,11 +37,11 @@ def comsvcs_p1001_rundll32(*, type='kql', kql_ago='1d'):
     return output
 
 
-def comsvcs_p1002_create_file(*, type='kql', kql_ago='1d'):
+def mimikatz_p1000_cmds(*, type='kql', kql_ago='1d'):
 
     if type == 'kql':
-        with open(os.path.join(comsvcs_kql_path,
-                               'comsvcs_p1002_create_file.yaml'), 'r') as file:
+        with open(os.path.join(mimikatz_kql_path,
+                               'mimikatz_p1000_cmds.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -49,3 +49,5 @@ def comsvcs_p1002_create_file(*, type='kql', kql_ago='1d'):
         output = f'type={type} not supported'
 
     return output
+
+

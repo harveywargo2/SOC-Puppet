@@ -16,7 +16,7 @@ def infdefaultinstall_p1000_executing_inf(*, type='kql', kql_ago='1d'):
                                'infdefaultinstall_p1000_executing_inf.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

@@ -16,7 +16,7 @@ def control_p1000_executing_cpl_file(*, type='kql', kql_ago='1d'):
                                'control_p1000_executing_cpl_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -30,7 +30,7 @@ def control_p1001_executing_dll_file(*, type='kql', kql_ago='1d'):
                                'control_p1001_executing_dll_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

@@ -15,7 +15,7 @@ def nltest_p1000_dclist_used_to_list_domain_controllers(*, type='kql', kql_ago='
                                'nltest_p1000_dclist_used_to_list_domain_controllers.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -29,7 +29,7 @@ def nltest_p1001_domain_trusts_used_to_list_domain_controllers(*, type='kql', kq
                                'nltest_p1001_domain_trusts_used_to_list_domain_trusts.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -43,7 +43,7 @@ def nltest_p1002_dsgetdc_used_to_list_dc_info(*, type='kql', kql_ago='1d'):
                                'nltest_p1002_dsgetdc_used_to_list_dc_info.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

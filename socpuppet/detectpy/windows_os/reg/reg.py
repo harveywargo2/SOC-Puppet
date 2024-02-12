@@ -16,7 +16,7 @@ def reg_p1000_hklm_sam_dump(*, type='kql', kql_ago='1d'):
                                'reg_p1000_hklm_sam_dump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 
@@ -30,7 +30,7 @@ def reg_p10001_hklm_lsa_dump(*, type='kql', kql_ago='1d'):
                                'reg_p1001_hklm_lsa_dump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago)
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
     else:
         output = f'type={type} not supported'
 

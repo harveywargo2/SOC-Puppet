@@ -1,0 +1,25 @@
+---
+title: file_b
+pid: mimikatz_p0002
+description: Mimikatz File Name or Executable indicator in File Events
+metaData:
+  attackTechnique:
+  attackSoftware: s0002
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceFileEvents <data table>
+  tags:
+    - hack_tool
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceFileEvents
+  kqlQuery: | 
+    | where ActionType has_any ('FileCreated', 'FileRenamed', 'FileDeleted', 'FileModified')
+    | where FileName =~ 'mimikatz.exe'
+      or FileName has 'mimikatz'
