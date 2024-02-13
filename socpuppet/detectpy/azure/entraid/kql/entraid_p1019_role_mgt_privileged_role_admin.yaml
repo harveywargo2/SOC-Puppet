@@ -1,7 +1,7 @@
 ---
-title: role_mgt_global_admin
-pid: entraid_p1000
-description: Any Global Admin Role Add, Remove, or Modify Activity
+title: role_mgt_privileged_role_admin
+pid: entraid_p1019
+description: Any Privileged Role Admin Role Add, Remove, or Modify Activity
 metaData:
   attackTechnique: t1098.003
   attackSoftware:
@@ -21,4 +21,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '62e90394-69f5-4237-9190-012177145e10'
+    | where TargetResources contains 'e8611ab8-c189-46e8-94e1-60213ab1f814'
