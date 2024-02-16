@@ -5,13 +5,13 @@ import socpuppet.detectpy.kql_qbuild as kbuild
 
 # Path Variables for Module
 wuauclt_path = os.path.dirname(os.path.abspath(__file__))
-wuauclt_kql_path = os.path.join(wuauclt_path, 'kql')
+wuauclt_kql_path = os.path.join(wuauclt_path, 'm365d')
 wuauclt_sigma_path = os.path.join(wuauclt_path, 'sigma')
 
 
-def wuauclt_p1000_execute_dll(*, type='kql', kql_ago='1d'):
+def wuauclt_p1000_execute_dll(*, type='m365d', kql_ago='1d'):
 
-    if type == 'kql':
+    if type == 'm365d':
         with open(os.path.join(wuauclt_kql_path,
                                'wuauclt_p1000_execute_dll.yaml'), 'r') as file:
             data = yaml.safe_load(file)

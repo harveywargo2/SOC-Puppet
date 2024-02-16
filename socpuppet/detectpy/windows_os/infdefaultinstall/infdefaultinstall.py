@@ -5,13 +5,13 @@ import socpuppet.detectpy.kql_qbuild as kbuild
 
 # Path Variables for Module
 infd_path = os.path.dirname(os.path.abspath(__file__))
-infd_kql_path = os.path.join(infd_path, 'kql')
+infd_kql_path = os.path.join(infd_path, 'm365d')
 infd_sigma_path = os.path.join(infd_path, 'sigma')
 
 
-def infdefaultinstall_p1000_executing_inf(*, type='kql', kql_ago='1d'):
+def infdefaultinstall_p1000_executing_inf(*, type='m365d', kql_ago='1d'):
 
-    if type == 'kql':
+    if type == 'm365d':
         with open(os.path.join(infd_kql_path,
                                'infdefaultinstall_p1000_executing_inf.yaml'), 'r') as file:
             data = yaml.safe_load(file)
