@@ -1,0 +1,23 @@
+---
+title: file
+pid: pypykatz_p1000
+description: pypykatz file
+metaData:
+  attackTechnique: t1003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has 'pypykatz'
+      or ProcessCommandLine has 'pypykatz'
