@@ -1,0 +1,24 @@
+---
+title: role_mgt_security_admin
+pid: entraid_p1020
+description: Any Security Admin Role Add, Remove, or Modify Activity
+metaData:
+  attackTechnique: t1098.003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 4
+  platform: azure
+  dataFlow:
+    - entra id <logs>
+    - RoleManagement events <forwards to>
+    - msft sentinel <stores in>
+    - AuditLogs <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '194ae4cb-b126-40b2-bd5b-6091b380977d'

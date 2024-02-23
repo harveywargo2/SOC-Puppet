@@ -1,0 +1,24 @@
+---
+title: role_mgt_auth_policy_admin
+pid: entraid_p1004
+description: Any Authentication Policy Admin Role Add, Remove, or Modify Activity
+metaData:
+  attackTechnique: t1098.003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 4
+  platform: azure
+  dataFlow:
+    - entra id <logs>
+    - RoleManagement events <forwards to>
+    - msft sentinel <stores in>
+    - AuditLogs <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '0526716b-113d-4c15-b2c8-68e3c22b9f80'

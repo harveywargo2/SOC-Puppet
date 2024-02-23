@@ -1,0 +1,24 @@
+---
+title: role_mgt_hybrid_intune_admin
+pid: entraid_p1016
+description: Any Intune Admin Role Add, Remove, or Modify Activity
+metaData:
+  attackTechnique: t1098.003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 4
+  platform: azure
+  dataFlow:
+    - entra id <logs>
+    - RoleManagement events <forwards to>
+    - msft sentinel <stores in>
+    - AuditLogs <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '3a2c62db-5318-420d-8d74-23affee5d9d5'

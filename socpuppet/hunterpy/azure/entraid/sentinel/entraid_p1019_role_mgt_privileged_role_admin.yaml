@@ -1,0 +1,24 @@
+---
+title: role_mgt_privileged_role_admin
+pid: entraid_p1019
+description: Any Privileged Role Admin Role Add, Remove, or Modify Activity
+metaData:
+  attackTechnique: t1098.003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 4
+  platform: azure
+  dataFlow:
+    - entra id <logs>
+    - RoleManagement events <forwards to>
+    - msft sentinel <stores in>
+    - AuditLogs <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains 'e8611ab8-c189-46e8-94e1-60213ab1f814'

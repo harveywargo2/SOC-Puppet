@@ -1,0 +1,23 @@
+---
+title: minidump
+pid: comsvcs_p1000
+description: Create minidump with comsvcs
+metaData:
+  attackTechnique: t1003.001
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all('minidump' , 'comsvcs')

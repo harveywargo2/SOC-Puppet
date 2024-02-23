@@ -1,0 +1,24 @@
+---
+title: role_mgt_billing_admin
+pid: entraid_p1006
+description: Any Billing Admin Role Add, Remove, or Modify Activity
+metaData:
+  attackTechnique: t1098.003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 4
+  platform: azure
+  dataFlow:
+    - entra id <logs>
+    - RoleManagement events <forwards to>
+    - msft sentinel <stores in>
+    - AuditLogs <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains 'b0f54661-2d74-4c50-afa3-1ec803f12efe'

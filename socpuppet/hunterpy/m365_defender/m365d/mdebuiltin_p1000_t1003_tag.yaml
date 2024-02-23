@@ -1,0 +1,36 @@
+---
+title: t1003_tag
+pid: mdebuiltin_p1000
+description: Builtin Alerts tagged with T1003
+metaData:
+  attackTechnique: t1003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  platform: m365d
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any device <logs>
+    - mde alerting component <forwards to>
+    - AlertEvidence and AlertInfo <data table>
+  tags:
+    - lol
+kqlDetect:
+  kqlVar: |
+    let AlertName = dynamic(['Process memory dump', 
+      'Suspicious access to LSASS service',
+      'Endpoint attack notifications: Credential theft activity', 
+      'Sensitive credential memory read',
+      'Malicious credential theft tool execution detected', 
+      'Possible attempt to steal credentials']);
+    let AlertKeyWord = dynamic(['DumpLsass', 'LsassDump', 'RundllLolBin', 'pypykatz', 'minidump', 'wincred',
+      'mimikatz', 'MiniDump', 'PowerSploit', 'Lazagne']);
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | extend Trigger = case(Title in~ (AlertName), 'Title Trigger',
+      Title has_any (AlertKeyWord), 'Title Keyword Trigger' ,
+      ThreatFamily has_any (AlertKeyWord), 'Threat Family Keyword' ,
+      AttackTechniques contains 'T1003' , 'Attack Technique ID', '')
+    | where isnotempty(Trigger)
+      and DetectionSource !contains 'Custom'

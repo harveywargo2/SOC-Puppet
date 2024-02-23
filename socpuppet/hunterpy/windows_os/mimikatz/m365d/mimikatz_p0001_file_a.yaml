@@ -1,0 +1,24 @@
+---
+title: file_a
+pid: mimikatz_p0001
+description: Mimikatz File Name or Executable indicator in Process Events
+metaData:
+  attackTechnique:
+  attackSoftware: s0002
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  platform: windows_os
+  dataFlow:
+    - msft defender endpoint or m365d agent <on>
+    - any windows os <logs>
+    - process creation events <forwards to>
+    - DeviceProcessEvents <data table>
+  tags:
+    - hack_tool
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'mimikatz'
+      or FileName =~ 'mimikatz.exe'
