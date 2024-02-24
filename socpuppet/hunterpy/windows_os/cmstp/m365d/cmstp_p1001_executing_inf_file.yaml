@@ -1,13 +1,13 @@
 ---
-title: executing_inf_file
-pid: cmstp_p1000
-description: silently installs a specially formatted .inf
+title: executing_inf_file_silent
+pid: cmstp_p1001
+description: installs a specially formatted .inf
 metaData:
   attackTechnique: t1218.003
   attackSoftware:
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 4
   platform: windows_os
 dataRequirements:
   dataScope: endpoint_windows_os
@@ -25,4 +25,4 @@ kqlDetect:
   kqlQuery: | 
     | where ProcessCommandLine has 'cmstp'
       or FileName has 'cmstp'
-    | where ProcessCommandLine has_all ('.inf', '/s') 
+    | where ProcessCommandLine contains '.inf'
