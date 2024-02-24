@@ -9,9 +9,16 @@ metaData:
   detectType:
   detectCon:
   platform:
-  dataFlow:
-  tags:
-    -
+dataRequirements:
+  dataScope:
+  dataCollector:
+  dataName:
+  dataForwardTo:
+  dataAccess:
+  dataStorage:
+  dataMap:
+tags:
+  -
 kqlDetect:
   kqlVar:
   kqlTable:
