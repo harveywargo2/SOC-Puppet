@@ -9,13 +9,16 @@ metaData:
   detectType: single_line_match
   detectCon: 1
   platform: m365d
-  dataFlow:
-    - msft defender endpoint or m365d agent <on>
-    - any device <logs>
-    - mde alerting component <forwards to>
-    - AlertEvidence and AlertInfo <data table>
-  tags:
-    - lol
+dataRequirements:
+  dataScope: m365d_builtin_alerts
+  dataCollector: m365d_agent
+  dataName: builtin_alerts
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: alert_evidence
+  dataMap: alert_evidence
+tags:
+  - lol
 kqlDetect:
   kqlVar: |
     let AlertName = dynamic(['Process memory dump', 

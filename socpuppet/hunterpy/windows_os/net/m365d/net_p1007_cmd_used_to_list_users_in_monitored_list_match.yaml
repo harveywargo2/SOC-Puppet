@@ -12,13 +12,16 @@ metaData:
   detectType: single_line_match
   detectCon: 4
   platform: windows_os
-  dataFlow:
-    - msft defender endpoint or m365d agent <on>
-    - any windows os <logs>
-    - process creation events <forwards to>
-    - DeviceProcessEvents <data table>
-  tags:
-    - lol
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+tags:
+  - lol
 kqlDetect:
   kqlVar: let MonitorGroupList = dynamic(['server', 'service accounts', 'linux server', 'linux']);
   kqlTable: DeviceProcessEvents
