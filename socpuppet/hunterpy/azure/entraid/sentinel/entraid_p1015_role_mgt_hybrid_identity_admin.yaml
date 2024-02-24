@@ -9,16 +9,16 @@ metaData:
   detectType: single_line_match
   detectCon: 4
   platform: azure
-  dataRequirements:
-    dataScope: entra_id
-    dataCollector: entra_id_native_log
-    dataName: role_management
-    dataForwardTo: msft_aentinel
-    dataAccess: azure_monitor_api
-    dataStorage: audit_logs
-    dataMap: audit_logs
-  tags:
-    - lol
+dataRequirements:
+  dataScope: entra_id
+  dataCollector: entra_id_native_log
+  dataName: role_management
+  dataForwardTo: msft_sentinel
+  dataAccess: azure_monitor_api
+  dataStorage: audit_logs
+  dataMap: audit_logs
+tags:
+  - lol
 kqlDetect:
   kqlVar:
   kqlTable: AuditLogs
