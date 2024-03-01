@@ -1,0 +1,29 @@
+---
+title: executing_inf_file_silent
+pid: cmstp_p1000
+description: silently installs a specially formatted .inf
+metaData:
+  attackTechnique: t1218.003
+  attackSoftware:
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  platform: windows_os
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+tags:
+  - lol
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'cmstp'
+      or FileName has 'cmstp'
+    | where ProcessCommandLine contains '.inf'
+    | where ProcessCommandLine contains '/s' 
