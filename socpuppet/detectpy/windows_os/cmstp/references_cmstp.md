@@ -1,6 +1,6 @@
 # CMSTP
 
-## Link Lists
+## References Links
 - LOLBAS: https://lolbas-project.github.io/lolbas/Binaries/Cmstp/
 - MSFT Command Doc: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/ff961501(v=ws.11)
 - https://twitter.com/NickTyrer/status/958450014111633408
