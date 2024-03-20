@@ -4,7 +4,7 @@ metaTags:
   description: installs a specially formatted .inf with silent flag set
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 2
   tags:
     - lol
 intel:
@@ -32,6 +32,6 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where FileName =~ 'cmstp.exe'
-      or InitiatingProcessVersionInfoOriginalFileName =~ 'cmstp.exe'
+      or ProcessVersionInfoOriginalFileName =~ 'cmstp.exe'
     | where ProcessCommandLine contains '.inf'
     | where ProcessCommandLine contains '/s'
