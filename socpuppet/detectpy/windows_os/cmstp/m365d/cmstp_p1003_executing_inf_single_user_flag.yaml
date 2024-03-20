@@ -1,14 +1,19 @@
 ---
-title: executing_inf_file_silent
-pid: cmstp_p1001
-description: installs a specially formatted .inf
+title: cmstp_p1003_executing_inf_file_single_user_flag
 metaData:
-  attackTechnique: t1218.003
-  attackSoftware:
+  description: installs a specially formatted .inf with single user flag
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+    - cmstp.exe path\to\some_file.inf /su
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,12 +22,11 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'cmstp'
-      or FileName has 'cmstp'
+    | where FileName =~ 'cmstp.exe'
+      or InitiatingProcessVersionInfoOriginalFileName =~ 'cmstp.exe'
     | where ProcessCommandLine contains '.inf'
+    | where ProcessCommandLine contains '/su'
