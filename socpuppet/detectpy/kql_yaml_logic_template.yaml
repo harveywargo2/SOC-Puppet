@@ -1,14 +1,17 @@
 ---
 title:
-pid:
-description:
-metaData:
-  attackTechnique:
-  attackSoftware:
+metaTags:
+  description:
   detectUseCase:
   detectType:
   detectCon:
-  platform:
+  tags:
+intel:
+  attackTechnique:
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope:
   dataCollector:
@@ -17,9 +20,7 @@ dataRequirements:
   dataAccess:
   dataStorage:
   dataMap:
-tags:
-  -
 kqlDetect:
   kqlVar:
   kqlTable:
-  kqlQuery: |
+  kqlQuery: | 
