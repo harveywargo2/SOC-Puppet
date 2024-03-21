@@ -69,7 +69,7 @@ def cmstp_p1004_spawning_file(*, type='m365d', kql_ago='1d'):
 
     if type == 'm365d':
         with open(os.path.join(cmstp_kql_path,
-                               'cmstp_p1003_spawning_file.yaml'), 'r') as file:
+                               'cmstp_p1004_spawning_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')

@@ -27,7 +27,6 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'cmstp.exe'
-      or ProcessVersionInfoOriginalFileName =~ 'cmstp.exe'
+    | where ProcessCommandLine has 'cmstp'
     | where ProcessCommandLine contains '.inf'
     | where ProcessCommandLine contains '/au'
