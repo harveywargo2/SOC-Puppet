@@ -1,7 +1,7 @@
 ---
-title: hh_p1000_executing_ps1
+title: hh_p1003_decompiling_file
 metaData:
-  description: open powershell script with HTML help
+  description: HTML help decompiling file
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
@@ -12,8 +12,8 @@ intel:
   attackSoftware:
   references:
   emulation:
+    - atomic_red_team_t1218_001_t8_guid_20cb05e0-1fa5-406d-92c1-84da4ba01813
   pattern:
-    - HH.exe http://some.url/script.ps1
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -27,4 +27,4 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where FileName =~ 'hh.exe'
-    | where ProcessCommandLine contains '.ps1'
+    | where ProcessCommandLine contains '-decompile'
