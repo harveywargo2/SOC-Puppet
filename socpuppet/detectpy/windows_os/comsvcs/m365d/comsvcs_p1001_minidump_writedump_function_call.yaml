@@ -28,12 +28,7 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'rundll32.exe'
-      or FileName =~ 'rundll64.exe'
-      or FileName =~ 'powershell.exe'
-      or ProcessVersionInfoOriginalFileName =~ 'rundll32.exe'
-      or ProcessVersionInfoOriginalFileName =~ 'rundll64.exe'
-      or ProcessVersionInfoOriginalFileName =~ 'powershell.exe'
+    | where ProcessCommandLine has 'comsvcs'
+    | where ProcessCommandLine contains 'rundll'
     | where ProcessCommandLine contains '#24'
-      and ProcessCommandLine contains 'comsvcs'
-      and ProcessCommandLine contains 'rundll'
+      or ProcessCommandLine contains '-24'
