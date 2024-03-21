@@ -25,7 +25,7 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'control.exe'
-      or ProcessVersionInfoOriginalFileName =~ 'control.exe'
+    | where FileName has 'control'
+      and ProcessCommandLine has 'control'
     | where ProcessCommandLine contains '.dll'
     | where ProcessCommandLine !contains 'input.dll'

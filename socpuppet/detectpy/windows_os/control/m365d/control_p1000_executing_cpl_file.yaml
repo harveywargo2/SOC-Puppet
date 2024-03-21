@@ -14,6 +14,7 @@ intel:
   emulation:
     - atomic_red_team_t1218_002_t1_guid_037e9d8a-9e46-4255-8b33-2ae3b545ca6f
   pattern:
+    - control.exe {path to folder or file name}
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -26,10 +27,8 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'control.exe'
-      or ProcessVersionInfoOriginalFileName =~ 'control.exe'
-    | where InitiatingProcessFileName =~ 'cmd.exe'
-      or InitiatingProcessFileName =~ 'powershell.exe'
+    | where FileName has 'control'
+      and ProcessCommandLine has 'control'
     | where ProcessCommandLine contains '.cpl'
     | where ProcessCommandLine !contains 'appwiz.cpl'
     
