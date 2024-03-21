@@ -1,14 +1,19 @@
 ---
-title: executing_cpl_file
-pid: control_p1000
-description: abusing control.exe to execute cpl file
+title: control_p1000_executing_cpl_file
 metaData:
-  attackTechnique: t1218.002
-  attackSoftware:
+  description: abusing control.exe to execute cpl file
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
-  platform: windows_os
+  detectCon: 4
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.002
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1218_002_t1_guid_037e9d8a-9e46-4255-8b33-2ae3b545ca6f
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,12 +22,14 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where FileName =~ 'control.exe'
+      or ProcessVersionInfoOriginalFileName =~ 'control.exe'
+    | where InitiatingProcessFileName =~ 'cmd.exe'
+      or InitiatingProcessFileName =~ 'powershell.exe'
     | where ProcessCommandLine contains '.cpl'
+    | where ProcessCommandLine !contains 'appwiz.cpl'
     

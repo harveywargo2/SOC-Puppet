@@ -1,10 +1,10 @@
 ---
-title: control_p1001_executing_dll_file
+title: control_p1002_executing_file_via_rundll
 metaData:
-  description: abusing control.exe to execute dll
+  description: abusing control.exe to execute dll through rundll
   detectUseCase:
   detectType: single_line_match
-  detectCon: 4
+  detectCon: 5
   tags:
     - lol
 intel:
@@ -25,7 +25,8 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'control.exe'
-      or ProcessVersionInfoOriginalFileName =~ 'control.exe'
-    | where ProcessCommandLine contains '.dll'
-    | where ProcessCommandLine !contains 'input.dll'
+    | where InitiatingProcessFileName =~ 'control.exe'
+    | where FileName =~ 'rundll32.exe'
+      or FileName =~ 'rundll64.exe'
+    | where ProcessCommandLine contains 'shell32.dll'
+      and ProcessCommandLine contains 'Control_Rundll'
