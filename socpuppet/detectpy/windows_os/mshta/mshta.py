@@ -49,3 +49,4 @@ def mshta_p1002_executing_javascript(*, type='m365d', kql_ago='1d'):
         output = f'type={type} not supported'
 
     return output
+

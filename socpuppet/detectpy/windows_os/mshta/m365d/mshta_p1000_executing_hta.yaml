@@ -1,14 +1,18 @@
 ---
-title: executing_hta
-pid: mshta_p1000
-description: mshta executing hta files
+title: mshta_p1000_executing_hta
 metaData:
-  attackTechnique: t1218.005
-  attackSoftware:
+  description: mshta executing hta files
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.005
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,12 +21,9 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'mshta.exe'
-    | where ProcessCommandLine has_all ('.hta')
-    
+    | where FileName has 'mshta'
+    | where ProcessCommandLine contains '.hta'

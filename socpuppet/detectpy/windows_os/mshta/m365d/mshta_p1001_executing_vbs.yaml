@@ -1,14 +1,16 @@
 ---
-title: executing_vbs
-pid: mshta_p1001
-description: mshta executing vbs
+title: mshta_p1001_executing_vbs
 metaData:
-  attackTechnique: t1218.005
-  attackSoftware:
+  description: mshta executing vbs script
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
-  platform: windows_os
+intel:
+  attackTechnique: t1218.005
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -23,7 +25,9 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'mshta.exe'
-    | where ProcessCommandLine has_all ('vbscript', 'execute')
-    | where ProcessCommandLine has_any ('script', 'run', 'wscript')
-    
+    | where FileName has 'mshta'
+      and ProcessCommandLine has 'vbscript'
+    | where ProcessCommandLine contains 'execute'
+    | where ProcessCommandLine contains 'script'
+      or ProcessCommandLine contains 'run'
+      or ProcessCommandLine contains 'wscript'
