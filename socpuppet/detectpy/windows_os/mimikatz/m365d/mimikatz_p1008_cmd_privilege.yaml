@@ -1,14 +1,18 @@
 ---
-title: file_a
-pid: mimikatz_p0001
-description: Mimikatz File Name or Executable indicator in Process Events
+title: mimikatz_p1008_cmd_privilege
 metaData:
-  attackTechnique:
-  attackSoftware: s0002
+  description: mimikatz commandline indicator
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique:
+  attackSoftware: s0002
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,11 +21,9 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'mimikatz'
-      or FileName =~ 'mimikatz.exe'
+    | where ProcessCommandLine has 'privilege'
+      and ProcessCommandLine contains 'privilege::'

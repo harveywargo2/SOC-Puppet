@@ -1,14 +1,18 @@
 ---
-title: file_b
-pid: mimikatz_p0002
-description: Mimikatz File Name or Executable indicator in File Events
+title: mimikatz_p0002_file_indicator
 metaData:
-  attackTechnique:
-  attackSoftware: s0002
+  description: mimikatz file name or executable indicator
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique:
+  attackSoftware: s0002
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,12 +21,9 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_file_events
   dataMap: device_file_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceFileEvents
   kqlQuery: | 
     | where ActionType has_any ('FileCreated', 'FileRenamed', 'FileDeleted', 'FileModified')
-    | where FileName =~ 'mimikatz.exe'
-      or FileName has 'mimikatz'
+    | where FileName has 'mimikatz'
