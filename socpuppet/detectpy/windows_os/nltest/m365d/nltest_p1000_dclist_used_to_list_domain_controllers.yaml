@@ -1,16 +1,18 @@
 ---
-title: dclist_used_to_list_domain_controllers
-pid: net_1000
-description:
-  - nltest can be used to list domain controllers
-  - see nltest_references.md
+title: nltest_p1000_used_to_list_domain_controllers
 metaData:
-  attackTechnique: t1018
-  attackSoftware: s0359
+  description: nltest can be used to list domain controllers
   detectUseCase:
   detectType: single_line_match
   detectCon: 2
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1018
+  attackSoftware: s0359
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -19,8 +21,6 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents

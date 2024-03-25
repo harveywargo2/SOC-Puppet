@@ -23,8 +23,8 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has ('netsh')
-    | where ProcessCommandLine has_all ('advfirewall', 'set', 'state', 'off')
+    | where FileName has 'netsh'
+    | where ProcessCommandLine has ('advfirewall', 'set', 'state', 'off')
     | where ProcessCommandLine has_any ('allprofiles', 
       'Currentprofile', 
       'Domainprofile', 
