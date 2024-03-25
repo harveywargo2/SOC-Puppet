@@ -1,7 +1,7 @@
 ---
 title: net_p1000_list_domain_groups
 metaData:
-  description: net.exe command line tool can be used to discover groups on a domain or domain controller
+  description: net CLT list groups on domain
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
