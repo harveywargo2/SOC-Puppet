@@ -1,9 +1,7 @@
 ---
 title: net_p0001_cmd_used_and_piped_to_file
 metaData:
-  description:
-    - net.exe command line tool can be used to perform user and or domain discovery techniques
-    - the output can be stored to a file for exfil
+  description: net.exe command line tool can be used to perform user and or domain discovery techniques and the output can be stored to a file for exfil
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
