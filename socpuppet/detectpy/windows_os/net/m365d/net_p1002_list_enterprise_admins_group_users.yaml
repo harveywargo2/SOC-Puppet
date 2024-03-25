@@ -29,3 +29,5 @@ kqlDetect:
       or FileName =~ 'net1.exe'
     | where ProcessCommandLine has 'domain'
       and ProcessCommandLine has 'admins'
+    | where ProcessCommandLine contains 'dom'
+      and ProcessCommandLine contains 'group'
