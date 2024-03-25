@@ -1,9 +1,7 @@
 ---
 title:  net_p0002_created_file
 metaData:
-  description:
-  - net.exe command line tool output saved to file on disk
-  - the output can be stored to a file for exfil
+  description: net.exe command line tool output saved to file on disk and the output can be stored to a file for exfil
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
