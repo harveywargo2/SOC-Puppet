@@ -1,10 +1,10 @@
 ---
-title: net_p1000_list_domain_groups
+title: net_p1001_list_domain_admins
 metaData:
-  description: net.exe command line tool can be used to discover groups on a domain or domain controller
+  description: net.exe command line tool can be used to discover users in a active directory group
   detectUseCase:
   detectType: single_line_match
-  detectCon: 4
+  detectCon: 3
   tags:
     - lol
 intel:
@@ -27,5 +27,5 @@ kqlDetect:
   kqlQuery: |
     | where FileName =~ 'net.exe'
       or FileName =~ 'net1.exe'
-    | where ProcessCommandLine contains '/dom'
-      and ProcessCommandLine contains 'group'
+    | where ProcessCommandLine has 'domain'
+      and ProcessCommandLine has 'admins'

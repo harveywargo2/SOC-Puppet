@@ -1,5 +1,5 @@
 ---
-title: net_p1001_list_domain_admins_group
+title: net_p1002_list_enterprise_admins
 metaData:
   description: net.exe command line tool can be used to discover users in a active directory group
   detectUseCase:
