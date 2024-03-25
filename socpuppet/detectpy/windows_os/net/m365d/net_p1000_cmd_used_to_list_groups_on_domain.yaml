@@ -1,16 +1,16 @@
 ---
-title: cmd_used_to_list_groups_on_domain
-pid: net_p1000
-description:
-  - net.exe command line tool can be used to discover groups on a domain or domain controller
-  - see net_references.md
+title: net_p1000_cmd_used_to_list_groups_on_domain
 metaData:
-  attackTechnique: t1069.002
-  attackSoftware: s0039
+  description: net.exe command line tool can be used to discover groups on a domain or domain controller
   detectUseCase:
   detectType: single_line_match
-  detectCon: 4
-  platform: windows_os
+  detectCon: 3
+intel:
+  attackTechnique: t1069.002
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -19,12 +19,13 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
+  tags:
   - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('group', 'groups')
-    | where ProcessCommandLine has_any ('/dom', '/domain')
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine contains '/dom'
+      and ProcessCommandLine contains 'group'
