@@ -1,7 +1,7 @@
 ---
-title: net_p1004_list_domain_computers
+title: net_p1004_list_domain_computers_group_users
 metaData:
-  description: net.exe command line tool can be used to discover users in a active directory group
+  description: net CLT list domain computers group users
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -27,5 +27,7 @@ kqlDetect:
   kqlQuery: |
     | where FileName =~ 'net.exe'
       or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'domain'
+      and ProcessCommandLine has 'users'
     | where ProcessCommandLine has 'domain'
       and ProcessCommandLine has 'computers'
