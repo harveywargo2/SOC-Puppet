@@ -1,7 +1,7 @@
 ---
-title: net_p1003_list_domain_users
+title: net_p1003_list_domain_users_group_users
 metaData:
-  description: net.exe command line tool can be used to discover users in a active directory group
+  description: net CLT list domain users group
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
