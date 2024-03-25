@@ -1,27 +1,25 @@
 # Net Command Line Utility in Windows
 
 Net Command Line Utility is commonly used by Cyber Threat Actors to 
-1. Perform AD Enumeration
-2. Discovery of Users Information
-3. Discovery of System Information 
-4. Discovery of Password Policy
-4. Modify Local Groups & Users
+- Perform AD Enumeration 
+- Discovery of Users Information 
+- Discovery of System Information 
+- Discovery of Password Policy 
+- Modify Local Groups & Users 
+- Discovery Network Shares
 
 
-## References
-- [Mitre Attack Software - S0039](https://attack.mitre.org/software/S0039/)
+## Reference Links
+- Mitre: https://attack.mitre.org/software/S0039/)
 - https://learn.microsoft.com/en-US/troubleshoot/windows-server/networking/net-commands-on-operating-systems
 - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490717(v=technet.10)?redirectedfrom=MSDN
 - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490718(v=technet.10)
+- TI: https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
+- TI: https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-136a
+- TI: https://github.com/DISREL/Conti-Leaked-Playbook-TTPs/blob/main/Conti-Leaked-Playbook-TTPs.pdf
 
 
-## Threat Intel References
-- https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
-- https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-136a
-- https://github.com/DISREL/Conti-Leaked-Playbook-TTPs/blob/main/Conti-Leaked-Playbook-TTPs.pdf
-
-
-## Gemini gemini.google.com
+## Net Command Break Out 
 
 The `net view /all /domain` 
 command in Windows combines two functions to provide a comprehensive overview of shared resources within a specified domain:
