@@ -1,7 +1,7 @@
 ---
-title: net_p1002_list_enterprise_admins
+title: net_p1002_list_enterprise_admins_group_users
 metaData:
-  description: net.exe command line tool can be used to discover users in a active directory group
+  description: net CLT list enterprise admins users
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
