@@ -1,7 +1,7 @@
 ---
-title: net_p1001_list_domain_admins
+title: net_p1001_list_domain_admins_group_users
 metaData:
-  description: net.exe command line tool can be used to discover users in a active directory group
+  description: net CLT list users in domain admins group
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
