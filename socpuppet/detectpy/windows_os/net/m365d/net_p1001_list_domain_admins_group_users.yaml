@@ -1,5 +1,5 @@
 ---
-title: net_p1001_list_domain_admins_group_users
+title: net_p1002_list_domain_admins_group_users
 metaData:
   description: net CLT list users in domain admins group
   detectUseCase:
