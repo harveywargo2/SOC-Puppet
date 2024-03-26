@@ -1,9 +1,8 @@
 ---
-title: cmd_used_to_list_details_of_admin_user
+title: net_p3002_list_details_of_admin_user
 pid: net_p3002
-description:
-  - net.exe command line tool can be used to list user accounts on a device
-  - see net_references.md
+description: net CLT list details of admin user
+  - see references_net.md
 metaData:
   attackTechnique: t1087.001
   attackSoftware: s0039
@@ -25,6 +24,8 @@ kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('user', 'users')
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'user'
     | where ProcessCommandLine has 'administrator'
+      or ProcessCommandLine contains 'admin'
