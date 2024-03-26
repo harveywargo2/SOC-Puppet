@@ -1,16 +1,18 @@
 ---
-title: cmd_used_to_list_users_on_device
-pid: net_p3000
-description:
-  - net.exe command line tool can be used to list user accounts on a device
-  - see net_references.md
+title: net_p3000_list_users_on_device
 metaData:
-  attackTechnique: t1087.001
-  attackSoftware: s0039
+  description: net CLT used to list users on a device
   detectUseCase:
   detectType: single_line_match
   detectCon: 5
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1087.001
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -19,11 +21,11 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_any ('user', 'users')
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'user'
+      and ProcessCommandLine !has 'use'
