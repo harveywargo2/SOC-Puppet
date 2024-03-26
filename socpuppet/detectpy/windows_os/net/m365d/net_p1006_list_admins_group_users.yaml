@@ -27,6 +27,6 @@ kqlDetect:
   kqlQuery: |  
     | where FileName =~ 'net.exe'
       or FileName =~ 'net1.exe'
-    | where ProcessCommandLine has 'domain'
-      and ProcessCommandLine has 'users'
+    | where ProcessCommandLine contains '/dom'
+      and ProcessCommandLine contains 'group'
     | where ProcessCommandLine contains 'admin'
