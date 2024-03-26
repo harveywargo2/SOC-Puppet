@@ -1,10 +1,10 @@
 ---
-title: net_p1002_list_enterprise_admins_group_users
+title: net_p1003_add_user_domain_admins_group
 metaData:
-  description: net CLT list enterprise admins users
+  description: net CLT add users in domain admins group
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
+  detectCon:
   tags:
     - lol
 intel:
@@ -27,7 +27,8 @@ kqlDetect:
   kqlQuery: |
     | where FileName =~ 'net.exe'
       or FileName =~ 'net1.exe'
+    | where ProcessCommandLine contains '/dom'
+      and ProcessCommandLine contains 'group'
+      and ProcessCommandLine contains 'add'
     | where ProcessCommandLine has 'domain'
       and ProcessCommandLine has 'admins'
-    | where ProcessCommandLine contains 'dom'
-      and ProcessCommandLine contains 'group'

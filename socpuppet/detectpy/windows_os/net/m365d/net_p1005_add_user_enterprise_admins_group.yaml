@@ -1,10 +1,10 @@
 ---
-title: net_p1003_list_domain_users_group_users
+title: net_p1004_list_enterprise_admins_group_users
 metaData:
-  description: net CLT list domain users group
+  description: net CLT list enterprise admins users
   detectUseCase:
   detectType: single_line_match
-  detectCon: 4
+  detectCon: 2
   tags:
     - lol
 intel:
@@ -27,7 +27,8 @@ kqlDetect:
   kqlQuery: |
     | where FileName =~ 'net.exe'
       or FileName =~ 'net1.exe'
-    | where ProcessCommandLine has 'domain'
-      and ProcessCommandLine has 'users'
-    | where ProcessCommandLine contains 'dom'
+    | where ProcessCommandLine contains '/dom'
       and ProcessCommandLine contains 'group'
+      and ProcessCommandLine contains 'add'
+    | where ProcessCommandLine has 'enterprise'
+      and ProcessCommandLine has 'admins'
