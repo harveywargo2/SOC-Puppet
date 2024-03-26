@@ -1,7 +1,7 @@
 ---
 title: net_p1004_list_enterprise_admins_group_users
 metaData:
-  description: net CLT list enterprise admins users
+  description: net CLT add user to enterprise admins group
   detectUseCase:
   detectType: single_line_match
   detectCon: 2
