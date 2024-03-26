@@ -1,16 +1,18 @@
 ---
-title: cmd_used_to_stop_service
-pid: net_p5000
-description:
-  - net.exe command line tool can be used to stop services on device
-  - see net_references.md
+title:  net_p4000_view_visible_computers
 metaData:
-  attackTechnique:
-  attackSoftware: s0039
+  description: net CLT view visible computers
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1087.001
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -19,11 +21,10 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has_any ('net', 'net1')
-    | where ProcessCommandLine has_all ('stop')
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'view'
