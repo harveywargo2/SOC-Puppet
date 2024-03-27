@@ -1,14 +1,18 @@
 ---
-title: msdt_follina
-pid: mdebuiltin_p2000
-description: Builtin Alerts associated with Follina 0 day
+title: mdebuiltin_p2000_msdt_follina
 metaData:
-  attackTechnique: t1003
-  attackSoftware:
+  description: Builtin Alerts associated with Follina 0 day
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: m365d
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: m365d_builtin_alerts
   dataCollector: m365d_agent
@@ -17,8 +21,6 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: alert_evidence
   dataMap: alert_evidence
-tags:
-  - lol
 kqlDetect:
   kqlVar: |
     let AlertName = dynamic(['Suspicious msdt.exe behavior', 
