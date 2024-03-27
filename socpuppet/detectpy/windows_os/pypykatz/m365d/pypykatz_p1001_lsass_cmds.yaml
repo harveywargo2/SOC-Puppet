@@ -26,6 +26,5 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where ProcessCommandLine has 'live'
-    | where (ProcessCommandLine contains 'cmd' and ProcessCommandLine contains 'lsa')
-      or (ProcessCommandLine has 'python' and ProcessCommandLine contains 'lsa')
-      or (ProcessCommandLine contains 'registry')
+    | where ProcessCommandLine contains 'live registry'
+      or ProcessCommandLine contains 'live lsa'
