@@ -1,14 +1,18 @@
 ---
-title: mod_firewall_rule_smb_enable
-pid: netsh_p1001
-description: enables print file share feature (smb) on windows by modifying firewall rules
+title: netsh_p1001_mod_firewall_rule_smb_enable
 metaData:
-  attackTechnique: t1562.004
-  attackSoftware: s0108
+  description: enables print file share feature (smb) on windows by modifying firewall rules
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1562.004
+  attackSoftware: s0108
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,13 +21,15 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has ('netsh')
-    | where ProcessCommandLine has_any ('advfirewall', 'firewall') 
-    | where ProcessCommandLine has_all ('rule', 'set', 'enable', 'yes')
-    | where ProcessCommandLine has_all ('group', 'File', 'Print', 'Sharing')
+    | where FileName has 'netsh'
+    | where ProcessCommandLine has 'advfirewall'
+      and ProcessCommandLine has 'set'
+      and ProcessCommandLine has 'rule'
+    | where ProcessCommandLine contains 'group='
+      and ProcessCommandLine contains 'file and printer sharing'
+      and ProcessCommandLine contains 'enable='
+      and ProcessCommandLine contains 'yes'
