@@ -1,10 +1,10 @@
 ---
-title: nltest_p1000_used_to_list_domain_controllers
+title: net_1002_dsgetdc_ist_dc_info
 metaData:
-  description: nltest can be used to list domain controllers
+  description: nltest can be used to list domain controller info with dsgetdc
   detectUseCase:
   detectType: single_line_match
-  detectCon: 2
+  detectCon: 3
   tags:
     - lol
 intel:
@@ -26,4 +26,4 @@ kqlDetect:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has 'nltest'
-    | where ProcessCommandLine has 'dclist'
+    | where ProcessCommandLine contains '/dsgetdc'

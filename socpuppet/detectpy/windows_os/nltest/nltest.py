@@ -8,11 +8,11 @@ nltest_kql_path = os.path.join(nltest_path, 'm365d')
 nltest_sigma_path = os.path.join(nltest_path, 'sigma')
 
 
-def nltest_p1000_dclist_used_to_list_domain_controllers(*, type='m365d', kql_ago='1d'):
+def nltest_p1000_dclist_domain_controllers(*, type='m365d', kql_ago='1d'):
 
     if type == 'm365d':
         with open(os.path.join(nltest_kql_path,
-                               'nltest_p1000_dclist_used_to_list_domain_controllers.yaml'), 'r') as file:
+                               'nltest_p1000_dclist_domain_controllers.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -22,11 +22,11 @@ def nltest_p1000_dclist_used_to_list_domain_controllers(*, type='m365d', kql_ago
     return output
 
 
-def nltest_p1001_domain_trusts_used_to_list_domain_controllers(*, type='m365d', kql_ago='1d'):
+def nltest_p1001_domain_trusts(*, type='m365d', kql_ago='1d'):
 
     if type == 'm365d':
         with open(os.path.join(nltest_kql_path,
-                               'nltest_p1001_domain_trusts_used_to_list_domain_trusts.yaml'), 'r') as file:
+                               'nltest_p1001_domain_trusts.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -36,11 +36,11 @@ def nltest_p1001_domain_trusts_used_to_list_domain_controllers(*, type='m365d', 
     return output
 
 
-def nltest_p1002_dsgetdc_used_to_list_dc_info(*, type='m365d', kql_ago='1d'):
+def nltest_p1002_dsgetdc_list_dc_info(*, type='m365d', kql_ago='1d'):
 
     if type == 'm365d':
         with open(os.path.join(nltest_kql_path,
-                               'nltest_p1002_dsgetdc_used_to_list_dc_info.yaml'), 'r') as file:
+                               'nltest_p1002_dsgetdc_list_dc_info.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -49,3 +49,16 @@ def nltest_p1002_dsgetdc_used_to_list_dc_info(*, type='m365d', kql_ago='1d'):
 
     return output
 
+
+def nltest_p1003_trusted_domains(*, type='m365d', kql_ago='1d'):
+
+    if type == 'm365d':
+        with open(os.path.join(nltest_kql_path,
+                               'nltest_p1003_trusted_domains.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+    else:
+        output = f'type={type} not supported'
+
+    return output

@@ -1,16 +1,15 @@
 ---
-title: dsgetdc_used_to_list_dc_info
-pid: net_1002
-description:
-  - nltest can be used to list domain controller info
-  - see nltest_references.md
+title: nltest_p1003_trusted_domains
 metaData:
-  attackTechnique: t1018
-  attackSoftware: s0359
+  description: nltest can be used to list domain trusts
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
-  platform: windows_os
+  detectCon: 2
+  tags:
+    - lol
+intel:
+  attackTechnique: t1482
+  attackSoftware: s0359
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -19,11 +18,9 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
     | where FileName has 'nltest'
-    | where ProcessCommandLine has 'dsgetdc'
+    | where ProcessCommandLine contains 'trusted_domains'
