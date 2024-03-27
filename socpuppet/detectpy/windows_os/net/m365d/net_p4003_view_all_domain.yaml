@@ -1,5 +1,5 @@
 ---
-title:  net_p4003_view_all_domain
+title: net_p4003_view_all_domain
 metaData:
   description: net CLT view visible computers and associated hidden shares with domain flag
   detectUseCase:
