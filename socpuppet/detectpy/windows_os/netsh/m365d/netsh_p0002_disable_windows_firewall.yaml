@@ -1,14 +1,19 @@
 ---
-title: disable_windows_firewall
-pid: netsh_p0002
-description: disable windows firewall
+title: netsh_p0002_disable_windows_firewall
 metaData:
-  attackTechnique: t1562.004
-  attackSoftware: s0108
+  description: disable windows firewall
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1562.004
+  attackSoftware: s0108
+  references:
+  emulation:
+    - atomic_red_team_t1562_004_t1_guid_91f348e6-3760-4997-a93b-2ceee7f254ee
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,11 +22,12 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has ('netsh')
-    | where ProcessCommandLine has_all ('firewall', 'set', 'opmode', 'disable')
+    | where FileName has 'netsh'
+    | where ProcessCommandLine has 'firewall'
+      and ProcessCommandLine has 'set'
+      and ProcessCommandLine has 'opmode'
+    | where ProcessCommandLine contains 'mode=disable'
