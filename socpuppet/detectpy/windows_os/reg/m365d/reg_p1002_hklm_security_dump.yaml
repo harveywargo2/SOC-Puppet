@@ -1,7 +1,7 @@
 ---
-title: reg_p1001_hklm_lsa_dump
+title: reg_p1002_hklm_lsa_dump
 metaData:
-  description: reg.exe saving or dumping lsa file
+  description: reg.exe saving or dumping security file
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
@@ -28,6 +28,5 @@ kqlDetect:
     | where FileName =~ 'reg.exe'
     | where ProcessCommandLine has 'hklm' 
       and ProcessCommandLine has 'save'
-    | where ProcessCommandLine has 'policy' 
-      or ProcessCommandLine has 'secrets' 
+    | where ProcessCommandLine has 'security'
     

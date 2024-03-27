@@ -1,14 +1,18 @@
 ---
-title: hklm_sam_dump
-pid: reg_p1000
-description: Local SAM (SAM & System), cached credentials (System & Security) and LSA secrets (System & Security) can be enumerated via three registry keys
+title: reg_p1000_hklm_sam_dump
 metaData:
-  attackTechnique: t1003.002
-  attackSoftware:
+  description: reg.exe saving or dumping sam file
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003.002
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,13 +21,12 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where FileName =~ 'reg.exe'
-    | where ProcessCommandLine has_all('reg', 'hklm', 'save')
-    | where ProcessCommandLine has_any('security' , 'sam' , 'system')
+    | where ProcessCommandLine has 'hklm' 
+      and ProcessCommandLine has 'save'
+    | where ProcessCommandLine contains 'sam'
     
