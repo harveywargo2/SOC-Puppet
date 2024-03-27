@@ -31,3 +31,4 @@ kqlDetect:
       and ProcessCommandLine has 'set'
       and ProcessCommandLine has 'opmode'
     | where ProcessCommandLine contains 'mode=disable'
+      or ProcessCommandLine contains 'disable'

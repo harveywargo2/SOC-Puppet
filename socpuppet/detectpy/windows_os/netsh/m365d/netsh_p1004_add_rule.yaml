@@ -1,14 +1,18 @@
 ---
-title: add_rule
-pid: netsh_p2000
-description: add windows firewall rule
+title: netsh_p10004_add_rule
 metaData:
-  attackTechnique: t1562.004
-  attackSoftware: s0108
+  description: add windows firewall rule
   detectUseCase:
   detectType: single_line_match
   detectCon: 5
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1562.004
+  attackSoftware: s0108
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,12 +21,11 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where FileName has ('netsh')
-    | where ProcessCommandLine has_any ('advfirewall', 'firewall')
-    | where ProcessCommandLine has_all ('rule', 'add')
+    | where FileName has 'netsh'
+    | where ProcessCommandLine has 'advfirewall'
+      and ProcessCommandLine has 'add'
+      and ProcessCommandLine has 'rule'
