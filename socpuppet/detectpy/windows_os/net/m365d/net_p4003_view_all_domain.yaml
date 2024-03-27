@@ -1,7 +1,7 @@
 ---
-title:  net_p4001_view_visible_computers_hidden_shares
+title:  net_p4003_view_all_domain
 metaData:
-  description: net CLT view visible computers and associated hidden shares
+  description: net CLT view visible computers and associated hidden shares with domain flag
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
@@ -29,3 +29,4 @@ kqlDetect:
       or FileName =~ 'net1.exe'
     | where ProcessCommandLine has 'view'
       and ProcessCommandLine has '/all'
+      and ProcessCommandLine contains '/dom'
