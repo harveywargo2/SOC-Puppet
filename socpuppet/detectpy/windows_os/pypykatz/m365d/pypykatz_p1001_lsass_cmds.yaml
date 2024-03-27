@@ -1,14 +1,18 @@
 ---
-title: lsass_cmds
-pid: pypykatz_p1001
-description: pypykatz lsass dump commands
+title: pypykatz_p1001_lsass_cmds
+
 metaData:
-  attackTechnique: t1003.001
-  attackSoftware:
+  description: pypykatz lsass dump commands
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+intel:
+  attackTechnique: t1003.001
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,11 +21,11 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where ProcessCommandLine has_all ('cmd' , 'live' , 'lsa')
-      or ProcessCommandLine has_all ('python' , 'live' , 'lsa')
-      or ProcessCommandLine has_all ('live' , 'registry')
+    | where ProcessCommandLine has 'live'
+    | where (ProcessCommandLine contains 'cmd' and ProcessCommandLine contains 'lsa')
+      or (ProcessCommandLine has 'python' and ProcessCommandLine contains 'lsa')
+      or (ProcessCommandLine contains 'registry')

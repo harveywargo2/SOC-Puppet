@@ -1,14 +1,17 @@
 ---
-title: file
-pid: pypykatz_p1000
-description: pypykatz file
+title: pypykatz_p1000_file
 metaData:
-  attackTechnique: t1003
-  attackSoftware:
+  description: pypykatz file
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+intel:
+  attackTechnique: t1003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,7 +20,6 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
