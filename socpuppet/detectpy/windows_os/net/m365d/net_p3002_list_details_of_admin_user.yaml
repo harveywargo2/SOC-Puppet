@@ -1,15 +1,18 @@
 ---
 title: net_p3002_list_details_of_admin_user
-pid: net_p3002
-description: net CLT list details of admin user
-  - see references_net.md
 metaData:
-  attackTechnique: t1087.001
-  attackSoftware: s0039
+  description: net CLT list details of admin user
   detectUseCase:
   detectType: single_line_match
   detectCon: 5
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1087.001
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -18,8 +21,6 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
