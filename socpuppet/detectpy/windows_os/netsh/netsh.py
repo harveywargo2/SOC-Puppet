@@ -9,11 +9,11 @@ netsh_kql_path = os.path.join(netsh_path, 'm365d')
 netsh_sigma_path = os.path.join(netsh_path, 'sigma')
 
 
-def netsh_p0001_disable_windows_firewall(*, type='m365d', kql_ago='1d'):
+def netsh_p0001_set_firewall_profile_off(*, type='m365d', kql_ago='1d'):
 
     if type == 'm365d':
         with open(os.path.join(netsh_kql_path,
-                               'netsh_p0001_disable_windows_firewall.yaml'), 'r') as file:
+                               'netsh_p0001_set_firewall_profile_off.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -28,6 +28,20 @@ def netsh_p0002_disable_windows_firewall(*, type='m365d', kql_ago='1d'):
     if type == 'm365d':
         with open(os.path.join(netsh_kql_path,
                                'netsh_p0002_disable_windows_firewall.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def netsh_p0003_file_signer_mismatch(*, type='m365d', kql_ago='1d'):
+
+    if type == 'm365d':
+        with open(os.path.join(netsh_kql_path,
+                               'netsh_p0003_file_signer_mismatch.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
