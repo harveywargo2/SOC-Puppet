@@ -1,7 +1,7 @@
 ---
-title: entraid_p1009_role_mgt_domain_name_admin
+title: entraid_p1019_role_mgt_privileged_role_admin
 metaData:
-  description: Any Domain Name Admin Role Add, Remove, or Modify Activity
+  description: Any Privileged Role Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -14,7 +14,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -25,4 +25,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '8329153b-31d0-4727-b945-745eb3bc5f31'
+    | where TargetResources contains 'e8611ab8-c189-46e8-94e1-60213ab1f814'

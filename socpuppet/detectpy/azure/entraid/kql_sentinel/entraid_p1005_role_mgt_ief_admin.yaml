@@ -1,11 +1,10 @@
 ---
-title: entraid_p1016_role_mgt_hybrid_intune_admin
+title: entraid_p1005_role_mgt_ief_admin
 metaData:
-  description: Any Intune Admin Role Add, Remove, or Modify Activity
+  description: Any B2C IEF Keyset Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
-  tags:
 intel:
   attackTechnique: t1098.003
   attackSoftware:
@@ -14,7 +13,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -25,4 +24,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '3a2c62db-5318-420d-8d74-23affee5d9d5'
+    | where TargetResources contains 'aaf43236-0c0d-4d5f-883a-6955382ac081'

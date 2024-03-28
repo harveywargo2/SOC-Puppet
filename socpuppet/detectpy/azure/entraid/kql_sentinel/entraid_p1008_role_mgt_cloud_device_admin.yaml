@@ -14,7 +14,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api

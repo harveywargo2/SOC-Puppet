@@ -1,7 +1,8 @@
 ---
-title: entraid_p1021_role_mgt_security_operator
+title: entraid_p1001_role_mgt_app_admin
+
 metaData:
-  description: Any Security Operator Role Add, Remove, or Modify Activity
+  description: Any Application Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -14,7 +15,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -25,4 +26,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '5f2222b1-57c3-48ba-8ad5-d4759f1fde6f'
+    | where TargetResources contains 'b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3'

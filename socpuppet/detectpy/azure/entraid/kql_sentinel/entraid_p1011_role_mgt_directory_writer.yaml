@@ -1,7 +1,7 @@
 ---
-title: entraid_p1010_role_mgt_directory_sync
+title: entraid_p1011_role_mgt_directory_writer
 metaData:
-  description: Any Directory Sync Role Add, Remove, or Modify Activity
+  description: Any Directory Writer Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -14,7 +14,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -25,4 +25,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains 'd29b2b05-8046-44ba-8758-1e26182fcf32'
+    | where TargetResources contains '9360feb5-f418-4baa-8175-e2a00bac4301'

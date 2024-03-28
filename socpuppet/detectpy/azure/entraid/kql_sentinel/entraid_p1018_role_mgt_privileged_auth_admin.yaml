@@ -1,8 +1,7 @@
 ---
-title: entraid_p1001_role_mgt_app_admin
-
+title: entraid_p1018_role_mgt_privileged_auth_admin
 metaData:
-  description: Any Application Admin Role Add, Remove, or Modify Activity
+  description: Any Privileged Auth Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -15,7 +14,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -26,4 +25,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains 'b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3'
+    | where TargetResources contains '7be44c8a-adaf-4e2a-84d6-ab2649e08a13'

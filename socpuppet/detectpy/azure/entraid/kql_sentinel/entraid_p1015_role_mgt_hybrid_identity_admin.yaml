@@ -1,7 +1,7 @@
 ---
-title: entraid_p1012_role_mgt_global_reader
+title: entraid_p1015_role_mgt_hybrid_identity_admin
 metaData:
-  description: Any Global Reader Role Add, Remove, or Modify Activity
+  description: Any Hybrid Identity Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -14,7 +14,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -25,4 +25,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
+    | where TargetResources contains '8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2'
