@@ -1,0 +1,26 @@
+---
+title: nltest_p1001_domain_trusts
+metaData:
+  description: nltest can be used to list domain trusts
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 2
+  tags:
+    - lol
+intel:
+  attackTechnique: t1482
+  attackSoftware: s0359
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has 'nltest'
+    | where ProcessCommandLine contains 'domain_trusts'

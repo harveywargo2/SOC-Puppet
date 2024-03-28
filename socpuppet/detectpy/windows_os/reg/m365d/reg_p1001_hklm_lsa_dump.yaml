@@ -1,14 +1,18 @@
 ---
-title: hklm_lsa_dump
-pid: reg_p1001
-description: Dump LSA from Registry
+title: reg_p1001_hklm_lsa_dump
 metaData:
-  attackTechnique: t1003.004
-  attackSoftware:
+  description: reg.exe saving or dumping lsa file
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003.004
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,13 +21,13 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where FileName =~ 'reg.exe'
-    | where ProcessCommandLine has_all('hklm', 'save')
-    | where ProcessCommandLine has_any('policy' , 'secrets' , 'security')
+    | where ProcessCommandLine has 'hklm' 
+      and ProcessCommandLine has 'save'
+    | where ProcessCommandLine has 'policy' 
+      or ProcessCommandLine has 'secrets' 
     

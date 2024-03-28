@@ -1,14 +1,19 @@
 ---
-title: executing_chm
-pid: infdefualtinstall_p1000
-description: infdefaultinstall
+title: infdefaultinstall_p1000_executing_inf
 metaData:
-  attackTechnique: t1218.001
-  attackSoftware:
+  description: infdefaultinstall used to execute .inf file
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.001
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1218_t3_guid_54ad7d5a-a1b5-472c-b6c4-f8090fb2daef
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,11 +22,9 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'InfDefualtInstall.exe'
+    | where FileName has 'InfDefaultInstall'
     | where ProcessCommandLine contains '.inf'

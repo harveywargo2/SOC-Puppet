@@ -1,14 +1,21 @@
 ---
-title: copy_ntds
-pid: esentutl_p1001
-description: Copy the ntds using the esentutl.exe utility and Volume Shadow Copy (vss)
+title: esentutl_p1001_copy_ntds
+
 metaData:
-  attackTechnique: t1003.003
-  attackSoftware:
+  description: copy the ntds using the esentutl.exe utility
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003.003
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1003_003_t6_guid_21c7bf80-3e8b-40fa-8f9d-f5b194ff2865
+  pattern:
+    - wmic /node:{target_host} process call create "cmd.exe /c esentutl.exe /y /vss {source_path} /d {target_path}
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,12 +24,9 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all('esentutl' , '/y')
-    | where ProcessCommandLine has_any ('/vssrec' , '/vss')
-    | where ProcessCommandLine has_all ('ntds', '.dit')
+    | where ProcessCommandLine has 'esentutl'
+    | where ProcessCommandLine contains 'ntds.dit'

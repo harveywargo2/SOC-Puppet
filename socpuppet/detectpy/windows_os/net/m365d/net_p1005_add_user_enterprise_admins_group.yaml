@@ -1,0 +1,34 @@
+---
+title: net_p1004_list_enterprise_admins_group_users
+metaData:
+  description: net CLT add user to enterprise admins group
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 2
+  tags:
+    - lol
+intel:
+  attackTechnique: t1069.002
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine contains '/dom'
+      and ProcessCommandLine contains 'group'
+      and ProcessCommandLine contains 'add'
+    | where ProcessCommandLine has 'enterprise'
+      and ProcessCommandLine has 'admins'

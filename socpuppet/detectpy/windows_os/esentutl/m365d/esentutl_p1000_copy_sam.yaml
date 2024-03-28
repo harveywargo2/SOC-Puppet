@@ -1,14 +1,20 @@
 ---
-title: copy_sam
-pid: esentutl_p1000
-description: Copy the SAM hive using the esentutl.exe utility and Volume Shadow Copy (vss)
+title: esentutl_p1000_copy_sam
 metaData:
-  attackTechnique: t1003.002
-  attackSoftware:
+  description: Copy the SAM hive using the esentutl.exe utility and Volume Shadow Copy (vss)
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003.002
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1003_002_t3_guid_a90c2f4d-6726-444e-99d2-a00cd7c20480
+  pattern:
+    - esentutl.exe /y /vss %SystemRoot%/system32/config/SAM /d %temp%/SAM
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,12 +23,9 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all('esentutl' , '/y')
-    | where ProcessCommandLine has_any ('/vssrec' , '/vss')
-    | where ProcessCommandLine has_all ('sam')
+    | where ProcessCommandLine has 'esentutl'
+    | where ProcessCommandLine contains 'sam'

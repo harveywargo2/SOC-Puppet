@@ -1,0 +1,34 @@
+---
+title: control_p1002_executing_file_via_rundll
+metaData:
+  description: abusing control.exe to execute dll through rundll
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 5
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.002
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where InitiatingProcessFileName has 'control'
+    | where FileName contains 'rundll'
+    | where ProcessCommandLine contains 'shell32.dll'
+      and ProcessCommandLine contains 'Control_Rundll'
+    | where ProcessCommandLine !contains 'inetcpl.cpl'
+    | where ProcessCommandLine !contains 'appwiz.cpl'
+    | where ProcessCommandLine !contains 'input.dll'

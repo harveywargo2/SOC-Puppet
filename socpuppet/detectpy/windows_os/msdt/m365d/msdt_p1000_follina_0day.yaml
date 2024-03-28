@@ -1,14 +1,19 @@
 ---
-title: follina_0day
-pid: msdt_p1000
-description: MSDT Follina CVE-2022-30190
+title: msdt_p1000_follina_0day
 metaData:
-  attackTechnique: t1218
-  attackSoftware:
+  description: MSDT Follina CVE-2022-30190
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
-  platform: windows_os
+  detectCon: 2
+  tags:
+    - lol
+    - cve-2022-30190
+intel:
+  attackTechnique: t1218
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,14 +22,12 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
-  - cve-2022-30190
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'msdt.exe'
-    | where ProcessCommandLine has_all ('msdt', 'PCWDiagnostic', 'IT_BrowseForFile=')
-    | where ProcessCommandLine contains '../../'
+    | where FileName has 'msdt'
+      and ProcessCommandLine has 'PCWDiagnostic'
+    | where ProcessCommandLine contains 'IT_BrowseForFile='
+      and ProcessCommandLine contains '../../'
 

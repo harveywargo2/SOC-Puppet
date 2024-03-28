@@ -35,3 +35,18 @@ def esentutl_p1001_copy_ntds(*, type='m365d', kql_ago='1d'):
         output = f'type={type} not supported'
 
     return output
+
+
+def esentutl_p1002_create_vss(*, type='m365d', kql_ago='1d'):
+
+    if type == 'm365d':
+        with open(os.path.join(esentutl_kql_path,
+                               'esentutl_p1002_create_vss.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+    else:
+        output = f'type={type} not supported'
+
+    return output
+

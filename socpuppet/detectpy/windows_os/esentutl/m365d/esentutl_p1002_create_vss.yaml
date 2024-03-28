@@ -1,0 +1,34 @@
+---
+title: esentutl_p1002_create_vss
+metaData:
+  description: esentutl creating volume shadow copy
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 1
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003.003
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1003_003_t6_guid_21c7bf80-3e8b-40fa-8f9d-f5b194ff2865
+    - atomic_red_team_t1003_002_t3_guid_a90c2f4d-6726-444e-99d2-a00cd7c20480
+  pattern:
+    - wmic /node:localhost process call create "cmd.exe /c esentutl.exe /y /vss c:\windows\ntds\ntds.dit /d c:\ntds.dit
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'esentutl'
+    | where ProcessCommandLine contains '/y'
+    | where ProcessCommandLine contains '/vss'
+      or ProcessCommandLine contains 'vssrec'

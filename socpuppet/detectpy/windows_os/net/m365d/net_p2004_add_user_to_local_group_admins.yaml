@@ -1,0 +1,32 @@
+---
+title: net_p2004_add_user_to_local_group_administrator
+metaData:
+  description: net CLT add user to administrator localgroup
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 4
+  tags:
+    - lol
+intel:
+  attackTechnique: t1087.001
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'localgroup'
+      and ProcessCommandLine has 'administrators'
+      and ProcessCommandLine contains 'add'

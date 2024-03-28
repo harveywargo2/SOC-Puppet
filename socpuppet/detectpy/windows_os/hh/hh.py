@@ -36,3 +36,44 @@ def hh_p1001_executing_chm(*, type='m365d', kql_ago='1d'):
 
     return output
 
+
+def hh_p1002_executing_remote_file(*, type='m365d', kql_ago='1d'):
+
+    if type == 'm365d':
+        with open(os.path.join(hh_kql_path,
+                               'hh_p1002_executing_remote_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def hh_p1003_decompiling_file(*, type='m365d', kql_ago='1d'):
+
+    if type == 'm365d':
+        with open(os.path.join(hh_kql_path,
+                               'hh_p1003_decompiling_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+    else:
+        output = f'type={type} not supported'
+
+    return output
+
+
+def hh_p1004_called_by_pshell(*, type='m365d', kql_ago='1d'):
+
+    if type == 'm365d':
+        with open(os.path.join(hh_kql_path,
+                               'hh_p1004_called_by_pshell.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+    else:
+        output = f'type={type} not supported'
+
+    return output

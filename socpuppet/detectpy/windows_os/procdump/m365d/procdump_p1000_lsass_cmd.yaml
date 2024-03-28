@@ -1,15 +1,18 @@
 ---
-title: lsass_cmd
-pid: procdump_p1000
-description: procdump dumping lsass
+title: procdump_p1000_lsass_cmd
 metaData:
-  attackTechnique: t1003.001
-  attackSoftware:
+  description: procdump dumping lsass
   detectUseCase:
   detectType: single_line_match
   detectCon: 1
-  platform: windows_os
-  dataFlow:
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003.001
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -18,11 +21,12 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
-    | where ProcessCommandLine has_all ('lsass' , 'accepteula')
-    | where ProcessCommandLine has_any ('-ma' , '-mm')
+    | where ProcessCommandLine has 'lsass' 
+      and ProcessCommandLine has 'accepteula'
+      and ProcessCommandLine contains 'procdump'
+    | where ProcessCommandLine contains '-ma'
+      or ProcessCommandLine contains '-mm'

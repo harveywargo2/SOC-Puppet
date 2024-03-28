@@ -1,0 +1,29 @@
+---
+title: nltest_p1000_dclist_domain_controllers
+metaData:
+  description: nltest dclist can be used to list domain controllers
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 2
+  tags:
+    - lol
+intel:
+  attackTechnique: t1018
+  attackSoftware: s0359
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has 'nltest'
+    | where ProcessCommandLine contains 'dclist'

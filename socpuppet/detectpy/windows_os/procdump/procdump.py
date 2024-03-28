@@ -23,11 +23,11 @@ def procdump_p1000_lsass_cmd(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def procdump_p1001_lsass(*, type='m365d', kql_ago='1d'):
+def procdump_p1001_dumping_process(*, type='m365d', kql_ago='1d'):
 
     if type == 'm365d':
         with open(os.path.join(procd_kql_path,
-                               'procdump_p1001_lsass.yaml'), 'r') as file:
+                               'procdump_p1001_dumping_process.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
@@ -42,20 +42,6 @@ def procdump_p1002_renamed(*, type='m365d', kql_ago='1d'):
     if type == 'm365d':
         with open(os.path.join(procd_kql_path,
                                'procdump_p1002_renamed.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
-    else:
-        output = f'type={type} not supported'
-
-    return output
-
-
-def procdump_p1003_used(*, type='m365d', kql_ago='1d'):
-
-    if type == 'm365d':
-        with open(os.path.join(procd_kql_path,
-                               'procdump_p1003_used.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')

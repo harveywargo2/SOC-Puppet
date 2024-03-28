@@ -1,14 +1,19 @@
 ---
-title: pcwdiag_executing_xml
-pid: mavinject_p1000
-description: MAVINJECT injecting arbitrary dll file
+title: mavinject_p1000_inject_dll
 metaData:
-  attackTechnique: t1218
-  attackSoftware:
+  description: MAVINJECT injecting arbitrary dll file
   detectUseCase:
   detectType: single_line_match
   detectCon: 3
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1218.013
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1218_t1_guid_c426dacf-575d-4937-8611-a148a86a5e61
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,13 +22,13 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'mavinject.exe'
-    | where ProcessCommandLine has_all ('INJECTRUNNING', '.dll')
-    | where InitiatingProcessFileName !~ 'appvclient.exe'
+    | where FileName has 'mavinject'
+      and InitiatingProcessFileName !~ 'appvclient.exe'
+    | where ProcessCommandLine contains '/INJECTRUNNING'
+      or InitiatingProcessCommandLine contains '/INJECTRUNNING'
+    | where ProcessCommandLine contains '.dll'
     

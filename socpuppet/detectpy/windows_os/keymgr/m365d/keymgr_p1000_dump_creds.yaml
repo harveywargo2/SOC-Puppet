@@ -1,14 +1,18 @@
 ---
-title: dump_creds
-pid: keymgr_p1000
-description: Rundll32 using keymgr to dump creds
+title: keymgr_p1000_dump_creds
 metaData:
-  attackTechnique: t1003
-  attackSoftware:
+  description: rundll32 using key manager to dump creds
   detectUseCase:
   detectType: single_line_match
   detectCon: 2
-  platform: windows_os
+  tags:
+    - lol
+intel:
+  attackTechnique: t1003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: endpoint_windows_os
   dataCollector: m365d_agent
@@ -17,11 +21,10 @@ dataRequirements:
   dataAccess: m365d_advanced_hunting_api
   dataStorage: device_process_events
   dataMap: device_process_events
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where InitiatingProcessCommandLine has_all('rundll32' , 'keymgr' , 'krshowkeymgr')
-      or ProcessCommandLine has_all('rundll32' , 'keymgr' , 'krshowkeymgr')
+    | where ProcessCommandLine has 'keymgr' 
+      and ProcessCommandLine has 'krshowkeymgr'
+    | where ProcessCommandLine contains 'rundll'
