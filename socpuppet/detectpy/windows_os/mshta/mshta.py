@@ -5,13 +5,13 @@ import socpuppet.detectpy.kql_qbuild as kbuild
 
 # Path Variables for Module
 mshta_path = os.path.dirname(os.path.abspath(__file__))
-mshta_kql_path = os.path.join(mshta_path, 'm365d')
+mshta_kql_path = os.path.join(mshta_path, 'kql_m365d')
 mshta_sigma_path = os.path.join(mshta_path, 'sigma')
 
 
-def mshta_p1000_executing_hta(*, type='m365d', kql_ago='1d'):
+def mshta_p1000_executing_hta(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(mshta_kql_path,
                                'mshta_p1000_executing_hta.yaml'), 'r') as file:
             data = yaml.safe_load(file)
@@ -23,9 +23,9 @@ def mshta_p1000_executing_hta(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def mshta_p1001_executing_vbs(*, type='m365d', kql_ago='1d'):
+def mshta_p1001_executing_vbs(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(mshta_kql_path,
                                'mshta_p1001_executing_vbs.yaml'), 'r') as file:
             data = yaml.safe_load(file)
@@ -37,9 +37,9 @@ def mshta_p1001_executing_vbs(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def mshta_p1002_executing_javascript(*, type='m365d', kql_ago='1d'):
+def mshta_p1002_executing_javascript(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(mshta_kql_path,
                                'mshta_p1002_executing_javascript.yaml'), 'r') as file:
             data = yaml.safe_load(file)
