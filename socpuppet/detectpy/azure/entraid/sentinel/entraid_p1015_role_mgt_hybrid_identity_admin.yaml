@@ -1,14 +1,17 @@
 ---
-title: role_mgt_hybrid_identity_admin
-pid: entraid_p1015
-description: Any Hybrid Identity Admin Role Add, Remove, or Modify Activity
+title: entraid_p1015_role_mgt_hybrid_identity_admin
 metaData:
-  attackTechnique: t1098.003
-  attackSoftware:
+  description: Any Hybrid Identity Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
-  platform: azure
+  tags:
+intel:
+  attackTechnique: t1098.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
 dataRequirements:
   dataScope: entra_id
   dataCollector: entra_id_native_log
@@ -17,8 +20,6 @@ dataRequirements:
   dataAccess: azure_monitor_api
   dataStorage: audit_logs
   dataMap: audit_logs
-tags:
-  - lol
 kqlDetect:
   kqlVar:
   kqlTable: AuditLogs
