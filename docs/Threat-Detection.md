@@ -10,11 +10,10 @@
 - https://github.com/elastic/detection-rules
 - https://github.com/The-DFIR-Report/Sigma-Rules/tree/main/rules
 
-
-
 # SIGMA
-- Generic and open signature format that allows you to describe relevant log events. 
-- Yaml
+- Generic and open signature format that allows you to describe relevant log events
+- Standard repo for open source detections
+- Yara for logs stored in yaml
 - https://github.com/SigmaHQ/sigma
 - https://github.com/SigmaHQ/sigma-specification/blob/main/Tags_specification.md
 - https://github.com/SigmaHQ/sigma-specification/blob/main/Taxonomy_specification.md

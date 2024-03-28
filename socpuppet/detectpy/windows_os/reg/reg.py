@@ -5,13 +5,13 @@ import socpuppet.detectpy.kql_qbuild as kbuild
 
 # Path Variables for Module
 reg_path = os.path.dirname(os.path.abspath(__file__))
-reg_kql_path = os.path.join(reg_path, 'm365d')
+reg_kql_path = os.path.join(reg_path, 'kql_m365d')
 reg_sigma_path = os.path.join(reg_path, 'sigma')
 
 
-def reg_p1000_hklm_sam_dump(*, type='m365d', kql_ago='1d'):
+def reg_p1000_hklm_sam_dump(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(reg_kql_path,
                                'reg_p1000_hklm_sam_dump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
@@ -23,9 +23,9 @@ def reg_p1000_hklm_sam_dump(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def reg_p10001_hklm_lsa_dump(*, type='m365d', kql_ago='1d'):
+def reg_p10001_hklm_lsa_dump(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(reg_kql_path,
                                'reg_p1001_hklm_lsa_dump.yaml'), 'r') as file:
             data = yaml.safe_load(file)

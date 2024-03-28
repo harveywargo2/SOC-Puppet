@@ -8,10 +8,10 @@ Python Libraries for Threat Detection Engineers
 ## Notable Libraries/Modules
 ### detectpy
 - Detection Logic Library 
-- mostly KQL at the moment
-- logic stored in yaml format 
-- organized a bit differently than other detection repos
-- detections are callable via python functions for hunting in a Jupyter NoteBooks or scripts
+- Mostly KQL at the moment
+- Detection logic stored in yaml format 
+- Organized a bit differently than other detection repos
+- Detections are callable via python functions for hunting in a Jupyter NoteBooks or scripts
 - Detect-as-Code or Detect-as-Config compatible
 
 ### aztools

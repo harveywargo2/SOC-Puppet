@@ -1,7 +1,7 @@
 ---
-title: entraid_p1007_role_mgt_cloud_app_admin
+title: entraid_p1013_role_mgt_global_admin
 metaData:
-  description: Any Cloud App Admin Role Add, Remove, or Modify Activity
+  description: Any Groups Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -14,7 +14,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -25,4 +25,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '158c047a-c907-4556-b7ef-446551a6b5f7'
+    | where TargetResources contains 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'

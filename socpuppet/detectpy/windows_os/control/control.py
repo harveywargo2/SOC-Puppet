@@ -5,13 +5,13 @@ import socpuppet.detectpy.kql_qbuild as kbuild
 
 # Path Variables for Module
 control_path = os.path.dirname(os.path.abspath(__file__))
-control_kql_path = os.path.join(control_path, 'm365d')
+control_kql_path = os.path.join(control_path, 'kql_m365d')
 control_sigma_path = os.path.join(control_path, 'sigma')
 
 
-def control_p1000_executing_cpl_file(*, type='m365d', kql_ago='1d'):
+def control_p1000_executing_cpl_file(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(control_kql_path,
                                'control_p1000_executing_cpl_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
@@ -23,9 +23,9 @@ def control_p1000_executing_cpl_file(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def control_p1001_executing_dll_file(*, type='m365d', kql_ago='1d'):
+def control_p1001_executing_dll_file(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(control_kql_path,
                                'control_p1001_executing_dll_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
@@ -37,9 +37,9 @@ def control_p1001_executing_dll_file(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def control_p1002_executing_file_via_rundll(*, type='m365d', kql_ago='1d'):
+def control_p1002_executing_file_via_rundll(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(control_kql_path,
                                'control_p1002_executing_file_via_rundll.yaml'), 'r') as file:
             data = yaml.safe_load(file)

@@ -5,13 +5,13 @@ import socpuppet.detectpy.kql_qbuild as kbuild
 
 # Path Variables for Module
 procd_path = os.path.dirname(os.path.abspath(__file__))
-procd_kql_path = os.path.join(procd_path, 'm365d')
+procd_kql_path = os.path.join(procd_path, 'kql_m365d')
 procd_sigma_path = os.path.join(procd_path, 'sigma')
 
 
-def procdump_p1000_lsass_cmd(*, type='m365d', kql_ago='1d'):
+def procdump_p1000_lsass_cmd(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(procd_kql_path,
                                'procdump_p1000_lsass_cmd.yaml'), 'r') as file:
             data = yaml.safe_load(file)
@@ -23,9 +23,9 @@ def procdump_p1000_lsass_cmd(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def procdump_p1001_dumping_process(*, type='m365d', kql_ago='1d'):
+def procdump_p1001_dumping_process(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(procd_kql_path,
                                'procdump_p1001_dumping_process.yaml'), 'r') as file:
             data = yaml.safe_load(file)
@@ -37,9 +37,9 @@ def procdump_p1001_dumping_process(*, type='m365d', kql_ago='1d'):
     return output
 
 
-def procdump_p1002_renamed(*, type='m365d', kql_ago='1d'):
+def procdump_p1002_renamed(*, type='kql', kql_ago='1d'):
 
-    if type == 'm365d':
+    if type == 'kql':
         with open(os.path.join(procd_kql_path,
                                'procdump_p1002_renamed.yaml'), 'r') as file:
             data = yaml.safe_load(file)

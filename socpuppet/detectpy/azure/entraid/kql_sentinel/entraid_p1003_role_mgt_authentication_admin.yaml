@@ -1,7 +1,7 @@
 ---
-title: entraid_p1014_role_mgt_helpdesk_admin
+title: entraid_p1003_role_mgt_authentication_admin
 metaData:
-  description: Any Helpdesk Admin Role Add, Remove, or Modify Activity
+  description: Any Authentication Admin Role Add, Remove, or Modify Activity
   detectUseCase:
   detectType: single_line_match
   detectCon: 4
@@ -14,7 +14,7 @@ intel:
   pattern:
 dataRequirements:
   dataScope: entra_id
-  dataCollector: entra_id_native_log
+  dataCollector: azure_active_directory
   dataName: role_management
   dataForwardTo: msft_sentinel
   dataAccess: azure_monitor_api
@@ -25,4 +25,4 @@ kqlDetect:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '729827e3-9c14-49f7-bb1b-9608f156bbb8'
+    | where TargetResources contains 'cf1c38e5-3621-4004-a7cb-879624dced7c'
