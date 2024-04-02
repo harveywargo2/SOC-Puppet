@@ -1,13 +1,14 @@
 ---
-title: comsvcs_p1000_created_minidump
-metaData:
-  description: comsvcs created minidump file
-  detectUseCase:
+title: comsvcs_pid_0001_created_minidump
+intel:
+  description:
+    - rundll calling comsvcs to dump process via minidump
+    - potential lsass dump
   detectType: single_line_match
   detectCon: 1
+  detectLanguage: kql
   tags:
-    - lol
-intel:
+    - lolbin
   attackTechnique: t1003.001
   attackSoftware:
   references:
@@ -19,17 +20,19 @@ intel:
     - C:\Windows\System32\rundll32.exe  C:\Windows\System32\comsvcs.dll MiniDump <PID> \Windows\Temp\<filename>.dmp full
     - .\rundll32.exe C:\windows\System32\comsvcs.dll, MiniDump 624 C:\temp\lsass.dmp full
 dataRequirements:
-  dataScope: endpoint_windows_os
+  dataSource: windows_os
+  dataType: process_creation
   dataCollector: m365d_agent
-  dataName: process_creation
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: device_process_events
-  dataMap: device_process_events
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where ProcessCommandLine has 'comsvcs'
       and ProcessCommandLine has 'minidump'
-    | where ProcessCommandLine contains 'rundll'
