@@ -1,0 +1,35 @@
+---
+title: nltest_pid_0004_dsgetdc
+intel:
+  description:
+    - nltest running /dsgetdc command flag
+    - List Domain Controllers and Info
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1018
+  attackSoftware: s0359
+  references:
+  emulation:
+    -
+  pattern:
+    - nltest /dsgetdc:<domain.com>
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'nltest'
+      and ProcessCommandLine contains '/dsgetdc'

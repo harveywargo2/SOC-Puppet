@@ -1,0 +1,35 @@
+---
+title: nltest_pid_0002_domain_trust
+intel:
+  description:
+    - nltest running /domain_trust command flag
+    - Returns a list of trusted domains
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1482
+  attackSoftware: s0359
+  references:
+  emulation:
+    - atomic_red_team_t1482_t2_guid_2e22641d-0498-48d2-b9ff-c71e496ccdbe
+  pattern:
+    - nltest /domain_trusts
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'nltest'
+      and ProcessCommandLine contains '/domain_trusts'
