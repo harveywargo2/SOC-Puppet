@@ -1,0 +1,33 @@
+---
+title:
+intel:
+  description:
+    -
+  detectType:
+  detectCon:
+  detectLanguage:
+  tags:
+    -
+  attackTechnique:
+  attackSoftware:
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+  dataType:
+  dataCollector:
+  dataForwardTo:
+  dataParser:
+  dataStorage:
+  dataTable:
+  dataIndex:
+  dataAccess:
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable:
+  kqlQuery: | 

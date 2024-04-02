@@ -1,3 +1,3 @@
-import socpuppet.detectpy.azure
+from socpuppet.detectpy.builder import *
+
 import socpuppet.detectpy.windows_os
-import socpuppet.detectpy.m365_defender

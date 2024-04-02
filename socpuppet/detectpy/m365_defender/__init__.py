@@ -1,1 +1,0 @@
-from socpuppet.detectpy.m365_defender.alerts import *
