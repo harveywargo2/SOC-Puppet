@@ -22,7 +22,6 @@ def mde_query_builder(data, lookback):
     :return: Dict Object of Key Value Pair {'query' : "query"} for MDE Advanced Hunting API Calls
     """
     title = data.get('title')
-    config = data
     kql = data.get('logic')
     kql_var = kql.get('kqlVar')
     kql_table = kql.get('kqlTable')
