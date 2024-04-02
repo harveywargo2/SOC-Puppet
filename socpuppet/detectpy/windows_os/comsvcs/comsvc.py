@@ -13,7 +13,7 @@ def comsvcs_path():
 
 def comsvcs_mde_path():
     """
-    :return: Absolute Path CMSTP MDE Logic Lib
+    :return: Absolute Path MDE Logic Lib
     """
     output = os.path.join(comsvcs_path(), 'logic_mde')
     return output
