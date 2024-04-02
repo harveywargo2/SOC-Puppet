@@ -2,6 +2,7 @@ import os
 import socpuppet.aztools as az
 import pandas as pd
 
+
 def detectpy_path():
     """
     Gets absolute path of detectpy module
