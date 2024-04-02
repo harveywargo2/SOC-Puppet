@@ -1,6 +1,4 @@
-# CMSTP
-
-Microsoft Connection Manager Profile Installer
+# CMSTP - Microsoft Connection Manager Profile Installer
 
 ## Common Attack TTPs
 - Proxy Execution: 
