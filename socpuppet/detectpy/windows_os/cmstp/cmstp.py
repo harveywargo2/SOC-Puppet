@@ -10,6 +10,7 @@ def cmstp_path():
     output = os.path.dirname(os.path.abspath(__file__))
     return output
 
+
 def cmstp_mde_path():
     """
     :return: Absolute Path CMSTP MDE Logic Lib
