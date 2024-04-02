@@ -13,7 +13,7 @@ def nltest_path():
 
 def nltest_mde_path():
     """
-    :return: Absolute Path CMSTP MDE Logic Lib
+    :return: Absolute Path for MDE Logic Lib
     """
     output = os.path.join(nltest_path(), 'logic_mde')
     return output
