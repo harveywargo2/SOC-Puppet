@@ -1,0 +1,35 @@
+---
+title: mimikatz_pid_0002_process_ioc
+intel:
+  description:
+    - mimikatz keyword identified in process creation
+  detectType: single_line_match
+  detectCon: 1
+  detectLanguage: kql
+  tags:
+  attackTechnique:
+  attackSoftware: s0002
+  references:
+  emulation:
+    - atomic_red_team_t1003_001_t10_guid_66fb0bc1-3c3f-47e9-a298-550ecfefacbc
+    - atomic_red_team_t1003_001_t6_guid_453acf13-1dbd-47d7-b28a-172ce9228023
+  pattern:
+    - mimikatz
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'mimikatz'
+      or ProcessVersionInfoOriginalFileName has 'mimikatz'
+      or ProcessCommandLine has 'mimikatz'
