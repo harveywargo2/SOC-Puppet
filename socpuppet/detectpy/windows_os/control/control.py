@@ -19,7 +19,7 @@ def ctl_mde_path():
     return output
 
 
-def control_p0001_executing_cpl_file(*, logic='mde', lookback='1d'):
+def control_pid_0001_executing_cpl_file(*, logic='mde', lookback='1d'):
     """
     Control executing cpl file
 
@@ -41,7 +41,7 @@ def control_p0001_executing_cpl_file(*, logic='mde', lookback='1d'):
     return query
 
 
-def control_p0002_executing_dll_file(*, logic='mde', lookback='1d'):
+def control_pid_0002_executing_dll_file(*, logic='mde', lookback='1d'):
     """
     Control executing dll
 
@@ -63,7 +63,7 @@ def control_p0002_executing_dll_file(*, logic='mde', lookback='1d'):
     return query
 
 
-def control_p0003_executing_file_via_rundll(*, logic='mde', lookback='1d'):
+def control_pid_0003_executing_file_via_rundll(*, logic='mde', lookback='1d'):
     """
     Control executing file via rundll
 
