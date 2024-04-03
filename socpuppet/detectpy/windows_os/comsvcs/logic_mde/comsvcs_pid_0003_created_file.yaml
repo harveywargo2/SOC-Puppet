@@ -1,0 +1,37 @@
+---
+title: comsvcs_pid_0003_created_file
+intel:
+  description:
+    - comsvcs creating a file
+    - possible .dmp file
+    - potential lsass dump
+  detectType: single_line_match
+  detectCon: 1
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1003.001
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1003_001_t2_guid_2536dee2-12fb-459a-8c37-971844fa73be
+  pattern:
+    -
+dataRequirements:
+  dataSource: windows_os
+  dataType:
+    - file_creation
+    - file_modification
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_file_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceFileEvents
+  kqlQuery: | 
+    | where InitiatingProcessCommandLine has 'comsvcs'

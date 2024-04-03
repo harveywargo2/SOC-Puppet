@@ -1,0 +1,1 @@
+from socpuppet.detectpy_deprecate.m365_defender.alerts import *

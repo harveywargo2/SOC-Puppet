@@ -1,64 +1,108 @@
-import os
 import yaml
-import socpuppet.detectpy.kql_qbuild as kbuild
-
-# Path Variables for Module
-nltest_path = os.path.dirname(os.path.abspath(__file__))
-nltest_kql_path = os.path.join(nltest_path, 'kql_m365d')
-nltest_sigma_path = os.path.join(nltest_path, 'sigma')
+import os
+import socpuppet as soc
 
 
-def nltest_p1000_dclist_domain_controllers(*, type='kql', kql_ago='1d'):
-
-    if type == 'kql':
-        with open(os.path.join(nltest_kql_path,
-                               'nltest_p1000_dclist_domain_controllers.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
-    else:
-        output = f'type={type} not supported'
-
+def nltest_path():
+    """
+    :return: Absolute Module Path
+    """
+    output = os.path.dirname(os.path.abspath(__file__))
     return output
 
 
-def nltest_p1001_domain_trusts(*, type='kql', kql_ago='1d'):
-
-    if type == 'kql':
-        with open(os.path.join(nltest_kql_path,
-                               'nltest_p1001_domain_trusts.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
-    else:
-        output = f'type={type} not supported'
-
+def nltest_mde_path():
+    """
+    :return: Absolute Path for MDE Logic Lib
+    """
+    output = os.path.join(nltest_path(), 'logic_mde')
     return output
 
 
-def nltest_p1002_dsgetdc_list_dc_info(*, type='kql', kql_ago='1d'):
+def nltest_pid_0001_dclist(*, logic='mde', lookback='1d'):
+    """
+    Nltest dclist command used
 
-    if type == 'kql':
-        with open(os.path.join(nltest_kql_path,
-                               'nltest_p1002_dsgetdc_list_dc_info.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(nltest_mde_path(),
+                                'nltest_pid_0001_dclist.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def nltest_p1003_trusted_domains(*, type='kql', kql_ago='1d'):
+def nltest_pid_0002_domain_trusts(*, logic='mde', lookback='1d'):
+    """
+    Nltest /domain_trusts command used
 
-    if type == 'kql':
-        with open(os.path.join(nltest_kql_path,
-                               'nltest_p1003_trusted_domains.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(nltest_mde_path(),
+                                'nltest_pid_0002_domain_trusts.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
-    else:
-        output = f'type={type} not supported'
+        query = soc.detectpy.mde_query_builder(data, lookback)
 
-    return output
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def nltest_pid_0003_trusted_domains(*, logic='mde', lookback='1d'):
+    """
+    Nltest /trusted_domains command used
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(nltest_mde_path(),
+                                'nltest_pid_0003_trusted_domains.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def nltest_pid_0004_dsgetdc(*, logic='mde', lookback='1d'):
+    """
+    Nltest /dsgetdc command used
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(nltest_mde_path(),
+                                'nltest_pid_0004_dsgetdc.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+

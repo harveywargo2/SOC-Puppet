@@ -1,192 +1,307 @@
-import os
 import yaml
-import socpuppet.detectpy.kql_qbuild as kbuild
+import os
+import socpuppet as soc
 
 
-# Path Variables for Module
-mimikatz_path = os.path.dirname(os.path.abspath(__file__))
-mimikatz_kql_path = os.path.join(mimikatz_path, 'kql_m365d')
-mimikatz_sigma_path = os.path.join(mimikatz_path, 'sigma')
-
-
-def mimikatz_p0001_file_indicator(*, type='kql', kql_ago='1d'):
-
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p0001_file_indicator.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
-    else:
-        output = f'type={type} not supported'
-
+def mk_path():
+    """
+    :return: Absolute Module Path
+    """
+    output = os.path.dirname(os.path.abspath(__file__))
     return output
 
 
-def mimikatz_p0002_file_indicator(*, type='kql', kql_ago='1d'):
-
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p0002_file_indicator.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
-    else:
-        output = f'type={type} not supported'
-
+def mk_mde_path():
+    """
+    :return: Absolute Path MDE Logic Lib
+    """
+    output = os.path.join(mk_path(), 'logic_mde')
     return output
 
 
-def mimikatz_p1000_cmd_sekurlsa(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0001_file_ioc(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz Keyword Found in File Event
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1000_cmd_sekurlsa.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0001_file_ioc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1001_cmd_lsadump(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0002_process_ioc(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz Keyword Found in Process Create
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1001_cmd_lsadump.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0002_process_ioc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1002_cmd_kerberos(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0003_sekurlsa(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz sekurlsa command indicator
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1002_cmd_kerberos.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0003_sekurlsa.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1003_cmd_crypto(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0004_lsadump(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz lsadump command indicator
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1003_cmd_crypto.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0004_lsadump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1004_cmd_vault(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0005_privilege(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz privilege command
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1004_cmd_vault.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0005_privilege.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1005_cmd_dpapi(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0006_kerberos(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz kerberos command
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1005_cmd_dpapi.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0006_kerberos.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1006_cmd_event(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0007_crypto(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz crypto commands
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1006_cmd_event.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0007_crypto.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1007_cmd_misc(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0008_vault(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz vault commands
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1007_cmd_misc.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0008_vault.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1008_cmd_privilege(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0009_dpapi(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz dpapi commands
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1008_cmd_privilege.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0009_dpapi.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1009_cmd_process(*, type='kql', kql_ago='1d'):
+def mimikatz_pid_0010_process(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz process commands
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1009_cmd_process.yaml'), 'r') as file:
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0010_process.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
     else:
-        output = f'type={type} not supported'
+        query = f'pointer={logic} not supported'
 
-    return output
+    return query
 
 
-def mimikatz_p1010_cmd_rpc(*, type='kql', kql_ago='1d'):
 
-    if type == 'kql':
-        with open(os.path.join(mimikatz_kql_path,
-                               'mimikatz_p1010_cmd_rpc.yaml'), 'r') as file:
+def mimikatz_pid_0011_misc(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz misc commands
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0011_misc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
-        output = kbuild.kql_single_table_builder(data, kql_ago, time_field='Timestamp')
-    else:
-        output = f'type={type} not supported'
+        query = soc.detectpy.mde_query_builder(data, lookback)
 
-    return output
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def mimikatz_pid_0012_rpc(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz rpc commands
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0012_rpc.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def mimikatz_pid_0013_event(*, logic='mde', lookback='1d'):
+    """
+    Mimikatz event commands
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(mk_mde_path(),
+                                'mimikatz_pid_0013_event.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
 

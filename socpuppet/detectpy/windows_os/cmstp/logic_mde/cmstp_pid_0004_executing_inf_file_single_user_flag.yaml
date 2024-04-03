@@ -1,0 +1,36 @@
+---
+title: cmstp_pid_0004_executing_inf_file_single_suer_flag
+intel:
+  description:
+    - installs a specially formatted .inf with single user flag
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1218.003
+  attackSoftware:
+  references:
+  emulation:
+    -
+  pattern:
+    - cmstp.exe /s path\to\some_file.inf /su
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'cmstp'
+      or ProcessVersionInfoOriginalFileName has 'cmstp'
+    | where ProcessCommandLine contains '.inf'
+      and ProcessCommandLine contains '/su'

@@ -1,1 +1,0 @@
-from socpuppet.detectpy.azure.entraid.entraid import *
