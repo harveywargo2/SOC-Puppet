@@ -1,4 +1,3 @@
-from socpuppet.detectpy_deprecate.windows_os.control.control import *
 from socpuppet.detectpy_deprecate.windows_os.esentutl.esentutul import *
 from socpuppet.detectpy_deprecate.windows_os.hh.hh import *
 from socpuppet.detectpy_deprecate.windows_os.infdefaultinstall.infdefaultinstall import *
