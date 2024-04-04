@@ -1,0 +1,41 @@
+---
+title: mshta_pid_0009_rare_shell_spawn
+intel:
+  description:
+    - mshta executing a rare file extension
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1218.005
+  attackSoftware:
+  references:
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'mshta'
+      or ProcessVersionInfoOriginalFileName has 'mshta'
+    | where ProcessCommandLine contains '.doc'
+      or ProcessCommandLine contains '.xls'
+      or ProcessCommandLine contains '.lnk'
+      or ProcessCommandLine contains '.png'
+      or ProcessCommandLine contains '.zip'
+      or ProcessCommandLine contains '.jpg'
+      or ProcessCommandLine contains '.bat'
