@@ -1,5 +1,7 @@
 # DetectCon
 - DetectCon is a rating tag to help weight your detections
+- Very similar to DefCon Readiness Ratings 
+  - https://simple.wikipedia.org/wiki/DEFCON
 
 ## Detect Con Numerical Rating
 
