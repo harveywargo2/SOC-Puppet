@@ -4,7 +4,7 @@ intel:
   description:
     - mshta executing a rare file extension
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 2
   detectLanguage: kql
   tags:
     - lolbin
