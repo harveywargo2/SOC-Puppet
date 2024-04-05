@@ -1,27 +1,33 @@
 ---
-title: mdebuiltin_p2000_msdt_follina
-metaData:
-  description: Builtin Alerts associated with Follina 0 day
-  detectUseCase:
-  detectType: single_line_match
-  detectCon: 1
-  tags:
-    - lol
+title: builtin_pid_0002_msdt_follina_alerts
 intel:
+  description:
+    - Builtin Alerts from msdt follina 0 day
+    - Builtin alert filter/aggregator
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - follina
+    - lolbin
+    - cve-2022-30190
   attackTechnique: t1003
   attackSoftware:
   references:
   emulation:
   pattern:
 dataRequirements:
-  dataScope: m365d_builtin_alerts
+  dataSource: windows_os
+  dataType: alert_evidence
   dataCollector: m365d_agent
-  dataName: builtin_alerts
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: alert_evidence
-  dataMap: alert_evidence
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar: |
     let AlertName = dynamic(['Suspicious msdt.exe behavior', 
       'Suspicious behavior by an Office application',
