@@ -1,10 +1,10 @@
 ---
-title: mshta_pid_0009_rare_shell_spawn
+title: mshta_pid_0010_rare_file_execution
 intel:
   description:
     - mshta executing a rare file extension
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 2
   detectLanguage: kql
   tags:
     - lolbin
