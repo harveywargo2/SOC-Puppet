@@ -1,27 +1,34 @@
 ---
-title: mdebuiltin_p1000_t1003_tag
-metaData:
-  description: Builtin Alerts tagged with T1003
-  detectUseCase:
-  detectType: single_line_match
-  detectCon: 1
-  tags:
-    - lol
+title: builtin_pid_0001_t1003_alerts
 intel:
+  description:
+    - Builtin Alerts tagged with T1003
+    - Alerts that trigger from t1003 emulations
+    - Builtin alert filter/aggregator
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    -
   attackTechnique: t1003
   attackSoftware:
   references:
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataScope: m365d_builtin_alerts
+  dataSource: windows_os
+  dataType: alert_evidence
   dataCollector: m365d_agent
-  dataName: builtin_alerts
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: alert_evidence
-  dataMap: alert_evidence
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar: |
     let AlertName = dynamic(['Process memory dump', 
       'Suspicious access to LSASS service',
