@@ -1,4 +1,4 @@
-# MSHTA
+# MSHTA - Microsoft HTML Application
 
 ## Reference Links
 - LOLBAS
