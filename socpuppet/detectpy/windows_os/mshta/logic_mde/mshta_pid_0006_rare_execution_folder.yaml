@@ -1,0 +1,39 @@
+---
+title: mshta_pid_0006_rare_execution_folder
+intel:
+  description:
+    - mshta executing a file into or from a rare folder path
+    - mshta executing a file into or from a folder path commonly abused by threat actors
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1218.005
+  attackSoftware:
+  references:
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'mshta'
+      or ProcessVersionInfoOriginalFileName has 'mshta'
+    | where ProcessCommandLine contains @'\AppData\Local\'
+      or ProcessCommandLine contains @'\Users\Public\'
+      or ProcessCommandLine contains @'\Windows\Temp\'
+      or ProcessCommandLine contains @'\ProgramData\'

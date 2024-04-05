@@ -1,0 +1,36 @@
+---
+title: mshta_pid_0001_executing_hta
+intel:
+  description:
+    - mshta executing HTA files
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1218.005
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1218_005_t3_guid_c4b97eeb-5249-4455-a607-59f95485cb45
+    - atomic_red_team_t1218_005_t4_guid_007e5672-2088-4853-a562-7490ddc19447
+    - atomic_red_team_t1218_005_t6_guid_39ceed55-f653-48ac-bd19-aceceaf525db
+  pattern:
+    - mshta c:\folderpath\filename.hta
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'mshta'
+      and ProcessCommandLine contains '.hta'

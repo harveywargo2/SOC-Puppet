@@ -19,7 +19,7 @@ def cmstp_mde_path():
     return output
 
 
-def cmstp_p0001_executing_inf_file(*, logic='mde', lookback='1d'):
+def cmstp_pid_0001_executing_inf_file(*, logic='mde', lookback='1d'):
     """
     CMSTP Executing inf file
 
@@ -41,7 +41,7 @@ def cmstp_p0001_executing_inf_file(*, logic='mde', lookback='1d'):
     return query
 
 
-def cmstp_p0002_executing_inf_file_silent_flag(*, logic='mde', lookback='1d'):
+def cmstp_pid_0002_executing_inf_file_silent_flag(*, logic='mde', lookback='1d'):
     """
     CMSTP Executing inf file with Silent Flag
 
@@ -63,7 +63,7 @@ def cmstp_p0002_executing_inf_file_silent_flag(*, logic='mde', lookback='1d'):
     return query
 
 
-def cmstp_p0003_executing_inf_file_all_profiles_flag(*, logic='mde', lookback='1d'):
+def cmstp_pid_0003_executing_inf_file_all_profiles_flag(*, logic='mde', lookback='1d'):
     """
     CMSTP Executing inf file with All Profiles Flag
 
@@ -85,7 +85,7 @@ def cmstp_p0003_executing_inf_file_all_profiles_flag(*, logic='mde', lookback='1
     return query
 
 
-def cmstp_p0004_executing_inf_file_single_user_flag(*, logic='mde', lookback='1d'):
+def cmstp_pid_0004_executing_inf_file_single_user_flag(*, logic='mde', lookback='1d'):
     """
     CMSTP Executing inf file with Single User Flag
 
@@ -107,7 +107,7 @@ def cmstp_p0004_executing_inf_file_single_user_flag(*, logic='mde', lookback='1d
     return query
 
 
-def cmstp_p0005_spawning_child_process(*, logic='mde', lookback='1d'):
+def cmstp_pid_0005_spawning_child_process(*, logic='mde', lookback='1d'):
     """
     CMSTP spawning child process
 
@@ -129,7 +129,7 @@ def cmstp_p0005_spawning_child_process(*, logic='mde', lookback='1d'):
     return query
 
 
-def cmstp_p0006_rare_folder_path(*, logic='mde', lookback='1d'):
+def cmstp_pid_0006_rare_folder_path(*, logic='mde', lookback='1d'):
     """
     CMSTP Spawned from folder path that is not c:\Windows\System32
 
