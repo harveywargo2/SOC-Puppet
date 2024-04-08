@@ -18,7 +18,10 @@ intel:
   pattern:
     -
 dataRequirements:
-  dataSource: windows_os
+  dataSource:
+    - windows_os
+    - mac_oc
+    - linux_os
   dataType: alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center

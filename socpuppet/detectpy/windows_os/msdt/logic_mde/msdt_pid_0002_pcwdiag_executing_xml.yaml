@@ -1,28 +1,30 @@
 ---
-title: msdt_p1001_pcwdiag_executing_xml
-metaData:
-  description: MSDT executing a xml file
-  detectUseCase:
+title: msdt_pid_0002_fpcwdiag_executing_xml
+intel:
+  description:
+    - MSDT executing a xml file
   detectType: single_line_match
   detectCon: 2
+  detectLanguage: kql
   tags:
-    - lol
-    - cve-2022-30190
-intel:
-  attackTechnique: t1218
+    - lolbin
+  attackTechnique: t1218.003
   attackSoftware:
   references:
   emulation:
   pattern:
 dataRequirements:
-  dataScope: endpoint_windows_os
+  dataSource: windows_os
+  dataType: process_creation
   dataCollector: m365d_agent
-  dataName: process_creation
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: device_process_events
-  dataMap: device_process_events
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
@@ -30,5 +32,4 @@ kqlDetect:
       and ProcessCommandLine has 'PCWDiagnostic'
       and InitiatingProcessFileName !has 'pcwrun'
     | where ProcessCommandLine contains '-af'
-      and ProcessCommandLine contains '.xml' 
-    
+      and ProcessCommandLine contains '.xml'
