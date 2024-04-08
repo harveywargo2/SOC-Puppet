@@ -1,8 +1,10 @@
 ---
-title: pypykatz_p1001_lsass_cmds
+title: pypykatz_p1001_live_lsa
 
 metaData:
-  description: pypykatz lsass dump commands
+  description:
+  - pypykatz lsass dump commands
+  - Obtains the credentials stored in the LSASS.exe process.
   detectUseCase:
   detectType: single_line_match
   detectCon: 1

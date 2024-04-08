@@ -1,0 +1,37 @@
+---
+title: pypykatz_pid_0002_live_lsa_write_outfile
+intel:
+  description:
+    - pypykatz lsass dump commands
+    - Obtains the credentials stored in the LSASS.exe process.
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - python
+  attackTechnique: t1003.001
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1003_001_t7_guid_c37bc535-5c62-4195-9cc3-0517673171d8
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'live'
+    | where ProcessCommandLine contains 'live lsa'
+      or (ProcessCommandLine has 'live' and ProcessCommandLine has 'lsa')
+    | where ProcessCommandLine contains '-o'
+      or ProcessCommandLine contains '--json'
