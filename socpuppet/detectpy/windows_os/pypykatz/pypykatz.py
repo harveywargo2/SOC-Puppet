@@ -172,3 +172,47 @@ def pypykatz_pid_0008_live_lsassdump(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def pypykatz_pid_0009_live_shareenum(*, logic='mde', lookback='1d'):
+    """
+    Pypykatz commands for shareenum
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(pykatz_mde_path(),
+                                'pypykatz_pid_0009_live_shareenum.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def pypykatz_pid_0010_command_line_indicator(*, logic='mde', lookback='1d'):
+    """
+    Pypykatz indicator in command line
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(pykatz_mde_path(),
+                                'pypykatz_pid_0009_live_shareenum.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
