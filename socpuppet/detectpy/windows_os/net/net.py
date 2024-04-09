@@ -281,3 +281,48 @@ def net_pid_0012_localgroup_administrators_add(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def net_pid_0013_localgroup_rdp(*, logic='mde', lookback='1d'):
+    """
+    NET localgroup rdp
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0013_localgroup_rdp.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0014_localgroup_rdp_add(*, logic='mde', lookback='1d'):
+    """
+    NET localgroup rdp add
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0014_localgroup_rdp_add.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
