@@ -3,16 +3,14 @@ title: pypykatz_pid_0006_live_lsassdump
 intel:
   description:
     - pypykatz live smb command
-    - Dumps and parses the LSASS remotely over SMB
-    - Connection is set up using the current user's context.
-    - LSASS dump file will be deleted after command finishes (best effort)
+    - Enumerates shares, folders, files on the target(s) over SMB.
   detectType: single_line_match
   detectCon: 2
   detectLanguage: kql
   tags:
     - python
   attackTechnique:
-    - t1003.001
+    - t1135
     - t1021.002
   attackSoftware:
   references:

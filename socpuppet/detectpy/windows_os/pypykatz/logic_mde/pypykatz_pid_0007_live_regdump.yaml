@@ -11,7 +11,9 @@ intel:
   detectLanguage: kql
   tags:
     - python
-  attackTechnique: t1003.002
+  attackTechnique:
+    - t1003.002
+    - t1021.002
   attackSoftware:
   references:
   emulation:
