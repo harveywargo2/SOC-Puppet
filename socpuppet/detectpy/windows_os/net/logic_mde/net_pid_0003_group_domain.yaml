@@ -1,5 +1,5 @@
 ---
-title: net_pid_0003_domain_group
+title: net_pid_0003_group_domain
 intel:
   description:
     - net command run to list groups on a domain

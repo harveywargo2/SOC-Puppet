@@ -1,8 +1,8 @@
 ---
-title: net_pid_0005_domain_group_domain_admins_add
+title: net_pid_0006_group_enterprise_admins
 intel:
   description:
-    - net command run to add user to domain admins group
+    - net command run to list users in enterprise admins group
   detectType: single_line_match
   detectCon: 1
   detectLanguage: kql
@@ -32,5 +32,5 @@ logic:
       or FileName =~ 'net1.exe'
     | where ProcessCommandLine contains '/dom'
       and ProcessCommandLine has 'group'
-      and ProcessCommandLine contains 'Domain Admins'
-    | where ProcessCommandLine contains '/add'
+      and ProcessCommandLine contains 'Enterprise Admins'
+    | where ProcessCommandLine !contains '/add'

@@ -1,13 +1,17 @@
 # Net Command Line Utility in Windows
 
-
 ## Reference Links
 - Mitre Attack
   - https://attack.mitre.org/software/S0039/
-- MSFT Doc
-  - https://learn.microsoft.com/en-US/troubleshoot/windows-server/networking/net-commands-on-operating-systems
-  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490717(v=technet.10)?redirectedfrom=MSDN
-  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490718(v=technet.10)
+- Net Group
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc754051(v=ws.11)
+- Net Localgroup
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc725622(v=ws.11)
+- Net User Command Flags
+  - https://www.lifewire.com/net-user-command-2618097
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771865(v=ws.11)
+- Net View
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh875576(v=ws.11)
 - Threat Intel 
   - https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
   - https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-136a

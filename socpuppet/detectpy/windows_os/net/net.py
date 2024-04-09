@@ -63,7 +63,7 @@ def net_pid_0002_created_modified_file(*, logic='mde', lookback='1d'):
     return query
 
 
-def net_pid_0003_domain_group(*, logic='mde', lookback='1d'):
+def net_pid_0003_group_domain(*, logic='mde', lookback='1d'):
     """
     NET with /dom and group flags
 
@@ -74,7 +74,7 @@ def net_pid_0003_domain_group(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open( os.path.join(net_mde_path(),
-                                'net_pid_0003_domain_group.yaml'), 'r') as file:
+                                'net_pid_0003_group_domain.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -85,7 +85,7 @@ def net_pid_0003_domain_group(*, logic='mde', lookback='1d'):
     return query
 
 
-def net_pid_0004_domain_group_domain_admins(*, logic='mde', lookback='1d'):
+def net_pid_0004_group_domain_admins(*, logic='mde', lookback='1d'):
     """
     NET group list users in Domain Admins
 
@@ -96,7 +96,7 @@ def net_pid_0004_domain_group_domain_admins(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open( os.path.join(net_mde_path(),
-                                'net_pid_0004_domain_group_domain_admins.yaml'), 'r') as file:
+                                'net_pid_0004_group_domain_admins.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -107,7 +107,7 @@ def net_pid_0004_domain_group_domain_admins(*, logic='mde', lookback='1d'):
     return query
 
 
-def net_pid_0005_domain_group_domain_admins_add(*, logic='mde', lookback='1d'):
+def net_pid_0005_group_domain_admins_add(*, logic='mde', lookback='1d'):
     """
     NET group add users in Domain Admins
 
@@ -118,7 +118,7 @@ def net_pid_0005_domain_group_domain_admins_add(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open( os.path.join(net_mde_path(),
-                                'net_pid_0005_domain_group_domain_admins_add.yaml'), 'r') as file:
+                                'net_pid_0005_group_domain_admins_add.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -140,7 +140,7 @@ def net_pid_0006_domain_group_enterprise_admins(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open( os.path.join(net_mde_path(),
-                                'net_pid_0006_domain_group_enterprise_admins.yaml'), 'r') as file:
+                                'net_pid_0006_group_enterprise_admins.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -151,7 +151,7 @@ def net_pid_0006_domain_group_enterprise_admins(*, logic='mde', lookback='1d'):
     return query
 
 
-def net_pid_0007_domain_group_enterprise_admins_add(*, logic='mde', lookback='1d'):
+def net_pid_0007_group_enterprise_admins_add(*, logic='mde', lookback='1d'):
     """
     NET group add users to Enterprise Admins
 
@@ -162,7 +162,7 @@ def net_pid_0007_domain_group_enterprise_admins_add(*, logic='mde', lookback='1d
 
     if logic == 'mde':
         with open( os.path.join(net_mde_path(),
-                                'net_pid_0007_domain_group_enterprise_admins_add.yaml'), 'r') as file:
+                                'net_pid_0007_group_enterprise_admins_add.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
