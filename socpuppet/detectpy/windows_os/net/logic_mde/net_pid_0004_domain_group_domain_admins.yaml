@@ -4,7 +4,7 @@ intel:
   description:
     - net command run to list users in domain admins group
   detectType: single_line_match
-  detectCon: 2
+  detectCon: 1
   detectLanguage: kql
   tags:
     - lolbin
