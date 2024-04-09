@@ -149,3 +149,47 @@ def net_pid_0006_domain_group_enterprise_admins(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def net_pid_0007_domain_group_enterprise_admins_add(*, logic='mde', lookback='1d'):
+    """
+    NET group add users to Enterprise Admins
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0007_domain_group_enterprise_admins_add.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0008_file_rename(*, logic='mde', lookback='1d'):
+    """
+    NET command line utility renamed
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0008_file_rename.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
