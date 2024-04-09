@@ -206,7 +206,7 @@ def pypykatz_pid_0010_command_line_indicator(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0009_live_shareenum.yaml'), 'r') as file:
+                                'pypykatz_pid_0010_command_line_indicator.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
