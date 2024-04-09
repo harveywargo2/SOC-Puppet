@@ -105,3 +105,70 @@ def pypykatz_pid_0004_live_registry_write_outfile(*, logic='mde', lookback='1d')
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def pypykatz_pid_0005_live_dcsync(*, logic='mde', lookback='1d'):
+    """
+    Pypykatz commands for dcsync
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(pykatz_mde_path(),
+                                'pypykatz_pid_0005_live_dcsync.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def pypykatz_pid_0007_live_regdump(*, logic='mde', lookback='1d'):
+    """
+    Pypykatz commands for regdump
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(pykatz_mde_path(),
+                                'pypykatz_pid_0007_live_regdump.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def pypykatz_pid_0008_live_lsassdump(*, logic='mde', lookback='1d'):
+    """
+    Pypykatz commands for lsassdump
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(pykatz_mde_path(),
+                                'pypykatz_pid_0008_live_lsassdump.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
