@@ -436,3 +436,46 @@ def net_pid_0019_user_passwordchg(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def net_pid_0020_view(*, logic='mde', lookback='1d'):
+    """
+    NET view
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0020_view.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0021_view_all(*, logic='mde', lookback='1d'):
+    """
+    NET view /all command
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0021_view_all.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
