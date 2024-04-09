@@ -326,3 +326,113 @@ def net_pid_0014_localgroup_rdp_add(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def net_pid_0015_user(*, logic='mde', lookback='1d'):
+    """
+    NET user command
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0015_user.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0016_user_add(*, logic='mde', lookback='1d'):
+    """
+    NET user command add
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0016_user_add.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0017_user_domain_add(*, logic='mde', lookback='1d'):
+    """
+    NET add user command with domain flag
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0017_user_domain_add.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0018_user_password_not_expire(*, logic='mde', lookback='1d'):
+    """
+    NET add user command with password no epire set
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0018_user_password_never_expire.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0019_user_passwordchg(*, logic='mde', lookback='1d'):
+    """
+    NET passwordchg
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(net_mde_path(),
+                                'net_pid_0019_user_passwordchg.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+

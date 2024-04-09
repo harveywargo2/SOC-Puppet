@@ -4,7 +4,7 @@ intel:
   description:
     - net command used to add to localgroups
   detectType: single_line_match
-  detectCon: 5
+  detectCon: 3
   detectLanguage: kql
   tags:
     - lolbin
