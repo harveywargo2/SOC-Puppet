@@ -1,0 +1,38 @@
+---
+title: net_pid_0001_output_redirected_to_file
+intel:
+  description:
+    - net command run
+    - output redirected '>' or '>>' to a file
+    - potential recon exfil
+  detectType: single_line_match
+  detectCon: 4
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique:
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'net' 
+      or ProcessCommandLine has 'net1'
+    | where ProcessCommandLine contains '/dom'
+    | where ProcessCommandLine contains '>>'
+      or ProcessCommandLine contains '>'
+      or ProcessCommandLine contains 'C$'
