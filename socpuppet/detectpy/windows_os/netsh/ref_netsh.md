@@ -10,6 +10,13 @@
   - https://labs.sentinelone.com/sarwent-malware-updates-command-detonation/
   - https://app.any.run/tasks/210244b9-0b6b-4a2c-83a3-04bd3175d017/
   - https://www.winhelponline.com/blog/enable-and-disable-windows-firewall-quickly-using-command-line/
+- NetSh helper Beacon
+  - https://web.archive.org/web/20160928212230/https://www.adaptforward.com/2016/09/using-netshell-to-execute-evil-dlls-and-persist-on-a-host/
+  - https://github.com/outflanknl/NetshHelperBeacon
+- Port Forwarding Port Proxy
+  - https://www.dfirnotes.net/portproxy_detection/
+  - https://adepts.of0x.cc/netsh-portproxy-code/
+  - https://www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html
 
 
 The command `netsh firewall set service type =remotedesktop mode = enable` 

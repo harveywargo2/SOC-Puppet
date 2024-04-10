@@ -193,3 +193,69 @@ def netsh_pid_0008_show_fw_rules(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def netsh_pid_0009_helper_dll(*, logic='mde', lookback='1d'):
+    """
+    netsh helper dll
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(netsh_mde_path(),
+                               'netsh_pid_0009_helper_dll.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def netsh_pid_0010_port_forwarding(*, logic='mde', lookback='1d'):
+    """
+    netsh port forwarding
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(netsh_mde_path(),
+                               'netsh_pid_0010_port_forwarding.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def netsh_pid_0011_port_forwarding_rdp(*, logic='mde', lookback='1d'):
+    """
+    netsh port forwarding rdp
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(netsh_mde_path(),
+                               'netsh_pid_0011_port_forwarding_rdp.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
