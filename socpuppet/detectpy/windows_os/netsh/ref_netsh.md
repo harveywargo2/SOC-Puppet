@@ -1,21 +1,32 @@
+# Netsh - Network Shell
 
 
-## Gemini gemini.google.com
+## Reference Links
+- MSFT Command Doc
+  - https://learn.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-contexts
+  - https://learn.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh
+  - https://ss64.com/nt/netsh.html
+- Intel & POC Write Ups
+  - https://labs.sentinelone.com/sarwent-malware-updates-command-detonation/
+  - https://app.any.run/tasks/210244b9-0b6b-4a2c-83a3-04bd3175d017/
+  - https://www.winhelponline.com/blog/enable-and-disable-windows-firewall-quickly-using-command-line/
 
 
 The command `netsh firewall set service type =remotedesktop mode = enable` 
 - enables the Remote Desktop feature on your Windows machine in a slightly different way than the previous one. 
-- `netsh firewall`: This refers to the Network Shell utility for managing firewall settings.
-- `set service`: This command focuses on configuring settings for specific services.
-- `type = remotedesktop`: This specifies the service you want to modify, which is Remote Desktop in this case.
-- `mode = enable`: This activates the Remote Desktop service within the firewall.
+- `netsh firewall`
+  - This refers to the Network Shell utility for managing firewall settings.
+- `set service`
+  - This command focuses on configuring settings for specific services.
+- `type = remotedesktop`
+  - This specifies the service you want to modify, which is Remote Desktop in this case.
+- `mode = enable`
+  - This activates the Remote Desktop service within the firewall.
 - This command directly targets the service itself, while the previous one focused on a specific rule group.
 
 
-The available rule groups for Windows Firewall differ depending on your Windows edition and version.
 
 Default Rule Groups: These groups are present across most Windows editions:
-
 - Remote Desktop: Manages rules related to Remote Desktop connections. 
 - Remote Assistance: Controls rules for remote assistance features. 
 - Windows Remote Management (WinRM): Governs rules for the WinRM service used for remote management. 
@@ -27,8 +38,8 @@ Default Rule Groups: These groups are present across most Windows editions:
 - Inbound Rules: Catches all inbound rules not assigned to other specific groups. 
 - Outbound Rules: Catches all outbound rules not assigned to other specific groups.
 
-Additional Rule Groups: These groups might be present depending on your Windows edition and version:
 
+Additional Rule Groups: These groups might be present depending on your Windows edition and version:
 - BITS: Manages rules for the Background Intelligent Transfer Service (BITS). 
 - Guest: Controls rules for the Guest account access. 
 - Hyper-V: Governs rules for Hyper-V virtualization features. 

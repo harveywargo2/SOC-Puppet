@@ -1,28 +1,31 @@
 ---
-title: netsh_p0001_set_firewall_profile_off
-metaData:
-  description: sets all firewall profiles to off
-  detectUseCase:
-  detectType: single_line_match
-  detectCon: 4
+title: netsh_pid_0001_set_firewall_profile_off
 intel:
+  description:
+    -
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
   attackTechnique: t1562.004
   attackSoftware: s0108
   references:
   emulation:
     - atomic_red_team_t1562_004_t1_guid_88d05800-a5e4-407e-9b53-ece4174f197f
   pattern:
-  tags:
-    - lol
 dataRequirements:
-  dataScope: endpoint_windows_os
+  dataSource: windows_os
+  dataType: process_creation
   dataCollector: m365d_agent
-  dataName: process_creation
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: device_process_events
-  dataMap: device_process_events
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |

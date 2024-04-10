@@ -1,29 +1,32 @@
 ---
-title: netsh_p1000_mod_firewall_rule_rdp_enable
-metaData:
-  description: netsh enables remote desktop feature on windows by modifying firewall rules
-  detectUseCase:
-  detectType: single_line_match
-  detectCon: 3
-  tags:
-    - lol
+title: netsh_pid_0005_mod_firewall_smb_enable
 intel:
+  description:
+    - enables print file share feature (smb) on windows by modifying firewall rules
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - lolbin
   attackTechnique: t1562.004
   attackSoftware: s0108
   references:
   emulation:
     - atomic_red_team_t1562_004_t3_guid_d9841bf8-f161-4c73-81e9-fd773a5ff8c1
   pattern:
-    - netsh.exe advfirewall firewall set rule "group=remote desktop" new enable=Yes
+    - netsh advfirewall firewall set rule group="file and printer sharing" new enable=Yes
 dataRequirements:
-  dataScope: endpoint_windows_os
+  dataSource: windows_os
+  dataType: process_creation
   dataCollector: m365d_agent
-  dataName: process_creation
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: device_process_events
-  dataMap: device_process_events
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
@@ -32,6 +35,6 @@ kqlDetect:
       and ProcessCommandLine has 'set'
       and ProcessCommandLine has 'rule'
     | where ProcessCommandLine contains 'group='
-      and ProcessCommandLine contains 'remote desktop'
+      and ProcessCommandLine contains 'file and printer sharing'
       and ProcessCommandLine contains 'enable='
       and ProcessCommandLine contains 'yes'

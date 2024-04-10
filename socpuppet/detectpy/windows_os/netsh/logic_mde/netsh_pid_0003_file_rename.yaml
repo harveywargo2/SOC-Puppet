@@ -1,27 +1,30 @@
 ---
-title: netsh_p0003_file_signer_mismatch
-metaData:
-  description: disable windows firewall
-  detectUseCase:
-  detectType: single_line_match
-  detectCon: 2
-  tags:
-    - lol
+title: netsh_pid_0003_file_rename
 intel:
-  attackTechnique: t1562.004
+  description:
+    - netsh renamed
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1036.003
   attackSoftware: s0108
   references:
   emulation:
   pattern:
 dataRequirements:
-  dataScope: endpoint_windows_os
+  dataSource: windows_os
+  dataType: process_creation
   dataCollector: m365d_agent
-  dataName: process_creation
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: device_process_events
-  dataMap: device_process_events
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: |
