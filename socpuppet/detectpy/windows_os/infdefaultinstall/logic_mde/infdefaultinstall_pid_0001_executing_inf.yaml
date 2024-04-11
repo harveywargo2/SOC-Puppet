@@ -1,18 +1,18 @@
 ---
-title: mavinject_pid_0001_inject_dll
+title: infdefualtinstall_pid_0001_executing_inf
 intel:
   description:
-    - MAVINJECT injecting arbitrary dll file
+    - infdefaultinstall used to execute .inf file
   detectType: single_line_match
   detectCon: 3
   detectLanguage: kql
   tags:
     - lolbin
-  attackTechnique: t1218.003
+  attackTechnique: t1218
   attackSoftware:
   references:
   emulation:
-    - atomic_red_team_t1218_t1_guid_c426dacf-575d-4937-8611-a148a86a5e61
+    - atomic_red_team_t1218_t3_guid_54ad7d5a-a1b5-472c-b6c4-f8090fb2daef
   pattern:
 dataRequirements:
   dataSource: windows_os
@@ -29,8 +29,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName has 'mavinject'
-      and InitiatingProcessFileName !~ 'appvclient.exe'
-    | where ProcessCommandLine contains '/INJECTRUNNING'
-      or InitiatingProcessCommandLine contains '/INJECTRUNNING'
-    | where ProcessCommandLine contains '.dll'
+    | where FileName has 'InfDefaultInstall'
+    | where ProcessCommandLine contains '.inf'

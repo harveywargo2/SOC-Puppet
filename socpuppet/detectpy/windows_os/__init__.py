@@ -3,6 +3,7 @@ import socpuppet.detectpy.windows_os.comsvcs
 import socpuppet.detectpy.windows_os.control
 import socpuppet.detectpy.windows_os.esentutl
 import socpuppet.detectpy.windows_os.hh
+import socpuppet.detectpy.windows_os.infdefaultinstall
 import socpuppet.detectpy.windows_os.keymgr
 import socpuppet.detectpy.windows_os.mavinject
 import socpuppet.detectpy.windows_os.mimikatz
