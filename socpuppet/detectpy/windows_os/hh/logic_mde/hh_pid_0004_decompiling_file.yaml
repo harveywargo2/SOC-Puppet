@@ -1,13 +1,13 @@
 ---
-title: hh_p1003_decompiling_file
-metaData:
-  description: HTML help decompiling file
-  detectUseCase:
+title: hh_pid_0004_decompiling_file
+intel:
+  description:
+    - HTML help decompiling file
   detectType: single_line_match
   detectCon: 3
+  detectLanguage: kql
   tags:
-    - lol
-intel:
+    - lolbin
   attackTechnique: t1218.001
   attackSoftware:
   references:
@@ -15,14 +15,17 @@ intel:
     - atomic_red_team_t1218_001_t8_guid_20cb05e0-1fa5-406d-92c1-84da4ba01813
   pattern:
 dataRequirements:
-  dataScope: endpoint_windows_os
+  dataSource: windows_os
+  dataType: process_creation
   dataCollector: m365d_agent
-  dataName: process_creation
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: device_process_events
-  dataMap: device_process_events
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 

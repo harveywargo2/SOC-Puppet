@@ -29,8 +29,8 @@ def procdump_pid_0001_minidump_flag(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pd_mde_path(),
-                                'procdump_pid_0001_minidump_flag.yaml'), 'r') as file:
+        with open(os.path.join(pd_mde_path(),
+                               'procdump_pid_0001_minidump_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def procdump_pid_0002_minidump_lsass(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pd_mde_path(),
-                                'procdump_pid_0002_minidump_lsass.yaml'), 'r') as file:
+        with open(os.path.join(pd_mde_path(),
+                               'procdump_pid_0002_minidump_lsass.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,8 +73,8 @@ def procdump_pid_0003_fulldump_flag(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pd_mde_path(),
-                                'procdump_pid_0003_fulldump_flag.yaml'), 'r') as file:
+        with open(os.path.join(pd_mde_path(),
+                               'procdump_pid_0003_fulldump_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -95,8 +95,8 @@ def procdump_pid_0004_fulldump_lsass(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pd_mde_path(),
-                                'procdump_pid_0004_fulldump_lsass.yaml'), 'r') as file:
+        with open(os.path.join(pd_mde_path(),
+                               'procdump_pid_0004_fulldump_lsass.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -117,8 +117,8 @@ def procdump_pid_0005_dump_flag(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pd_mde_path(),
-                                'procdump_pid_0005_dump_flag.yaml'), 'r') as file:
+        with open(os.path.join(pd_mde_path(),
+                               'procdump_pid_0005_dump_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -139,8 +139,8 @@ def procdump_pid_0006_renamed(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pd_mde_path(),
-                                'procdump_pid_0006_renamed.yaml'), 'r') as file:
+        with open(os.path.join(pd_mde_path(),
+                               'procdump_pid_0006_renamed.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

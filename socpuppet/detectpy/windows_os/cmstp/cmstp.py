@@ -29,8 +29,8 @@ def cmstp_pid_0001_executing_inf_file(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(cmstp_mde_path(),
-                                'cmstp_pid_0001_executing_inf_file.yaml'), 'r') as file:
+        with open(os.path.join(cmstp_mde_path(),
+                               'cmstp_pid_0001_executing_inf_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def cmstp_pid_0002_executing_inf_file_silent_flag(*, logic='mde', lookback='1d')
     """
 
     if logic == 'mde':
-        with open( os.path.join(cmstp_mde_path(),
-                                'cmstp_pid_0002_executing_inf_file_silent_flag.yaml'), 'r') as file:
+        with open(os.path.join(cmstp_mde_path(),
+                               'cmstp_pid_0002_executing_inf_file_silent_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,8 +73,8 @@ def cmstp_pid_0003_executing_inf_file_all_profiles_flag(*, logic='mde', lookback
     """
 
     if logic == 'mde':
-        with open( os.path.join(cmstp_mde_path(),
-                                'cmstp_pid_0003_executing_inf_file_all_profiles_flag.yaml'), 'r') as file:
+        with open(os.path.join(cmstp_mde_path(),
+                               'cmstp_pid_0003_executing_inf_file_all_profiles_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -95,8 +95,8 @@ def cmstp_pid_0004_executing_inf_file_single_user_flag(*, logic='mde', lookback=
     """
 
     if logic == 'mde':
-        with open( os.path.join(cmstp_mde_path(),
-                                'cmstp_pid_0004_executing_inf_file_single_user_flag.yaml'), 'r') as file:
+        with open(os.path.join(cmstp_mde_path(),
+                               'cmstp_pid_0004_executing_inf_file_single_user_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -117,8 +117,8 @@ def cmstp_pid_0005_spawning_child_process(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(cmstp_mde_path(),
-                                'cmstp_pid_0005_spawning_child_process.yaml'), 'r') as file:
+        with open(os.path.join(cmstp_mde_path(),
+                               'cmstp_pid_0005_spawning_child_process.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -139,8 +139,8 @@ def cmstp_pid_0006_rare_folder_path(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(cmstp_mde_path(),
-                                'cmstp_pid_0006_rare_folder_path.yaml'), 'r') as file:
+        with open(os.path.join(cmstp_mde_path(),
+                               'cmstp_pid_0006_rare_folder_path.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

@@ -29,8 +29,8 @@ def control_pid_0001_executing_cpl_file(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(ctl_mde_path(),
-                                'control_pid_0001_executing_cpl_file.yaml'), 'r') as file:
+        with open(os.path.join(ctl_mde_path(),
+                               'control_pid_0001_executing_cpl_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def control_pid_0002_executing_dll_file(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(ctl_mde_path(),
-                                'control_pid_0002_executing_dll_file.yaml'), 'r') as file:
+        with open(os.path.join(ctl_mde_path(),
+                               'control_pid_0002_executing_dll_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,8 +73,8 @@ def control_pid_0003_executing_file_via_rundll(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(ctl_mde_path(),
-                                'control_pid_0003_executing_file_via_rundll.yaml'), 'r') as file:
+        with open(os.path.join(ctl_mde_path(),
+                               'control_pid_0003_executing_file_via_rundll.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

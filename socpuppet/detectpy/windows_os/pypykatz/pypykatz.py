@@ -29,8 +29,8 @@ def pypykatz_pid_0001_live_lsa(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0001_live_lsa.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0001_live_lsa.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def pypykatz_pid_0002_live_lsa_write_outfile(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0002_live_lsa_write_outfile.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0002_live_lsa_write_outfile.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,8 +73,8 @@ def pypykatz_pid_0003_live_registry(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0003_live_registry.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0003_live_registry.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -95,8 +95,8 @@ def pypykatz_pid_0004_live_registry_write_outfile(*, logic='mde', lookback='1d')
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0004_live_registry_write_outfile.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0004_live_registry_write_outfile.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -117,8 +117,8 @@ def pypykatz_pid_0005_live_dcsync(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0005_live_dcsync.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0005_live_dcsync.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -139,8 +139,8 @@ def pypykatz_pid_0007_live_regdump(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0007_live_regdump.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0007_live_regdump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -161,8 +161,8 @@ def pypykatz_pid_0008_live_lsassdump(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0008_live_lsassdump.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0008_live_lsassdump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -183,8 +183,8 @@ def pypykatz_pid_0009_live_shareenum(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0009_live_shareenum.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0009_live_shareenum.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -205,8 +205,8 @@ def pypykatz_pid_0010_command_line_indicator(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(pykatz_mde_path(),
-                                'pypykatz_pid_0010_command_line_indicator.yaml'), 'r') as file:
+        with open(os.path.join(pykatz_mde_path(),
+                               'pypykatz_pid_0010_command_line_indicator.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
