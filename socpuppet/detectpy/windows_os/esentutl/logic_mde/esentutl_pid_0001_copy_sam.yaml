@@ -1,0 +1,34 @@
+---
+title: esentutl_pid_0001_copy_sam
+intel:
+  description:
+    - Copy the SAM hive using the esentutl.exe utility
+  detectType: single_line_match
+  detectCon: 1
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1003.002
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1003_002_t3_guid_a90c2f4d-6726-444e-99d2-a00cd7c20480
+  pattern:
+    - esentutl.exe /y /vss %SystemRoot%/system32/config/SAM /d %temp%/SAM
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'esentutl'
+    | where ProcessCommandLine contains 'sam'

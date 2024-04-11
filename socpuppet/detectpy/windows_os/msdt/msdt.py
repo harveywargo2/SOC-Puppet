@@ -29,8 +29,8 @@ def msdt_pid_0001_follina_rce_exploit(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(msdt_mde_path(),
-                                'msdt_pid_0001_follina_rce_exploit.yaml'), 'r') as file:
+        with open(os.path.join(msdt_mde_path(),
+                               'msdt_pid_0001_follina_rce_exploit.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def msdt_pid_0002_pcwdiag_executing_xml(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(msdt_mde_path(),
-                                'msdt_pid_0002_pcwdiag_executing_xml.yaml'), 'r') as file:
+        with open(os.path.join(msdt_mde_path(),
+                               'msdt_pid_0002_pcwdiag_executing_xml.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

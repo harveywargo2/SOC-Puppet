@@ -1,0 +1,41 @@
+---
+title: netsh_pid_0001_set_firewall_profile_off
+intel:
+  description:
+    -
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1562.004
+  attackSoftware: s0108
+  references:
+  emulation:
+    - atomic_red_team_t1562_004_t1_guid_88d05800-a5e4-407e-9b53-ece4174f197f
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where FileName has 'netsh'
+    | where ProcessCommandLine has 'advfirewall'
+      and ProcessCommandLine has 'set'
+      and ProcessCommandLine has 'state'
+      and ProcessCommandLine has 'off'
+    | where ProcessCommandLine contains 'allprofiles'
+      or ProcessCommandLine contains 'Currentprofile' 
+      or ProcessCommandLine contains 'Domainprofile'
+      or ProcessCommandLine contains 'Privateprofile'
+      or ProcessCommandLine contains 'Publciprofile'

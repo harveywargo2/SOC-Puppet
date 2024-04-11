@@ -3,6 +3,7 @@
 - Very similar to DefCon Readiness Ratings 
   - https://simple.wikipedia.org/wiki/DEFCON
 
+
 ## Detect Con Numerical Rating
 
 | DetectCon   | Urgency     | Investigation Effort | Precision | Noise     | Volume           | Confidence |
@@ -12,6 +13,7 @@
 | DetectCon 3 | Normal      | Moderate             | Mixed Bag | Mixed Bag | Low              | Moderate   |  
 | DetectCon 4 | Low         | High                 | Enrich    | High      | Moderate         | Low        |
 | DetectCon 5 | Low/Unknown | Very High            | Unknown   | Unknown   | High/Excessive   | Unknown    |
+
 
 ### Categories
 ##### DetectCon 
@@ -30,6 +32,7 @@
 ##### Confidence  
 - Confident are you in your ratings of Urgency/Load/Precision/Noise/Volume 
 - May be 
+
 
 ### How to Use
 - The goal is to make everything a DetectCon 1 or 2 from Logic or Enrichment

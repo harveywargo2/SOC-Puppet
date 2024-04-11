@@ -29,8 +29,8 @@ def mimikatz_pid_0001_file_ioc(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0001_file_ioc.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0001_file_ioc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def mimikatz_pid_0002_process_ioc(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0002_process_ioc.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0002_process_ioc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,8 +73,8 @@ def mimikatz_pid_0003_sekurlsa(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0003_sekurlsa.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0003_sekurlsa.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -95,8 +95,8 @@ def mimikatz_pid_0004_lsadump(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0004_lsadump.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0004_lsadump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -117,8 +117,8 @@ def mimikatz_pid_0005_privilege(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0005_privilege.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0005_privilege.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -139,8 +139,8 @@ def mimikatz_pid_0006_kerberos(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0006_kerberos.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0006_kerberos.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -161,8 +161,8 @@ def mimikatz_pid_0007_crypto(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0007_crypto.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0007_crypto.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -183,8 +183,8 @@ def mimikatz_pid_0008_vault(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0008_vault.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0008_vault.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -205,8 +205,8 @@ def mimikatz_pid_0009_dpapi(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0009_dpapi.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0009_dpapi.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -227,8 +227,8 @@ def mimikatz_pid_0010_process(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0010_process.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0010_process.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -250,8 +250,8 @@ def mimikatz_pid_0011_misc(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0011_misc.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0011_misc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -272,8 +272,8 @@ def mimikatz_pid_0012_rpc(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0012_rpc.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0012_rpc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -294,8 +294,8 @@ def mimikatz_pid_0013_event(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(mk_mde_path(),
-                                'mimikatz_pid_0013_event.yaml'), 'r') as file:
+        with open(os.path.join(mk_mde_path(),
+                               'mimikatz_pid_0013_event.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

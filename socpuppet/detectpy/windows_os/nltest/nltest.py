@@ -29,8 +29,8 @@ def nltest_pid_0001_dclist(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(nltest_mde_path(),
-                                'nltest_pid_0001_dclist.yaml'), 'r') as file:
+        with open(os.path.join(nltest_mde_path(),
+                               'nltest_pid_0001_dclist.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def nltest_pid_0002_domain_trusts(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(nltest_mde_path(),
-                                'nltest_pid_0002_domain_trusts.yaml'), 'r') as file:
+        with open(os.path.join(nltest_mde_path(),
+                               'nltest_pid_0002_domain_trusts.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,8 +73,8 @@ def nltest_pid_0003_trusted_domains(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(nltest_mde_path(),
-                                'nltest_pid_0003_trusted_domains.yaml'), 'r') as file:
+        with open(os.path.join(nltest_mde_path(),
+                               'nltest_pid_0003_trusted_domains.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -95,8 +95,8 @@ def nltest_pid_0004_dsgetdc(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(nltest_mde_path(),
-                                'nltest_pid_0004_dsgetdc.yaml'), 'r') as file:
+        with open(os.path.join(nltest_mde_path(),
+                               'nltest_pid_0004_dsgetdc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

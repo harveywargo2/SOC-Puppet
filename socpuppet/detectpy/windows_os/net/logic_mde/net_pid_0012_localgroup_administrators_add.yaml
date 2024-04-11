@@ -1,0 +1,35 @@
+---
+title: net_pid_0011_localgroup_administrators
+intel:
+  description:
+    - net command used to list users in localgroup administrators
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1069.001
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'localgroup'
+      and ProcessCommandLine has 'administrators'
+    | where ProcessCommandLine contains '/add'

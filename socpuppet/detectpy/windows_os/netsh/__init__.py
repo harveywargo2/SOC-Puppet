@@ -1,0 +1,1 @@
+from socpuppet.detectpy.windows_os.netsh.netsh import *

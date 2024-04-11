@@ -1,0 +1,36 @@
+---
+title: pypykatz_pid_0004_live_registry_write_outfile
+intel:
+  description:
+    - pypykatz dump sam or secrets files
+    - Obtains the credentials / secrets / other info from live registry
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - python
+  attackTechnique: t1003.002
+  attackSoftware:
+  references:
+  emulation:
+    - atomic_red_team_t1003_002_t2_guid_a96872b2-cbf3-46cf-8eb4-27e8c0e85263
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'live'
+    | where ProcessCommandLine contains 'live registry'
+    | where ProcessCommandLine contains '--json'
+      or ProcessCommandLine contains '-o'

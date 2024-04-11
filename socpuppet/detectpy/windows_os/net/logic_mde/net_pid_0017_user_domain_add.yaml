@@ -1,0 +1,37 @@
+---
+title: net_pid_0017_user_domain_add
+intel:
+  description:
+    - net CLT used to add user to a domain
+  detectType: single_line_match
+  detectCon: 1
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique:
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'user'
+    | where ProcessCommandLine contains 'net user'
+      or ProcessCommandLine contains 'net1 user'
+    | where ProcessCommandLine contains '/add'
+      and ProcessCommandLine contains '/dom'

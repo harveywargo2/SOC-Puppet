@@ -1,0 +1,34 @@
+---
+title: net_pid_0008_file_rename
+intel:
+  description:
+    - net command renamed
+  detectType: single_line_match
+  detectCon: 1
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique:
+  attackSoftware: s0039
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessVersionInfoOriginalFileName =~ 'net.exe'
+      or ProcessVersionInfoOriginalFileName =~ 'net1.exe'
+    | where FileName !~ 'net.exe'
+      and FileName !~ 'net1.exe'

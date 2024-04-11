@@ -29,8 +29,8 @@ def comsvcs_p0001_created_minidump(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(comsvcs_mde_path(),
-                                'comsvcs_pid_0001_created_minidump.yaml'), 'r') as file:
+        with open(os.path.join(comsvcs_mde_path(),
+                               'comsvcs_pid_0001_created_minidump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,8 +51,8 @@ def comsvcs_p0002_minidumpw_function_call(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(comsvcs_mde_path(),
-                                'comsvcs_pid_0002_minidumpw_function_call.yaml'), 'r') as file:
+        with open(os.path.join(comsvcs_mde_path(),
+                               'comsvcs_pid_0002_minidumpw_function_call.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,8 +73,8 @@ def comsvcs_p0003_created_file(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open( os.path.join(comsvcs_mde_path(),
-                                'comsvcs_pid_0002_minidumpw_function_call.yaml'), 'r') as file:
+        with open(os.path.join(comsvcs_mde_path(),
+                               'comsvcs_pid_0002_minidumpw_function_call.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

@@ -1,0 +1,41 @@
+---
+title: procdump_pid_0005_dump_flag
+intel:
+  description:
+    - procdump creating fulldump of lsass process
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - sysinternals
+  attackTechnique: t1003.001
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'procdump'
+      or FileName has 'procdump'
+      or FileName has 'procdump64'
+    | where ProcessCommandLine has 'accepteula'
+    | where ProcessCommandLine contains '-ma'
+      or ProcessCommandLine contains '-mm'
+      or ProcessCommandLine contains '-mt'
+      or ProcessCommandLine contains '-mp'
+      or ProcessCommandLine contains '-mc'
+      or ProcessCommandLine contains '-md'
+      or ProcessCommandLine contains '-mk'

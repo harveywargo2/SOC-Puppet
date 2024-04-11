@@ -1,0 +1,33 @@
+---
+title: keymgr_pid_0001_cred_dump
+intel:
+  description:
+    - rundll32 using key manager to dump creds
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: |
+    | where ProcessCommandLine has 'keymgr' 
+      and ProcessCommandLine has 'krshowkeymgr'
+    | where ProcessCommandLine contains 'rundll'

