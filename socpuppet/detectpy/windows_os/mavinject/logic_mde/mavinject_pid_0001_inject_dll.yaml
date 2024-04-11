@@ -1,28 +1,31 @@
 ---
-title: mavinject_p1000_inject_dll
-metaData:
-  description: MAVINJECT injecting arbitrary dll file
-  detectUseCase:
+title: mavinject_pid_001_inject_dll
+intel:
+  description:
+    - MAVINJECT injecting arbitrary dll file
   detectType: single_line_match
   detectCon: 3
+  detectLanguage: kql
   tags:
-    - lol
-intel:
-  attackTechnique: t1218.013
+    - lolbin
+  attackTechnique: t1218.003
   attackSoftware:
   references:
   emulation:
     - atomic_red_team_t1218_t1_guid_c426dacf-575d-4937-8611-a148a86a5e61
   pattern:
 dataRequirements:
-  dataScope: endpoint_windows_os
+  dataSource: windows_os
+  dataType: process_creation
   dataCollector: m365d_agent
-  dataName: process_creation
   dataForwardTo: m365d_security_center
-  dataAccess: m365d_advanced_hunting_api
-  dataStorage: device_process_events
-  dataMap: device_process_events
-kqlDetect:
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
@@ -31,4 +34,3 @@ kqlDetect:
     | where ProcessCommandLine contains '/INJECTRUNNING'
       or InitiatingProcessCommandLine contains '/INJECTRUNNING'
     | where ProcessCommandLine contains '.dll'
-    
