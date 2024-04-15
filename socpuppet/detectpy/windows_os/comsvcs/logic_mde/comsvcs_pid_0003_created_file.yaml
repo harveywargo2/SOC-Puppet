@@ -21,7 +21,7 @@ dataRequirements:
   dataSource: windows_os
   dataType:
     - file_creation
-    - file_modification
+    - file_modify
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
