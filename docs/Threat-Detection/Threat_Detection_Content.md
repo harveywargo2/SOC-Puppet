@@ -1,14 +1,22 @@
 ## Detection Logic Repos
-- https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
-- https://github.com/Azure/Azure-Sentinel
-- https://github.com/reprise99/Sentinel-Queries
-- https://github.com/SigmaHQ/sigma
-- https://github.com/splunk/security_content
-- https://github.com/chronicle/detection-rules
-- https://github.com/bfuzzy/auditd-attack
-- https://github.com/mbabinski/Sigma-Rules
-- https://github.com/elastic/detection-rules
-- https://github.com/The-DFIR-Report/Sigma-Rules/tree/main/rules
+- KQL 
+  - https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
+  - https://github.com/Azure/Azure-Sentinel
+  - https://github.com/reprise99/Sentinel-Queries
+- SIGMA 
+  - https://github.com/SigmaHQ/sigma
+  - https://github.com/mbabinski/Sigma-Rules
+  - https://github.com/The-DFIR-Report/Sigma-Rules/tree/main/rules
+- SPL
+  - https://github.com/splunk/security_content
+  - https://research.splunk.com/detections/
+- Yara-L
+  - https://github.com/chronicle/detection-rules
+- AuditD
+  - https://github.com/bfuzzy/auditd-attack
+- Lucene - Elastic
+  - https://github.com/elastic/detection-rules
+
 
 # SIGMA
 - Generic and open signature format that allows you to describe relevant log events
