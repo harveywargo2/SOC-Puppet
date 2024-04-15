@@ -1,0 +1,33 @@
+---
+title: rolemgt_pid_0001_any_global_admin
+intel:
+  description:
+    - Any Global Admin Role Add, Remove, or Modify Activity
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique:
+    - t1098.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: entra_id
+  dataType: role_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: audit_log
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '62e90394-69f5-4237-9190-012177145e10'

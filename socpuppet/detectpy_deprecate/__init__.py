@@ -1,1 +1,0 @@
-import socpuppet.detectpy_deprecate.azure
