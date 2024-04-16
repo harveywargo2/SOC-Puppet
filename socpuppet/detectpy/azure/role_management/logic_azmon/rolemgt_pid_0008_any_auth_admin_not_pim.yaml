@@ -33,3 +33,5 @@ logic:
   kqlQuery: |
     | where Category =~ 'RoleManagement'
     | where TargetResources contains 'c4e39bd9-1100-46d3-8c65-fb160da0071f'
+    | where LoggedByService !~ 'PIM'
+      and Identity !~ 'MS-PIM'

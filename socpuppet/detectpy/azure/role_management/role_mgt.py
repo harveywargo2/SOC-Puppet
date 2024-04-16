@@ -193,3 +193,4 @@ def rolemgt_p0008_any_auth_admin_not_pim(*, logic='azmon', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
