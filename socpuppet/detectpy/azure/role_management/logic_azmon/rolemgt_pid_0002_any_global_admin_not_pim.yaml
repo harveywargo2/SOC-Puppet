@@ -2,7 +2,7 @@
 title: rolemgt_pid_0002_any_global_admin_not_pim
 intel:
   description:
-    - Any Global Admin Role Add, Remove, or Modify Activity
+    - Any Entra ID Global Admin Role Add, Remove, or Modify Activity
   detectType: single_line_match
   detectCon: 3
   detectLanguage: kql
@@ -16,13 +16,15 @@ intel:
   pattern:
 dataRequirements:
   dataSource: entra_id
-  dataType: role_management
+  dataType:
+    - core_directory
+    - privileged_identity_management
   dataCollector: azure_active_directory
   dataForwardTo: msft_sentinel
   dataParser:
   dataStorage: azure_monitor
   dataTable: audit_logs
-  dataIndex: audit_log
+  dataIndex: role_management
   dataAccess: api_azure_monitor
   dataMap:
 logic:

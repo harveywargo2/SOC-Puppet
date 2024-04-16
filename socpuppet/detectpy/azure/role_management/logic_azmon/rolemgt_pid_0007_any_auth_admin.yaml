@@ -1,8 +1,8 @@
 ---
-title: rolemgt_pid_0001_any_global_admin
+title: rolemgt_pid_0007_any_auth_admin
 intel:
   description:
-    - Any Entra ID Global Admin Role Add, Remove, or Modify Activity
+    - Any Entra ID Auth Admin Role Add, Remove, or Modify Activity
   detectType: single_line_match
   detectCon: 3
   detectLanguage: kql
@@ -32,4 +32,4 @@ logic:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '62e90394-69f5-4237-9190-012177145e10'
+    | where TargetResources contains 'cf1c38e5-3621-4004-a7cb-879624dced7c'
