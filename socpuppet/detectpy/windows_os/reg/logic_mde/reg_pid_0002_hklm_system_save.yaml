@@ -8,7 +8,7 @@ intel:
   detectLanguage: kql
   tags:
     - lolbin
-  attackTechnique:
+  attackTechnique: t1003.002
   attackSoftware:
   references:
   emulation:
