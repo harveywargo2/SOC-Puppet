@@ -633,3 +633,93 @@ def rolemgt_pid_0028_any_directory_writer_not_pim(*, logic='azmon', lookback='1d
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def rolemgt_pid_0029_any_domain_name_admin(*, logic='azmon', lookback='1d'):
+    """
+    Domain Name Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0029_any_domain_name_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0030_any_domain_name_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Domain Name Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0030_any_domain_name_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0031_any_exchange_admin(*, logic='azmon', lookback='1d'):
+    """
+    Exchange Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0031_any_exchange_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0032_any_exchange_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Exchange Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0032_any_exchange_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
