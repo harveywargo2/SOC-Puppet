@@ -546,3 +546,90 @@ def rolemgt_pid_0024_any_cap_admin_not_pim(*, logic='azmon', lookback='1d'):
 
     return query
 
+
+def rolemgt_pid_0025_any_directory_reader(*, logic='azmon', lookback='1d'):
+    """
+    Directory Reader
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0025_any_directory_reader.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0026_any_directory_reader_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Directory Reader
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0026_any_directory_reader_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0027_any_directory_writer(*, logic='azmon', lookback='1d'):
+    """
+    Directory Writer
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0027_any_directory_writer.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0028_any_directory_writer_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Directory Writer
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0028_any_directory_writer_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
