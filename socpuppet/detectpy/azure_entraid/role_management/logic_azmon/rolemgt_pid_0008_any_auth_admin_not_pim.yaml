@@ -1,8 +1,9 @@
 ---
-title: rolemgt_pid_0002_any_global_admin_not_pim
+title: rolemgt_pid_0007_any_auth_admin
 intel:
   description:
-    - Any Entra ID Global Admin Role Add, Remove, or Modify Activity
+    - Any Entra ID Auth Admin Role Add, Remove, or Modify Activity
+    - Can access to view, set and reset authentication method information for any non-admin user.
   detectType: single_line_match
   detectCon: 3
   detectLanguage: kql
@@ -32,6 +33,6 @@ logic:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '62e90394-69f5-4237-9190-012177145e10'
+    | where TargetResources contains 'c4e39bd9-1100-46d3-8c65-fb160da0071f'
     | where LoggedByService !~ 'PIM'
       and Identity !~ 'MS-PIM'
