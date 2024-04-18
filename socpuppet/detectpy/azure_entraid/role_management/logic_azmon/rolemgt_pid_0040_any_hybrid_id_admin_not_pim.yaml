@@ -1,0 +1,40 @@
+---
+title: rolemgt_pid_0040_any_hybrid_id_admin_not_pim
+intel:
+  description:
+    - Any Entra ID CAP Admin Role Add, Remove, or Modify Activity
+    - Can manage Active Directory to Microsoft Entra cloud provisioning, Microsoft Entra Connect, Pass-through Authentication (PTA), Password hash synchronization (PHS), Seamless Single sign-on (Seamless SSO), and federation settings.
+    - Does not have access to manage Microsoft Entra Connect Health.
+    - PIM Excluded
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique:
+    - t1098.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2'
+    | where LoggedByService !~ 'PIM'
+      and Identity !~ 'MS-PIM'

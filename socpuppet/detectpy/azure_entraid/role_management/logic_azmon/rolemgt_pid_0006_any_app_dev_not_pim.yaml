@@ -1,0 +1,39 @@
+---
+title: rolemgt_pid_0006_any_app_admin_not_pim
+intel:
+  description:
+    - Any Entra ID App Developer Admin Role Add, Remove, or Modify Activity
+    - Can create application registrations independent of the 'Users can register applications' setting
+    - PIM Excluded
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique:
+    - t1098.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains 'cf1c38e5-3621-4004-a7cb-879624dced7c'
+    | where LoggedByService !~ 'PIM'
+      and Identity !~ 'MS-PIM'

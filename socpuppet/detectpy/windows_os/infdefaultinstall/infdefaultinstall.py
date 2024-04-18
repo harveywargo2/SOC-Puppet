@@ -39,3 +39,4 @@ def infdefaultinstall_pid_0001_executing_inf(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+

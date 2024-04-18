@@ -1,0 +1,36 @@
+---
+title: rolemgt_pid_0015_any_billing_admin
+intel:
+  description:
+    - Any Entra ID Billing Admin Role Add, Remove, or Modify Activity
+    - Can perform common billing related tasks like updating payment information
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique:
+    - t1098.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains 'b0f54661-2d74-4c50-afa3-1ec803f12efe'

@@ -1,0 +1,2 @@
+import socpuppet.detectpy.azure_entraid.federated_trust
+import socpuppet.detectpy.azure_entraid.role_management
