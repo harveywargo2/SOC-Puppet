@@ -219,7 +219,7 @@ def rolemgt_p0009_any_auth_policy_admin(*, logic='azmon', lookback='1d'):
 
 def rolemgt_p0010_any_auth_policy_admin_not_pim(*, logic='azmon', lookback='1d'):
     """
-    Any auth policy admin activity
+    Any auth policy admin activity not from pim
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -238,3 +238,46 @@ def rolemgt_p0010_any_auth_policy_admin_not_pim(*, logic='azmon', lookback='1d')
 
     return query
 
+
+def rolemgt_p0011_any_auth_extension_admin(*, logic='azmon', lookback='1d'):
+    """
+    Any auth extension admin activity
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0011_any_auth_extension_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_p0012_any_auth_extension_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Any auth extension admin activity not pim
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0012_any_auth_extension_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

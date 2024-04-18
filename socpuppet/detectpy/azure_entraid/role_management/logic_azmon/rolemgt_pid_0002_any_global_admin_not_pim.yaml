@@ -6,7 +6,7 @@ intel:
     - Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.
     - God Mode
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 2
   detectLanguage: kql
   tags:
     -

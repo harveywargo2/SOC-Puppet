@@ -1,11 +1,11 @@
 ---
-title: rolemgt_pid_0007_any_auth_admin
+title: rolemgt_pid_0008_any_auth_admin_not_pim
 intel:
   description:
     - Any Entra ID Auth Admin Role Add, Remove, or Modify Activity
     - Can access to view, set and reset authentication method information for any non-admin user.
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 2
   detectLanguage: kql
   tags:
     -

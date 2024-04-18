@@ -4,7 +4,7 @@ intel:
   description:
     - Any Entra ID App Admin Role Add, Remove, or Modify Activity
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 2
   detectLanguage: kql
   tags:
     -
