@@ -985,3 +985,223 @@ def rolemgt_pid_0044_any_password_admin_not_pim(*, logic='azmon', lookback='1d')
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def rolemgt_pid_0045_any_priv_auth_admin(*, logic='azmon', lookback='1d'):
+    """
+    Privileged Authentication Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0045_any_priv_auth_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0046_any_priv_auth_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Privileged Authentication Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0046_any_priv_auth_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0047_any_priv_role_admin(*, logic='azmon', lookback='1d'):
+    """
+    Privileged Role Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0047_any_priv_role_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0048_any_priv_role_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Privileged Role Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0048_any_priv_role_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0049_any_security_admin(*, logic='azmon', lookback='1d'):
+    """
+    Security Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0049_any_security_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0050_any_security_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Security Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0050_any_security_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0051_any_security_operator(*, logic='azmon', lookback='1d'):
+    """
+    Security Operator
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0051_any_security_operator.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0052_any_security_operator_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Security Operator
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0052_any_security_operator_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0053_any_security_reader(*, logic='azmon', lookback='1d'):
+    """
+    Security Reader
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0053_any_security_reader.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0054_any_security_reader_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Security Reader
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0054_any_security_reader_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
