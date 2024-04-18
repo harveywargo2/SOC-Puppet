@@ -723,3 +723,133 @@ def rolemgt_pid_0032_any_exchange_admin_not_pim(*, logic='azmon', lookback='1d')
     return query
 
 
+def rolemgt_pid_0033_any_global_reader(*, logic='azmon', lookback='1d'):
+    """
+    Global Reader
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0033_any_global_reader.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0034_any_global_reader_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Global Reader
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0034_any_global_reader_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0035_any_groups_admin(*, logic='azmon', lookback='1d'):
+    """
+    Groups Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0035_any_groups_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0036_any_groups_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Groups Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0036_any_groups_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0037_any_helpdesk_admin(*, logic='azmon', lookback='1d'):
+    """
+    Help Desk Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0037_any_helpdesk_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0038_any_helpdesk_admin_not_pim(*, logic='azmon', lookback='1d'):
+    """
+    Help Desk Admin
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(rolemgt_azmon_path(),
+                               'rolemgt_pid_0038_any_helpdesk_admin_not_pim.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
