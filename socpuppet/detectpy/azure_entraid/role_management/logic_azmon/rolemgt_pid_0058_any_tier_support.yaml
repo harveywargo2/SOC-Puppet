@@ -1,0 +1,37 @@
+---
+title: rolemgt_pid_0058_any_tier_support
+intel:
+  description:
+    - Any Entra ID CAP Admin Role Add, Remove, or Modify Activity
+    - Do not use - not intended for general use.
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique:
+    - t1098.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '4ba39ca4-527c-499a-b93d-d9b492c50246'
+      or TargetResources contains 'e00e864a-17c5-4a4b-9c06-f5b95a8d5bd8'

@@ -1,0 +1,1 @@
+from socpuppet.detectpy.azure_entraid.federated_trust.fed_trust import *
