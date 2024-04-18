@@ -1,11 +1,12 @@
 ---
-title: rolemgt_pid_0011_any_auth_extension_admin
+title: rolemgt_pid_0022_any_cloud_device_admin_not_pim
 intel:
   description:
-    - Any Entra ID Auth Extension Admin Role Add, Remove, or Modify Activity
-    - Customize sign in and sign up experiences for users by creating and managing custom authentication extensions
+    - Any Entra ID Cloud Device Role Add, Remove, or Modify Activity
+    - Limited access to manage devices in Microsoft Entra ID
+    - PIM Exlcuded
   detectType: single_line_match
-  detectCon: 3
+  detectCon: 2
   detectLanguage: kql
   tags:
     -
@@ -33,4 +34,6 @@ logic:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '25a516ed-2fa0-40ea-a2d0-12923a21473a'
+    | where TargetResources contains '7698a772-787b-4ac8-901f-60d6b08affd2'
+    | where LoggedByService !~ 'PIM'
+      and Identity !~ 'MS-PIM'

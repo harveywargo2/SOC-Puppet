@@ -1,9 +1,9 @@
 ---
-title: rolemgt_pid_0011_any_auth_extension_admin
+title: rolemgt_pid_0019_any_cloudapp_admin
 intel:
   description:
-    - Any Entra ID Auth Extension Admin Role Add, Remove, or Modify Activity
-    - Customize sign in and sign up experiences for users by creating and managing custom authentication extensions
+    - Any Entra ID Cloud App Role Add, Remove, or Modify Activity
+    - Can create and manage all aspects of app registrations and enterprise apps except application proxy.
   detectType: single_line_match
   detectCon: 3
   detectLanguage: kql
@@ -33,4 +33,4 @@ logic:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '25a516ed-2fa0-40ea-a2d0-12923a21473a'
+    | where TargetResources contains '158c047a-c907-4556-b7ef-446551a6b5f7'

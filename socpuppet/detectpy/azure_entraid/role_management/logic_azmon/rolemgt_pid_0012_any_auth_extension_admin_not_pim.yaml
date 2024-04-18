@@ -2,8 +2,9 @@
 title: rolemgt_pid_0012_any_auth_extension_admin_not_pim
 intel:
   description:
-    - Any Entra ID Auth Admin Role Add, Remove, or Modify Activity
+    - Any Entra ID Auth Extension Admin Role Add, Remove, or Modify Activity
     - Customize sign in and sign up experiences for users by creating and managing custom authentication extensions
+    - PIM Excluded
   detectType: single_line_match
   detectCon: 2
   detectLanguage: kql

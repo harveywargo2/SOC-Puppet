@@ -1,9 +1,9 @@
 ---
-title: rolemgt_pid_0011_any_auth_extension_admin
+title: rolemgt_pid_0023_any_cap_admin
 intel:
   description:
-    - Any Entra ID Auth Extension Admin Role Add, Remove, or Modify Activity
-    - Customize sign in and sign up experiences for users by creating and managing custom authentication extensions
+    - Any Entra ID CAP Admin Role Add, Remove, or Modify Activity
+    - Can manage Conditional Access capabilities.
   detectType: single_line_match
   detectCon: 3
   detectLanguage: kql
@@ -33,4 +33,4 @@ logic:
   kqlTable: AuditLogs
   kqlQuery: |
     | where Category =~ 'RoleManagement'
-    | where TargetResources contains '25a516ed-2fa0-40ea-a2d0-12923a21473a'
+    | where TargetResources contains 'b1be1c3e-b65d-4f19-8427-f6fa0d97feb9'

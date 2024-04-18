@@ -3,8 +3,9 @@ title: rolemgt_pid_0002_any_global_admin_not_pim
 intel:
   description:
     - Any Entra ID Global Admin Role Add, Remove, or Modify Activity
-    - Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.
+    - Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities
     - God Mode
+    - PIM Excluded
   detectType: single_line_match
   detectCon: 2
   detectLanguage: kql

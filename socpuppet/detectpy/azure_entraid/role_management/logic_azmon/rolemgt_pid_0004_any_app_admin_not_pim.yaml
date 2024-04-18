@@ -3,6 +3,8 @@ title: rolemgt_pid_0004_any_app_admin_not_pim
 intel:
   description:
     - Any Entra ID App Admin Role Add, Remove, or Modify Activity
+    - Can create and manage all aspects of app registrations and enterprise apps.
+    - PIM Excluded
   detectType: single_line_match
   detectCon: 2
   detectLanguage: kql

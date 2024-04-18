@@ -3,7 +3,7 @@ title: rolemgt_pid_0005_any_app_dev
 intel:
   description:
     - Any Entra ID App Developer Role Add, Remove, or Modify Activity
-    - Can create application registrations independent of the 'Users can register applications' setting.
+    - Can create application registrations independent of the 'Users can register applications' setting
   detectType: single_line_match
   detectCon: 3
   detectLanguage: kql
