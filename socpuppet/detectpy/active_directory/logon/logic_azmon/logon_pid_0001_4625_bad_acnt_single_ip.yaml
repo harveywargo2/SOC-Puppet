@@ -1,0 +1,38 @@
+---
+title: auth_pid_0001_4625_bad_acnt_single_ip
+intel:
+  description:
+    - Failed logons with bad account name
+    - Misspelled or Bad USer account
+  detectType: threshold_exceeded
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+  attackTechnique:
+    - t1110.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: active_directory
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4625
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar: let TriggerThreshold = 0;
+  kqlTable: SecurityEvent
+  kqlQuery: |
+    | where EventID == 4625 
+      and AccountType == 'User' 
+      and SubStatus == '0x0000064'
+    | summarize AccountSet=make_set(TargetUserName) by IpAddress, SubStatus, EventID, TargetDomainName, bin(TimeGenerated, 1h) 
+    | extend AccountCount = array_length(AccountSet)
+    | where AccountCount >= TriggerThreshold
