@@ -24,5 +24,4 @@
   - https://github.com/chronicle/detection-rules
 
 
-
-
+  

@@ -10,3 +10,6 @@
   - https://github.com/SigmaHQ/sigma-specification/blob/main/Taxonomy_specification.md
 - Sysmon 
   - https://github.com/trustedsec/SysmonCommunityGuide
+- Windows Security Event Log
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-auditing-faq
+  - 
