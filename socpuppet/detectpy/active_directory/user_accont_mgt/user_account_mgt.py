@@ -19,7 +19,7 @@ def uam_azmon_path():
     return output
 
 
-def uam_pid_0001_4738_norm_acnt_no_password_expire(*, logic='azmon', lookback='1d'):
+def uam_pid_0001_4738_norm_acnt_password_never_expire(*, logic='azmon', lookback='1d'):
     """
     4738 User Account Management
 
@@ -30,7 +30,7 @@ def uam_pid_0001_4738_norm_acnt_no_password_expire(*, logic='azmon', lookback='1
 
     if logic == 'azmon':
         with open(os.path.join(uam_azmon_path(),
-                               'uam_pid_0001_4738_norm_acnt_no_password_expire.yaml'), 'r') as file:
+                               'uam_pid_0001_4738_norm_acnt_password_never_expire.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.azmon_query_builder(data, lookback)
