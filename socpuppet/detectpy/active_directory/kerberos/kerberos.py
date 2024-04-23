@@ -193,3 +193,135 @@ def kerb_pid_0008_4768_kdc_err_c_principal_single_ip(*, logic='azmon', lookback=
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def kerb_pid_0009_4771_kdc_err_c_principal_unknown(*, logic='azmon', lookback='1d'):
+    """
+    4771 Kerb Pre Auth Fail
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(kerb_azmon_path(),
+                               'kerb_pid_0009_4771_kdc_err_c_principal_unknown.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def kerb_pid_0010_4771_kdc_err_policy(*, logic='azmon', lookback='1d'):
+    """
+    4771 Kerb Pre Auth Fail
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(kerb_azmon_path(),
+                               'kerb_pid_0010_4771_kdc_err_policy.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def kerb_pid_0011_4771_kdc_err_client_revoked(*, logic='azmon', lookback='1d'):
+    """
+    4771 Kerb Pre Auth Fail
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(kerb_azmon_path(),
+                               'kerb_pid_0011_4771_kdc_err_client_revoked.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def kerb_pid_0012_4771_kdc_err_key_expired(*, logic='azmon', lookback='1d'):
+    """
+    4771 Kerb Pre Auth Fail
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(kerb_azmon_path(),
+                               'kerb_pid_0012_4771_kdc_err_key_expired.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def kerb_pid_0013_4771_kdc_err_preauth_failed(*, logic='azmon', lookback='1d'):
+    """
+    4771 Kerb Pre Auth Fail
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(kerb_azmon_path(),
+                               'kerb_pid_0013_4771_kdc_err_preauth_failed.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip(*, logic='azmon', lookback='1d'):
+    """
+    4771 Kerb Pre Auth Fail Single IP
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(kerb_azmon_path(),
+                               'kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

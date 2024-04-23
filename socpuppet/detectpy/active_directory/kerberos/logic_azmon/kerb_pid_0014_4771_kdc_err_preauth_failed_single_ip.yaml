@@ -1,10 +1,12 @@
 ---
-title: kerb_pid_0002_4771_fail_bad_pword_single_ip
+title: kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip
 intel:
   description:
-    - Failed kerberos auth ticket request
-    - Misspelled or Bad USer account
-  detectType: threshold_exceeded
+    - Kerberos Pre Auth Fail
+    - KDC_ERR_PREAUTH_FAILED
+    - Pre-authentication information was invalid
+    - The wrong password was provided
+  detectType: aggregate_threshold_match
   detectCon: 3
   detectLanguage: kql
   tags:
@@ -15,10 +17,10 @@ intel:
   emulation:
   pattern:
 dataRequirements:
-  dataSource: ama_agent
+  dataSource: active_directory_domain_controller
   dataType:
     - windows_security_event_log
-  dataCollector: windows_security_event_log
+  dataCollector: ama_agent
   dataForwardTo: msft_sentinel
   dataParser:
   dataStorage: azure_monitor
