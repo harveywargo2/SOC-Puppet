@@ -1,0 +1,41 @@
+---
+title: kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip
+intel:
+  description:
+    - Kerberos Pre Auth Fail
+    - KDC_ERR_PREAUTH_FAILED
+    - Pre-authentication information was invalid
+    - The wrong password was provided
+  detectType: aggregate_threshold_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+  attackTechnique:
+    - t1110.003
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4771
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar: let TriggerThreshold = 0;
+  kqlTable: SecurityEvent
+  kqlQuery: |
+    | where EventID == 4771
+      and TargetUserName !endswith '$' 
+      and Status =~ '0x18' 
+    | extend IpExtract = extract(@'([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})' , 0 , IpAddress)
+    | summarize AccountSet=make_set(TargetUserName) by IpExtract, ServiceName, Status, EventID, bin(TimeGenerated, 1h)
+    | extend AccountCount = array_length(AccountSet)
+    | where AccountCount >= TriggerThreshold

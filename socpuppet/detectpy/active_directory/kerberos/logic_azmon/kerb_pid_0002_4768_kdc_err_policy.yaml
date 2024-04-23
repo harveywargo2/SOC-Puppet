@@ -1,0 +1,38 @@
+---
+title: kerb_pid_0002_4768_kdc_err_policy
+intel:
+  description:
+    - Failed kerberos auth ticket request
+    - KDC_ERR_POLICY
+    - Requested start time is later than end time
+    - This error is usually the result of logon restrictions in place on a user’s account
+    - For example workstation restriction, smart card authentication requirement or logon time restriction
+  detectType: single_line_match
+  detectCon: 5
+  detectLanguage: kql
+  tags:
+  attackTechnique:
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+    - 0xC
+dataRequirements:
+  dataSource: active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4678
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: SecurityEvent
+  kqlQuery: |
+    | where EventID == 4768
+      and TargetUserName !endswith '$'
+      and Status =~ '0xC'
