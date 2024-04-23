@@ -1,0 +1,38 @@
+---
+title: auth_pid_0018_4625_status_synchronization_required
+intel:
+  description:
+    - Failed logons
+    - STATUS_SYNCHRONIZATION_REQUIRED
+    - The SAM database is significantly out of synchronization with the copy on the domain controller.
+    - A complete synchronization is required.
+  detectType: single_line_match
+  detectCon: 5
+  detectLanguage: kql
+  tags:
+  attackTechnique:
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+    - 0xC0000134
+dataRequirements:
+  dataSource: active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4625
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: SecurityEvent
+  kqlQuery: |
+    | where EventID == 4625 
+      and AccountType == 'User' 
+    | where Status =~ '0xC0000134'
+      or SubStatus =~ '0xC0000134'

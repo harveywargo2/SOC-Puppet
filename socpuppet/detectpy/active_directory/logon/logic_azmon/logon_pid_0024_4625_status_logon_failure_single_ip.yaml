@@ -1,10 +1,11 @@
 ---
-title: auth_pid_0001_4625_bad_acnt_single_ip
+title: auth_pid_0024_4625_status_logon_failure_single_ip
 intel:
   description:
-    - Failed logons with bad account name
-    - Misspelled or Bad USer account
-  detectType: threshold_exceeded
+    - Failed logons
+    - See Sub Status for fail type
+    - Potential Password Spray
+  detectType: multi_line_threshold
   detectCon: 3
   detectLanguage: kql
   tags:
@@ -32,7 +33,8 @@ logic:
   kqlQuery: |
     | where EventID == 4625 
       and AccountType == 'User' 
-      and SubStatus == '0x0000064'
-    | summarize AccountSet=make_set(TargetUserName) by IpAddress, SubStatus, EventID, TargetDomainName, bin(TimeGenerated, 1h) 
+      and Status == '0xc000006d'
+    | summarize AccountSet=make_set(TargetUserName), SubStatusSet=make_set(SubStatus) 
+      by IpAddress, EventID, TargetDomainName, bin(TimeGenerated, 1h) 
     | extend AccountCount = array_length(AccountSet)
     | where AccountCount >= TriggerThreshold

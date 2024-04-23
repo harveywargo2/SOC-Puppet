@@ -1,1 +1,2 @@
 import socpuppet.detectpy.active_directory.kerberos
+import socpuppet.detectpy.active_directory.logon
