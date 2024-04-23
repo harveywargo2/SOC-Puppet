@@ -16,7 +16,7 @@ intel:
   emulation:
   pattern:
 dataRequirements:
-  dataSource: active_directory
+  dataSource: active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent

@@ -1,11 +1,11 @@
 ---
-title: kerb_pid_0002_4768_fail_bad_acnt_single_ip
+title: kerb_pid_0008_4768_kdc_err_c_principal_single_ip
 intel:
   description:
-    - Failed kerberos auth ticket request
-    - 0x6 the username doesn't exist
-    - Misspelled or Bad USer account
-  detectType: threshold_exceeded
+    - KDC_ERR_C_PRINCIPAL_UNKNOWN
+    - Client not found in Kerberos database
+    - The username doesn’t exist.
+  detectType: multi_line_threshold
   detectCon: 3
   detectLanguage: kql
   tags:
@@ -15,6 +15,7 @@ intel:
   references:
   emulation:
   pattern:
+    - 0x6
 dataRequirements:
   dataSource: active_directory
   dataType:
