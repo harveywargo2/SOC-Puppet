@@ -5,7 +5,7 @@ intel:
     - KDC_ERR_C_PRINCIPAL_UNKNOWN
     - Client not found in Kerberos database
     - The username doesn’t exist.
-  detectType: multi_line_threshold
+  detectType: aggregate_threshold_match
   detectCon: 3
   detectLanguage: kql
   tags:
@@ -17,7 +17,7 @@ intel:
   pattern:
     - 0x6
 dataRequirements:
-  dataSource: active_directory
+  dataSource: active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent

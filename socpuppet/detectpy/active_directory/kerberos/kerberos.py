@@ -171,3 +171,25 @@ def kerb_pid_0007_4768_kdc_logon_without_pre_auth(*, logic='azmon', lookback='1d
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def kerb_pid_0008_4768_kdc_err_c_principal_single_ip(*, logic='azmon', lookback='1d'):
+    """
+    4768 Kerb Ticket Fail Single IP
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(kerb_azmon_path(),
+                               'kerb_pid_0008_4768_kdc_err_c_principal_single_ip.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

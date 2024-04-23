@@ -5,7 +5,7 @@ intel:
     - Failed logons
     - See Sub Status for fail type
     - Potential Password Spray
-  detectType: multi_line_threshold
+  detectType: aggregate_threshold_match
   detectCon: 3
   detectLanguage: kql
   tags:
