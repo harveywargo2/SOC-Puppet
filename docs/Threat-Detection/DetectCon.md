@@ -6,13 +6,13 @@
 
 ## Detect Con Numerical Rating
 
-| DetectCon   | Urgency     | Investigation Effort | Precision | Noise     | Volume           | Confidence |
-|-------------|-------------|----------------------|-----------|-----------|------------------|------------|
-| DetectCon 1 | Rapid       | Very Low             | Very High | None      | Only Atk Pattern | Very High  |
-| DetectCon 2 | High        | Low                  | High      | Low       | Very Low         | High       |
-| DetectCon 3 | Normal      | Moderate             | Mixed Bag | Mixed Bag | Low              | Moderate   |  
-| DetectCon 4 | Low         | High                 | Enrich    | High      | Moderate         | Low        |
-| DetectCon 5 | Low/Unknown | Very High            | Unknown   | Unknown   | High/Excessive   | Unknown    |
+| DetectCon   | Urgency     | Investigation Effort | Accuracy To Noise | In The Wild   | Volume           | Confidence |
+|-------------|-------------|----------------------|-------------------|---------------|------------------|------------|
+| DetectCon 1 | Rapid       | Very Low             | Very High/None    | Highly Common | Only Atk Pattern | Very High  |
+| DetectCon 2 | High        | Low                  | High/Low          | Common        | Very Low         | High       |
+| DetectCon 3 | Normal      | Moderate             | Mixed/Mixed       | Common        | Low              | Moderate   |  
+| DetectCon 4 | Low         | High                 | Mixed/Blends In   | Not Common    | Moderate         | Low        |
+| DetectCon 5 | Low/Unknown | Very High            | Unknown/Unknown   | Unknown       | High/Excessive   | Unknown    |
 
 
 ### Categories
@@ -23,12 +23,13 @@
 ##### Investigation Effort 
   - The expected amount of work or effort on the Responder/Analyst to validate the detection represents an actual attack pattern
   - This may be improved with enrichment to the detection
-##### Precision 
-  - How precise is the detection does it match the Attack Pattern and nothing else 
-##### Noise 
-- How much noise will come from detection
+##### Accuracy-To-Noise Ratio 
+  - How accurate is the detection does it match the Attack Pattern and nothing else
+  - What is the expected Noise ratio
+##### In The Wild 
+- - How common is this pattern reported in the wil
 ##### Volume  
-- Expected or measured volume per period of reporting 
+- - Expected or measured volume per period of reporting 
 ##### Confidence  
 - Confident are you in your ratings of Urgency/Load/Precision/Noise/Volume 
 - May be 
