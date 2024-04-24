@@ -1,0 +1,37 @@
+---
+title: appinstaller_pid_0001_load_remote_package
+intel:
+  description:
+    - AppInstaller.exe is spawned by the default handler for the URI
+    - it attempts to load/install a package from the URL and is saved in INetCache
+  detectType: single_line_match
+  detectCon: 3
+  detectLanguage: kql
+  tags:
+    - lolbin
+  attackTechnique: t1105
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+    - appinstaller_pid_0001_invoke_network_connection.yaml
+dataRequirements:
+  dataSource: windows_os
+  dataType: process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'start'
+      and ProcessCommandLine has 'appinstaller'
+    | where ProcessCommandLine contains 'ms-appinstaller'
+    | where ProcessCommandLine contains 'https:'
+      or ProcessCommandLine contains 'http:'
