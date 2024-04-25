@@ -106,3 +106,24 @@ def reg_pid_0004_hklm_lsa_secrets_save(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def reg_pid_0005_hklm_create_minint(*, logic='mde', lookback='1d'):
+    """
+    Reg MiniNT
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(reg_mde_path(),
+                               'reg_pid_0005_hklm_create_minint.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

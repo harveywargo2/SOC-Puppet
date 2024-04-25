@@ -1,5 +1,5 @@
 ---
-title: procdump_pid_0003_fulldump_flag
+title: procdump_pid_0004_fulldump_lsass
 intel:
   description:
     - procdump creating fulldump of lsass process
