@@ -1,5 +1,5 @@
 ---
-title: procdump_pid_0001_minidump_lsass
+title: procdump_pid_0002_minidump_lsass
 intel:
   description:
     - procdump creating minidump of lsass
@@ -22,7 +22,7 @@ dataRequirements:
   dataParser:
   dataStorage: m365d_security_center
   dataTable: device_process_events
-  dataIndex: 
+  dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
