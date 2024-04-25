@@ -22,7 +22,7 @@ dataRequirements:
   dataParser:
   dataStorage: m365d_security_center
   dataTable: device_process_events
-  dataIndex:
+  dataIndex: 
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
