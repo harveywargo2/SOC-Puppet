@@ -1,18 +1,17 @@
 ---
-title: procdump_pid_0002_minidump_lsass
+title: dumpert_pid_0001_direct_api_call
 intel:
   description:
-    - procdump creating minidump of lsass
+    - Dump Creds from memory
   detectType: single_line_match
   detectCon: 1
   detectLanguage: kql
   tags:
-    - sysinternals
   attackTechnique: t1003.001
   attackSoftware:
   references:
   emulation:
-    - atomic_red_team_t1003_001_t9_guid_7cede33f-0acd-44ef-9774-15511300b24b
+    - atomic_red_team_t1003_001_t3_guid_7ae7102c-a099-45c8-b985-4c7a2d05790d
   pattern:
 dataRequirements:
   dataSource: windows_os
@@ -29,9 +28,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'procdump'
-      or FileName has 'procdump'
-      or FileName has 'procdump64'
-    | where ProcessCommandLine has 'accepteula'
-      and ProcessCommandLine contains '-mm'
-      and ProcessCommandLine contains 'lsass'
+    | where ProcessCommandLine has 'dumpert'
+      or FileName has 'dumpert'

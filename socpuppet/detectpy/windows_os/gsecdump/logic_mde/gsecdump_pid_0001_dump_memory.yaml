@@ -1,18 +1,16 @@
 ---
-title: procdump_pid_0002_minidump_lsass
+title: gsecdump_pid_0001_dump_memory
 intel:
   description:
-    - procdump creating minidump of lsass
+    - Dump Creds from memory
   detectType: single_line_match
   detectCon: 1
   detectLanguage: kql
   tags:
-    - sysinternals
-  attackTechnique: t1003.001
+  attackTechnique: t1003
   attackSoftware:
   references:
   emulation:
-    - atomic_red_team_t1003_001_t9_guid_7cede33f-0acd-44ef-9774-15511300b24b
   pattern:
 dataRequirements:
   dataSource: windows_os
@@ -29,9 +27,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'procdump'
-      or FileName has 'procdump'
-      or FileName has 'procdump64'
-    | where ProcessCommandLine has 'accepteula'
-      and ProcessCommandLine contains '-mm'
-      and ProcessCommandLine contains 'lsass'
+    | where ProcessCommandLine has 'gsecdump'
+      or FileName has 'gsecdump'

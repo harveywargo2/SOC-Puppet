@@ -30,7 +30,8 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'reg'
-      and ProcessCommandLine has 'hklm' 
+    | where ProcessCommandLine has 'reg' 
       and ProcessCommandLine has 'save'
     | where ProcessCommandLine contains 'sam'
+    | where ProcessCommandLine contains 'HKLM'
+      or ProcessCommandLine contains 'HKEY_LOCAL_MACHINE'
