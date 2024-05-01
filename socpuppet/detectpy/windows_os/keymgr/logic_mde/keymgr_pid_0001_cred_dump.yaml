@@ -12,7 +12,9 @@ intel:
   attackSoftware:
   references:
   emulation:
+    - atomic_red_team_t1003_t6_guid_84113186-ed3c-4d0d-8a3c-8980c86c1f4a
   pattern:
+    - rundll32.exe keymgr,KRShowKeyMgr
 dataRequirements:
   dataSource: windows_os
   dataType: process_creation
