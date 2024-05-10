@@ -150,3 +150,24 @@ def lsass_pid_0006_dmp_file_created_pshell_get_process(*, logic='mde', lookback=
 
     return query
 
+
+def lsass_pid_0007_memdmp_rdrleakdiag(*, logic='mde', lookback='1d'):
+    """
+    lsass memory dump
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(lsass_mde_path(),
+                               'lsass_pid_0007_memdmp_rdrleakdiag.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

@@ -35,5 +35,5 @@ logic:
   kqlQuery: |
     | where ActionType =~ 'ReadProcessMemoryApiCall'
       and FileName =~ 'lsass.exe'
-      and InitiatingProcessFileName contains 'taskmgr'
+      and InitiatingProcessFileName has 'taskmgr'
       and parse_json(AdditionalFields).TotalBytesCopied >= 20000000

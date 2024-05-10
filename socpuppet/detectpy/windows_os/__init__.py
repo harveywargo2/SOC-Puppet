@@ -1,3 +1,4 @@
+import socpuppet.detectpy.windows_os.appcmd
 import socpuppet.detectpy.windows_os.appinstaller
 import socpuppet.detectpy.windows_os.cmstp
 import socpuppet.detectpy.windows_os.comsvcs
