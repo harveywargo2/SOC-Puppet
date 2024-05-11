@@ -1,0 +1,42 @@
+---
+title: lsass_pid_0002_large_rare_memory_read
+intel:
+  description:
+    - 20 mb LSASS memory read from a rare process on a single system
+    - Last 24 hours < 1 devices show this activity
+  detectType: aggregated_threshold_match
+  detectCon: 1
+  detectLanguage: kql
+  tags:
+    - lol
+  attackTechnique:
+    - t1003.001
+  attackSoftware:
+  references:
+    - https://threathunterplaybook.com/hunts/windows/170105-LSASSMemoryReadAccess/notebook.html
+    - https://redcanary.com/threat-detection-report/techniques/lsass-memory/
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource: windows_os
+  dataType: read_process_memory_api_call
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: |
+    | where ActionType =~ 'ReadProcessMemoryApiCall'
+      and FileName =~ 'lsass.exe'
+      and parse_json(AdditionalFields).TotalBytesCopied >= 20000000
+    | summarize DeviceSet=make_set(DeviceName), arg_max(Timestamp, *) by InitiatingProcessFileName
+    | extend DeviceCount = array_length(DeviceSet)
+    | where DeviceCount <= 1

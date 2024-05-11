@@ -1,3 +1,4 @@
+import socpuppet.detectpy.windows_os.appcmd
 import socpuppet.detectpy.windows_os.appinstaller
 import socpuppet.detectpy.windows_os.cmstp
 import socpuppet.detectpy.windows_os.comsvcs
@@ -8,6 +9,7 @@ import socpuppet.detectpy.windows_os.gsecdump
 import socpuppet.detectpy.windows_os.hh
 import socpuppet.detectpy.windows_os.infdefaultinstall
 import socpuppet.detectpy.windows_os.keymgr
+import socpuppet.detectpy.windows_os.lsass
 import socpuppet.detectpy.windows_os.mavinject
 import socpuppet.detectpy.windows_os.mimikatz
 import socpuppet.detectpy.windows_os.msdt

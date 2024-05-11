@@ -1,0 +1,34 @@
+---
+title: usermgt_pid_0003_user_hard_delete
+intel:
+  description:
+    - Identifies accounts that were successfully deleted
+  detectCon: 5
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique:
+    - t1136
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: entra_id
+  dataType:
+    - core_directory
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: user_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where Category =~ 'UserManagement'
+      and OperationName =~ 'Hard Delete user'
+      and Result =~ 'success'
