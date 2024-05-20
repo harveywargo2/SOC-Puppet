@@ -3,6 +3,7 @@ title: usermgt_pid_0003_user_hard_delete
 intel:
   description:
     - Identifies accounts that were successfully deleted
+  detectType: single_line_match
   detectCon: 5
   detectLanguage: kql
   tags:

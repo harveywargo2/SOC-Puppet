@@ -1,9 +1,8 @@
 
-# Concepts 
+# Detect-as-Config 
 
 
-# Categorization is Key 
-
+## Categorization 
 ### Types of Detections
 - Known Threat Activity 
    - Atomic Procedures & Methods
@@ -25,17 +24,12 @@
 - https://www.dragos.com/wp-content/uploads/The_Four_Types-of_Threat_Detection.pdf
 - https://www.xcitium.com/what-are-types-of-detection/
 
-
-# Rating System 
-
+## Intel & Meta Data
 
 
-### Components
-- Urgency = Where should this detection fall  in the Alerts Queue  aka in what order should this be worked
-- 
+## Rating & Weighting System 
+- See DetectCon
 
 
-# Inventory 
 
-
-# 
+## Inventory & Map
