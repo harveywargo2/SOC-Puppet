@@ -1,0 +1,36 @@
+---
+title: builtin_pid_0003_gsecdump
+intel:
+  description:
+    - MDE Built-In AV Client Heuristic
+    - Dynamically Named
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique: t1003
+  attackSoftware:
+  references:
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource: windows_os
+  dataType: alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where Title has 'gsecdump'
+      or ThreatFamily =~ 'gsecdump'
+    | where DetectionSource !~ 'Custom detection'
