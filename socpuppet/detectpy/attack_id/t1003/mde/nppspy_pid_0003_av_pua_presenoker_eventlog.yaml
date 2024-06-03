@@ -1,37 +1,34 @@
 ---
 detect:
-  title: gsecdump_pid_0009_av_hacktool_eventlog
+  title: nppspy_pid_0003_av_presenoker_eventlog
   description:
-    - Dump Creds from memory
-    - MDE AV passive mode detection
-    - Builtin AV Client Heuristic
+    - MDE AV Client Heuristic
   detectType:
     - single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
+  detectCon: 2
+  urgency: high
   inTheWild:
     - unknown
-    - pre 2020
+    - not common
   noiseMatchRatio:
-    - 0
+    - 2/1 in 30 days
   regressionTestVolume:
     - only attack pattern match
   responseEffort:
-    - low
+    - medium
   confidence: very high
 intel:
   tags:
     -
   attackId:
     - t1003
-    - s0008
   references:
-    - ref_gsecdump.md
+    - ref_nppspy.md
   emulation:
-    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+    - art_t1003_test2_uid_9e2173c0-ba26-4cdf-b0ed-8c54b27e3ad6
   pattern:
-    -
+    - ref_nppspy.md
 dataRequirements:
   dataSource:
     - windows_os
@@ -49,5 +46,5 @@ logic:
   kqlVar:
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetectionActionType'
-      and AdditionalFields contains 'gsecdump'
+    | where ActionType =~ 'AntivirusDetection'
+      and AdditionalFields contains 'presenoker'

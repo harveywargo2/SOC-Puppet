@@ -1,53 +1,51 @@
 ---
 detect:
-  title: gsecdump_pid_0009_av_hacktool_eventlog
+  title: nppspy_pid_0001_av_presenoker
   description:
-    - Dump Creds from memory
-    - MDE AV passive mode detection
-    - Builtin AV Client Heuristic
+    - MDE AV Client Heuristic
   detectType:
     - single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
+  detectCon: 2
+  urgency: high
   inTheWild:
     - unknown
-    - pre 2020
+    - not common
   noiseMatchRatio:
-    - 0
+    - 2/1 in 30 days
   regressionTestVolume:
     - only attack pattern match
   responseEffort:
-    - low
+    - medium
   confidence: very high
 intel:
   tags:
     -
   attackId:
     - t1003
-    - s0008
   references:
-    - ref_gsecdump.md
+    - ref_nppspy.md
   emulation:
-    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+    - art_t1003_test2_uid_9e2173c0-ba26-4cdf-b0ed-8c54b27e3ad6
   pattern:
-    -
+    - ref_nppspy.md
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - antivirus_detection
+    - alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_events
+  dataTable: alert_evidence
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceEvents
+  kqlTable: AlertEvidence
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetectionActionType'
-      and AdditionalFields contains 'gsecdump'
+    | where DetectionSource !~ 'Custom detection'
+    | where Title contains 'presenoker'
+      or ThreatFamily contains 'presenoker'
