@@ -27,11 +27,11 @@ intel:
     - t1003
     - s0008
   references:
-    - see ref
+    - ref_gsecdump.md
   emulation:
     - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
   pattern:
-    - see ref
+    -
 dataRequirements:
   dataSource:
     - windows_os

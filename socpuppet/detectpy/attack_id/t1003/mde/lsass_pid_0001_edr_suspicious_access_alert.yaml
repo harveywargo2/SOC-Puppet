@@ -1,19 +1,16 @@
 ---
 detect:
-  title: gsecdump_pid_0006_dump_flags_read_process_memory
+  title: lsass_pid_0001_edr_suspicious_access_alert
   description:
-    - Dump Creds from memory
-    - Looks at Read Process Memory Api Call
-    - Looks for -l, -a, -s flags
-    - Coverage for renamed Gsecdump files
+    - MDE EDR Behavior/Memory Alert
+    - Suspicious access to LSASS service
   detectType:
     - single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
   inTheWild:
-    - unknown
-    - pre 2020
+    - common
   noiseMatchRatio:
     - 0
   regressionTestVolume:
@@ -26,32 +23,28 @@ intel:
     -
   attackId:
     - t1003
-    - s0008
   references:
     - ref_gsecdump.md
   emulation:
     - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
   pattern:
-    -
+    - ref_gsecdump.md
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - read_process_memory_api_call
+    - alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_events
+  dataTable: alert_evidence
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceEvents
+  kqlTable: AlertEvidence
   kqlQuery: | 
-    | where ActionType =~ 'ReadProcessMemoryApiCall'
-      and InitiatingProcessCommandLine has_any('-a', '-l', '-s')
-    | extend TotalBytesCopied = parse_json(AdditionalFields).TotalBytesCopied
-    | where TotalBytesCopied >= 1000000
-      and InitiatingProcessCommandLine !contains 'werfault'
+    | where DetectionSource !~ 'Custom detection'
+      and Title =~ 'Suspicious access to LSASS service'
