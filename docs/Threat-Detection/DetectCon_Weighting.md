@@ -14,7 +14,7 @@
 ##### In The Wild : Days 
 - How common is this pattern reported in the wild
 
-##### Effort to Alarm 
+##### Estimated Analysis Effort 
 - The expected amount of effort the analyst will perform to validate the detection against Threat Activity
 - This only considers the effort of analysis needed to ring the fire alarm, post fire alarm much analyst/response will occur
   - LSASS alerts or OS Cred Dumping are normally very low effort to ring the alarm
@@ -37,13 +37,14 @@
 
 
 ## Detect Con Decision Matrix
-| Urgency | ITW:Days    | ETA       | NTPMR:Days | RTV:Days         | Confidence |
+| Urgency | ITW:Days    | AE        | NTPMR:Days | RTV:Days         | Confidence |
 |---------|-------------|-----------|------------|------------------|------------|
 | Rapid   | Very Common | Low       | Zero       | Only Atk Pattern | Very High  |
 | High    | Common      | Normal    | Low        | Low              | High       |
 | Normal  | Probable    | High      | Accepted   | Accepted         | Moderate   |  
 | Low     | Not Likely  | Excessive | High       | High             | Low        |
 | Unknown | Unknown     | Unknown   | Excessive  | Excessive        | Unknown    |
+
 
 ## How to Use 
 - The goal is to make everything a DetectCon 1 or 2 from Logic or Enrichment
