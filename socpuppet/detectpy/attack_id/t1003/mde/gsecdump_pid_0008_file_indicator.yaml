@@ -1,0 +1,56 @@
+---
+detect:
+  title: gsecdump_pid_0008_file_indicator
+  description:
+    - Dump Creds from memory
+    - Looks at File events for common gsecdump file name
+  detectType:
+    - single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild:
+    - unknown
+    - pre 2020
+  noiseMatchRatio:
+    - 0
+  regressionTestVolume:
+    - only attack pattern match
+  responseEffort:
+    - low
+  confidence: very high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+    - s0008
+  references:
+    - see ref
+  emulation:
+    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+  pattern:
+    - see ref
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - file_created
+    - file_deleted
+    - file_renamed
+    - file_modified
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_file_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceFileEvents
+  kqlQuery: | 
+    | where FileName has 'gsecdump'
+      or FileName startswith 'g64-'
+      or InitiatingProcessFileName has 'gsecdump'

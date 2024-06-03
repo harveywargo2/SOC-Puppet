@@ -1,0 +1,54 @@
+---
+detect:
+  title: gsecdump_pid_0004_dump_hashes_flag
+  description:
+    - Dump Creds from memory
+    - Looks for common file name in File & CommandLine
+    - dump hashes flag
+  detectType:
+    - single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild:
+    - unknown
+    - pre 2020
+  noiseMatchRatio:
+    - 0
+  regressionTestVolume:
+    - only attack pattern match
+  responseEffort:
+    - low
+  confidence: very high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+    - s0008
+  references:
+    - see ref
+  emulation:
+    -
+  pattern:
+    - see ref
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'gsecdump'
+      or FileName has 'gsecdump'
+    | where ProcessCommandLine contains '-u'

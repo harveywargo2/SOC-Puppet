@@ -1,0 +1,54 @@
+---
+detect:
+  title: gsecdump_pid_0007_dump_flags_write_lsass_memory
+  description:
+    - Dump Creds from memory
+    - Looks at Write To Lsass Process Memory
+    - Looks for -l, -a, -s flags
+    - Coverage for renamed Gsecdump files
+  detectType:
+    - single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild:
+    - unknown
+    - pre 2020
+  noiseMatchRatio:
+    - 0
+  regressionTestVolume:
+    - only attack pattern match
+  responseEffort:
+    - low
+  confidence: very high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+    - s0008
+  references:
+    - see ref
+  emulation:
+    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+  pattern:
+    - see ref
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - write_to_lsass_process_memory
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'WriteToLsassProcessMemory'
+      and InitiatingProcessCommandLine has_any('-a', '-l', '-s')
