@@ -5,7 +5,6 @@ import socpuppet.detectpy.windows_os.dumpert
 import socpuppet.detectpy.windows_os.esentutl
 import socpuppet.detectpy.windows_os.hh
 import socpuppet.detectpy.windows_os.infdefaultinstall
-import socpuppet.detectpy.windows_os.lsass
 import socpuppet.detectpy.windows_os.mavinject
 import socpuppet.detectpy.windows_os.mimikatz
 import socpuppet.detectpy.windows_os.msdt

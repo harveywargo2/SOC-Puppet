@@ -1,27 +1,33 @@
 ---
-title: lsass_pid_0005_dmp_file_created
-intel:
+detect:
+  title: lsass_pid_0006_dump_file_created
   description:
-    - LSASS.dmp File Created
-    - Likely from Taskmgr
+    - Lsass Dump File Created
   detectType: single_line_match
-  detectCon: 1
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
   tags:
-    - lol
-  attackTechnique:
-    - t1003.001
-  attackSoftware:
+    -
+  attackId:
+    - t1003
   references:
-    - https://threathunterplaybook.com/hunts/windows/170105-LSASSMemoryReadAccess/notebook.html
-    - https://redcanary.com/threat-detection-report/techniques/lsass-memory/
+    - ref_lsass.md
   emulation:
     -
   pattern:
     -
 dataRequirements:
-  dataSource: windows_os
-  dataType: file_created
+  dataSource:
+    - windows_os
+  dataType:
+    - file_created
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -33,6 +39,6 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: DeviceFileEvents
-  kqlQuery: |
+  kqlQuery: | 
     | where ActionType =~ 'FileCreated'
       and FileName =~ 'lsass.dmp'

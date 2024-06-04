@@ -1,25 +1,33 @@
 ---
-title: lsass_pid_0001_memory_read_not_system_acnt
-intel:
+detect:
+  title: lsass_pid_0002_memory_read_not_system
   description:
-    - lsass read from a non system account
+    - Lsass Read from a Non System Account
   detectType: single_line_match
-  detectCon: 1
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
   tags:
-    - lol
-  attackTechnique:
-    - t1003.001
-  attackSoftware:
+    -
+  attackId:
+    - t1003
   references:
-
+    - ref_lsass.md
   emulation:
     -
   pattern:
     -
 dataRequirements:
-  dataSource: windows_os
-  dataType: read_process_memory_api_call
+  dataSource:
+    - windows_os
+  dataType:
+    - read_process_memory_api_call
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -31,7 +39,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: DeviceEvents
-  kqlQuery: |
+  kqlQuery: | 
     | where ActionType =~ 'ReadProcessMemoryApiCall'
       and FileName =~ 'lsass.exe'
       and AccountName !~ 'system'
