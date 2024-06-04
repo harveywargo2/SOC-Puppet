@@ -1,6 +1,6 @@
 # gsecdump
 
-## Ref Links
+## References
 - Mitre 
   - https://attack.mitre.org/software/S0008/
 - Intel Links
@@ -25,7 +25,7 @@
   - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1003/T1003.md#atomic-test-1---gsecdump
 
 
-CommandLine
+# CommandLine
 ~~~
 gsecdump -a
 gsecdump -1
