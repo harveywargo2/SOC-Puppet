@@ -46,3 +46,26 @@ def builtin_pid_0002_edr_process_memory_dump_alert(*, logic='mde', lookback='1d'
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def builtin_pid_0003_edr_cred_memory_read_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE EDR
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0003_edr_cred_memory_read_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+

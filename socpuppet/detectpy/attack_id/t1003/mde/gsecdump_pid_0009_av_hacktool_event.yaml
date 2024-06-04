@@ -1,6 +1,6 @@
 ---
 detect:
-  title: gsecdump_pid_0009_av_hacktool_eventlog
+  title: gsecdump_pid_0009_av_hacktool_event
   description:
     - Dump Creds from memory
     - MDE AV passive mode detection

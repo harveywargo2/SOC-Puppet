@@ -1,6 +1,6 @@
 ---
 detect:
-  title: nppspy_pid_0003_av_presenoker_eventlog
+  title: nppspy_pid_0003_av_presenoker_event
   description:
     - MDE AV Client Heuristic
   detectType: single_line_match

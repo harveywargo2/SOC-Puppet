@@ -180,7 +180,7 @@ def gsecdump_pid_0008_file_indicator(*, logic='mde', lookback='1d'):
     return query
 
 
-def gsecdump_pid_0009_av_hacktool_eventlog(*, logic='mde', lookback='1d'):
+def gsecdump_pid_0009_av_hacktool_event(*, logic='mde', lookback='1d'):
     """
     gsecdump hacktool
 
@@ -191,7 +191,7 @@ def gsecdump_pid_0009_av_hacktool_eventlog(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'gsecdump_pid_0009_av_hacktool_eventlog.yaml'), 'r') as file:
+                               'gsecdump_pid_0009_av_hacktool_event.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -202,7 +202,7 @@ def gsecdump_pid_0009_av_hacktool_eventlog(*, logic='mde', lookback='1d'):
     return query
 
 
-def gsecdump_pid_0010_av_hacktool_alert(*, logic='mde', lookback='1d'):
+def gsecdump_pid_0010_av_hacktool_dynamic(*, logic='mde', lookback='1d'):
     """
     gsecdump hacktool
 
@@ -213,7 +213,7 @@ def gsecdump_pid_0010_av_hacktool_alert(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'gsecdump_pid_0010_av_hacktool_alert.yaml'), 'r') as file:
+                               'gsecdump_pid_0010_av_hacktool_dynamic.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

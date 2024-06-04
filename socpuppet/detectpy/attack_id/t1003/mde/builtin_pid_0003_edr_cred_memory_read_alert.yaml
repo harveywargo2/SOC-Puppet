@@ -1,9 +1,9 @@
 ---
 detect:
-  title: lsass_pid_0001_edr_suspicious_access_alert
+  title: builtin_pid_0003_edr_cred_memory_read_alert
   description:
-    - MDE EDR Behavior/Memory Alert
-    - Suspicious access to LSASS service
+    - MDE EDR Behavior Alert
+    - Sensitive credential memory read
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -11,7 +11,7 @@ detect:
   inTheWild: common
   noiseProjection: zero
   regressionVolume: only attack pattern match
-  responseEffort: low
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
@@ -19,14 +19,11 @@ intel:
   attackId:
     - t1003
   references:
-    - ref_gsecdump.md
-    - ref_comsvcs.md
+    -
   emulation:
-    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
     - art_t1003001_test2_uid_2536dee2-12fb-459a-8c37-971844fa73be
   pattern:
-    - ref_gsecdump.md
-    - ref_comsvcs.md
+    -
 dataRequirements:
   dataSource:
     - windows_os
@@ -45,4 +42,4 @@ logic:
   kqlTable: AlertEvidence
   kqlQuery: | 
     | where DetectionSource !~ 'Custom detection'
-      and Title =~ 'Suspicious access to LSASS service'
+      and Title =~ 'Sensitive credential memory read'

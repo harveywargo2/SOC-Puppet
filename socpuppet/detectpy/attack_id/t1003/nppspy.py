@@ -26,7 +26,7 @@ def nppspy_pid_0001_av_pua_presenoker_alert(*, logic='mde', lookback='1d'):
     return query
 
 
-def nppspy_pid_0002_av_pua_presenoker_alert(*, logic='mde', lookback='1d'):
+def nppspy_pid_0002_av_pua_presenoker_dynamic(*, logic='mde', lookback='1d'):
     """
     nppspy
 
@@ -37,7 +37,7 @@ def nppspy_pid_0002_av_pua_presenoker_alert(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'nppspy_pid_0002_av_pua_presenoker_alert.yaml'), 'r') as file:
+                               'nppspy_pid_0002_av_pua_presenoker_dynamic.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -48,7 +48,7 @@ def nppspy_pid_0002_av_pua_presenoker_alert(*, logic='mde', lookback='1d'):
     return query
 
 
-def nppspy_pid_0003_av_pua_presenoker_eventlog(*, logic='mde', lookback='1d'):
+def nppspy_pid_0003_av_pua_presenoker_event(*, logic='mde', lookback='1d'):
     """
     nppspy
 
@@ -59,7 +59,7 @@ def nppspy_pid_0003_av_pua_presenoker_eventlog(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'nppspy_pid_0003_av_pua_presenoker_eventlog.yaml'), 'r') as file:
+                               'nppspy_pid_0003_av_pua_presenoker_event.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
