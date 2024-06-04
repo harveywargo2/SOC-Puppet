@@ -1,23 +1,19 @@
 ---
 detect:
-  title: nppspy_pid_0002_av_presenoker
+  title: nppspy_pid_0002_av_presenoker_alert
   description:
     - MDE AV Client Heuristic
   detectType:
     - single_line_match
   detectLanguage: kql
-  detectCon: 2
+  detectCon: 1
   urgency: high
-  inTheWild:
-    - unknown
-    - not common
+  inTheWild: not common
   noiseProjection:
     - low
-  regressionVolume:
-    - minimal av matches
-  responseEffort:
-    - medium
-  confidence: very high
+  regressionVolume: minimal av matches
+  analysisEffort: medium
+  confidence: high
 intel:
   tags:
     -

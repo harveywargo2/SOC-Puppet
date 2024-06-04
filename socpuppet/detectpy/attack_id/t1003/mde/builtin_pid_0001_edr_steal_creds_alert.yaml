@@ -4,20 +4,15 @@ detect:
   description:
     - MDE EDR Behavior Alert
     - Possible attempt to steal credentials
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - common
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
-  confidence: very high
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
 intel:
   tags:
     -

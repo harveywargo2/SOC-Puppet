@@ -4,20 +4,15 @@ detect:
   description:
     - Comsvcs used to create minidump of a pid
     - potential lsass or rdp dump depending on pid
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - very_common
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
-  confidence: very high
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
 intel:
   tags:
     -

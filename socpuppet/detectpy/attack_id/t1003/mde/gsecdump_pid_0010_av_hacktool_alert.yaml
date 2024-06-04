@@ -5,21 +5,15 @@ detect:
     - Dump Creds from memory
     - MDE AV passive mode detection
     - Builtin AV Client Heuristic
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - unknown
-    - pre 2020
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
-  confidence: very high
+  inTheWild: unknown pre 2020
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
 intel:
   tags:
     -

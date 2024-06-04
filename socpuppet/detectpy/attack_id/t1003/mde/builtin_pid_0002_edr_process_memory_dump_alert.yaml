@@ -1,48 +1,45 @@
 ---
 detect:
-  title: gsecdump_pid_0009_av_hacktool_eventlog
+  title: generic_pid_0002_edr_process_memory_dump_alert
   description:
-    - Dump Creds from memory
-    - MDE AV passive mode detection
-    - Builtin AV Client Heuristic
-  detectType:
-    - single_line_match
+    - MDE EDR Behavior Alert
+    - Process memory dump
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild: unknown pre 2020
+  inTheWild: common
   noiseProjection: zero
   regressionVolume: only attack pattern match
-  responseEffort: low
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
     -
   attackId:
     - t1003
-    - s0008
   references:
-    - ref_gsecdump.md
+    - ref_comsvcs.md
   emulation:
-    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+    - art_t1003_test3_uid_d400090a-d8ca-4be0-982e-c70598a23de9
   pattern:
-    -
+    - ref_comsvcs.md
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - antivirus_detection
+    - alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_events
+  dataTable: alert_evidence
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceEvents
+  kqlTable: AlertEvidence
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetectionActionType'
-      and AdditionalFields contains 'gsecdump'
+    | where DetectionSource !~ 'Custom detection'
+      and Title =~ 'Process memory dump'

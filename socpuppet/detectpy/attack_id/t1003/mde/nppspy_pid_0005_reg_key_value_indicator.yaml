@@ -5,21 +5,15 @@ detect:
     - NPPSpy added to registry HKCU or HKLM
     - Targets CurrentControlSet\Services & NetworkProvider
     - Targets values Class, ProviderPath, Name
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 2
   urgency: high
-  inTheWild:
-    - unknown
-    - not common
-  noiseProjection:
-    - low
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - medium
-  confidence: very high
+  inTheWild: not common
+  noiseProjection: low
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: high
 intel:
   tags:
     -

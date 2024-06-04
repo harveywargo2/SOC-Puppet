@@ -5,20 +5,14 @@ detect:
     - Dump Creds from memory
     - Looks for common file name in File & CommandLine
     - dump lsa flag
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - unknown
-    - pre 2020
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
+  inTheWild: unknown pre 2020
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
   confidence: very high
 intel:
   tags:

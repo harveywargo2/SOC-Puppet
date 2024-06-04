@@ -15,7 +15,7 @@ def comsvcs_pid_0001_created_minidump(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'comsvcs_pid_001_created_minidump'), 'r') as file:
+                               'comsvcs_pid_0001_created_minidump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

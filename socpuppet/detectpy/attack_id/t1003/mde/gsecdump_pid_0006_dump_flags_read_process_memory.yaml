@@ -11,16 +11,11 @@ detect:
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - unknown
-    - pre 2020
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
-  confidence: very high
+  inTheWild: unknown pre 2020
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
 intel:
   tags:
     -

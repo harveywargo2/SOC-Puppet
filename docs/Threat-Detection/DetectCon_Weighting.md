@@ -38,13 +38,13 @@
 
 
 ## Detect Con Decision Matrix
-| Urgency | ITW:Days    | AE        | NTPMR:Days | RTV:Days         | Confidence |
-|---------|-------------|-----------|------------|------------------|------------|
-| Rapid   | Very Common | Low       | Zero       | Only Atk Pattern | Very High  |
-| High    | Common      | Normal    | Low        | Low              | High       |
-| Normal  | Probable    | High      | Accepted   | Accepted         | Moderate   |  
-| Low     | Not Likely  | Excessive | High       | High             | Low        |
-| Unknown | Unknown     | Unknown   | Excessive  | Excessive        | Unknown    |
+| Urgency | InWild      | Effort    | Noise     | Regression       | Confidence |
+|---------|-------------|-----------|-----------|------------------|------------|
+| Rapid   | Very Common | Low       | Zero      | Only Atk Pattern | Certain    |
+| High    | Common      | Average   | Low       | Low              | High       |
+| Normal  | Probable    | High      | Normal    | Normal           | Moderate   |  
+| Low     | Not Likely  | Excessive | High      | High             | Low        |
+| Unknown | Unknown     | Unknown   | Excessive | Excessive        | Unknown    |
 
 
 ## How to Use 

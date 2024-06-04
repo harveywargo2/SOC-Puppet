@@ -5,19 +5,14 @@ detect:
     - comsvcs creating a file
     - possible .dmp file
     - potential lsass/rdp dump
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - very_common
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
   confidence: very high
 intel:
   tags:

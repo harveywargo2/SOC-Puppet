@@ -4,20 +4,15 @@ detect:
   description:
     - MDE EDR Behavior/Memory Alert
     - Suspicious access to LSASS service
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - common
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
-  confidence: very high
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
 intel:
   tags:
     -

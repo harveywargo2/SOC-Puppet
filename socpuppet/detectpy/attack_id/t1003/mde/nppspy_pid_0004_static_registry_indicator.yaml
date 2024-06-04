@@ -3,21 +3,15 @@ detect:
   title: nppspy_pid_0004_static_registry_indicator
   description:
     - NPPSpy added to registry HKCU or HKLM
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
-  detectCon: 2
-  urgency: high
-  inTheWild:
-    - unknown
-    - not common
-  noiseProjection:
-    - low
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - medium
-  confidence: very high
+  detectCon: 1
+  urgency: rapid
+  inTheWild: not common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
 intel:
   tags:
     -

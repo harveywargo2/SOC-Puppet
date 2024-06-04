@@ -6,21 +6,15 @@ detect:
     - Looks at Write To Lsass Process Memory
     - Looks for -l, -a, -s flags
     - Coverage for renamed Gsecdump files
-  detectType:
-    - single_line_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild:
-    - unknown
-    - pre 2020
-  noiseProjection:
-    - zero
-  regressionVolume:
-    - only attack pattern match
-  responseEffort:
-    - low
-  confidence: very high
+  inTheWild: unknown pre 2020
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
 intel:
   tags:
     -

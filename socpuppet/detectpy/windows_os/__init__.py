@@ -1,7 +1,6 @@
 import socpuppet.detectpy.windows_os.appcmd
 import socpuppet.detectpy.windows_os.appinstaller
 import socpuppet.detectpy.windows_os.cmstp
-import socpuppet.detectpy.windows_os.comsvcs
 import socpuppet.detectpy.windows_os.control
 import socpuppet.detectpy.windows_os.dumpert
 import socpuppet.detectpy.windows_os.esentutl
