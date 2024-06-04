@@ -1,0 +1,44 @@
+---
+detect:
+  title: rpcping_pid_0001_ntlm_hash
+  description:
+    - RpcPing command can be used to send an RPC test connection to the target server (-s)
+    - Force the NTLM hash to be sent in the process.
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: only attack pattern match
+  analysisEffort: normal
+  confidence: medium
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003_test7_uid_0b207037-813c-4444-ac3f-b597cf280a67
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('rpcping', '-s', 'ntlm')
