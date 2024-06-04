@@ -62,3 +62,25 @@ def builtin_pid_0002_msdt_follina_alerts(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def builtin_pid_0003_gsecdump(*, logic='mde', lookback='1d'):
+    """
+    Defender Builtin alerts for GSECDump
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open( os.path.join(defender_mde_path(),
+                                'builltin_pid_0003_gsecdump.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+

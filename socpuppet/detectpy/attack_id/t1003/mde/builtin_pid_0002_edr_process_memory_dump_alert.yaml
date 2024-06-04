@@ -1,0 +1,45 @@
+---
+detect:
+  title: generic_pid_0002_edr_process_memory_dump_alert
+  description:
+    - MDE EDR Behavior Alert
+    - Process memory dump
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_comsvcs.md
+  emulation:
+    - art_t1003_test3_uid_d400090a-d8ca-4be0-982e-c70598a23de9
+  pattern:
+    - ref_comsvcs.md
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where DetectionSource !~ 'Custom detection'
+      and Title =~ 'Process memory dump'

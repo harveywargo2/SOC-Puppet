@@ -14,7 +14,7 @@
 ##### In The Wild : Days 
 - How common is this pattern reported in the wild
 
-##### Effort to Alarm 
+##### Estimated Analysis Effort 
 - The expected amount of effort the analyst will perform to validate the detection against Threat Activity
 - This only considers the effort of analysis needed to ring the fire alarm, post fire alarm much analyst/response will occur
   - LSASS alerts or OS Cred Dumping are normally very low effort to ring the alarm
@@ -22,28 +22,30 @@
 - This may be improved with enrichment to the detection
 - This probably shows what detections need enrichment or correlations
 
-##### Noise to Pattern Match Ratio : Days 
-- Simple ratio to show the noise to pattern match ratio
-- Zero/X is best 
-- This should also represent your regression testing
-- Potentially could be updated via metrics 
+##### Noise Projection
+- How much noise can be expected per 1 pattern match in X time
+- aka if you will test/validate 1 once a month you should have 0 noise triggers 
+- zero is the best 
+- can be compared to alert metrics to test forward progress 
 
-##### Regression Test Volume : Days 
+##### Regression Volume 
 - Expected or measured volume per period of reporting 
 - If you run emulations this should just match your emulations or your incidents
+- Mainly a way to add in the documented testing into weighting 
 
 ##### Confidence 
 - How Confident are you in your weighting being correct
 
 
 ## Detect Con Decision Matrix
-| Urgency | ITW:Days    | ETA       | NTPMR:Days | RTV:Days         | Confidence |
-|---------|-------------|-----------|------------|------------------|------------|
-| Rapid   | Very Common | Low       | Zero       | Only Atk Pattern | Very High  |
-| High    | Common      | Normal    | Low        | Low              | High       |
-| Normal  | Probable    | High      | Accepted   | Accepted         | Moderate   |  
-| Low     | Not Likely  | Excessive | High       | High             | Low        |
-| Unknown | Unknown     | Unknown   | Excessive  | Excessive        | Unknown    |
+| Urgency | InWild      | Effort    | Noise     | Regression       | Confidence |
+|---------|-------------|-----------|-----------|------------------|------------|
+| Rapid   | Very Common | Low       | Zero      | Only Atk Pattern | Certain    |
+| High    | Common      | Average   | Low       | Low              | High       |
+| Normal  | Probable    | High      | Normal    | Normal           | Moderate   |  
+| Low     | Not Likely  | Excessive | High      | High             | Low        |
+| Unknown | Unknown     | Unknown   | Excessive | Excessive        | Unknown    |
+
 
 ## How to Use 
 - The goal is to make everything a DetectCon 1 or 2 from Logic or Enrichment

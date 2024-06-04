@@ -12,8 +12,7 @@ intel:
     - t1003.001
   attackSoftware:
   references:
-    - https://threathunterplaybook.com/hunts/windows/170105-LSASSMemoryReadAccess/notebook.html
-    - https://redcanary.com/threat-detection-report/techniques/lsass-memory/
+
   emulation:
     -
   pattern:

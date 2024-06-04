@@ -1,0 +1,34 @@
+---
+title: user_pid_0002_mfa_fraud_reported
+intel:
+  description:
+    - User reported fraud mfa requested via msft authenticator app
+  detectType: single_line_match
+  detectCon: 2
+  detectLanguage: kql
+  tags:
+    -
+  attackTechnique:
+    -
+  attackSoftware:
+  references:
+  emulation:
+  pattern:
+dataRequirements:
+  dataSource: entra_id
+  dataType:
+    - azure_mfa
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: user_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: |
+    | where OperationName =~ 'Fraud reported - user is blocked for MFA'
+      or OperationName =~ 'Fraud reported - no action taken'

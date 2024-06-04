@@ -1,7 +1,6 @@
 
 # Detect-as-Config 
 
-
 ## Categorization 
 ### Types of Detections
 - Known Threat Activity 

@@ -1,31 +1,36 @@
 ---
-title: gsecdump_pid_0001_dump_memory
+title: builtin_pid_0003_gsecdump
 intel:
   description:
-    - Dump Creds from memory
+    - MDE Built-In AV Client Heuristic
+    - Dynamically Named
   detectType: single_line_match
-  detectCon: 1
+  detectCon: 2
   detectLanguage: kql
   tags:
+    -
   attackTechnique: t1003
   attackSoftware:
   references:
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
   dataSource: windows_os
-  dataType: process_creation
+  dataType: alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_process_events
+  dataTable: alert_evidence
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceProcessEvents
+  kqlTable: AlertEvidence
   kqlQuery: | 
-    | where ProcessCommandLine has 'gsecdump'
-      or FileName has 'gsecdump'
+    | where Title has 'gsecdump'
+      or ThreatFamily =~ 'gsecdump'
+    | where DetectionSource !~ 'Custom detection'
