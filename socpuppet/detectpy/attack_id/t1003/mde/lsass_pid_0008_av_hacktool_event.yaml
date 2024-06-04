@@ -1,15 +1,15 @@
 ---
 detect:
-  title: gsecdump_pid_0009_av_hacktool_event
+  title: lsass_pid_0008_av_hacktool_event
   description:
     - Dump Creds from memory
-    - MDE AV passive mode detection
     - Builtin AV Client Heuristic
+    - HackTool:Win32/DumpLsass
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild: unknown pre 2020
+  inTheWild: common
   noiseProjection: zero
   regressionVolume: only attack pattern match
   responseEffort: low
@@ -19,11 +19,10 @@ intel:
     -
   attackId:
     - t1003
-    - s0008
   references:
-    - ref_gsecdump.md
+    - ref_lsass.md
   emulation:
-    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+    - art_t1003001_test13_uid_47a539d1-61b9-4364-bf49-a68bc2a95ef0
   pattern:
     -
 dataRequirements:
@@ -43,5 +42,5 @@ logic:
   kqlVar:
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetectionActionType'
-      and AdditionalFields contains 'gsecdump'
+    | where ActionType =~ 'AntivirusDetection'
+      and AdditionalFields contains 'dumplsass'

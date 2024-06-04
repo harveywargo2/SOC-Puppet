@@ -7,7 +7,7 @@ detect:
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild: common
+  inTheWild: unknown
   noiseProjection: zero
   regressionVolume: only attack pattern match
   responseEffort: low

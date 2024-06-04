@@ -1,1 +1,0 @@
-from socpuppet.detectpy.windows_os.lsass.lsass import *
