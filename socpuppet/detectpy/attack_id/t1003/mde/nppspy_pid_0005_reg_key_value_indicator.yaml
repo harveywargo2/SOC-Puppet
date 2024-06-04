@@ -13,9 +13,9 @@ detect:
   inTheWild:
     - unknown
     - not common
-  noiseMatchRatio:
-    - 0
-  regressionTestVolume:
+  noiseProjection:
+    - low
+  regressionVolume:
     - only attack pattern match
   responseEffort:
     - medium

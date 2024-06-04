@@ -13,9 +13,9 @@ detect:
   inTheWild:
     - unknown
     - pre 2020
-  noiseMatchRatio:
-    - 0
-  regressionTestVolume:
+  noiseProjection:
+    - zero
+  regressionVolume:
     - only attack pattern match
   responseEffort:
     - low

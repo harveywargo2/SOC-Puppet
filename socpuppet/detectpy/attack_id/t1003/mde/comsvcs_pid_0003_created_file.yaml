@@ -1,17 +1,17 @@
 ---
 detect:
-  title: gsecdump_pid_0001_dump_memory
+  title: comsvcs_pid_0002_called_minidumpw_function
   description:
-    - Dump Creds from memory
-    - Looks for common file name in File & CommandLine
+    - comsvcs creating a file
+    - possible .dmp file
+    - potential lsass/rdp dump
   detectType:
     - single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
   inTheWild:
-    - unknown
-    - pre 2020
+    - very_common
   noiseProjection:
     - zero
   regressionVolume:
@@ -24,29 +24,31 @@ intel:
     -
   attackId:
     - t1003
-    - s0008
+    - t1003.001
   references:
-    - ref_gsecdump.md
+    - ref_comsvcs.md
   emulation:
-    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+    - art_t1003_test3_uid_d400090a-d8ca-4be0-982e-c70598a23de9
   pattern:
-    - ref_gsecdump.md
+    - ref_comsvcs.md
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_creation
+    - file_created
+    - file_deleted
+    - file_renamed
+    - file_modified
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_process_events
+  dataTable: device_file_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceProcessEvents
+  kqlTable: DeviceFileEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'gsecdump'
-      or FileName has 'gsecdump'
+    | where InitiatingProcessCommandLine has 'comsvcs'

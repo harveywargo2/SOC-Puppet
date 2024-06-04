@@ -22,15 +22,16 @@
 - This may be improved with enrichment to the detection
 - This probably shows what detections need enrichment or correlations
 
-##### Noise to Pattern Match Ratio : Days 
-- Simple ratio to show the noise to pattern match ratio
-- Zero/X is best 
-- This should also represent your regression testing
-- Potentially could be updated via metrics 
+##### Noise Projection
+- How much noise can be expected per 1 pattern match in X time
+- aka if you will test/validate 1 once a month you should have 0 noise triggers 
+- zero is the best 
+- can be compared to alert metrics to test forward progress 
 
-##### Regression Test Volume : Days 
+##### Regression Volume 
 - Expected or measured volume per period of reporting 
 - If you run emulations this should just match your emulations or your incidents
+- Mainly a way to add in the documented testing into weighting 
 
 ##### Confidence 
 - How Confident are you in your weighting being correct

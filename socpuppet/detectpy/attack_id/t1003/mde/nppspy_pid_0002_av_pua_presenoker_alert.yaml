@@ -11,10 +11,10 @@ detect:
   inTheWild:
     - unknown
     - not common
-  noiseMatchRatio:
-    - 2/1 in 30 days
-  regressionTestVolume:
-    - only attack pattern match
+  noiseProjection:
+    - low
+  regressionVolume:
+    - minimal av matches
   responseEffort:
     - medium
   confidence: very high
