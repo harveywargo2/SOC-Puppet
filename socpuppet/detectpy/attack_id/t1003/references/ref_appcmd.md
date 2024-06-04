@@ -1,10 +1,17 @@
 # appcmd
 
-## Links
+## References
+- MSFT Docs
+  - https://learn.microsoft.com/en-us/iis/get-started/getting-started-with-iis/getting-started-with-appcmdexe
+- Commands
+  - https://medium.com/@anuketjain007/basic-commands-to-manage-website-apppool-in-iis-71366d0accec
+  - https://gist.github.com/jetstreamin/c82862e6c4a0e334a2e3
+- Sigma
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_iis_appcmd_service_account_password_dumped.yml
+  - 
 
 
-
-## Command Flags
+## Command Info & Flags
 list apppool
   - This is the specific command being executed by appcmd.exe. 
   - It tells appcmd to list the application pools.
