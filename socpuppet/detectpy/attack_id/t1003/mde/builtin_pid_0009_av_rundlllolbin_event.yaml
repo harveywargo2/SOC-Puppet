@@ -41,5 +41,5 @@ logic:
   kqlVar:
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetection'
+    | where ActionType startswith 'AntivirusDetection'
       and AdditionalFields contains 'rundlllolbin'

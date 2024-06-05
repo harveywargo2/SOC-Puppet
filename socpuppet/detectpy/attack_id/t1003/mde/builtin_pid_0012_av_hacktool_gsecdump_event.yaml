@@ -42,5 +42,5 @@ logic:
   kqlVar:
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetectionActionType'
+    | where ActionType startswith 'AntivirusDetectionActionType'
       and AdditionalFields contains 'gsecdump'

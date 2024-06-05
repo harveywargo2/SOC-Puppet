@@ -420,3 +420,69 @@ def builtin_pid_0019_av_pua_presenoker_event(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def builtin_pid_0020_av_hacktool_mimikatz_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0020_av_hacktool_mimikatz_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0021_av_hacktool_mimikatz_dynamic(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0021_av_hacktool_mimikatz_dynamic.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0022_av_hacktool_mimikatz_event(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0022_av_hacktool_mimikatz_event.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

@@ -1,8 +1,9 @@
 ---
 detect:
-  title: builtin_pid_0019_av_pua_presenoker_event
+  title: builtin_pid_0020_av_hacktool_mimikatz_alert
   description:
     - MDE AV Client Heuristic
+    - Hacktool Mimikatz
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -10,35 +11,38 @@ detect:
   inTheWild: not common
   noiseProjection: low
   regressionVolume: minimal av matches
-  analysisEffort: low
-  confidence: certain
+  analysisEffort: medium
+  confidence: high
 intel:
   tags:
     -
   attackId:
     - t1003
+    - s0002
   references:
-    - ref_nppspy.md
+    - ref_mimikatz.md
   emulation:
-    - art_t1003_test2_uid_9e2173c0-ba26-4cdf-b0ed-8c54b27e3ad6
+    - art_t1003001_test6_uid_66fb0bc1-3c3f-47e9-a298-550ecfefacbc
+    - art_t1003001_test10_uid_453acf13-1dbd-47d7-b28a-172ce9228023
   pattern:
     -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - antivirus_detection
+    - alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_events
+  dataTable: alert_evidence
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceEvents
+  kqlTable: AlertEvidence
   kqlQuery: | 
-    | where ActionType startswith 'AntivirusDetection'
-      and AdditionalFields contains 'presenoker'
+    | where DetectionSource !~ 'Custom detection'
+    | where Title contains 'mimikatz'
+      or ThreatFamily contains 'mimikatz'
