@@ -4,7 +4,7 @@ import socpuppet as soc
 from socpuppet.detectpy.attack_id.t1003.t1003 import t1003_mde_path as mde_path
 
 
-def lsass_pid_0001_edr_suspicious_access_alert(*, logic='mde', lookback='1d'):
+def lsass_pid_0001_pshell_get_process_id(*, logic='mde', lookback='1d'):
     """
     lsass
 
@@ -15,7 +15,7 @@ def lsass_pid_0001_edr_suspicious_access_alert(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'lsass_pid_0001_edr_suspicious_access_alert.yaml'), 'r') as file:
+                               'lsass_pid_0001_pshell_get_process_id.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -135,90 +135,3 @@ def lsass_pid_0006_dump_file_created(*, logic='mde', lookback='1d'):
 
     return query
 
-
-def lsass_pid_0007_pshell_get_process_id(*, logic='mde', lookback='1d'):
-    """
-    lsass
-
-    param logic: Logic Selection
-    :param lookback: Lookback Time
-    :return: Pandas Dataframe of Results
-    """
-
-    if logic == 'mde':
-        with open(os.path.join(mde_path(),
-                               'lsass_pid_0007_pshell_get_process_id.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        query = soc.detectpy.mde_query_builder(data, lookback)
-
-    else:
-        query = f'pointer={logic} not supported'
-
-    return query
-
-
-def lsass_pid_0008_av_hacktool_event(*, logic='mde', lookback='1d'):
-    """
-    lsass AV Detection
-
-    param logic: Logic Selection
-    :param lookback: Lookback Time
-    :return: Pandas Dataframe of Results
-    """
-
-    if logic == 'mde':
-        with open(os.path.join(mde_path(),
-                               'lsass_pid_0008_av_hacktool_event.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        query = soc.detectpy.mde_query_builder(data, lookback)
-
-    else:
-        query = f'pointer={logic} not supported'
-
-    return query
-
-
-def lsass_pid_0009_av_hacktool_dynamic(*, logic='mde', lookback='1d'):
-    """
-    lsass AV Detection
-
-    param logic: Logic Selection
-    :param lookback: Lookback Time
-    :return: Pandas Dataframe of Results
-    """
-
-    if logic == 'mde':
-        with open(os.path.join(mde_path(),
-                               'lsass_pid_0009_av_hacktool_dynamic.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        query = soc.detectpy.mde_query_builder(data, lookback)
-
-    else:
-        query = f'pointer={logic} not supported'
-
-    return query
-
-
-def lsass_pid_0010_av_hacktool_alert(*, logic='mde', lookback='1d'):
-    """
-    lsass AV Detection
-
-    param logic: Logic Selection
-    :param lookback: Lookback Time
-    :return: Pandas Dataframe of Results
-    """
-
-    if logic == 'mde':
-        with open(os.path.join(mde_path(),
-                               'lsass_pid_0010_av_hacktool_alert.yaml'), 'r') as file:
-            data = yaml.safe_load(file)
-
-        query = soc.detectpy.mde_query_builder(data, lookback)
-
-    else:
-        query = f'pointer={logic} not supported'
-
-    return query

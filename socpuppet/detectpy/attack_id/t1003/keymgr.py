@@ -15,7 +15,7 @@ def lsass_pid_0001_edr_suspicious_access_alert(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'lsass_pid_0001_edr_suspicious_access_alert.yaml'), 'r') as file:
+                               'builtin_pid_0013_edr_suspicious_access_alert.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

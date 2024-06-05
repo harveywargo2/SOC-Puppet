@@ -1,6 +1,6 @@
 ---
 detect:
-  title: lsass_pid_0001_edr_suspicious_access_alert
+  title: builtin_pid_0013_edr_suspicious_access_alert
   description:
     - MDE EDR Behavior/Memory Alert
     - Suspicious access to LSASS service
