@@ -1,10 +1,9 @@
 ---
 detect:
-  title: comsvcs_pid_0004_av_rundlllolbin_alert
+  title: builtin_pid_0006_av_hacktool_atpminidump_event
   description:
-    - Dump Creds from memory
     - Builtin AV Client Heuristic
-    - Trojan RundllLolBin
+    - ATPMiniDump
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -20,28 +19,27 @@ intel:
   attackId:
     - t1003
   references:
-    - ref_comsvcs.md
+    -
   emulation:
-    - art_t1003001_test2_uid_2536dee2-12fb-459a-8c37-971844fa73be
+    - art_t1003001_test3_uid_7ae7102c-a099-45c8-b985-4c7a2d05790d
   pattern:
-    - ref_comsvcs.md
+    -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - alert_evidence
+    - antivirus_detection
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: alert_evidence
+  dataTable: device_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: AlertEvidence
+  kqlTable: DeviceEvents
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
-    | where Title contains 'rundlllolbin'
-      or ThreatFamily contains 'rundlllolbin'
+    | where ActionType =~ 'AntivirusDetectionActionType'
+      and AdditionalFields contains 'AtpMiniDump'

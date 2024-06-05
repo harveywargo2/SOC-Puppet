@@ -1,15 +1,14 @@
 ---
 detect:
-  title: comsvcs_pid_0006_av_rundlllolbin_dynamic
+  title: builtin_pid_0007_av_rundlllolbin_alert
   description:
-    - Dump Creds from memory
     - Builtin AV Client Heuristic
     - Trojan RundllLolBin
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild: unknown pre 2020
+  inTheWild: unknown
   noiseProjection: zero
   regressionVolume: only attack pattern match
   responseEffort: low
@@ -29,18 +28,19 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - other_alert_related_activity
+    - alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_events
+  dataTable: alert_evidence
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceEvents
+  kqlTable: AlertEvidence
   kqlQuery: | 
-    | where ActionType =~ 'OtherAlertRelatedActivity'
-      and AdditionalFields contains 'rundlllolbin'
+    | where DetectionSource !~ 'Custom detection'
+    | where Title contains 'rundlllolbin'
+      or ThreatFamily contains 'rundlllolbin'
