@@ -1,1 +1,0 @@
-from socpuppet.detectpy.windows_os.keymgr.keymgr import *

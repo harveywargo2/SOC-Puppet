@@ -1,0 +1,44 @@
+---
+detect:
+  title: procdump_pid_0001_minidump_flag
+  description:
+    -Procdump creating mini dump of a process
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency: normal
+  inTheWild: common
+  noiseProjection: low
+  regressionVolume: normal usage
+  analysisEffort: normal
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_procdump.md
+  emulation:
+    - art_t1003001_test9_uid_7cede33f-0acd-44ef-9774-15511300b24b
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_any ('procdump', 'procdump64')
+    | where ProcessCommandLine has_all ('accepteula', '-mm')

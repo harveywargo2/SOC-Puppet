@@ -1,0 +1,46 @@
+---
+detect:
+  title: builtin_pid_0011_av_hacktool_gsecdump_dynamic
+  description:
+    - Builtin AV Client Heuristic
+    - Hacktool Gsecdump
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown pre 2020
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+    - s0008
+  references:
+    - ref_gsecdump.md
+  emulation:
+    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - other_alert_related_activity
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'OtherAlertRelatedActivity'
+      and AdditionalFields contains 'gsecdump'

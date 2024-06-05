@@ -1,0 +1,48 @@
+---
+detect:
+  title: builtin_pid_0013_edr_suspicious_access_alert
+  description:
+    - MDE EDR Behavior/Memory Alert
+    - Suspicious access to LSASS service
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_gsecdump.md
+    - ref_comsvcs.md
+  emulation:
+    - art_t1003_test1_uid_96345bfc-8ae7-4b6a-80b7-223200f24ef9
+    - art_t1003001_test2_uid_2536dee2-12fb-459a-8c37-971844fa73be
+  pattern:
+    - ref_gsecdump.md
+    - ref_comsvcs.md
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where DetectionSource !~ 'Custom detection'
+      and Title =~ 'Suspicious access to LSASS service'

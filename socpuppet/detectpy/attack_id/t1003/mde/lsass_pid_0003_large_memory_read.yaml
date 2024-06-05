@@ -1,0 +1,48 @@
+---
+detect:
+  title: lsass_pid_0003_large_memory_read
+  description:
+    - Large Memory Read 20 Mega Bytes
+    - Rare File or Process
+    - Rare is seen on 5 or less machines in time period
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_lsass.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - read_process_memory_api_call
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'ReadProcessMemoryApiCall'
+      and FileName has 'lsass'
+      and parse_json(AdditionalFields).TotalBytesCopied > 20000000
+    

@@ -4,9 +4,9 @@ import socpuppet as soc
 from socpuppet.detectpy.attack_id.t1003.t1003 import t1003_mde_path as mde_path
 
 
-def nppspy_pid_0001_static_registry_indicator(*, logic='mde', lookback='1d'):
+def appcmd_pid_0001_list_config(*, logic='mde', lookback='1d'):
     """
-    nppspy
+    appcmd
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -15,7 +15,7 @@ def nppspy_pid_0001_static_registry_indicator(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'nppspy_pid_0001_static_registry_indicator.yaml'), 'r') as file:
+                               'appcmd_pid_0001_list_config.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -26,9 +26,9 @@ def nppspy_pid_0001_static_registry_indicator(*, logic='mde', lookback='1d'):
     return query
 
 
-def nppspy_pid_0002_reg_key_value_indicator(*, logic='mde', lookback='1d'):
+def appcmd_pid_0002_list_creds(*, logic='mde', lookback='1d'):
     """
-    nppspy
+    appcmd
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -37,7 +37,7 @@ def nppspy_pid_0002_reg_key_value_indicator(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'nppspy_pid_0002_reg_key_value_indicator.yaml'), 'r') as file:
+                               'appcmd_pid_0002_list_creds.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

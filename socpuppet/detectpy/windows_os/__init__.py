@@ -1,4 +1,3 @@
-import socpuppet.detectpy.windows_os.appcmd
 import socpuppet.detectpy.windows_os.appinstaller
 import socpuppet.detectpy.windows_os.cmstp
 import socpuppet.detectpy.windows_os.control
@@ -6,16 +5,11 @@ import socpuppet.detectpy.windows_os.dumpert
 import socpuppet.detectpy.windows_os.esentutl
 import socpuppet.detectpy.windows_os.hh
 import socpuppet.detectpy.windows_os.infdefaultinstall
-import socpuppet.detectpy.windows_os.keymgr
-import socpuppet.detectpy.windows_os.lsass
 import socpuppet.detectpy.windows_os.mavinject
-import socpuppet.detectpy.windows_os.mimikatz
 import socpuppet.detectpy.windows_os.msdt
 import socpuppet.detectpy.windows_os.mshta
 import socpuppet.detectpy.windows_os.nltest
 import socpuppet.detectpy.windows_os.net
 import socpuppet.detectpy.windows_os.netsh
-import socpuppet.detectpy.windows_os.procdump
-import socpuppet.detectpy.windows_os.pypykatz
 import socpuppet.detectpy.windows_os.reg
 import socpuppet.detectpy.windows_os.wuauclt

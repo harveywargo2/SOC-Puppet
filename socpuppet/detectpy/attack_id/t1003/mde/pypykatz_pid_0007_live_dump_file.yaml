@@ -1,0 +1,48 @@
+---
+detect:
+  title: pypykatz_pid_0005_live_dump_file
+  description:
+    - pypykatz live smb command
+    - Live command dumped to file
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_pypykatz.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'live'
+      and ProcessCommandLine has_any('lsa', 'registry')
+      and ProcessCommandLine has_any ('-o', '--json')
+    | where ProcessCommandLine contains 'live lsa'
+      or ProcessCommandLine contains 'live registry'
