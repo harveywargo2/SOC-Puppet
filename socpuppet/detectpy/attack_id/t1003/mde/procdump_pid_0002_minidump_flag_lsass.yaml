@@ -1,18 +1,16 @@
 ---
 detect:
-  title: lsass_pid_0003_large_memory_read
+  title: procdump_pid_0002_minidump_flag_lsass
   description:
-    - Large Memory Read 20 Mega Bytes
-    - Rare File or Process
-    - Rare is seen on 5 or less machines in time period
+    -Procdump creating mini dump of Lsass process
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
   inTheWild: common
   noiseProjection: zero
-  regressionVolume: only attack pattern match
-  responseEffort: low
+  regressionVolume: only attack pattern
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
@@ -20,29 +18,27 @@ intel:
   attackId:
     - t1003
   references:
-    - ref_lsass.md
+    - ref_procdump.md
   emulation:
-    -
+    - art_t1003001_test9_uid_7cede33f-0acd-44ef-9774-15511300b24b
   pattern:
     -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - read_process_memory_api_call
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_events
+  dataTable: device_process_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceEvents
+  kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ActionType =~ 'ReadProcessMemoryApiCall'
-      and FileName has 'lsass'
-      and parse_json(AdditionalFields).TotalBytesCopied > 20000000
-    
+    | where ProcessCommandLine has_any ('procdump', 'procdump64')
+    | where ProcessCommandLine has_all ('accepteula', '-mm', 'lsass')

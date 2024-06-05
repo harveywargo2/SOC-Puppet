@@ -12,7 +12,6 @@ import socpuppet.detectpy.windows_os.mshta
 import socpuppet.detectpy.windows_os.nltest
 import socpuppet.detectpy.windows_os.net
 import socpuppet.detectpy.windows_os.netsh
-import socpuppet.detectpy.windows_os.procdump
 import socpuppet.detectpy.windows_os.pypykatz
 import socpuppet.detectpy.windows_os.reg
 import socpuppet.detectpy.windows_os.wuauclt
