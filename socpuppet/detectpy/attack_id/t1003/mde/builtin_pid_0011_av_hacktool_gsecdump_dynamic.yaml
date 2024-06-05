@@ -1,10 +1,9 @@
 ---
 detect:
-  title: gsecdump_pid_0009_av_hacktool_event
+  title: builtin_pid_0011_av_hacktool_gsecdump_dynamic
   description:
-    - Dump Creds from memory
-    - MDE AV passive mode detection
     - Builtin AV Client Heuristic
+    - Hacktool Gsecdump
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -12,7 +11,7 @@ detect:
   inTheWild: unknown pre 2020
   noiseProjection: zero
   regressionVolume: only attack pattern match
-  responseEffort: low
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
@@ -30,7 +29,7 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - antivirus_detection
+    - other_alert_related_activity
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -43,5 +42,5 @@ logic:
   kqlVar:
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetectionActionType'
+    | where ActionType =~ 'OtherAlertRelatedActivity'
       and AdditionalFields contains 'gsecdump'

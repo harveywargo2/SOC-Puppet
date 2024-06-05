@@ -1,10 +1,9 @@
 ---
 detect:
-  title: gsecdump_pid_0011_av_hacktool_alert
+  title: builtin_pid_0010_av_hacktool_gsecdump_alert
   description:
-    - Dump Creds from memory
-    - MDE AV passive mode detection
     - Builtin AV Client Heuristic
+    - Hacktool Gsecdump
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
