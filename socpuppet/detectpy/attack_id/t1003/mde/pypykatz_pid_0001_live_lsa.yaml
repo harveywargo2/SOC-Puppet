@@ -1,23 +1,34 @@
 ---
-title: pypykatz_pid_0001_live_lsa
-intel:
+detect:
+  title: pypykatz_pid_0001_live_lsa
   description:
     - pypykatz lsass dump commands
     - Obtains the credentials stored in the LSASS.exe process.
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
-    - python
-  attackTechnique: t1003.001
-  attackSoftware:
+    -
+  attackId:
+    - t1003
   references:
+    - ref_pypykatz.md
   emulation:
-    - atomic_red_team_t1003_001_t7_guid_c37bc535-5c62-4195-9cc3-0517673171d8
+    - art_t1003001_test7_uid_a96872b2-cbf3-46cf-8eb4-27e8c0e85263
   pattern:
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -30,6 +41,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'live'
-    | where ProcessCommandLine contains 'live lsa'
-      or (ProcessCommandLine has 'live' and ProcessCommandLine has 'lsa')
+    | where ProcessCommandLine has_all ('live', 'lsa')

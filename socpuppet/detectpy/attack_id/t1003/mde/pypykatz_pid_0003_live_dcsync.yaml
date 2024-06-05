@@ -1,24 +1,34 @@
 ---
-title: pypykatz_pid_0005_live_dcsync
-intel:
+detect:
+  title: pypykatz_pid_0003_live_registry
   description:
     - pypykatz dcsynce attack
     - Performs DCSYNC attack, extracts all hashes and kerberos keys from the domain controller using DRSUAPI
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
-    - python
-  attackTechnique:
-    - t1003.006
-    - t1021.002
-  attackSoftware:
+    -
+  attackId:
+    - t1003
   references:
+    - ref_pypykatz.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -31,6 +41,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'live'
-      and ProcessCommandLine has 'smb'
-      and ProcessCommandLine has 'dcsync'
+    | where ProcessCommandLine has_all ('live', 'smb', 'dcsync')

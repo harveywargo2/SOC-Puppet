@@ -1,26 +1,36 @@
 ---
-title: pypykatz_pid_0006_live_regdump
-intel:
+detect:
+  title: pypykatz_pid_0005_live_regdump
   description:
     - pypykatz live smb command
     - Dumps and parses the registry remotely over SMB.
     - Connection is set up using the current user's context.
     - registry hive files will be deleted after command finishes (best effort)
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
-    - python
-  attackTechnique:
-    - t1003.002
-    - t1021.002
-  attackSoftware:
+    -
+  attackId:
+    - t1003
   references:
+    - ref_pypykatz.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -33,6 +43,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'live'
-      and ProcessCommandLine has 'smb'
-      and ProcessCommandLine has 'regdump'
+    | where ProcessCommandLine has_all ('live', 'smb', 'regdump')
