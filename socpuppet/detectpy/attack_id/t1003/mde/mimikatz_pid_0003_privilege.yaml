@@ -1,26 +1,34 @@
 ---
-title: mimikatz_pid_0005_privilege
-intel:
+detect:
+  title: mimikatz_pid_0003_privilege
   description:
     - mimikatz command indicator
     - This module provides some functionalities to manipulate privileges on mimikatz process
   detectType: single_line_match
-  detectCon: 1
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
-  attackTechnique:
-  attackSoftware: s0002
-  references:
-  emulation:
     -
+  attackId:
+    - t1003
+    - s0002
+  references:
+    - ref_mimikatz.md
+  emulation:
   pattern:
-    - privilege::
-    - privilege::debug
-    - privilege::security
-    - privilege::name
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -34,4 +42,4 @@ logic:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where ProcessCommandLine has 'privilege'
-    | where ProcessCommandLine contains 'privilege::'
+      and ProcessCommandLine contains 'privilege::'

@@ -1,25 +1,34 @@
 ---
-title: mimikatz_pid_0011_misc
-intel:
+detect:
+  title: mimikatz_pid_0005_crypto
   description:
     - mimikatz command indicator
     - see command documentation for more descriptions
   detectType: single_line_match
-  detectCon: 1
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
-  attackTechnique:
-  attackSoftware: s0002
-  references:
-  emulation:
     -
+  attackId:
+    - t1003
+    - s0002
+  references:
+    - ref_mimikatz.md
+  emulation:
   pattern:
-    - misc::
-    - misc::taskmgr
-    - misc::shadowcopies
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -32,5 +41,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'misc'
-    | where ProcessCommandLine contains 'misc::'
+    | where ProcessCommandLine has 'crypto'
+      and ProcessCommandLine contains 'crypto::'

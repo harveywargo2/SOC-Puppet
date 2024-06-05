@@ -1,26 +1,35 @@
 ---
-title: mimikatz_pid_0006_kerberos
-intel:
+detect:
+  title: mimikatz_pid_0012_invoke
   description:
     - mimikatz command indicator
-    - can be used to forge tickets
     - see command documentation for more descriptions
+    - powershell invoke mimikatz
   detectType: single_line_match
-  detectCon: 1
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
-  attackTechnique: t1558.001
-  attackSoftware: s0002
+    -
+  attackId:
+    - t1003
+    - s0002
   references:
+    - ref_mimikatz.md
   emulation:
-    - atomic_red_team_t1558_001_t1_guid_9726592a-dabc-4d4d-81cd-44070008b3af
   pattern:
-    - kerberos::
-    - kerberos::golden
-    - kerberos::hash
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -33,5 +42,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'kerberos'
-    | where ProcessCommandLine contains 'kerberos::'
+    | where ProcessCommandLine has 'invoke'
+      and ProcessCommandLine has_any ('mimikatz', 'Dumpcreds')
