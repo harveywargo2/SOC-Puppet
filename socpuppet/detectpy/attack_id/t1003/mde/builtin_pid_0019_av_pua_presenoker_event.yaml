@@ -1,6 +1,6 @@
 ---
 detect:
-  title: nppspy_pid_0001_av_presenoker
+  title: builtin_pid_0019_av_pua_presenoker_event
   description:
     - MDE AV Client Heuristic
   detectType: single_line_match
@@ -10,8 +10,8 @@ detect:
   inTheWild: not common
   noiseProjection: low
   regressionVolume: minimal av matches
-  analysisEffort: medium
-  confidence: high
+  analysisEffort: low
+  confidence: certain
 intel:
   tags:
     -
@@ -22,24 +22,23 @@ intel:
   emulation:
     - art_t1003_test2_uid_9e2173c0-ba26-4cdf-b0ed-8c54b27e3ad6
   pattern:
-    - ref_nppspy.md
+    -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - alert_evidence
+    - antivirus_detection
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: alert_evidence
+  dataTable: device_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: AlertEvidence
+  kqlTable: DeviceEvents
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
-    | where Title contains 'presenoker'
-      or ThreatFamily contains 'presenoker'
+    | where ActionType =~ 'AntivirusDetection'
+      and AdditionalFields contains 'presenoker'

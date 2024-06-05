@@ -1,17 +1,20 @@
 ---
 detect:
-  title: nppspy_pid_0003_av_presenoker_event
+  title: builtin_pid_0018_av_pua_presenoker_dynamic
   description:
     - MDE AV Client Heuristic
-  detectType: single_line_match
+    - Presenoker
+  detectType:
+    - single_line_match
   detectLanguage: kql
   detectCon: 1
-  urgency: rapid
+  urgency: high
   inTheWild: not common
-  noiseProjection: low
+  noiseProjection:
+    - low
   regressionVolume: minimal av matches
-  analysisEffort: low
-  confidence: certain
+  analysisEffort: medium
+  confidence: high
 intel:
   tags:
     -
@@ -22,12 +25,12 @@ intel:
   emulation:
     - art_t1003_test2_uid_9e2173c0-ba26-4cdf-b0ed-8c54b27e3ad6
   pattern:
-    - ref_nppspy.md
+    -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - antivirus_detection
+    - other_alert_related_activity
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -40,5 +43,5 @@ logic:
   kqlVar:
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ 'AntivirusDetection'
+    | where ActionType =~ 'OtherAlertRelatedActivity'
       and AdditionalFields contains 'presenoker'
