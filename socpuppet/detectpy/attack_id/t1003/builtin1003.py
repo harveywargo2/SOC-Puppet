@@ -706,3 +706,25 @@ def builtin_pid_0032_av_hacktool_pypykatz_event(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def builtin_pid_0033_edr_malicious_pshell_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0033_edr_malicious_pshell_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

@@ -1,0 +1,46 @@
+---
+detect:
+  title: powerdump_pid_0001_pshell_invoke
+  description:
+    - dumping hashes from a Windows System
+    - powershell script
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003002_test4_uid_804f28fc-68fc-40da-b5a2-e9d0bce5c193
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - powershell_command
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'PowerShellCommand'
+    | where AdditionalFields has_all ('invoke', 'powerdump')
+      or InitiatingProcessCommandLine has_all ('invoke', 'powerdump')
