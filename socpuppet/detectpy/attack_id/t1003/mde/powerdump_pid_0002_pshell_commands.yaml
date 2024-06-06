@@ -39,9 +39,14 @@ dataRequirements:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
-  kqlVar:
+  kqlVar: | 
+    let PowerDumpDevice = materialize(DeviceEvents | where ActionType =~ "PowershellCommand"
+    | where AdditionalFields has_any ('elevateprivs', 'userhashes', 'dumphashes', 'bootkey', 'decrypthashes')
+    | distinct DeviceId);
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ 'PowerShellCommand'
-    | where AdditionalFields has_all ('invoke', 'powerdump')
-      or InitiatingProcessCommandLine has_all ('invoke', 'powerdump')
+    | where ActionType =~ "PowershellCommand"
+      and DeviceId in (PowerDumpDevice)
+    | extend Pshell = parse_json(AdditionalFields).Command
+    | summarize PshellSet=make_set(Pshell), arg_max(Timestamp, *) by DeviceName, bin(Timestamp, 1h)
+    | where PshellSet has_all(@'get-childitem', 'ElevatePrivs', @'get-process', @'get-userhashes', 'dumphashes', @'get-bootkey', 'decrypthashes')
