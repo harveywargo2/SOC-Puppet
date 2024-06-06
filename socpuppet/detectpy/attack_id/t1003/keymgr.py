@@ -4,9 +4,9 @@ import socpuppet as soc
 from socpuppet.detectpy.attack_id.t1003.t1003 import t1003_mde_path as mde_path
 
 
-def lsass_pid_0001_edr_suspicious_access_alert(*, logic='mde', lookback='1d'):
+def keymgr_pid_0001_cred_dump(*, logic='mde', lookback='1d'):
     """
-    lsass
+    keymgr
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -15,7 +15,7 @@ def lsass_pid_0001_edr_suspicious_access_alert(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mde_path(),
-                               'builtin_pid_0013_edr_suspicious_access_alert.yaml'), 'r') as file:
+                               'keymgr_pid_0001_cred_dump.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
