@@ -1,0 +1,44 @@
+---
+detect:
+  title: registry_pid_0004_security_commandline
+  description:
+    - Security Hive in CommandLine for potential enumeration
+    - Also for offline cred dumping attack
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_registry.md
+  emulation:
+    - art_t1003002_test1_uid_5c2571d0-1572-416d-9676-812e64ca9f44
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_any (@'HKLM\security ', @'HKEY_LOCAL_MACHINE\security ')

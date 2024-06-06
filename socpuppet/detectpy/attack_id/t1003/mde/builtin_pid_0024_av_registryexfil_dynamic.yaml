@@ -1,0 +1,45 @@
+---
+detect:
+  title: builtin_pid_0024_av_registryexfil_dynamic
+  description:
+    - MDE AV Client Heuristic
+    - Trojan RegistryExfil
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: not common
+  noiseProjection: low
+  regressionVolume: minimal av matches
+  analysisEffort: medium
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_registry.md
+  emulation:
+    - art_t1003002_test1_uid_5c2571d0-1572-416d-9676-812e64ca9f44
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - other_alert_related_activity
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'OtherAlertRelatedActivity'
+      and AdditionalFields contains 'registryexfil'

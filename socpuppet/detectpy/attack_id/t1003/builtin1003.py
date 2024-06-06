@@ -486,3 +486,157 @@ def builtin_pid_0022_av_hacktool_mimikatz_event(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def builtin_pid_0023_av_registryexfil_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0023_av_registryexfil_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0024_av_registryexfil_dynamic(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0024_av_registryexfil_dynamic.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0025_av_registryexfil_event(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0025_av_registryexfil_event.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0026_edr_registry_extract_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0026_edr_registry_extract_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0027_edr_sensitive_info_lookup_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0026_edr_registry_extract_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0028_edr_sam_info_theft_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0028_edr_sam_info_theft_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0029_edr_registry_export_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0029_edr_registry_export_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
