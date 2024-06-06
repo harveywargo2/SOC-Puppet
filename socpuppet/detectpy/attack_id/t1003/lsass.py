@@ -135,3 +135,24 @@ def lsass_pid_0006_dump_file_created(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def lsass_pid_0007_dump_file_commandline(*, logic='mde', lookback='1d'):
+    """
+    lsass
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'lsass_pid_0007_dump_file_commandline.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
