@@ -1,0 +1,46 @@
+---
+detect:
+  title: appcmd_pid_0002_list_creds
+  description:
+    - List service account credentials from app pools on a server
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: only attack pattern match
+  analysisEffort: normal
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_appcmd.md
+  emulation:
+    - art_t1003_test4_uid_6c7a4fd3-5b0b-4b30-a93e-39411b25d889
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('list', 'apppool')    
+    | where ProcessCommandLine contains @'/@t:*'
+      or ProcessCommandLine contains @'/@text:*'
+      or ProcessCommandLine contains @'/text:*'

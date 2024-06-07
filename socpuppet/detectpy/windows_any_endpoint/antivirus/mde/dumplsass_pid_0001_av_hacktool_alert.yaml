@@ -1,0 +1,47 @@
+---
+detect:
+  title: dumplsass_pid_0001_av_hacktool_alert
+  description:
+    - Dump Creds from memory
+    - Builtin AV Client Heuristic
+    - HackTool:Win32/DumpLsass
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_lsass.md
+  emulation:
+    - art_t1003001_test13_uid_47a539d1-61b9-4364-bf49-a68bc2a95ef0
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where DetectionSource !~ 'Custom detection'
+    | where Title contains 'dumplsass'
+      or ThreatFamily contains 'dumplsass'
