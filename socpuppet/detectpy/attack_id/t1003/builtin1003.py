@@ -728,3 +728,69 @@ def builtin_pid_0033_edr_malicious_pshell_alert(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def builtin_pid_0034_av_hacktool_nanodump_alert(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0034_av_hacktool_nanodump_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0035_av_hacktool_nanodump_dynamic(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0034_av_hacktool_nanodump_alert.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def builtin_pid_0036_av_hacktool_nanodump_event(*, logic='mde', lookback='1d'):
+    """
+    builtin MDE AV
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'builtin_pid_0036_av_hacktool_nanodump_event.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

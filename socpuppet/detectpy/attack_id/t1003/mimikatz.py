@@ -266,3 +266,25 @@ def mimikatz_pid_0012_pshell_invoke(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def mimikatz_pid_0013_token(*, logic='mde', lookback='1d'):
+    """
+    mimikatz command
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mde_path(),
+                               'mimikatz_pid_0013_token.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
