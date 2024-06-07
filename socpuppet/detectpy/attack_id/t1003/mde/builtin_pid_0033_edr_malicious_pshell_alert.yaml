@@ -1,0 +1,45 @@
+---
+detect:
+  title: generic_pid_0033_edr_malicious_pshell_alert
+  description:
+    - MDE EDR Behavior Alert
+    - A malicious Powershell Cmdlet was invoked on the machine
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: common
+  noiseProjection: low
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003002_test1_uid_804f28fc-68fc-40da-b5a2-e9d0bce5c193
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where DetectionSource !~ 'Custom detection'
+      and Title =~ 'A malicious Powershell Cmdlet was invoked on the machine'

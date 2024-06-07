@@ -22,7 +22,9 @@ def mde_query_builder(data, lookback):
     :param lookback: Lookback Time for query
     :return: Dict Object of Key Value Pair {'query' : "query"} for MDE Advanced Hunting API Calls
     """
-    title = data.get('title')
+
+    detect = data.get('detect')
+    title = detect.get('title')
     kql = data.get('logic')
     kql_var = kql.get('kqlVar')
     kql_table = kql.get('kqlTable')

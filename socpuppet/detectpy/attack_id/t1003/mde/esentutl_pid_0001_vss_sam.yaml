@@ -1,0 +1,44 @@
+---
+detect:
+  title: esentutl_pid_0001_vss_sam
+  description:
+    - Copy the SAM Hive using the esentutl Utility and Shadowcopy
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_esentutl.md
+  emulation:
+    - art_t1003002_test3_uid_a90c2f4d-6726-444e-99d2-a00cd7c20480
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('esentutl', 'sam')
+      and ProcessCommandLine contains '/vss'
