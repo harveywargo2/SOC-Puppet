@@ -1,0 +1,47 @@
+---
+detect:
+  title: nanodump_pid_0002_av_hacktool_dynamic
+  description:
+    - MDE AV Client Heuristic
+    - Hacktool NanoDump
+  detectType:
+    - single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: high
+  inTheWild: not common
+  noiseProjection:
+    - low
+  regressionVolume: minimal av matches
+  analysisEffort: medium
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - other_alert_related_activity
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'OtherAlertRelatedActivity'
+      and AdditionalFields contains 'nanodump'

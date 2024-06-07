@@ -1,0 +1,45 @@
+---
+detect:
+  title: atpminidump_pid_0003_av_hacktool_event
+  description:
+    - Builtin AV Client Heuristic
+    - ATPMiniDump
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown pre 2020
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003001_test3_uid_7ae7102c-a099-45c8-b985-4c7a2d05790d
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - antivirus_detection
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType startswith 'AntivirusDetectionActionType'
+      and AdditionalFields contains 'AtpMiniDump'

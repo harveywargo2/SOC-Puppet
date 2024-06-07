@@ -1,0 +1,48 @@
+---
+detect:
+  title: nppspy_pid_0005_reg_key_value_indicator
+  description:
+    - NPPSpy added to registry HKCU or HKLM
+    - Targets CurrentControlSet\Services & NetworkProvider
+    - Targets values Class, ProviderPath, Name
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: not common
+  noiseProjection: low
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_nppspy.md
+  emulation:
+    - art_t1003_test2_uid_9e2173c0-ba26-4cdf-b0ed-8c54b27e3ad6
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_any('HKLM', 'HKCU', 'HKEY_LOCAL_MACHINE', 'HKEY_CURRENT_USER')
+    | where ProcessCommandLine has_all ('CurrentControlSet', 'NetworkProvider')
+    | where ProcessCommandLine has_all ('Class', 'ProviderPath', 'Name') 
+      
