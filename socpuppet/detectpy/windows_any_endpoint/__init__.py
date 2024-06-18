@@ -1,6 +1,7 @@
 import socpuppet.detectpy.windows_any_endpoint.antivirus
 import socpuppet.detectpy.windows_any_endpoint.appcmd
 import socpuppet.detectpy.windows_any_endpoint.comsvcs
+import socpuppet.detectpy.windows_any_endpoint.createdump
 import socpuppet.detectpy.windows_any_endpoint.edr
 import socpuppet.detectpy.windows_any_endpoint.esentutl
 import socpuppet.detectpy.windows_any_endpoint.gsecdump
