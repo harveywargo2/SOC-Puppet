@@ -1,8 +1,8 @@
 ---
 detect:
-  title: esentutl_pid_0001_vss_sam
+  title: esentutl_pid_0003_vss
   description:
-    - Copy the SAM Hive using the esentutl Utility and Shadowcopy
+    - Esentutl creating a volume shadow copy
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -20,7 +20,7 @@ intel:
   references:
     - ref_esentutl.md
   emulation:
-    - art_t1003002_test3_uid_a90c2f4d-6726-444e-99d2-a00cd7c20480
+    - art_t1003003_test6_uid_21c7bf80-3e8b-40fa-8f9d-f5b194ff2865
   pattern:
     -
 dataRequirements:
@@ -40,4 +40,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('esentutl', '/y', '/vss', '/d', 'sam')
+    | where ProcessCommandLine has_all ('esentutl', '/y', '/vss', '/d')

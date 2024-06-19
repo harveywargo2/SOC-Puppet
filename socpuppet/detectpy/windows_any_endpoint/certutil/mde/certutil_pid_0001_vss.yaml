@@ -1,15 +1,15 @@
 ---
 detect:
-  title: esentutl_pid_0001_vss_sam
+  title: certutil_pid_0001_vss
   description:
-    - Copy the SAM Hive using the esentutl Utility and Shadowcopy
+    - Certutil used to create encoded volume shadow copy
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
-  inTheWild: very_common
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
   noiseProjection: zero
-  regressionVolume: only attack pattern match
+  regressionVolume: only attack pattern
   analysisEffort: low
   confidence: certain
 intel:
@@ -18,9 +18,9 @@ intel:
   attackId:
     - t1003
   references:
-    - ref_esentutl.md
+    - ref_certutil.md
   emulation:
-    - art_t1003002_test3_uid_a90c2f4d-6726-444e-99d2-a00cd7c20480
+    - art_t1003002_test5_uid_eeb9751a-d598-42d3-b11c-c122d9c3f6c7
   pattern:
     -
 dataRequirements:
@@ -40,4 +40,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('esentutl', '/y', '/vss', '/d', 'sam')
+    | where ProcessCommandLine has_all ('certutil', 'HarddiskVolumeShadowCopy')

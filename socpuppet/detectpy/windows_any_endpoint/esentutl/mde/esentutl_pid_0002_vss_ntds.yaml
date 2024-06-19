@@ -40,5 +40,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('esentutl', 'ntdts')
-      and ProcessCommandLine has_all (@'/vss', @'ntds.dit')
+    | where ProcessCommandLine has_all ('esentutl', '/y', '/vss', '/d')
+      and ProcessCommandLine has_any ('ntds', @'ntds.dit')

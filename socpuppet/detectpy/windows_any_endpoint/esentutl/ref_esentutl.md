@@ -12,3 +12,5 @@ Binary for working with MSFT JET Database
 - Web Cache
   - https://thedfirreport.com/2022/02/07/qbot-likes-to-move-it-move-it/
   - https://thedfirreport.com/2022/10/31/follina-exploit-leads-to-domain-compromise/
+- Atomic Red Team
+  - 
