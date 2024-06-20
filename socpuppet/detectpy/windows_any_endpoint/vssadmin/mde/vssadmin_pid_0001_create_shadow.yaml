@@ -1,0 +1,45 @@
+---
+detect:
+  title: vssadmin_pid_0001_create_shadow
+  description:
+    - Vssadmin creating volume shadow copy
+    - Potential offline password attack
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 4
+  urgency: low
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: high matches benign and bad
+  analysisEffort: high
+  confidence: medium
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003003_test1_uid_dcebead7-6c28-4b4b-bf3c-79deb1b1fc7f
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os_server
+    - windows_os_domain_controller
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('vssadmin', 'create', 'shadow')
