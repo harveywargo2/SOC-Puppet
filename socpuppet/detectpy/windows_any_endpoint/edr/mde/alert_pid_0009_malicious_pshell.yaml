@@ -1,6 +1,6 @@
 ---
 detect:
-  title: galert_pid_0009_malicious_pshell
+  title: alert_pid_0009_malicious_pshell
   description:
     - MDE EDR Behavior Alert
     - A malicious Powershell Cmdlet was invoked on the machine
@@ -22,6 +22,7 @@ intel:
     -
   emulation:
     - art_t1003002_test1_uid_804f28fc-68fc-40da-b5a2-e9d0bce5c193
+    - art_t1003002_test7_uid_0c0f5f06-166a-4f4d-bb4a-719df9a01dbb
   pattern:
     -
 dataRequirements:

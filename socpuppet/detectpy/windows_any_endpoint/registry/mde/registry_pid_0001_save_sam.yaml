@@ -42,4 +42,4 @@ logic:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where ProcessCommandLine has_any (@'HKLM\sam', @'HKEY_LOCAL_MACHINE\sam')
-      and ProcessCommandLine has_all('save')
+      and ProcessCommandLine has_any('save', 'export')

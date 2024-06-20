@@ -1,14 +1,14 @@
 ---
 detect:
-  title: registry_pid_0007_save_lsa_secrets
+  title: posderscan_pid_0001_av_trojan_alert
   description:
-    - reg.exe used to dump LSA secrets
-    - LSA secrets are stored in the registry
+    - Builtin AV Client Heuristic
+    - Trojan PosderCan
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild: very_common
+  inTheWild: common
   noiseProjection: zero
   regressionVolume: only attack pattern match
   analysisEffort: low
@@ -19,28 +19,28 @@ intel:
   attackId:
     - t1003
   references:
-    - ref_registry.md
+    -
   emulation:
-    - art_t1003004_test1_uid_55295ab0-a703-433b-9ca4-ae13807de12f
+    - art_t1003002_test7_uid_0c0f5f06-166a-4f4d-bb4a-719df9a01dbb
   pattern:
     -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_creation
+    - alert_evidence
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_process_events
+  dataTable: alert_evidence
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceProcessEvents
+  kqlTable: AlertEvidence
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('secrets', 'security')
-      and ProcessCommandLine has_any ('HKLM', 'HKEY_LOCAL_MACHINE')
-      and ProcessCommandLine has_any  ('save', 'export')
+    | where DetectionSource !~ 'Custom detection'
+    | where Title contains 'posdercan'
+      or ThreatFamilyName contains 'posdercan'

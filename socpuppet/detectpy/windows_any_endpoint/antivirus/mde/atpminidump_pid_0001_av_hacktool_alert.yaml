@@ -42,4 +42,5 @@ logic:
   kqlTable: AlertEvidence
   kqlQuery: | 
     | where DetectionSource !~ 'Custom detection'
-      and Title contains 'ATPMiniDump'
+    | where Title contains 'ATPMiniDump'
+      or ThreatFamilyName contains 'ATPMiniDump'
