@@ -7,6 +7,7 @@ import socpuppet.detectpy.windows_any_endpoint.createdump
 import socpuppet.detectpy.windows_any_endpoint.edr
 import socpuppet.detectpy.windows_any_endpoint.esentutl
 import socpuppet.detectpy.windows_any_endpoint.gsecdump
+import socpuppet.detectpy.windows_any_endpoint.kekeo
 import socpuppet.detectpy.windows_any_endpoint.keymgr
 import socpuppet.detectpy.windows_any_endpoint.lsass
 import socpuppet.detectpy.windows_any_endpoint.mimikatz

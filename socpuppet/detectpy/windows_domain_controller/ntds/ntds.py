@@ -9,7 +9,7 @@ mpath = os.path.join(cpath, 'mde')
 
 def ntds_pid_0001_copy_vss(*, logic='mde', lookback='1d'):
     """
-    vssadmin
+    ntds
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -31,7 +31,7 @@ def ntds_pid_0001_copy_vss(*, logic='mde', lookback='1d'):
 
 def ntds_pid_0002_dit_file_commandline(*, logic='mde', lookback='1d'):
     """
-    vssadmin
+    ntds
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -49,3 +49,4 @@ def ntds_pid_0002_dit_file_commandline(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
