@@ -1,0 +1,47 @@
+---
+detect:
+  title: ntdsutil_pid_0001_dump_ntds
+  description:
+    - Vssadmin creating volume shadow copy
+    - Potential offline password attack
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: only attack pattern
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003003_test3_uid_2364e33d-ceab-4641-8468-bfb1d7cc2723
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os_server
+    - windows_os_domain_controller
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('ac', 'i', 'ntds')
+      or ProcessCommandLine has_all ('activate', 'instance', 'ntds')
+    | where ProcessCommandLine has 'ifm'

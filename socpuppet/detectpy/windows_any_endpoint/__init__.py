@@ -18,4 +18,3 @@ import socpuppet.detectpy.windows_any_endpoint.pypykatz
 import socpuppet.detectpy.windows_any_endpoint.rdrleakdiag
 import socpuppet.detectpy.windows_any_endpoint.registry
 import socpuppet.detectpy.windows_any_endpoint.rpcping
-import socpuppet.detectpy.windows_any_endpoint.vssadmin
