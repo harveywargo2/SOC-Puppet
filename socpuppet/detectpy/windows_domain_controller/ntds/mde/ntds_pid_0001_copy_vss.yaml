@@ -1,9 +1,8 @@
 ---
 detect:
-  title: ntdsutil_pid_0002_ifm_ntds
+  title: ntdspid_0001_copy_vss
   description:
-    - This technique uses "Install from Media" (IFM), which will extract a copy of the Active Directory database
-    - A successful export of the Active Directory database will yield a file modification named ntds.dit to the destination
+    - Requires Volume Shadow Copy Creation
     - Potential offline password attack
   detectType: single_line_match
   detectLanguage: kql
@@ -22,7 +21,7 @@ intel:
   references:
     -
   emulation:
-    - art_t1003003_test3_uid_2364e33d-ceab-4641-8468-bfb1d7cc2723
+    - art_t1003003_test2_uid_c6237146-9ea6-4711-85c9-c56d263a6b03
   pattern:
     -
 dataRequirements:
@@ -42,6 +41,6 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('ac', 'i', 'ntds')
-      or ProcessCommandLine has_all ('activate', 'instance', 'ntds')
-    | where ProcessCommandLine has_all ('ifm', 'create')
+    | where ProcessCommandLine has_all ('Globalroot', 'copy', 'ntds')
+      and ProcessCommandLine contains 'HarddiskVolumeShadowCopy'
+      and ProcessCommandLine contains 'ntds.dit'

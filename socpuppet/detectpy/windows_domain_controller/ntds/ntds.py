@@ -7,7 +7,7 @@ cpath = os.path.dirname(os.path.abspath(__file__))
 mpath = os.path.join(cpath, 'mde')
 
 
-def vssadmin_pid_0001_create_shadow(*, logic='mde', lookback='1d'):
+def ntds_pid_0001_copy_vss(*, logic='mde', lookback='1d'):
     """
     vssadmin
 
@@ -18,7 +18,7 @@ def vssadmin_pid_0001_create_shadow(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'vssadmin_pid_0001_create_shadow.yaml'), 'r') as file:
+                               'ntds_pid_0001_copy_vss.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -28,3 +28,24 @@ def vssadmin_pid_0001_create_shadow(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def ntds_pid_0002_dit_file_commandline(*, logic='mde', lookback='1d'):
+    """
+    vssadmin
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'ntds_pid_0002_dit_file_commandline.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

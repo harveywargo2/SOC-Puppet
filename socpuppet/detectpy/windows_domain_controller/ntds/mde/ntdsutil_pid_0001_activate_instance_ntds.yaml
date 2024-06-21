@@ -2,7 +2,7 @@
 detect:
   title: ntdsutil_pid_0001_dump_ntds
   description:
-    - Vssadmin creating volume shadow copy
+    - Sets NTDS or a specific AD LDS instance as the active instance
     - Potential offline password attack
   detectType: single_line_match
   detectLanguage: kql
@@ -26,7 +26,6 @@ intel:
     -
 dataRequirements:
   dataSource:
-    - windows_os_server
     - windows_os_domain_controller
   dataType:
     - process_creation
