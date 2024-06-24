@@ -1,2 +1,0 @@
-from socpuppet.detectpy.windows_domain_controller import ntds
-from socpuppet.detectpy.windows_domain_controller import vss

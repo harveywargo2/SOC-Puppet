@@ -1,0 +1,45 @@
+---
+detect:
+  title: vss_pid_0001_wmic_shadowcopy.yaml
+  description:
+    - WMIC used to create vss
+    - Potential offline password attack
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency: medium
+  inTheWild: unknown
+  noiseProjection: medium
+  regressionVolume: benign processes
+  analysisEffort: high
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_vss.md
+  emulation:
+    - art_t1003003_test4_uid_224f7de0-8f0a-4a94-b5d8-989b036c86da
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_domain_controller
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_any ('wmic', 'shadowcopy', 'create')
+      and ProcessCommandLine contains 'Volume=c:'
