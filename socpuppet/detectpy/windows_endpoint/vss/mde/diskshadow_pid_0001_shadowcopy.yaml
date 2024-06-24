@@ -1,8 +1,8 @@
 ---
 detect:
-  title: vss_pid_0004_symlink
+  title: diskshadow_pid_0001_shadowcopy
   description:
-    - Create symlink of Shadow Copy
+    - Execute commands to create shadow copy from a script
     - Potential offline password attack
   detectType: single_line_match
   detectLanguage: kql
@@ -21,7 +21,7 @@ intel:
   references:
     - ref_vss.md
   emulation:
-    - art_t1003003_test8_uid_21748c28-2793-4284-9e07-d6d028b66702
+    - art_t1003003_test9_uid_b385996c-0e7d-4e27-95a4-aca046b119a7
   pattern:
     -
 dataRequirements:
@@ -41,5 +41,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('mklink', 'globalroot')
-      and ProcessCommandLine contains 'HarddiskVolumeShadowcopy'
+    | where ProcessCommandLine has_all ('diskshadow', '/s')

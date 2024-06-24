@@ -6,12 +6,12 @@ detect:
     - Potential offline password attack
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 3
-  urgency: medium
+  detectCon: 2
+  urgency: high
   inTheWild: unknown
-  noiseProjection: medium
-  regressionVolume: benign processes
-  analysisEffort: high
+  noiseProjection: low
+  regressionVolume: unknown
+  analysisEffort: medium
   confidence: high
 intel:
   tags:
