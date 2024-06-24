@@ -1,1 +1,1 @@
-from socpuppet.detectpy.windows_endpoint.vss.vssadmin import *
+from socpuppet.detectpy.windows_endpoint.vss.vss import *
