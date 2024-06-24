@@ -12,5 +12,8 @@ Binary for working with MSFT JET Database
 - Web Cache
   - https://thedfirreport.com/2022/02/07/qbot-likes-to-move-it-move-it/
   - https://thedfirreport.com/2022/10/31/follina-exploit-leads-to-domain-compromise/
+  - Detection
+    - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_esentutl_webcache.yml
 - Atomic Red Team
   - 
+- 

@@ -1,0 +1,49 @@
+---
+detect:
+  title: registry_pid_0008_netntlm_downgrade_restrictsendingntlmtraffic
+  description:
+    - Registry Modification of Key HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0
+    - Property = RestrictSendingNTLMTraffic
+    - Setting to 0 disables
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: very_common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: medium
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+  references:
+    - ref_registry.md
+    - ref_registry_t1562.md
+  emulation:
+    - art_t1187004_test2_uid_7f06b25c-799e-40f1-89db-999c9cc84317
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - registry_event
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_registry_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceRegistryEvents
+  kqlQuery: | 
+    | where RegistryKey has_all ('system', 'control', 'lsa')
+      and RegistryKey has_any ('HKLM', 'HKEY_LOCAL_MACHINE')
+      and RegistryValueName =~ 'RestrictSendingNTLMTraffic'
+      and RegistryValueData =~ '0'

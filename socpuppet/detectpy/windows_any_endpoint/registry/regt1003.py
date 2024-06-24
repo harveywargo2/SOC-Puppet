@@ -159,3 +159,8 @@ def registry_pid_0007_save_lsa_secrets(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+
+
+

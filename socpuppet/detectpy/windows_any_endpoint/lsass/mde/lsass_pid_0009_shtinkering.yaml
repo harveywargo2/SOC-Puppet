@@ -1,16 +1,18 @@
 ---
 detect:
-  title: lsass_pid_0006_dump_file_created
+  title: lsass_pid_0009_shtinkering
   description:
-    - Lsass Dump File Created
+    - Lsass.exe Dump File Created
+    - Potential shtinkering
+    - Might be from werfault.exe
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
+  detectCon: 2
   urgency: rapid
   inTheWild: common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
-  responseEffort: low
+  noiseProjection: low
+  regressionVolume: benign werfault activity
+  responseEffort: medium
   confidence: certain
 intel:
   tags:
@@ -40,5 +42,5 @@ logic:
   kqlVar:
   kqlTable: DeviceFileEvents
   kqlQuery: | 
-    | where ActionType =~ 'FileCreated'
-      and FileName has_all ('lsass', 'dmp')
+    | where FileName has_all ('lsass', 'dmp')
+      and ActionType =~ 'FileCreated'

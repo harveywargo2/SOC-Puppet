@@ -182,3 +182,68 @@ def lsass_pid_0008_run_not_system(*, logic='mde', lookback='1d'):
 
     return query
 
+
+def lsass_pid_0009_shtinkering(*, logic='mde', lookback='1d'):
+    """
+    lsass
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'lsass_pid_0009_shtinkering.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def lsass_pid_0010_registry_silent_process_exit(*, logic='mde', lookback='1d'):
+    """
+    lsass shtinkering
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'lsass_pid_0010_registry_silent_process_exit.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def lsass_pid_0011_registry_image_file_exe_opt(*, logic='mde', lookback='1d'):
+    """
+    lsass shtinkering
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'lsass_pid_0011_registry_image_file_exe_opt.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

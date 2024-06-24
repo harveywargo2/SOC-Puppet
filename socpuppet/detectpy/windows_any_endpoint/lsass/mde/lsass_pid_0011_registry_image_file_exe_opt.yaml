@@ -1,23 +1,24 @@
 ---
 detect:
-  title: lsass_pid_0006_dump_file_created
+  title: lsass_pid_0011_registry_image_file_exe_opt
   description:
-    - Lsass Dump File Created
+    - Shtinkering LSASS
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
-  inTheWild: common
+  inTheWild: unknown
   noiseProjection: zero
   regressionVolume: only attack pattern match
-  responseEffort: low
+  analysisEffort: medium
   confidence: certain
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1562
   references:
+    - ref_registry.md
     - ref_lsass.md
   emulation:
     -
@@ -27,18 +28,19 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - file_created
+    - registry_event
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_file_events
+  dataTable: device_registry_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceFileEvents
+  kqlTable: DeviceRegistryEvents
   kqlQuery: | 
-    | where ActionType =~ 'FileCreated'
-      and FileName has_all ('lsass', 'dmp')
+    | where RegistryKey has_all ('software', 'Image', 'Lsass', 'File', 'Execution')
+      and RegistryKey has_any ('HKLM', 'HKEY_LOCAL_MACHINE')
+      and RegistryKey contains 'Image File Execution Options'
