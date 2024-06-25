@@ -1,0 +1,45 @@
+---
+detect:
+  title: lsass_pid_0010_registry_silent_process_exit
+  description:
+    - Shtinkering LSASS
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: medium
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+  references:
+    - ref_registry.md
+    - ref_lsass.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - registry_event
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_registry_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceRegistryEvents
+  kqlQuery: | 
+    | where RegistryKey has_all ('software', 'SilentProcessExit', 'Lsass')
+      and RegistryKey has_any ('HKLM', 'HKEY_LOCAL_MACHINE')

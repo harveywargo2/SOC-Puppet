@@ -1,0 +1,46 @@
+---
+detect:
+  title: vss_pid_0003_pshell_new_vssshadowcopy
+  description:
+    - Powershell New-VssShadowCopy
+    - Potential offline password attack
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: unknown
+  analysisEffort: medium
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_vss.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_domain_controller
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('vssshadowcopy', 'new' 'ClientAccessible') 
+      and ProcessCommandLine contains 'c:'
+      and ProcessCommandLine contains 'New-VssShadowCopy'

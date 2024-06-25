@@ -1,0 +1,45 @@
+---
+detect:
+  title: vss_pid_0005_globalroot_shadowcopy
+  description:
+    - \GLOBALROOT\Device\HarddiskVolumeShadowCopy1
+    - Potential offline password attack
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: unknown
+  analysisEffort: medium
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_vss.md
+  emulation:
+    - art_t1003003_test8_uid_21748c28-2793-4284-9e07-d6d028b66702
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_domain_controller
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'globalroot'
+      and ProcessCommandLine contains 'HarddiskVolumeShadowcopy'

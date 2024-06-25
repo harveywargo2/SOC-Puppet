@@ -1,0 +1,44 @@
+---
+detect:
+  title: createdump_pid_0001_dump_files
+  description:
+    - Use createdump executable from .NET to create an dump file
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: only attack pattern match
+  analysisEffort: normal
+  confidence: high
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_createdump.md
+  emulation:
+    - art_t1003001_test11_uid_9d0072c8-7cca-45c4-bd14-f852cfa35cf0
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'createdump'
+      and ProcessCommandLine has_all ('-f', '-u')

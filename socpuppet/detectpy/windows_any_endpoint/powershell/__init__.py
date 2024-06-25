@@ -1,1 +1,0 @@
-from socpuppet.detectpy.windows_any_endpoint.powershell.powershell import *

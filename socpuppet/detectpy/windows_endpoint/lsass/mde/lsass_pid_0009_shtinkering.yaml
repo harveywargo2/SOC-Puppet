@@ -1,0 +1,46 @@
+---
+detect:
+  title: lsass_pid_0009_shtinkering
+  description:
+    - Lsass.exe Dump File Created
+    - Potential shtinkering
+    - Might be from werfault.exe
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: low
+  regressionVolume: benign werfault activity
+  responseEffort: medium
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_lsass.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - file_created
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_file_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceFileEvents
+  kqlQuery: | 
+    | where FileName has_all ('lsass', 'dmp')
+      and ActionType =~ 'FileCreated'

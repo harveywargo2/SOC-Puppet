@@ -1,0 +1,43 @@
+---
+detect:
+  title: cmdkey_pid_0001_list_creds
+  description:
+    - Cmdkey.exe to look for cached credentials on the system
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: benign activity
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    - ref_createdump.md
+  emulation:
+    - art_t1003005_test1_uid_56506854-89d6-46a3-9804-b7fde90791f9
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('cmdkey', 'list')

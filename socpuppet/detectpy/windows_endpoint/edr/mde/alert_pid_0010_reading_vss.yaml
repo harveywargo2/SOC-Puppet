@@ -1,0 +1,45 @@
+---
+detect:
+  title: alert_pid_0009_malicious_pshell
+  description:
+    - MDE EDR Behavior Alert
+    - Reading files from volume shadown copies
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: common
+  noiseProjection: low
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003002_test6_uid_9d77fed7-05f8-476e-a81b-8ff0472c64d0
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where DetectionSource !~ 'Custom detection'
+      and Title =~ 'Reading files from volume shadow copies'

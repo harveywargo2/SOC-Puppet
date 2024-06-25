@@ -1,0 +1,44 @@
+---
+detect:
+  title: rdrleakdiag_pid_0001_memory_dump
+  description:
+    - Rdrleakdiag.exe used to dump memory
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+      - art_t1003001_test13_uid_47a539d1-61b9-4364-bf49-a68bc2a95ef0
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_created
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('rdrleakdiag', '/p', '/o')
+      and ProcessCommandLine has_any ('lsass', 'fullmemdmp' 'minidump')

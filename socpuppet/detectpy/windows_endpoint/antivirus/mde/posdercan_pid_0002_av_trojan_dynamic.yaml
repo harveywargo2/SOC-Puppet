@@ -1,0 +1,45 @@
+---
+detect:
+  title: posdercan_pid_0002_av_trojan_dynamic
+  description:
+    - Builtin AV Client Heuristic
+    - Trojan PosderCan
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003002_test7_uid_0c0f5f06-166a-4f4d-bb4a-719df9a01dbb
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - other_alert_related_activity
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'OtherAlertRelatedActivity'
+      and AdditionalFields contains 'posdercan'

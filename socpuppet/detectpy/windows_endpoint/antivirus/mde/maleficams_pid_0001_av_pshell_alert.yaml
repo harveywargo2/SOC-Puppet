@@ -1,0 +1,46 @@
+---
+detect:
+  title: maleficams_pid_0001_av_pshell_alert
+  description:
+    - Builtin AV Client Heuristic
+    - PowerShell Malefic Ams
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1003
+  references:
+    -
+  emulation:
+    - art_t1003002_test7_uid_0c0f5f06-166a-4f4d-bb4a-719df9a01dbb
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where DetectionSource !~ 'Custom detection'
+    | where Title contains 'maleficams'
+      or ThreatFamily contains 'maleficams'
