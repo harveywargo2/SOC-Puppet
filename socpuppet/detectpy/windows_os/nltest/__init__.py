@@ -1,1 +1,0 @@
-from socpuppet.detectpy.windows_os.nltest.nltest import *
