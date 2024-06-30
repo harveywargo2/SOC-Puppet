@@ -1,0 +1,48 @@
+---
+detect:
+  title: net_pid_0001_enum_domain_admin_group
+  description:
+    - net command run to list users in domain admins group
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: medium
+  inTheWild: common
+  noiseProjection: low
+  regressionVolume: admin user activity
+  responseEffort: medium
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1069
+  references:
+    - ref_net.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_created
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'net.exe'
+      or FileName =~ 'net1.exe'
+    | where ProcessCommandLine has 'group'
+      and ProcessCommandLine contains 'Domain Admins'
+      and ProcessCommandLine contains '/dom'
+    | where ProcessCommandLine !contains '/add'

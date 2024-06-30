@@ -28,9 +28,7 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName =~ 'net.exe'
-      or FileName =~ 'net1.exe'
-    | where ProcessCommandLine contains '/dom'
+    | where ProcessCommandLine has_any ('/dom', '/domain'
       and ProcessCommandLine has 'group'
       and ProcessCommandLine contains 'Domain Admins'
     | where ProcessCommandLine !contains '/add'

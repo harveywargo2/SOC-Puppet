@@ -1,0 +1,46 @@
+---
+detect:
+  title: nltest_pid_0001_dclist
+  description:
+    - Nltest running dclist command flag
+    - This command first queries Active Directory for a list of DCs
+    - List all DCs in the domain
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: medium
+  inTheWild: common
+  noiseProjection: low
+  regressionVolume: benign admin activity
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1018
+    - s0359
+  references:
+    - ref_nltest.md
+  emulation:
+    - art_t1018_test3_uid_52ab5108-3f6f-42fb-8ba3-73bc054f22c8
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('nltest', '/dclist')
