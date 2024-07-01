@@ -1,22 +1,24 @@
 ---
 detect:
-  title: net_pid_0001_domain_admin_group_enum
+  title: net_pid_0003_domain_group_enum
   description:
-    - net command run to list users in domain admins group
+    - net command run to list groups on a domain
+    - will list users in a group if a group name is passed
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 2
-  urgency: medium
+  detectCon: 4
+  urgency: low
   inTheWild: common
-  noiseProjection: low
-  regressionVolume: admin user activity
-  responseEffort: medium
+  noiseProjection: high
+  regressionVolume: benign process and user activity
+  responseEffort: high
   confidence: certain
 intel:
   tags:
     -
   attackId:
     - t1069
+    - s0039
   references:
     - ref_net.md
   emulation:
@@ -42,6 +44,5 @@ logic:
   kqlQuery: | 
     | where FileName has_any ('net', 'net1')
       and FileName endswith '.exe'
-      and ProcessCommandLine has_all ('group', 'Domain', 'admins')
+      and ProcessCommandLine has 'group'
       and ProcessCommandLine contains '/d'
-    | where ProcessCommandLine !contains '/add'

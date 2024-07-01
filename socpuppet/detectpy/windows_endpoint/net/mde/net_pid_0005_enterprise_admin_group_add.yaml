@@ -1,22 +1,23 @@
 ---
 detect:
-  title: net_pid_0001_domain_admin_group_enum
+  title: net_pid_0005_enterprise_admin_group_add
   description:
-    - net command run to list users in domain admins group
+    - net command run to add user to enterprise admins group
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 2
-  urgency: medium
+  detectCon: 1
+  urgency: high
   inTheWild: common
   noiseProjection: low
   regressionVolume: admin user activity
-  responseEffort: medium
+  responseEffort: low
   confidence: certain
 intel:
   tags:
     -
   attackId:
     - t1069
+    - s0039
   references:
     - ref_net.md
   emulation:
@@ -44,4 +45,4 @@ logic:
       and FileName endswith '.exe'
       and ProcessCommandLine has_all ('group', 'Domain', 'admins')
       and ProcessCommandLine contains '/d'
-    | where ProcessCommandLine !contains '/add'
+    | where ProcessCommandLine contains '/add'

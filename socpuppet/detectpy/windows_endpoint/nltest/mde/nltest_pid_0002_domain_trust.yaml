@@ -42,5 +42,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has 'nltest'
-      and ProcessCommandLine has_any ('/domain_trusts', '/trusted_domains')
+    | where ProcessCommandLine has_all ('/domain_trusts', 'nltest')

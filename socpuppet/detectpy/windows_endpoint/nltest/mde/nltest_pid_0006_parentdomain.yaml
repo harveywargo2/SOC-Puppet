@@ -1,24 +1,26 @@
 ---
 detect:
-  title: net_pid_0001_domain_admin_group_enum
+  title: nltest_pid_0006_parentdomain
   description:
-    - net command run to list users in domain admins group
+    - nltest running /parentdomain commands
+    - Returns a list of trusted domains
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 2
   urgency: medium
   inTheWild: common
   noiseProjection: low
-  regressionVolume: admin user activity
-  responseEffort: medium
+  regressionVolume: benign admin activity
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
     -
   attackId:
-    - t1069
+    - t1482
+    - s0359
   references:
-    - ref_net.md
+    - ref_nltest.md
   emulation:
     -
   pattern:
@@ -27,7 +29,7 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_created
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -40,8 +42,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName has_any ('net', 'net1')
-      and FileName endswith '.exe'
-      and ProcessCommandLine has_all ('group', 'Domain', 'admins')
-      and ProcessCommandLine contains '/d'
-    | where ProcessCommandLine !contains '/add'
+    | where ProcessCommandLine has_all ('/domain_trusts', 'nltest', '/all_trusts')

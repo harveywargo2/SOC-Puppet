@@ -27,3 +27,91 @@ def net_pid_0001_domain_admin_group_enum(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def net_pid_0002_enterprise_admin_group_enum(*, logic='mde', lookback='1d'):
+    """
+    net
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'net_pid_0002_enterprise_admin_group_enum.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0003_domain_group_enum(*, logic='mde', lookback='1d'):
+    """
+    net
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'net_pid_0003_domain_group_enum.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0004_domain_admin_group_add(*, logic='mde', lookback='1d'):
+    """
+    net
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'net_pid_0004_domain_admin_group_add.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0005_enterprise_admin_group_add(*, logic='mde', lookback='1d'):
+    """
+    net
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'net_pid_0005_enterprise_admin_group_add.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

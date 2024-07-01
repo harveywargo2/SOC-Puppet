@@ -1,8 +1,8 @@
 ---
 detect:
-  title: net_pid_0001_domain_admin_group_enum
+  title: net_pid_0002_enterprise_admin_group_enum
   description:
-    - net command run to list users in domain admins group
+    - net command run to list users in enterprise admins group
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 2
@@ -17,6 +17,7 @@ intel:
     -
   attackId:
     - t1069
+    - s0039
   references:
     - ref_net.md
   emulation:
@@ -42,6 +43,6 @@ logic:
   kqlQuery: | 
     | where FileName has_any ('net', 'net1')
       and FileName endswith '.exe'
-      and ProcessCommandLine has_all ('group', 'Domain', 'admins')
-      and ProcessCommandLine contains '/d'
+      and ProcessCommandLine has_all ('group', 'Enterprise', 'Admins')
+    | where ProcessCommandLine contains '/d'
     | where ProcessCommandLine !contains '/add'

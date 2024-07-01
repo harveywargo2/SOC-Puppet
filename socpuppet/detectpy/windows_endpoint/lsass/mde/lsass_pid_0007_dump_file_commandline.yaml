@@ -41,4 +41,4 @@ logic:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where ProcessCommandLine has_all ('lsass', 'dmp')
-    | where ProcessCommandLine contains 'lsass.dmp'
+      or ProcessCommandLine contains 'lsass.dmp'

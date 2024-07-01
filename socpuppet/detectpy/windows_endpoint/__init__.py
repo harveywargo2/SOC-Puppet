@@ -15,7 +15,7 @@ import socpuppet.detectpy.windows_endpoint.net
 import socpuppet.detectpy.windows_endpoint.nltest
 import socpuppet.detectpy.windows_endpoint.nppspy
 import socpuppet.detectpy.windows_endpoint.ntds
-import socpuppet.detectpy.windows_endpoint.powerdump
+import socpuppet.detectpy.windows_endpoint.powershell_empire
 import socpuppet.detectpy.windows_endpoint.powershell
 import socpuppet.detectpy.windows_endpoint.procdump
 import socpuppet.detectpy.windows_endpoint.pypykatz
