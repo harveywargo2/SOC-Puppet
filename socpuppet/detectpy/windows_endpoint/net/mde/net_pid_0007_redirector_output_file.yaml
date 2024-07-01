@@ -1,8 +1,10 @@
 ---
 detect:
-  title: net_pid_0001_domain_admin_group_enum
+  title: net_pid_0007_redirector_output_file
   description:
-    - net command run to list users in domain admins group
+    - net command run
+    - output redirected '>' or '>>' to a file
+    - potential recon exfil
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 2
@@ -28,21 +30,24 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_created
+    - file_create
+    - file_rename
+    - file_modify
+    - file_delete
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_process_events
+  dataTable: device_file_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceProcessEvents
+  kqlTable: DeviceFileEvents
   kqlQuery: | 
-    | where FileName has_any ('net', 'net1')
-      and FileName endswith '.exe'
-      and ProcessCommandLine has_all ('group', 'Domain', 'admins')
-      and ProcessCommandLine contains '/d'
-    | where ProcessCommandLine !contains '/add'
+    | where InitiatingProcessFileName =~'net.exe'
+      or InitiatingProcessFileName =~ 'net1.exe'
+    | where isnotempty(InitiatingProcessCommandLine)
+      and FileName !endswith '.exe'
+      and isnotnull(FileSize)

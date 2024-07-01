@@ -1,21 +1,34 @@
 ---
-title: net_pid_0008_file_rename
-intel:
+detect:
+  title: net_pid_0008_file_masquerade
   description:
-    - net command renamed
+    - net command line tool masquerading
   detectType: single_line_match
-  detectCon: 1
   detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: only attack pattern
+  responseEffort: low
+  confidence: certain
+intel:
   tags:
-    - lolbin
-  attackTechnique:
-  attackSoftware: s0039
+    -
+  attackId:
+    - t1036
+    - s0039
   references:
+    - ref_net.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_created
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:

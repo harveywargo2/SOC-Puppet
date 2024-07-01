@@ -115,3 +115,69 @@ def net_pid_0005_enterprise_admin_group_add(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def net_pid_0006_domain_group_output_redirected_file(*, logic='mde', lookback='1d'):
+    """
+    net
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'net_pid_0006_domain_group_output_redirected_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0007_redirector_output_file(*, logic='mde', lookback='1d'):
+    """
+    net
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'net_pid_0007_redirector_output_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def net_pid_0008_file_masquerade(*, logic='mde', lookback='1d'):
+    """
+    net
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'net_pid_0008_file_masquerade.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
