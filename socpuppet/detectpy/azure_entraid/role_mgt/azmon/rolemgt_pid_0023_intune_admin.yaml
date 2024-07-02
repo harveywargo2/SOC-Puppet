@@ -1,23 +1,32 @@
 ---
-title: rolemgt_pid_0042_any_intune_admin_not_pim
-intel:
+detect:
+  title: rolemgt_pid_0023_intune_admin
   description:
-    - Any Entra ID CAP Admin Role Add, Remove, or Modify Activity
-    - Can manage all aspects of the Intune product.
-    - PIM Excluded
+    - Entra ID Intune Admin
+    - Any Role Add, Remove, or Modify Activity
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume: benign admin activity
+  analysisEffort:
+  confidence:
+intel:
   tags:
     -
-  attackTechnique:
-    - t1098.003
-  attackSoftware:
+  attackId:
+    - t1098
   references:
+    - ref_role_management.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: entra_id
+  dataSource:
+    - entra_id
   dataType:
     - core_directory
     - privileged_identity_management
@@ -32,8 +41,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: AuditLogs
-  kqlQuery: |
+  kqlQuery: | 
     | where Category =~ 'RoleManagement'
     | where TargetResources contains '3a2c62db-5318-420d-8d74-23affee5d9d5'
-    | where LoggedByService !~ 'PIM'
-      and Identity !~ 'MS-PIM'
+    | extend PimLog = iff(LoggedByService =~ 'PIM' or Identity =~ 'MS-PIM', 'TRUE', 'FALSE')
