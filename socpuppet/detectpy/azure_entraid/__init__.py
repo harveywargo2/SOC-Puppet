@@ -1,1 +1,3 @@
+import socpuppet.detectpy.azure_entraid.fed_trust
 import socpuppet.detectpy.azure_entraid.role_mgt
+import socpuppet.detectpy.azure_entraid.user_activity

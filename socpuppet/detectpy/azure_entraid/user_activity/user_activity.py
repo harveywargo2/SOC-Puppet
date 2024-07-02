@@ -3,25 +3,13 @@ import os
 import socpuppet as soc
 
 
-def user_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+azpath = os.path.join(cpath, 'azmon')
 
 
-def user_azmon_path():
+def user_pid_0001_mfa_susp_activity_reported(*, logic='azmon', lookback='1d'):
     """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(user_path(), 'logic_azmon')
-    return output
-
-
-def user_pid_0001_mfa_suspicious_activity_reported(*, logic='azmon', lookback='1d'):
-    """
-    User MFA Activity
+    Azure Builtin Roles
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -29,8 +17,8 @@ def user_pid_0001_mfa_suspicious_activity_reported(*, logic='azmon', lookback='1
     """
 
     if logic == 'azmon':
-        with open(os.path.join(user_azmon_path(),
-                               'user_pid_0001_mfa_suspicious_activity_reported.yaml'), 'r') as file:
+        with open(os.path.join(azpath,
+                               'user_pid_0001_mfa_susp_activity_reported.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.azmon_query_builder(data, lookback)
@@ -43,7 +31,7 @@ def user_pid_0001_mfa_suspicious_activity_reported(*, logic='azmon', lookback='1
 
 def user_pid_0002_mfa_fraud_reported(*, logic='azmon', lookback='1d'):
     """
-    User MFA Activity
+    Azure Builtin Roles
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -51,7 +39,7 @@ def user_pid_0002_mfa_fraud_reported(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(user_azmon_path(),
+        with open(os.path.join(azpath,
                                'user_pid_0002_mfa_fraud_reported.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -61,4 +49,3 @@ def user_pid_0002_mfa_fraud_reported(*, logic='azmon', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
-

@@ -1,21 +1,31 @@
 ---
-title: rolemgt_pid_0001_any_global_admin
-intel:
+detect:
+  title: trust_pid_0001_setting_modified
   description:
     - user or app modifies federation settings in the tenant
   detectType: single_line_match
-  detectCon: 3
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: benign admin activity
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
     -
-  attackTechnique:
-    - t1098.003
-  attackSoftware:
+  attackId:
+    - t1492
   references:
+    - ref_fed_trust.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: entra_id
+  dataSource:
+    - entra_id
   dataType:
     - core_directory
   dataCollector: azure_active_directory
@@ -29,6 +39,6 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: AuditLogs
-  kqlQuery: |
+  kqlQuery: | 
     | where OperationName =~ "Set federation settings on domain"
       or OperationName =~ "Set domain authentication"
