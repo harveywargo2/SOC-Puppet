@@ -578,3 +578,223 @@ def rolemgt_pid_0026_network_admin(*, logic='azmon', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def rolemgt_pid_0027_priv_role_admin(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0027_priv_role_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0028_security_admin(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0028_security_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0029_security_operator(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0029_security_operator.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0030_priv_auth_admin(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0030_priv_auth_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0031_security_reader(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0031_security_reader.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0032_user_admin(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0032_user_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0033_tier_support(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0033_tier_support.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0034_sharepoint_admin(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0034_sharepoint_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0035_teams_admin(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0035_teams_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def rolemgt_pid_0036_permissions_mgt_admin(*, logic='azmon', lookback='1d'):
+    """
+    Azure Builtin Roles
+
+    :param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'azmon':
+        with open(os.path.join(azpath,
+                               'rolemgt_pid_0036_permissions_mgt_admin.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.azmon_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
