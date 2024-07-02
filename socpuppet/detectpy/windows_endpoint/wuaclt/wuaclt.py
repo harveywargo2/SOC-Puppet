@@ -3,33 +3,21 @@ import os
 import socpuppet as soc
 
 
-def wuauclt_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
-
-
-def wuauclt_mde_path():
-    """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(wuauclt_path(), 'logic_mde')
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+mpath = os.path.join(cpath, 'mde')
 
 
 def wuauclt_pid_0001_execute_dll(*, logic='mde', lookback='1d'):
     """
-    wuauclt
+    cmstp
 
-    :param logic: Logic Selection
+    param logic: Logic Selection
     :param lookback: Lookback Time
     :return: Pandas Dataframe of Results
     """
 
     if logic == 'mde':
-        with open(os.path.join(wuauclt_mde_path(),
+        with open(os.path.join(mpath,
                                'wuauclt_pid_0001_execute_dll.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 

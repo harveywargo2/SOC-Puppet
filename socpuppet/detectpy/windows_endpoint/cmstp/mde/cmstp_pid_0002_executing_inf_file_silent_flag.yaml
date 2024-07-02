@@ -1,23 +1,33 @@
 ---
-title: cmstp_pid_0004_executing_inf_file_single_suer_flag
-intel:
+detect:
+  title: cmstp_pid_0002_executing_inf_file_silent_flag
   description:
-    - installs a specially formatted .inf with single user flag
+    - cmstp installs a specially formatted .inf with silent flag set
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-    - lolbin
-  attackTechnique: t1218.003
-  attackSoftware:
+    -
+  attackId:
+    - t1218
   references:
+    -
   emulation:
     -
   pattern:
-    - cmstp.exe /s path\to\some_file.inf /su
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -33,4 +43,4 @@ logic:
     | where ProcessCommandLine has 'cmstp'
       or ProcessVersionInfoOriginalFileName has 'cmstp'
     | where ProcessCommandLine contains '.inf'
-      and ProcessCommandLine contains '/su'
+      and ProcessCommandLine contains '/s'

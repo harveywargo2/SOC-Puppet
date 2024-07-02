@@ -7,14 +7,6 @@ cpath = os.path.dirname(os.path.abspath(__file__))
 mpath = os.path.join(cpath, 'mde')
 
 
-def hh_mde_path():
-    """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(mpath, 'logic_mde')
-    return output
-
-
 def comsvcs_pid_0001_created_minidump(*, logic='mde', lookback='1d'):
     """
     comsvcs

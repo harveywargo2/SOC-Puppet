@@ -3,25 +3,13 @@ import os
 import socpuppet as soc
 
 
-def cmstp_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
-
-
-def cmstp_mde_path():
-    """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(cmstp_path(), 'logic_mde')
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+mpath = os.path.join(cpath, 'mde')
 
 
 def cmstp_pid_0001_executing_inf_file(*, logic='mde', lookback='1d'):
     """
-    CMSTP Executing inf file
+    cmstp
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -29,7 +17,7 @@ def cmstp_pid_0001_executing_inf_file(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open(os.path.join(cmstp_mde_path(),
+        with open(os.path.join(mpath,
                                'cmstp_pid_0001_executing_inf_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -43,7 +31,7 @@ def cmstp_pid_0001_executing_inf_file(*, logic='mde', lookback='1d'):
 
 def cmstp_pid_0002_executing_inf_file_silent_flag(*, logic='mde', lookback='1d'):
     """
-    CMSTP Executing inf file with Silent Flag
+    cmstp
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -51,7 +39,7 @@ def cmstp_pid_0002_executing_inf_file_silent_flag(*, logic='mde', lookback='1d')
     """
 
     if logic == 'mde':
-        with open(os.path.join(cmstp_mde_path(),
+        with open(os.path.join(mpath,
                                'cmstp_pid_0002_executing_inf_file_silent_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -63,18 +51,18 @@ def cmstp_pid_0002_executing_inf_file_silent_flag(*, logic='mde', lookback='1d')
     return query
 
 
-def cmstp_pid_0003_executing_inf_file_all_profiles_flag(*, logic='mde', lookback='1d'):
+def cmstp_pid_0003_executing_inf_all_profiles_flag(*, logic='mde', lookback='1d'):
     """
-    CMSTP Executing inf file with All Profiles Flag
+    cmstp
 
-    :param logic: Logic Selection
+    param logic: Logic Selection
     :param lookback: Lookback Time
     :return: Pandas Dataframe of Results
     """
 
     if logic == 'mde':
-        with open(os.path.join(cmstp_mde_path(),
-                               'cmstp_pid_0003_executing_inf_file_all_profiles_flag.yaml'), 'r') as file:
+        with open(os.path.join(mpath,
+                               'cmstp_pid_0003_executing_inf_all_profiles_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -87,7 +75,7 @@ def cmstp_pid_0003_executing_inf_file_all_profiles_flag(*, logic='mde', lookback
 
 def cmstp_pid_0004_executing_inf_file_single_user_flag(*, logic='mde', lookback='1d'):
     """
-    CMSTP Executing inf file with Single User Flag
+    cmstp
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -95,7 +83,7 @@ def cmstp_pid_0004_executing_inf_file_single_user_flag(*, logic='mde', lookback=
     """
 
     if logic == 'mde':
-        with open(os.path.join(cmstp_mde_path(),
+        with open(os.path.join(mpath,
                                'cmstp_pid_0004_executing_inf_file_single_user_flag.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -109,7 +97,7 @@ def cmstp_pid_0004_executing_inf_file_single_user_flag(*, logic='mde', lookback=
 
 def cmstp_pid_0005_spawning_child_process(*, logic='mde', lookback='1d'):
     """
-    CMSTP spawning child process
+    cmstp
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -117,7 +105,7 @@ def cmstp_pid_0005_spawning_child_process(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open(os.path.join(cmstp_mde_path(),
+        with open(os.path.join(mpath,
                                'cmstp_pid_0005_spawning_child_process.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -131,7 +119,7 @@ def cmstp_pid_0005_spawning_child_process(*, logic='mde', lookback='1d'):
 
 def cmstp_pid_0006_rare_folder_path(*, logic='mde', lookback='1d'):
     """
-    CMSTP Spawned from folder path that is not c:\Windows\System32
+    cmstp
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -139,7 +127,7 @@ def cmstp_pid_0006_rare_folder_path(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open(os.path.join(cmstp_mde_path(),
+        with open(os.path.join(mpath,
                                'cmstp_pid_0006_rare_folder_path.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -149,4 +137,3 @@ def cmstp_pid_0006_rare_folder_path(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
-

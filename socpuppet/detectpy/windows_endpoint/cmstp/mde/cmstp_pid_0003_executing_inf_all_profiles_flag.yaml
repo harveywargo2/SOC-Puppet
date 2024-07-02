@@ -1,23 +1,33 @@
 ---
-title: cmstp_pid_0003_executing_inf_file_all_profiles_flag
-intel:
+detect:
+  title: cmstp_pid_0003_executing_inf_all_profiles_flag
   description:
-    - installs a specially formatted .inf with all profiles flag set
+    - cmstp installs a specially formatted .inf with all profiles flag set
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-    - lolbin
-  attackTechnique: t1218.003
-  attackSoftware:
+    -
+  attackId:
+    - t1218
   references:
+    -
   emulation:
-    - atomic_red_team_t1218_003_t2_guid_748cb4f6-2fb3-4e97-b7ad-b22635a09ab0
+    -
   pattern:
-    - cmstp.exe /s path\to\some_file.inf /au
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:

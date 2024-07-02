@@ -1,21 +1,33 @@
 ---
-title: dumpert_pid_0001_direct_api_call
-intel:
+detect:
+  title: dumpert_pid_0001_exe_or_dll
   description:
-    - Dump Creds from memory
+    -       Dump Creds from memory
   detectType: single_line_match
-  detectCon: 1
   detectLanguage: kql
+  detectCon: 3
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
-  attackTechnique: t1003.001
-  attackSoftware:
+    -
+  attackId:
+    - t1003
   references:
+    -
   emulation:
-    - atomic_red_team_t1003_001_t3_guid_7ae7102c-a099-45c8-b985-4c7a2d05790d
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:

@@ -1,23 +1,33 @@
 ---
-title: cmstp_pid_0005_spawning_child_process
-intel:
+detect:
+  title: cmstp_pid_0005_spawning_child_process
   description:
-    - rare activity of cmstp.exe spawning a child process
+    - cmstp rare activity of cmstp.exe spawning a child process
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-    - lolbin
-  attackTechnique: t1218.003
-  attackSoftware:
+    -
+  attackId:
+    - t1218
   references:
+    -
   emulation:
     -
   pattern:
     -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:

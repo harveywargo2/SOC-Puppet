@@ -1,23 +1,33 @@
 ---
-title: cmstp_pid_0006_rare_folder_path
-intel:
+detect:
+  title: cmstp_pid_0001_executing_inf_file
   description:
-    - rare activity of cmstp.exe being called from any folder that isn't system32
+    - cmstp installs a specially formatted .inf
   detectType: single_line_match
-  detectCon: 3
   detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-    - lolbin
-  attackTechnique: t1036
-  attackSoftware:
+    -
+  attackId:
+    - t1218
   references:
+    -
   emulation:
     -
   pattern:
     -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -30,6 +40,6 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName has 'cmstp'
+    | where ProcessCommandLine has 'cmstp'
       or ProcessVersionInfoOriginalFileName has 'cmstp'
-    | where FolderPath !contains @'c:\windows\system32\'
+    | where ProcessCommandLine contains '.inf'
