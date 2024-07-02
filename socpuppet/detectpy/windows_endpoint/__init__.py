@@ -15,6 +15,7 @@ import socpuppet.detectpy.windows_endpoint.lsass
 import socpuppet.detectpy.windows_endpoint.mimikatz
 import socpuppet.detectpy.windows_endpoint.msdt
 import socpuppet.detectpy.windows_endpoint.net
+import socpuppet.detectpy.windows_endpoint.netsh
 import socpuppet.detectpy.windows_endpoint.nltest
 import socpuppet.detectpy.windows_endpoint.nppspy
 import socpuppet.detectpy.windows_endpoint.ntds

@@ -1,0 +1,50 @@
+---
+detect:
+  title: netsh_pid_0011_port_forwarding_rdp
+  description:
+    - netsh used to set up port forwarding for rdp
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1090
+    - s0108
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    - netsh I p a v l=8001 listena=<JUMP BOX IP> connectp=3389 c=<DESTINATION IP>
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'netsh'
+    | where ProcessCommandLine has_all ('listena', 'connectp')
+      and ProcessCommandLine contains 'c=3389'
+    | where ProcessCommandLine contains ' i '
+      and ProcessCommandLine contains ' p '
+      and ProcessCommandLine contains ' a '
+      and ProcessCommandLine contains ' v '
