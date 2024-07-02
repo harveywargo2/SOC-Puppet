@@ -1,24 +1,24 @@
 ---
 detect:
-  title: lsass_pid_0007_dump_file_commandline
+  title: net_pid_0020_view
   description:
-    - Lsass.dmp Indicator in CommandLine
+    -  net CLT view visible computers
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
+  detectCon: 3
+  urgency: low
   inTheWild: common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
-  responseEffort: low
-  confidence: certain
+  noiseProjection: high
+  regressionVolume: admin or benign activity
+  responseEffort: high
+  confidence: not certain
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - s0039
   references:
-    - ref_lsass.md
+    - ref_net.md
   emulation:
     -
   pattern:
@@ -32,7 +32,7 @@ dataRequirements:
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_file_events
+  dataTable: device_process_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
@@ -40,5 +40,6 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('lsass', 'dmp')
-      or ProcessCommandLine contains 'lsass.dmp'
+    | where FileName has_any ('net', 'net1')
+      and FileName endswith '.exe'
+      and ProcessCommandLine has 'view'

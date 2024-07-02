@@ -1,24 +1,25 @@
 ---
 detect:
-  title: lsass_pid_0007_dump_file_commandline
+  title: net_pid_0008_file_masquerade
   description:
-    - Lsass.dmp Indicator in CommandLine
+    - net command line tool masquerading
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
-  inTheWild: common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: only attack pattern
   responseEffort: low
   confidence: certain
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1036
+    - s0039
   references:
-    - ref_lsass.md
+    - ref_net.md
   emulation:
     -
   pattern:
@@ -32,7 +33,7 @@ dataRequirements:
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_file_events
+  dataTable: device_process_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
@@ -40,5 +41,7 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('lsass', 'dmp')
-      or ProcessCommandLine contains 'lsass.dmp'
+    | where ProcessVersionInfoOriginalFileName =~ 'net.exe'
+      or ProcessVersionInfoOriginalFileName =~ 'net1.exe'
+    | where FileName !~ 'net.exe'
+      and FileName !~ 'net1.exe'

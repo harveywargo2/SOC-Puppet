@@ -1,35 +1,35 @@
 ---
 detect:
-  title: nltest_pid_0002_domain_trust
+  title: net_pid_0013_localgroup_enum
   description:
-    - nltest running domain trust commands
-    - Returns a list of trusted domains
+    - net command run to list localgroups
+    - will list users in a localgroup
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 2
-  urgency: medium
+  detectCon: 3
+  urgency: low
   inTheWild: common
-  noiseProjection: low
-  regressionVolume: benign admin activity
-  analysisEffort: low
-  confidence: certain
+  noiseProjection: high
+  regressionVolume: admin or benign activity
+  responseEffort: high
+  confidence: not certain
 intel:
   tags:
     -
   attackId:
-    - t1482
-    - s0359
+    - t1069
+    - s0039
   references:
-    - ref_nltest.md
+    - ref_net.md
   emulation:
-    - art_t1462_test2_uid_2e22641d-0498-48d2-b9ff-c71e496ccdbe
+    -
   pattern:
     -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_creation
+    - process_created
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -42,4 +42,7 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('/domain_trusts', 'nltest')
+    | where FileName has_any ('net', 'net1')
+      and FileName endswith '.exe'
+      and ProcessCommandLine has 'localgroup'
+    | where ProcessCommandLine !contains '/add'

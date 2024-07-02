@@ -1,0 +1,47 @@
+---
+detect:
+  title: rolemgt_pid_0011_cloud_device_admin
+  description:
+    - Entra ID Cloud Device Security
+    - Any Role Add, Remove, or Modify Activity
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume: benign admin activity
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1098
+  references:
+    - ref_role_management.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: | 
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '7698a772-787b-4ac8-901f-60d6b08affd2'
+    | extend PimLog = iff(LoggedByService =~ 'PIM' or Identity =~ 'MS-PIM', 'TRUE', 'FALSE')

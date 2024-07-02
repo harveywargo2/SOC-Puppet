@@ -1,24 +1,26 @@
 ---
 detect:
-  title: lsass_pid_0007_dump_file_commandline
+  title: net_pid_0003_domain_group_enum
   description:
-    - Lsass.dmp Indicator in CommandLine
+    - net command run to list groups on a domain
+    - will list users in a group if a group name is passed
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
+  detectCon: 4
+  urgency: low
   inTheWild: common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
-  responseEffort: low
+  noiseProjection: high
+  regressionVolume: benign process and user activity
+  responseEffort: high
   confidence: certain
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1069
+    - s0039
   references:
-    - ref_lsass.md
+    - ref_net.md
   emulation:
     -
   pattern:
@@ -32,7 +34,7 @@ dataRequirements:
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_file_events
+  dataTable: device_process_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
@@ -40,5 +42,7 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('lsass', 'dmp')
-      or ProcessCommandLine contains 'lsass.dmp'
+    | where FileName has_any ('net', 'net1')
+      and FileName endswith '.exe'
+      and ProcessCommandLine has 'group'
+      and ProcessCommandLine contains '/d'

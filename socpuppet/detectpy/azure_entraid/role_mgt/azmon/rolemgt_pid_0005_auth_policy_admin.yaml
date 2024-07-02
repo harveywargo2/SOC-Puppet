@@ -1,0 +1,47 @@
+---
+detect:
+  title: rolemgt_pid_0005_auth_policy_admin
+  description:
+    - Entra ID Auth Policy Admin
+    - Role Add, Remove, or Modify Activity
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume: benign admin activity
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1098
+  references:
+    - ref_role_management.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: | 
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '0526716b-113d-4c15-b2c8-68e3c22b9f80'
+    | extend PimLog = iff(LoggedByService =~ 'PIM' or Identity =~ 'MS-PIM', 'TRUE', 'FALSE')

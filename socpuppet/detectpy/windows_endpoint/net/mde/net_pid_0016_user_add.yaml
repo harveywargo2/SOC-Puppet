@@ -1,17 +1,17 @@
 ---
 detect:
-  title: net_pid_0001_domain_admin_group_enum
+  title: net_pid_0016_user_add
   description:
-    - net command run to list users in domain admins group
+    - net CLT used to add users on a device
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 2
-  urgency: medium
+  detectCon: 3
+  urgency: low
   inTheWild: common
-  noiseProjection: low
-  regressionVolume: admin user activity
-  responseEffort: medium
-  confidence: certain
+  noiseProjection: high
+  regressionVolume: admin or benign activity
+  responseEffort: high
+  confidence: not certain
 intel:
   tags:
     -
@@ -43,6 +43,8 @@ logic:
   kqlQuery: | 
     | where FileName has_any ('net', 'net1')
       and FileName endswith '.exe'
-      and ProcessCommandLine has_all ('group', 'Domain', 'admins')
-      and ProcessCommandLine contains '/d'
-    | where ProcessCommandLine !contains '/add'
+      and ProcessCommandLine has 'user'
+      and ProcessCommandLine !contains '/d'
+      and ProcessCommandLine contains '/add'
+    | where ProcessCommandLine contains 'net user'
+      or ProcessCommandLine contains 'net1 user'

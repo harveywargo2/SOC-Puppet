@@ -1,1 +1,0 @@
-from socpuppet.detectpy.azure_entraid.role_management.role_mgt import *

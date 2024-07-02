@@ -1,1 +1,0 @@
-from socpuppet.detectpy.windows_endpoint.powerdump.powerdump import *

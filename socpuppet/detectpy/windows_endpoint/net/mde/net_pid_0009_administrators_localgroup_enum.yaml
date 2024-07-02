@@ -1,24 +1,25 @@
 ---
 detect:
-  title: lsass_pid_0007_dump_file_commandline
+  title: net_pid_0009_administrators_localgroup_enum
   description:
-    - Lsass.dmp Indicator in CommandLine
+    - net command used to list users in localgroup administrators
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
+  detectCon: 3
+  urgency: medium
   inTheWild: common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
-  responseEffort: low
+  noiseProjection: medium
+  regressionVolume: admin or benign activity
+  responseEffort: medium
   confidence: certain
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1069
+    - s0039
   references:
-    - ref_lsass.md
+    - ref_net.md
   emulation:
     -
   pattern:
@@ -32,7 +33,7 @@ dataRequirements:
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_file_events
+  dataTable: device_process_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
@@ -40,5 +41,7 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('lsass', 'dmp')
-      or ProcessCommandLine contains 'lsass.dmp'
+    | where FileName has_any ('net', 'net1')
+      and FileName endswith '.exe'
+      and ProcessCommandLine has_all ('localgroup', 'administrators')
+    | where ProcessCommandLine !contains '/add'

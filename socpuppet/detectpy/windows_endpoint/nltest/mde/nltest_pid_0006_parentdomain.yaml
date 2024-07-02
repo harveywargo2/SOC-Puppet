@@ -1,24 +1,26 @@
 ---
 detect:
-  title: lsass_pid_0007_dump_file_commandline
+  title: nltest_pid_0006_parentdomain
   description:
-    - Lsass.dmp Indicator in CommandLine
+    - nltest running /parentdomain commands
+    - Returns a list of trusted domains
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
+  detectCon: 2
+  urgency: medium
   inTheWild: common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
-  responseEffort: low
+  noiseProjection: low
+  regressionVolume: benign admin activity
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1482
+    - s0359
   references:
-    - ref_lsass.md
+    - ref_nltest.md
   emulation:
     -
   pattern:
@@ -27,12 +29,12 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_created
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_file_events
+  dataTable: device_process_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
@@ -40,5 +42,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('lsass', 'dmp')
-      or ProcessCommandLine contains 'lsass.dmp'
+    | where ProcessCommandLine has_all ('/domain_trusts', 'nltest', '/all_trusts')

@@ -1,0 +1,48 @@
+---
+detect:
+  title: rolemgt_pid_0033_tier_support
+  description:
+    - Entra ID Partner Tier 1 or Tier 2 Support
+    - Any Role Add, Remove, or Modify Activity
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume: benign admin activity
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1098
+  references:
+    - ref_role_management.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: | 
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '4ba39ca4-527c-499a-b93d-d9b492c50246'
+      or TargetResources contains 'e00e864a-17c5-4a4b-9c06-f5b95a8d5bd8'
+    | extend PimLog = iff(LoggedByService =~ 'PIM' or Identity =~ 'MS-PIM', 'TRUE', 'FALSE')

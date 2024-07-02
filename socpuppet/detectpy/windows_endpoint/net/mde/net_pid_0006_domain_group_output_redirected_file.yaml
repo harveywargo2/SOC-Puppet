@@ -1,35 +1,36 @@
 ---
 detect:
-  title: nltest_pid_0002_domain_trust
+  title: net_pid_0006_domain_group_output_redirected_file
   description:
-    - nltest running domain trust commands
-    - Returns a list of trusted domains
+    - net command run
+    - output redirected '>' or '>>' to a file
+    - potential recon exfil
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 2
   urgency: medium
   inTheWild: common
   noiseProjection: low
-  regressionVolume: benign admin activity
-  analysisEffort: low
+  regressionVolume: admin user activity
+  responseEffort: medium
   confidence: certain
 intel:
   tags:
     -
   attackId:
-    - t1482
-    - s0359
+    - t1069
+    - s0039
   references:
-    - ref_nltest.md
+    - ref_net.md
   emulation:
-    - art_t1462_test2_uid_2e22641d-0498-48d2-b9ff-c71e496ccdbe
+    -
   pattern:
     -
 dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_creation
+    - process_created
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -42,4 +43,10 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('/domain_trusts', 'nltest')
+    | where FileName has_any ('net', 'net1')
+      and FileName endswith '.exe'
+      and ProcessCommandLine has 'group'
+      and ProcessCommandLine contains '/d'
+    | where ProcessCommandLine contains '>>'
+      or ProcessCommandLine contains '>'
+      or ProcessCommandLine contains 'C$'

@@ -1,1 +1,1 @@
-from socpuppet.detectpy.azure_entraid.user_management.user_management import *
+from socpuppet.detectpy.azure_entraid.user_management.user_mgt import *

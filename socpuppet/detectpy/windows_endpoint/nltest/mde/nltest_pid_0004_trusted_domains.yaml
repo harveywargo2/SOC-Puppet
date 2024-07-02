@@ -1,9 +1,10 @@
 ---
 detect:
-  title: nltest_pid_0002_domain_trust
+  title: nltest_pid_0004_trusted_domains
   description:
     - nltest running domain trust commands
     - Returns a list of trusted domains
+    - Determines if netlogon session can be established
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 2
@@ -42,4 +43,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('/domain_trusts', 'nltest')
+    | where ProcessCommandLine has_all ('/trusted_domains', 'nltest')

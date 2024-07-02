@@ -1,0 +1,44 @@
+---
+detect:
+  title: trust_pid_0001_setting_modified
+  description:
+    - user or app modifies federation settings in the tenant
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: benign admin activity
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1492
+  references:
+    - ref_fed_trust.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - entra_id
+  dataType:
+    - core_directory
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: directory_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: | 
+    | where OperationName =~ "Set federation settings on domain"
+      or OperationName =~ "Set domain authentication"
