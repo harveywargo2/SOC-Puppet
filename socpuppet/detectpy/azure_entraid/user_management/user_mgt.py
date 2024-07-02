@@ -3,25 +3,13 @@ import os
 import socpuppet as soc
 
 
-def umgt_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
-
-
-def umgt_azmon_path():
-    """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(umgt_path(), 'logic_azmon')
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+azpath = os.path.join(cpath, 'azmon')
 
 
 def usermgt_pid_0001_user_add(*, logic='azmon', lookback='1d'):
     """
-    User Management
+    Azure Builtin Roles
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -29,7 +17,7 @@ def usermgt_pid_0001_user_add(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(umgt_azmon_path(),
+        with open(os.path.join(azpath,
                                'usermgt_pid_0001_user_add.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -41,9 +29,9 @@ def usermgt_pid_0001_user_add(*, logic='azmon', lookback='1d'):
     return query
 
 
-def usermgt_pid_0002_user_delete(*, logic='azmon', lookback='1d'):
+def usermgt_pid_0002_user_deleted(*, logic='azmon', lookback='1d'):
     """
-    User Management
+    Azure Builtin Roles
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -51,8 +39,8 @@ def usermgt_pid_0002_user_delete(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(umgt_azmon_path(),
-                               'usermgt_pid_0002_user_delete.yaml'), 'r') as file:
+        with open(os.path.join(azpath,
+                               'usermgt_pid_0002_user_deleted.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.azmon_query_builder(data, lookback)
@@ -65,7 +53,7 @@ def usermgt_pid_0002_user_delete(*, logic='azmon', lookback='1d'):
 
 def usermgt_pid_0003_user_hard_delete(*, logic='azmon', lookback='1d'):
     """
-    User Management
+    Azure Builtin Roles
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -73,7 +61,7 @@ def usermgt_pid_0003_user_hard_delete(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(umgt_azmon_path(),
+        with open(os.path.join(azpath,
                                'usermgt_pid_0003_user_hard_delete.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -85,9 +73,9 @@ def usermgt_pid_0003_user_hard_delete(*, logic='azmon', lookback='1d'):
     return query
 
 
-def usermgt_pid_0004_guest_invite(*, logic='azmon', lookback='1d'):
+def usermgt_pid_0004_guest_user_invite(*, logic='azmon', lookback='1d'):
     """
-    User Management Guest Invite
+    Azure Builtin Roles
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -95,8 +83,8 @@ def usermgt_pid_0004_guest_invite(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(umgt_azmon_path(),
-                               'usermgt_pid_0004_guest_invite.yaml'), 'r') as file:
+        with open(os.path.join(azpath,
+                               'usermgt_pid_0004_guest_user_invite.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.azmon_query_builder(data, lookback)
@@ -107,9 +95,9 @@ def usermgt_pid_0004_guest_invite(*, logic='azmon', lookback='1d'):
     return query
 
 
-def usermgt_pid_0005_guest_invite_bulk(*, logic='azmon', lookback='1d'):
+def usermgt_pid_0005_guest_invite_bulk_finished(*, logic='azmon', lookback='1d'):
     """
-    User Management Guest Invite
+    Azure Builtin Roles
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -117,7 +105,7 @@ def usermgt_pid_0005_guest_invite_bulk(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(umgt_azmon_path(),
+        with open(os.path.join(azpath,
                                'usermgt_pid_0005_guest_invite_bulk_finished.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -127,3 +115,4 @@ def usermgt_pid_0005_guest_invite_bulk(*, logic='azmon', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+

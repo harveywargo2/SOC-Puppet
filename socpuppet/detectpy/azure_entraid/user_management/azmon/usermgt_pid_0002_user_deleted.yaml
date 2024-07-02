@@ -1,21 +1,31 @@
 ---
-title: usermgt_pid_0001_user_add
-intel:
+detect:
+  title: usermgt_pid_0002_user_delete
   description:
-    - Identifies accounts that were successfully created
+    - Identifies accounts that were successfully deleted
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
     -
-  attackTechnique:
-    - t1136
-  attackSoftware:
+  attackId:
+    -
   references:
+    -
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: entra_id
+  dataSource:
+    - entra_id
   dataType:
     - core_directory
   dataCollector: azure_active_directory
@@ -29,7 +39,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: AuditLogs
-  kqlQuery: |
+  kqlQuery: | 
     | where Category =~ 'UserManagement'
-      and OperationName =~ 'Add user'
+      and OperationName =~ 'Delete user'
       and Result =~ 'success'

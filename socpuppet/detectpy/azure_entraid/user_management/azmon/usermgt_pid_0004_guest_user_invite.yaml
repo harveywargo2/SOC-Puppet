@@ -1,23 +1,33 @@
 ---
-title: usermgt_pid_0003_user_hard_delete
-intel:
+detect:
+  title: usermgt_pid_0004_guest_user_invite
   description:
-    - Identifies accounts that were successfully deleted
+    - Identifies accounts that were successfully invited to a tenant
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
     -
-  attackTechnique:
-    - t1136
-  attackSoftware:
+  attackId:
+    -
   references:
+    -
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: entra_id
+  dataSource:
+    - entra_id
   dataType:
-    - core_directory
+    - invited_users
   dataCollector: azure_active_directory
   dataForwardTo: msft_sentinel
   dataParser:
@@ -29,7 +39,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: AuditLogs
-  kqlQuery: |
+  kqlQuery: | 
     | where Category =~ 'UserManagement'
-      and OperationName =~ 'Hard Delete user'
+      and OperationName in~ ('Invite external user', 'Invite external user with reset invitation status')
       and Result =~ 'success'
