@@ -1,0 +1,47 @@
+---
+detect:
+  title: rolemgt_pid_0002_application_admin
+  description:
+    - Entra ID App Admin
+    - Role Add, Remove, or Modify Activity
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: benign admin activity
+  analysisEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1098
+  references:
+    - ref_role_management.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - entra_id
+  dataType:
+    - core_directory
+    - privileged_identity_management
+  dataCollector: azure_active_directory
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: audit_logs
+  dataIndex: role_management
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AuditLogs
+  kqlQuery: | 
+    | where Category =~ 'RoleManagement'
+    | where TargetResources contains '9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3'
+    | extend PimLog = iff(LoggedByService =~ 'PIM' or Identity =~ 'MS-PIM', 'TRUE', 'FALSE')

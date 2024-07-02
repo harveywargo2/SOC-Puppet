@@ -1,1 +1,0 @@
-from socpuppet.detectpy.azure_entraid.user_activity.user_activity import *

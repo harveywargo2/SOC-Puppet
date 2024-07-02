@@ -1,24 +1,32 @@
 ---
-title: rolemgt_pid_0002_any_global_admin_not_pim
-intel:
+detect:
+  title: rolemgt_pid_0001_global_admin
   description:
-    - Any Entra ID Global Admin Role Add, Remove, or Modify Activity
-    - Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities
-    - God Mode
-    - PIM Excluded
+    - Entra ID Global Admin
+    - Role Add, Remove, or Modify Activity
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: unknown
+  noiseProjection: low
+  regressionVolume: benign admin activity
+  analysisEffort: low
+  confidence: certain
+intel:
   tags:
     -
-  attackTechnique:
-    - t1098.003
-  attackSoftware:
+  attackId:
+    - t1098
   references:
+    - ref_role_management.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: entra_id
+  dataSource:
+    - entra_id
   dataType:
     - core_directory
     - privileged_identity_management
@@ -33,8 +41,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: AuditLogs
-  kqlQuery: |
+  kqlQuery: | 
     | where Category =~ 'RoleManagement'
     | where TargetResources contains '62e90394-69f5-4237-9190-012177145e10'
-    | where LoggedByService !~ 'PIM'
-      and Identity !~ 'MS-PIM'
+    | extend PimLog = iff(LoggedByService =~ 'PIM' or Identity =~ 'MS-PIM', 'TRUE', 'FALSE')

@@ -1,23 +1,32 @@
 ---
-title: rolemgt_pid_00010_any_auth_policy_admin_not_pim
-intel:
+detect:
+  title: rolemgt_pid_0005_auth_policy_admin
   description:
-    - Any Entra ID Auth Policy Admin Role Add, Remove, or Modify Activity
-    - Can create and manage the authentication methods policy, tenant-wide MFA settings, password protection policy, and verifiable credentials
-    - PIM Excluded
+    - Entra ID Auth Policy Admin
+    - Role Add, Remove, or Modify Activity
   detectType: single_line_match
-  detectCon: 2
   detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume: benign admin activity
+  analysisEffort:
+  confidence:
+intel:
   tags:
     -
-  attackTechnique:
-    - t1098.003
-  attackSoftware:
+  attackId:
+    - t1098
   references:
+    - ref_role_management.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: entra_id
+  dataSource:
+    - entra_id
   dataType:
     - core_directory
     - privileged_identity_management
@@ -32,8 +41,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: AuditLogs
-  kqlQuery: |
+  kqlQuery: | 
     | where Category =~ 'RoleManagement'
     | where TargetResources contains '0526716b-113d-4c15-b2c8-68e3c22b9f80'
-    | where LoggedByService !~ 'PIM'
-      and Identity !~ 'MS-PIM'
+    | extend PimLog = iff(LoggedByService =~ 'PIM' or Identity =~ 'MS-PIM', 'TRUE', 'FALSE')
