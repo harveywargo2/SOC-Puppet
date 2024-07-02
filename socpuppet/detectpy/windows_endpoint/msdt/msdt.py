@@ -3,25 +3,13 @@ import os
 import socpuppet as soc
 
 
-def msdt_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
-
-
-def msdt_mde_path():
-    """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(msdt_path(), 'logic_mde')
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+mpath = os.path.join(cpath, 'mde')
 
 
 def msdt_pid_0001_follina_rce_exploit(*, logic='mde', lookback='1d'):
     """
-    MSDT Follina RCE Exploit Attempt
+    nltest
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -29,7 +17,7 @@ def msdt_pid_0001_follina_rce_exploit(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open(os.path.join(msdt_mde_path(),
+        with open(os.path.join(mpath,
                                'msdt_pid_0001_follina_rce_exploit.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -41,9 +29,9 @@ def msdt_pid_0001_follina_rce_exploit(*, logic='mde', lookback='1d'):
     return query
 
 
-def msdt_pid_0002_pcwdiag_executing_xml(*, logic='mde', lookback='1d'):
+def msdt_pid_0002_pcwdiagnostic_executing_xml(*, logic='mde', lookback='1d'):
     """
-    MSDT pcwdiag executing xml
+    nltest
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -51,8 +39,8 @@ def msdt_pid_0002_pcwdiag_executing_xml(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open(os.path.join(msdt_mde_path(),
-                               'msdt_pid_0002_pcwdiag_executing_xml.yaml'), 'r') as file:
+        with open(os.path.join(mpath,
+                               'msdt_pid_0002_pcwdiagnostic_executing_xml.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
