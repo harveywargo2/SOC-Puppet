@@ -1,0 +1,46 @@
+---
+detect:
+  title: mshta_pid_0002_executing_vbs
+  description:
+    - mshta executing VBS files
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1218
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    - mshta vbscript:Execute("CreateObject(""Wscript.Shell"").Run ""powershell -noexit -file <filepath>"":close")
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'mshta'
+      or ProcessVersionInfoOriginalFileName has 'mshta'
+    | where ProcessCommandLine has_all ('vbscript', 'execute')
+      and ProcessCommandLine has_any  ('script', 'run', 'wscript')

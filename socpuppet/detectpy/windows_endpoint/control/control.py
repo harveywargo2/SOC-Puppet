@@ -1,0 +1,73 @@
+import yaml
+import os
+import socpuppet as soc
+
+
+cpath = os.path.dirname(os.path.abspath(__file__))
+mpath = os.path.join(cpath, 'mde')
+
+
+def control_pid_0001_executing_cpl_file(*, logic='mde', lookback='1d'):
+    """
+    control
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'control_pid_0001_executing_cpl_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def control_pid_0002_executing_dll_file(*, logic='mde', lookback='1d'):
+    """
+    control
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'control_pid_0002_executing_dll_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
+
+
+def control_pid_0003_rundll_executing_dll_file(*, logic='mde', lookback='1d'):
+    """
+    control
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'control_pid_0003_rundll_executing_dll_file.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query
