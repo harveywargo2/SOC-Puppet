@@ -3,25 +3,13 @@ import os
 import socpuppet as soc
 
 
-def uam_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+azpath = os.path.join(cpath, 'azmon')
 
 
-def uam_azmon_path():
+def uam_pid_0001_4738_user_normal_acnt_dont_expire_pwd(*, logic='azmon', lookback='1d'):
     """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(uam_path(), 'logic_azmon')
-    return output
-
-
-def uam_pid_0001_4738_user_normal_account_dont_expire_password(*, logic='azmon', lookback='1d'):
-    """
-    4738 User Account Management
+    User Account Management
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -29,8 +17,8 @@ def uam_pid_0001_4738_user_normal_account_dont_expire_password(*, logic='azmon',
     """
 
     if logic == 'azmon':
-        with open(os.path.join(uam_azmon_path(),
-                               'uam_pid_0001_4738_user_normal_account_dont_expire_password.yaml'), 'r') as file:
+        with open(os.path.join(azpath,
+                               'uam_pid_0001_4738_user_normal_acnt_dont_expire_pwd.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.azmon_query_builder(data, lookback)
@@ -41,9 +29,9 @@ def uam_pid_0001_4738_user_normal_account_dont_expire_password(*, logic='azmon',
     return query
 
 
-def uam_pid_0002_4738_user_normal_account_password_not_required(*, logic='azmon', lookback='1d'):
+def uam_pid_0002_4738_user_normal_acnt_pwd_not_required(*, logic='azmon', lookback='1d'):
     """
-    4738 User Account Management
+    User Account Management
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -51,8 +39,8 @@ def uam_pid_0002_4738_user_normal_account_password_not_required(*, logic='azmon'
     """
 
     if logic == 'azmon':
-        with open(os.path.join(uam_azmon_path(),
-                               'uam_pid_0002_4738_user_normal_account_password_not_required.yaml'), 'r') as file:
+        with open(os.path.join(azpath,
+                               'uam_pid_0002_4738_user_normal_acnt_pwd_not_required.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.azmon_query_builder(data, lookback)
@@ -63,9 +51,9 @@ def uam_pid_0002_4738_user_normal_account_password_not_required(*, logic='azmon'
     return query
 
 
-def uam_pid_0003_4738_user_normal_account_password_not_required_dont_expire_password(*, logic='azmon', lookback='1d'):
+def uam_pid_0003_4738_user_normal_acnt_pwd_not_required_dont_expire(*, logic='azmon', lookback='1d'):
     """
-    4738 User Account Management
+    User Account Management
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -73,8 +61,8 @@ def uam_pid_0003_4738_user_normal_account_password_not_required_dont_expire_pass
     """
 
     if logic == 'azmon':
-        with open(os.path.join(uam_azmon_path(),
-                               'uam_pid_0003_4738_user_normal_account_password_not_required_dont_expire_password.yaml'), 'r') as file:
+        with open(os.path.join(azpath,
+                               'uam_pid_0003_4738_user_normal_acnt_pwd_not_required_dont_expire.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.azmon_query_builder(data, lookback)

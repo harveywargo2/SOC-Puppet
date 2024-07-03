@@ -1,20 +1,31 @@
 ---
-title: uam_pid_0003_4738_user_normal_account_password_not_required_dont_expire_password.yaml
-intel:
+detect:
+  title: uam_pid_0002_4738_user_normal_acnt_pwd_not_required
   description:
     - User Account Change
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    -
   emulation:
+    -
   pattern:
     -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -26,9 +37,9 @@ dataRequirements:
   dataAccess: api_azure_monitor
   dataMap:
 logic:
-  kqlVar:
+  kqlVar: let TriggerThreshold = 0;
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4738 
       and AccountType == 'User' 
-      and NewUacValue =~ '0x214'
+      and NewUacValue =~ '0x14'

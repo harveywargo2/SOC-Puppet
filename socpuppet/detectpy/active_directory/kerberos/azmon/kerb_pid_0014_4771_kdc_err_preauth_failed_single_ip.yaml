@@ -40,7 +40,7 @@ dataRequirements:
   dataAccess: api_azure_monitor
   dataMap:
 logic:
-  kqlVar:
+  kqlVar: let TriggerThreshold = 0;
   kqlTable: SecurityEvent
   kqlQuery: | 
     | where EventID == 4771
