@@ -1,22 +1,33 @@
 ---
-title: infdefualtinstall_pid_0001_executing_inf
-intel:
+detect:
+  title: infdefualtinstall_pid_0001_executing_inf
   description:
     - infdefaultinstall used to execute .inf file
   detectType: single_line_match
-  detectCon: 3
   detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-    - lolbin
-  attackTechnique: t1218
-  attackSoftware:
+    -
+  attackId:
+    - t1218
   references:
+    -
   emulation:
-    - atomic_red_team_t1218_t3_guid_54ad7d5a-a1b5-472c-b6c4-f8090fb2daef
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: windows_os
-  dataType: process_creation
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -30,4 +41,5 @@ logic:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
     | where FileName has 'InfDefaultInstall'
+      or ProcessVersionInfoOriginalFileName has 'InfDefaultInstall'
     | where ProcessCommandLine contains '.inf'

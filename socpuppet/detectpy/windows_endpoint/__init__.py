@@ -11,9 +11,11 @@ import socpuppet.detectpy.windows_endpoint.edr
 import socpuppet.detectpy.windows_endpoint.esentutl
 import socpuppet.detectpy.windows_endpoint.gsecdump
 import socpuppet.detectpy.windows_endpoint.hh
+import socpuppet.detectpy.windows_endpoint.infdefaultinstall
 import socpuppet.detectpy.windows_endpoint.kekeo
 import socpuppet.detectpy.windows_endpoint.keymgr
 import socpuppet.detectpy.windows_endpoint.lsass
+import socpuppet.detectpy.windows_endpoint.mavinject
 import socpuppet.detectpy.windows_endpoint.mimikatz
 import socpuppet.detectpy.windows_endpoint.msdt
 import socpuppet.detectpy.windows_endpoint.mshta

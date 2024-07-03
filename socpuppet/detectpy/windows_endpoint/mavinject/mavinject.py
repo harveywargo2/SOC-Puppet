@@ -3,25 +3,13 @@ import os
 import socpuppet as soc
 
 
-def mavinject_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
-
-
-def mavinject_mde_path():
-    """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(mavinject_path(), 'logic_mde')
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+mpath = os.path.join(cpath, 'mde')
 
 
 def mavinject_pid_0001_inject_dll(*, logic='mde', lookback='1d'):
     """
-    mavinject inject dll
+    mavinject
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -29,7 +17,7 @@ def mavinject_pid_0001_inject_dll(*, logic='mde', lookback='1d'):
     """
 
     if logic == 'mde':
-        with open(os.path.join(mavinject_mde_path(),
+        with open(os.path.join(mpath,
                                'mavinject_pid_0001_inject_dll.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
