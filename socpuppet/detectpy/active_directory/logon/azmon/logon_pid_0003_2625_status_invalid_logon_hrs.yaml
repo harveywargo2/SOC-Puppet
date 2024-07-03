@@ -1,23 +1,33 @@
 ---
-title: auth_pid_0001_4625_status_logon_failure
-intel:
+detect:
+  title: logon_pid_0003_2625_status_invalid_logon_hrs
   description:
     - Failed logons
-    - STATUS_LOGON_FAILURE
-    - The attempted logon is invalid.
-    - This is either due to a bad username or authentication information.
+    - STATUS_INVALID_LOGON_HOURS
+    - The user account has time restrictions and cannot be logged onto at this time.
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    -
   emulation:
+    -
   pattern:
-    - 0xc000006d
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -31,8 +41,8 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xc000006d'
-      or SubStatus =~ '0xc000006d'
+    | where Status =~ '0xC000006F'
+      or SubStatus =~ '0xC000006F'

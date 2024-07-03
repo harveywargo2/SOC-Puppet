@@ -1,22 +1,33 @@
 ---
-title: auth_pid_0004_4625_status_no_such_user
-intel:
+detect:
+  title: logon_pid_0010_2625_status_smartcard_not_authenticated
   description:
     - Failed logons
-    - STATUS_NO_SUCH_USER
-    - The specified account does not exist.
+    - STATUS_SMARTCARD_CARD_NOT_AUTHENTICATED
+    - No PIN was presented to the smart card
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    -
   emulation:
+    -
   pattern:
-    - 0xC0000064
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -30,8 +41,8 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xC0000064'
-      or SubStatus =~ '0xC0000064'
+    | where Status =~ '0xC0000382'
+      or SubStatus =~ '0xC0000382'
