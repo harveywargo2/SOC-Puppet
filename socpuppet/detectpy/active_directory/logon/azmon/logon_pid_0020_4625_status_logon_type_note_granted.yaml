@@ -1,6 +1,6 @@
 ---
 detect:
-  title: llogon_pid_0020_4625_status_logon_type_note_granted
+  title: logon_pid_0020_4625_status_logon_type_note_granted
   description:
     - Failed logons
     - STATUS_LOGON_TYPE_NOT_GRANTED

@@ -1,22 +1,33 @@
 ---
-title: auth_pid_0024_4625_status_logon_failure_single_ip
-intel:
+detect:
+  title: logon_pid_0024_4625_status_failure_single_ip
   description:
     - Failed logons
     - See Sub Status for fail type
     - Potential Password Spray
   detectType: aggregate_threshold_match
-  detectCon: 3
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-    - t1110.003
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    -
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -30,7 +41,7 @@ dataRequirements:
 logic:
   kqlVar: let TriggerThreshold = 0;
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
       and Status == '0xc000006d'
