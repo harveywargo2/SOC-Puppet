@@ -1,23 +1,31 @@
 ---
-title: kerb_pid_0008_4768_kdc_err_c_principal_single_ip
-intel:
+detect:
+  title: kerb_pid_0008_4768_kdc_err_c_principal_single_ip
   description:
-    - KDC_ERR_C_PRINCIPAL_UNKNOWN
-    - Client not found in Kerberos database
-    - The username doesn’t exist.
+    - Failed Logon Exceeded Threshhold
   detectType: aggregate_threshold_match
-  detectCon: 3
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-    - t1110.003
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
-    - 0x6
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -31,7 +39,7 @@ dataRequirements:
 logic:
   kqlVar: let TriggerThreshold = 0;
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4768
       and TargetUserName !endswith '$'
       and Status =~ '0x6'

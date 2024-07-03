@@ -3,25 +3,13 @@ import os
 import socpuppet as soc
 
 
-def kerb_path():
-    """
-    :return: Absolute Module Path
-    """
-    output = os.path.dirname(os.path.abspath(__file__))
-    return output
-
-
-def kerb_azmon_path():
-    """
-    :return: Absolute Path MDE Logic Lib
-    """
-    output = os.path.join(kerb_path(), 'logic_azmon')
-    return output
+cpath = os.path.dirname(os.path.abspath(__file__))
+azpath = os.path.join(cpath, 'azmon')
 
 
 def kerb_pid_0001_4768_kdc_err_c_principal_unknown(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -29,7 +17,7 @@ def kerb_pid_0001_4768_kdc_err_c_principal_unknown(*, logic='azmon', lookback='1
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0001_4768_kdc_err_c_principal_unknown.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -43,7 +31,7 @@ def kerb_pid_0001_4768_kdc_err_c_principal_unknown(*, logic='azmon', lookback='1
 
 def kerb_pid_0002_4768_kdc_err_policy(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -51,7 +39,7 @@ def kerb_pid_0002_4768_kdc_err_policy(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0002_4768_kdc_err_policy.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -65,7 +53,7 @@ def kerb_pid_0002_4768_kdc_err_policy(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0003_4768_kdc_err_client_revoked(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -73,7 +61,7 @@ def kerb_pid_0003_4768_kdc_err_client_revoked(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0003_4768_kdc_err_client_revoked.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -87,7 +75,7 @@ def kerb_pid_0003_4768_kdc_err_client_revoked(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0004_4768_kdc_err_key_expired(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -95,7 +83,7 @@ def kerb_pid_0004_4768_kdc_err_key_expired(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0004_4768_kdc_err_key_expired.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -109,7 +97,7 @@ def kerb_pid_0004_4768_kdc_err_key_expired(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0005_4768_kdc_local_auth_success(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Local Auth Success
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -117,7 +105,7 @@ def kerb_pid_0005_4768_kdc_local_auth_success(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0005_4768_kdc_local_auth_success.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -131,7 +119,7 @@ def kerb_pid_0005_4768_kdc_local_auth_success(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0006_4768_kdc_local_auth_failure(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Local Auth Failure
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -139,7 +127,7 @@ def kerb_pid_0006_4768_kdc_local_auth_failure(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0006_4768_kdc_local_auth_failure.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -153,7 +141,7 @@ def kerb_pid_0006_4768_kdc_local_auth_failure(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0007_4768_kdc_logon_without_pre_auth(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Ticket Without Pre Auth
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -161,7 +149,7 @@ def kerb_pid_0007_4768_kdc_logon_without_pre_auth(*, logic='azmon', lookback='1d
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0007_4768_kdc_logon_without_pre_auth.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -175,7 +163,7 @@ def kerb_pid_0007_4768_kdc_logon_without_pre_auth(*, logic='azmon', lookback='1d
 
 def kerb_pid_0008_4768_kdc_err_c_principal_single_ip(*, logic='azmon', lookback='1d'):
     """
-    4768 Kerb Ticket Fail Single IP
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -183,7 +171,7 @@ def kerb_pid_0008_4768_kdc_err_c_principal_single_ip(*, logic='azmon', lookback=
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0008_4768_kdc_err_c_principal_single_ip.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -197,7 +185,7 @@ def kerb_pid_0008_4768_kdc_err_c_principal_single_ip(*, logic='azmon', lookback=
 
 def kerb_pid_0009_4771_kdc_err_c_principal_unknown(*, logic='azmon', lookback='1d'):
     """
-    4771 Kerb Pre Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -205,7 +193,7 @@ def kerb_pid_0009_4771_kdc_err_c_principal_unknown(*, logic='azmon', lookback='1
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0009_4771_kdc_err_c_principal_unknown.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -219,7 +207,7 @@ def kerb_pid_0009_4771_kdc_err_c_principal_unknown(*, logic='azmon', lookback='1
 
 def kerb_pid_0010_4771_kdc_err_policy(*, logic='azmon', lookback='1d'):
     """
-    4771 Kerb Pre Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -227,7 +215,7 @@ def kerb_pid_0010_4771_kdc_err_policy(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0010_4771_kdc_err_policy.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -241,7 +229,7 @@ def kerb_pid_0010_4771_kdc_err_policy(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0011_4771_kdc_err_client_revoked(*, logic='azmon', lookback='1d'):
     """
-    4771 Kerb Pre Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -249,7 +237,7 @@ def kerb_pid_0011_4771_kdc_err_client_revoked(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0011_4771_kdc_err_client_revoked.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -263,7 +251,7 @@ def kerb_pid_0011_4771_kdc_err_client_revoked(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0012_4771_kdc_err_key_expired(*, logic='azmon', lookback='1d'):
     """
-    4771 Kerb Pre Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -271,7 +259,7 @@ def kerb_pid_0012_4771_kdc_err_key_expired(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0012_4771_kdc_err_key_expired.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -285,7 +273,7 @@ def kerb_pid_0012_4771_kdc_err_key_expired(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0013_4771_kdc_err_preauth_failed(*, logic='azmon', lookback='1d'):
     """
-    4771 Kerb Pre Auth Fail
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -293,7 +281,7 @@ def kerb_pid_0013_4771_kdc_err_preauth_failed(*, logic='azmon', lookback='1d'):
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0013_4771_kdc_err_preauth_failed.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
@@ -307,7 +295,7 @@ def kerb_pid_0013_4771_kdc_err_preauth_failed(*, logic='azmon', lookback='1d'):
 
 def kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip(*, logic='azmon', lookback='1d'):
     """
-    4771 Kerb Pre Auth Fail Single IP
+    Kerberos Ticketing Systeem
 
     :param logic: Logic Selection
     :param lookback: Lookback Time
@@ -315,7 +303,7 @@ def kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip(*, logic='azmon', lookba
     """
 
     if logic == 'azmon':
-        with open(os.path.join(kerb_azmon_path(),
+        with open(os.path.join(azpath,
                                'kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 

@@ -1,23 +1,34 @@
 ---
-title: kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip
-intel:
+detect:
+  title: kerb_pid_0014_4771_kdc_err_preauth_failed_single_ip
   description:
     - Kerberos Pre Auth Fail
     - KDC_ERR_PREAUTH_FAILED
     - Pre-authentication information was invalid
     - The wrong password was provided
   detectType: aggregate_threshold_match
-  detectCon: 3
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-    - t1110.003
-  attackSoftware:
+    -
+  attackId:
+    - t1110
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -29,9 +40,9 @@ dataRequirements:
   dataAccess: api_azure_monitor
   dataMap:
 logic:
-  kqlVar: let TriggerThreshold = 0;
+  kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4771
       and TargetUserName !endswith '$' 
       and Status =~ '0x18' 

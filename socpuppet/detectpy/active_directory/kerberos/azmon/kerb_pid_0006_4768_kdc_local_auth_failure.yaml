@@ -1,23 +1,34 @@
 ---
-title: kerb_pid_0005_4768_kdc_local_auth_failure
-intel:
+detect:
+  title: kerb_pid_0006_4768_kdc_local_auth_failure
   description:
     - All Client Address ::1 means local authentication
     - If you know the list of accounts which should log on to the domain controllers,
     - then you need to monitor for all possible violations
     - Account Name isn't allowed to log on to any domain controller
   detectType: single_line_match
-  detectCon: 4
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
-    - ::1
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -31,8 +42,8 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4768
       and TargetUserName !endswith '$'
       and IpAddress == '::1'
-      and Status != '0x0'
+      and Status == '0x0'

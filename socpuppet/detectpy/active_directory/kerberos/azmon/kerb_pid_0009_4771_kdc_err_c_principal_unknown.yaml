@@ -1,23 +1,34 @@
 ---
-title: kerb_pid_0009_4771_kdc_err_c_principal_unknown
-intel:
+detect:
+  title: kerb_pid_0009_4771_kdc_err_c_principal_unknown
   description:
     - Kerberos Pre Auth Fail
     - KDC_ERR_C_PRINCIPAL_UNKNOWN
     - Client not found in Kerberos database
     - The username does not exist
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
-    - 0x6
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -31,7 +42,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4771
       and TargetUserName !endswith '$'
       and Status =~ '0x6'

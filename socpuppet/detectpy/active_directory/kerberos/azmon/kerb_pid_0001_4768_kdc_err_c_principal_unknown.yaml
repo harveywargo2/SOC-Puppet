@@ -1,23 +1,34 @@
 ---
-title: kerb_pid_0004_4768_kdc_err_key_expired
-intel:
+detect:
+  title: kerb_pid_0002_4768_kdc_err_policy
   description:
     - Failed kerberos auth ticket request
-    - KDC_ERR_KEY_EXPIRED
-    - Password has expired—change password to reset
-    - The user’s password has expired.
+    - KDC_ERR_C_PRINCIPAL_UNKNOWN
+    - Client not found in Kerberos database
+    - The username does not exist
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
-    - 0x17
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -31,7 +42,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4768
       and TargetUserName !endswith '$'
-      and Status =~ '0x17'
+      and Status =~ '0x6'

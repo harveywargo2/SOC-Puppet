@@ -1,22 +1,33 @@
 ---
-title: kerb_pid_0011_4771_kdc_err_client_revoked
-intel:
+detect:
+  title: kerb_pid_0010_4771_kdc_err_policy
   description:
     - Kerberos Pre Auth Fail
-    - KDC_ERR_CLIENT_REVOKED
-    - Clients credentials have been revoked
+    - KDC_ERR_POLICY
+    - KDC policy rejects request
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
-    - 0x12
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -30,7 +41,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4771
       and TargetUserName !endswith '$'
-      and Status =~ '0x12'
+      and Status =~ '0xc'

@@ -1,0 +1,49 @@
+---
+detect:
+  title: kerb_pid_0003_4768_kdc_err_client_revoked
+  description:
+    - Failed kerberos auth ticket request
+    - KDC_ERR_CLIENT_REVOKED
+    - Client’s credentials have been revoked
+    - This might be because of an explicit disabling or because of other restrictions in place on the account
+    - Example account disabled, expired, or locked out
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    - ref_kerberos.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4678
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: SecurityEvent
+  kqlQuery: | 
+    | where EventID == 4768
+      and TargetUserName !endswith '$'
+      and Status =~ '0x12'

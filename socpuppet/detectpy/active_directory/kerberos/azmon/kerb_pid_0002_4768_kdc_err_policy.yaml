@@ -1,6 +1,6 @@
 ---
-title: kerb_pid_0002_4768_kdc_err_policy
-intel:
+detect:
+  title: kerb_pid_0002_4768_kdc_err_policy
   description:
     - Failed kerberos auth ticket request
     - KDC_ERR_POLICY
@@ -8,17 +8,28 @@ intel:
     - This error is usually the result of logon restrictions in place on a user’s account
     - For example workstation restriction, smart card authentication requirement or logon time restriction
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
-    - 0xC
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -32,7 +43,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4768
       and TargetUserName !endswith '$'
       and Status =~ '0xC'

@@ -1,22 +1,33 @@
 ---
-title: kerb_pid_0012_4771_kdc_err_key_expired
-intel:
+detect:
+  title: kerb_pid_0011_4771_kdc_err_client_revoked
   description:
     - Kerberos Pre Auth Fail
-    - KDC_ERR_KEY_EXPIRED
-    - The user's password has expired
+    - KDC_ERR_CLIENT_REVOKED
+    - Clients credentials have been revoked
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    - ref_kerberos.md
   emulation:
+    -
   pattern:
-    - 0x17
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -30,7 +41,7 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4771
       and TargetUserName !endswith '$'
-      and Status =~ '0x17'
+      and Status =~ '0x12'
