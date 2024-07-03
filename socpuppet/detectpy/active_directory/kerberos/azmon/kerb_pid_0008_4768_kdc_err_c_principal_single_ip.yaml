@@ -1,0 +1,49 @@
+---
+detect:
+  title: kerb_pid_0008_4768_kdc_err_c_principal_single_ip
+  description:
+    - Failed Logon Exceeded Threshhold
+  detectType: aggregate_threshold_match
+  detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    - ref_kerberos.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4678
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar: let TriggerThreshold = 0;
+  kqlTable: SecurityEvent
+  kqlQuery: | 
+    | where EventID == 4768
+      and TargetUserName !endswith '$'
+      and Status =~ '0x6'
+    | extend IpExtract = extract(@'([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})' , 0 , IpAddress) 
+    | summarize AccountSet=make_set(TargetUserName) by IpExtract, ServiceName, Status, EventID, bin(TimeGenerated, 1h)
+    | extend AccountCount = array_length(AccountSet)
+    | where AccountCount >= TriggerThreshold

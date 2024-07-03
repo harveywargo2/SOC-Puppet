@@ -1,0 +1,46 @@
+---
+detect:
+  title: netsh_pid_0012_port_proxy
+  description:
+    - netsh used to set up port forwarding port proxy
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1090
+    - s0108
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    - netsh interface portproxy add v4tov4 listenport=8001 listenaddress=<JUMP BOX IP> connectport=3389 connectaddress=<DESTINATION IP>
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'netsh'
+    | where ProcessCommandLine has_all ('portproxy', 'add')
+      and ProcessCommandLine contains 'v4tov4'

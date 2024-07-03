@@ -1,0 +1,47 @@
+---
+detect:
+  title: mavinject_pid_0001_inject_dll
+  description:
+    - MAVINJECT injecting arbitrary dll file
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1218
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'mavinject'
+      or ProcessVersionInfoOriginalFileName has 'mavinject'
+    | where ProcessCommandLine contains '/INJECTRUNNING'
+      or InitiatingProcessCommandLine contains '/INJECTRUNNING'
+    | where ProcessCommandLine contains '.dll'

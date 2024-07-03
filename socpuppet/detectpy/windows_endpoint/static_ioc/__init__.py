@@ -1,0 +1,1 @@
+from socpuppet.detectpy.windows_endpoint.static_ioc.static_ioc import *

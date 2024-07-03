@@ -1,0 +1,45 @@
+---
+detect:
+  title: mshta_pid_0004_executing_remote_file
+  description:
+    - mshta executing remote file
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1218
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -  mshta (http:// or https://) filename.hta
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has 'mshta'
+      or ProcessVersionInfoOriginalFileName has 'mshta'
+    | where ProcessCommandLine has_any ('http', 'https', 'ftp')

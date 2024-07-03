@@ -1,0 +1,48 @@
+---
+detect:
+  title: logon_pid_0015_4625_status_smartcard_card_expired
+  description:
+    - Failed logons
+    - STATUS_SMARTCARD_CERT_EXPIRED
+    - The smart card certificate used for authentication has expired
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4625
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: SecurityEvent
+  kqlQuery: | 
+    | where EventID == 4625 
+      and AccountType == 'User' 
+    | where Status =~ '0xC000038D'
+      or SubStatus =~ '0xC000038D'

@@ -1,0 +1,48 @@
+---
+detect:
+  title: logon_pid_0004_4625_status_no_such_user
+  description:
+    - Failed logons
+    - STATUS_INVALID_ACCOUNT_NAME
+    - The name provided is not a properly formed account name.
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4625
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: SecurityEvent
+  kqlQuery: | 
+    | where EventID == 4625 
+      and AccountType == 'User' 
+    | where Status =~ '0xC0000062'
+      or SubStatus =~ '0xC0000062'

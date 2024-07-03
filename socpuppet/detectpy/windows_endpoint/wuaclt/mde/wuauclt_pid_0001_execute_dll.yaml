@@ -1,0 +1,47 @@
+---
+detect:
+  title: wuauclt_pid_0001_execute_dll
+  description:
+    - wuauclt executing dll
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency: high
+  inTheWild: unknown
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  analysisEffort: normal
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    - wuauclt.exe /UpdateDeploymentProvider [Full_Path_To_DLL] /RunHandlerComServer
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('wuaclt', 'RunHandlerComServer', 'UpdateDeploymentProvider')
+      and ProcessCommandLine contains '.dll'
+    | where ProcessCommandLine !contains 'UpdateDeploymentProvider.dll' 
+      and ProcessCommandLine !contains 'UpdateDeploy.dll' 
+      and ProcessCommandLine !contains 'wuaueng.dll'

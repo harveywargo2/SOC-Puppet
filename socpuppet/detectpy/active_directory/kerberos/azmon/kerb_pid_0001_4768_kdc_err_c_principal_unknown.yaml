@@ -1,0 +1,48 @@
+---
+detect:
+  title: kerb_pid_0002_4768_kdc_err_policy
+  description:
+    - Failed kerberos auth ticket request
+    - KDC_ERR_C_PRINCIPAL_UNKNOWN
+    - Client not found in Kerberos database
+    - The username does not exist
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    - ref_kerberos.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - active_directory_domain_controller
+  dataType:
+    - windows_security_event_log
+  dataCollector: ama_agent
+  dataForwardTo: msft_sentinel
+  dataParser:
+  dataStorage: azure_monitor
+  dataTable: security_event
+  dataIndex: event_id_4678
+  dataAccess: api_azure_monitor
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: SecurityEvent
+  kqlQuery: | 
+    | where EventID == 4768
+      and TargetUserName !endswith '$'
+      and Status =~ '0x6'

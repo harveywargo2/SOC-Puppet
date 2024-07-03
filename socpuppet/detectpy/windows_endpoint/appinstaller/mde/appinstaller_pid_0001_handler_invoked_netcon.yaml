@@ -1,0 +1,46 @@
+---
+detect:
+  title: appinstaller_pid_0001_handler_invoked_netcon
+  description:
+    - AppInstaller.exe is spawned by the default handler for the URI
+    - it attempts to load/install a package from the URL and is saved in INetCache
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1105
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - connection_all
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceNetworkEvents
+  kqlQuery: | 
+    | where InitiatingProcessFileName has 'appinstaller'
+    | where RemoteUrl contains 'https:'
+      or RemoteUrl contains 'http:'

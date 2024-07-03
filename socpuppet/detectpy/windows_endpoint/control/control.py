@@ -7,9 +7,9 @@ cpath = os.path.dirname(os.path.abspath(__file__))
 mpath = os.path.join(cpath, 'mde')
 
 
-def comsvcs_pid_0001_created_minidump(*, logic='mde', lookback='1d'):
+def control_pid_0001_executing_cpl_file(*, logic='mde', lookback='1d'):
     """
-    comsvcs
+    control
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -18,7 +18,7 @@ def comsvcs_pid_0001_created_minidump(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'comsvcs_pid_0001_created_minidump.yaml'), 'r') as file:
+                               'control_pid_0001_executing_cpl_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -29,9 +29,9 @@ def comsvcs_pid_0001_created_minidump(*, logic='mde', lookback='1d'):
     return query
 
 
-def comsvcs_pid_0002_called_minidumpw_function(*, logic='mde', lookback='1d'):
+def control_pid_0002_executing_dll_file(*, logic='mde', lookback='1d'):
     """
-    comsvcs
+    control
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -40,7 +40,7 @@ def comsvcs_pid_0002_called_minidumpw_function(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'comsvcs_pid_0002_called_minidumpw_function.yaml'), 'r') as file:
+                               'control_pid_0002_executing_dll_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,9 +51,9 @@ def comsvcs_pid_0002_called_minidumpw_function(*, logic='mde', lookback='1d'):
     return query
 
 
-def comsvcs_pid_0003_created_file(*, logic='mde', lookback='1d'):
+def control_pid_0003_rundll_executing_dll_file(*, logic='mde', lookback='1d'):
     """
-    comsvcs
+    control
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -62,7 +62,7 @@ def comsvcs_pid_0003_created_file(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'comsvcs_pid_0003_created_file.yaml'), 'r') as file:
+                               'control_pid_0003_rundll_executing_dll_file.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -71,4 +71,3 @@ def comsvcs_pid_0003_created_file(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
-
