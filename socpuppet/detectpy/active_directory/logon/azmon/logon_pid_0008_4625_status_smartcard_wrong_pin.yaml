@@ -1,23 +1,33 @@
 ---
-title: auth_pid_0018_4625_status_synchronization_required
-intel:
+detect:
+  title: logon_pid_0008_4625_status_smartcard_wrong_pin
   description:
     - Failed logons
-    - STATUS_SYNCHRONIZATION_REQUIRED
-    - The SAM database is significantly out of synchronization with the copy on the domain controller.
-    - A complete synchronization is required.
+    - STATUS_SMARTCARD_WRONG_PIN
+    - An incorrect PIN was presented to the smart card
   detectType: single_line_match
-  detectCon: 5
   detectLanguage: kql
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
   tags:
-  attackTechnique:
-  attackSoftware:
+    -
+  attackId:
+    -
   references:
+    -
   emulation:
+    -
   pattern:
-    - 0xC0000134
+    -
 dataRequirements:
-  dataSource: active_directory_domain_controller
+  dataSource:
+    - active_directory_domain_controller
   dataType:
     - windows_security_event_log
   dataCollector: ama_agent
@@ -31,8 +41,8 @@ dataRequirements:
 logic:
   kqlVar:
   kqlTable: SecurityEvent
-  kqlQuery: |
+  kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xC0000134'
-      or SubStatus =~ '0xC0000134'
+    | where Status =~ '0xC0000380'
+      or SubStatus =~ '0xC0000380'

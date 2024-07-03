@@ -1,10 +1,10 @@
 ---
 detect:
-  title: logon_pid_0002_2625_status_acnt_disabled
+  title: logon_pid_0015_4625_status_smartcard_card_expired
   description:
     - Failed logons
-    - STATUS_ACCOUNT_DISABLED
-    - The referenced account is currently disabled and cannot be logged on to.
+    - STATUS_SMARTCARD_CERT_EXPIRED
+    - The smart card certificate used for authentication has expired
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 5
@@ -44,5 +44,5 @@ logic:
   kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xC0000072'
-      or SubStatus =~ '0xC0000072'
+    | where Status =~ '0xC000038D'
+      or SubStatus =~ '0xC000038D'

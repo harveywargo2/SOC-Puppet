@@ -1,10 +1,10 @@
 ---
 detect:
-  title: logon_pid_0010_2625_status_smartcard_not_authenticated
+  title: logon_pid_0017_4625_status_smartcard_logon_required
   description:
     - Failed logons
-    - STATUS_SMARTCARD_CARD_NOT_AUTHENTICATED
-    - No PIN was presented to the smart card
+    - STATUS_SMARTCARD_LOGON_REQUIRED
+    - Smart card logon is required and was not used
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 5
@@ -44,5 +44,5 @@ logic:
   kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xC0000382'
-      or SubStatus =~ '0xC0000382'
+    | where Status =~ '0xC00002FA'
+      or SubStatus =~ '0xC00002FA'

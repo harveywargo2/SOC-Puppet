@@ -1,11 +1,10 @@
 ---
 detect:
-  title: logon_pid_0007_2625_status_acnt_restriction
+  title: logon_pid_0019_4625_status_dc_time_diff
   description:
     - Failed logons
-    - STATUS_ACCOUNT_RESTRICTION
-    - Indicates a referenced user name and authentication information are valid
-    - some user account restriction has prevented successful authentication (such as time-of-day restrictions)
+    - STATUS_TIME_DIFFERENCE_AT_DC
+    - The time at the primary domain controller is different from the time at the backup domain controller or member server by too large an amount.
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 5
@@ -45,5 +44,5 @@ logic:
   kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xC000006E'
-      or SubStatus =~ '0xC000006E'
+    | where Status =~ '0xC0000133'
+      or SubStatus =~ '0xC0000133'

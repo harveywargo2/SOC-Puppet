@@ -1,10 +1,10 @@
 ---
 detect:
-  title: logon_pid_0009_2625_status_smartcard_blocked
+  title: logon_pid_0004_4625_status_no_such_user
   description:
     - Failed logons
-    - STATUS_SMARTCARD_CARD_BLOCKED
-    - The smart card is blocked.
+    - STATUS_NO_SUCH_USER
+    - The specified account does not exist.
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 5
@@ -44,5 +44,5 @@ logic:
   kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xC0000381'
-      or SubStatus =~ '0xC0000381'
+    | where Status =~ '0xC0000064'
+      or SubStatus =~ '0xC0000064'

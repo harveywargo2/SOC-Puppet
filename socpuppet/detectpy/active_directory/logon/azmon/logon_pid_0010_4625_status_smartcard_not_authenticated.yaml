@@ -1,11 +1,10 @@
 ---
 detect:
-  title: logon_pid_0006_2625_status_wrong_pwd
+  title: logon_pid_0010_4625_status_smartcard_not_authenticated
   description:
     - Failed logons
-    - STATUS_WRONG_PASSWORD
-    - This return status indicates that the value provided as the current password is not correct
-    - When trying to update password
+    - STATUS_SMARTCARD_CARD_NOT_AUTHENTICATED
+    - No PIN was presented to the smart card
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 5
@@ -45,5 +44,5 @@ logic:
   kqlQuery: | 
     | where EventID == 4625 
       and AccountType == 'User' 
-    | where Status =~ '0xC000006A'
-      or SubStatus =~ '0xC000006A'
+    | where Status =~ '0xC0000382'
+      or SubStatus =~ '0xC0000382'
