@@ -1,0 +1,48 @@
+---
+detect:
+  title: powersploit_pid_0002_invoke_code_execution_modules
+  description:
+    - powersploit
+    - invoke code execution module
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1059
+  references:
+    - ref_powersploit_powerview.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - powershell_command
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'PowerShellCommand'
+    | where AdditionalFields has ('invoke')
+      or InitiatingProcessCommandLine has ('invoke')
+    | where AdditionalFields has_any ('TokenManipulation', 'CredentialInjection', 'NinjaCopy')
+      or InitiatingProcessCommandLine has_any ('TokenManipulation', 'CredentialInjection', 'NinjaCopy')

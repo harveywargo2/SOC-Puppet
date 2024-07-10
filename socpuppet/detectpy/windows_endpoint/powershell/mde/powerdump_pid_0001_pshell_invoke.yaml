@@ -1,11 +1,10 @@
 ---
 detect:
-  title: powerdump_pid_0002_pshell_cmd
+  title: powerdump_pid_0001_pshell_invoke
   description:
     - dumping hashes from a Windows System
     - powershell script
-    - matches on common pshell commands
-  detectType: aggregate_multiline_match
+  detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
   urgency: rapid
@@ -20,7 +19,7 @@ intel:
   attackId:
     - t1003
   references:
-    -
+    - ref_powerdump.md
   emulation:
     - art_t1003002_test4_uid_804f28fc-68fc-40da-b5a2-e9d0bce5c193
   pattern:
@@ -39,14 +38,9 @@ dataRequirements:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
-  kqlVar: | 
-    let PowerDumpDevice = materialize(DeviceEvents | where ActionType =~ "PowershellCommand"
-    | where AdditionalFields has_any ('elevateprivs', 'userhashes', 'dumphashes', 'bootkey', 'decrypthashes')
-    | distinct DeviceId);
+  kqlVar:
   kqlTable: DeviceEvents
   kqlQuery: | 
-    | where ActionType =~ "PowershellCommand"
-      and DeviceId in (PowerDumpDevice)
-    | extend Pshell = parse_json(AdditionalFields).Command
-    | summarize PshellSet=make_set(Pshell), arg_max(Timestamp, *) by DeviceName, bin(Timestamp, 1h)
-    | where PshellSet has_all(@'get-childitem', 'ElevatePrivs', @'get-process', @'get-userhashes', 'dumphashes', @'get-bootkey', 'decrypthashes')
+    | where ActionType =~ 'PowerShellCommand'
+    | where AdditionalFields has_all ('invoke', 'powerdump')
+      or InitiatingProcessCommandLine has_all ('invoke', 'powerdump')

@@ -1,0 +1,46 @@
+---
+detect:
+  title: powersploit_pid_0005_get_exfil_modules
+  description:
+    - powersploit
+    - get exfiltration module
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection: zero
+  regressionVolume: only attack pattern match
+  responseEffort: low
+  confidence: certain
+intel:
+  tags:
+    -
+  attackId:
+    - t1059
+  references:
+    - ref_powersploit_powerview.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_create
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar: | 
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'get'
+      and ProcessCommandLine has_any ('Keystrokes', 'GPPPassword', 'GPPAutoLogon', 'TimedScreenshot', 
+        'VaultCredential', 'VolumeShadowCopy', 'MicrophoneAudio')

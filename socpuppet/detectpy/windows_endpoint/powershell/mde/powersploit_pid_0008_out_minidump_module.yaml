@@ -1,9 +1,9 @@
 ---
 detect:
-  title: powerdump_pid_0001_pshell_invoke
+  title: powersploit_pid_0008_out_minidump_module
   description:
-    - dumping hashes from a Windows System
-    - powershell script
+    - powersploit
+    - out minidump module
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -17,11 +17,11 @@ intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1059
   references:
-    -
+    - ref_powersploit_powerview.md
   emulation:
-    - art_t1003002_test4_uid_804f28fc-68fc-40da-b5a2-e9d0bce5c193
+    -
   pattern:
     -
 dataRequirements:
@@ -42,5 +42,5 @@ logic:
   kqlTable: DeviceEvents
   kqlQuery: | 
     | where ActionType =~ 'PowerShellCommand'
-    | where AdditionalFields has_all ('invoke', 'powerdump')
-      or InitiatingProcessCommandLine has_all ('invoke', 'powerdump')
+    | where AdditionalFields has_all ('out', 'minidump')
+      or InitiatingProcessCommandLine has_all ('out', 'minidump')

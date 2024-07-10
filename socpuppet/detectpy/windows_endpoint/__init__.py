@@ -7,6 +7,7 @@ import socpuppet.detectpy.windows_endpoint.cmstp
 import socpuppet.detectpy.windows_endpoint.comsvcs
 import socpuppet.detectpy.windows_endpoint.control
 import socpuppet.detectpy.windows_endpoint.createdump
+import socpuppet.detectpy.windows_endpoint.devtunnels
 import socpuppet.detectpy.windows_endpoint.edr
 import socpuppet.detectpy.windows_endpoint.esentutl
 import socpuppet.detectpy.windows_endpoint.gsecdump
@@ -24,7 +25,6 @@ import socpuppet.detectpy.windows_endpoint.netsh
 import socpuppet.detectpy.windows_endpoint.nltest
 import socpuppet.detectpy.windows_endpoint.nppspy
 import socpuppet.detectpy.windows_endpoint.ntds
-import socpuppet.detectpy.windows_endpoint.powershell_empire
 import socpuppet.detectpy.windows_endpoint.powershell
 import socpuppet.detectpy.windows_endpoint.procdump
 import socpuppet.detectpy.windows_endpoint.pypykatz
