@@ -43,6 +43,6 @@ logic:
   kqlQuery: | 
     | where FileName has_any ('net', 'net1')
       and FileName endswith '.exe'
-      and ProcessCommandLine has_all ('group', 'Domain', 'admins')
+      and ProcessCommandLine has_all ('group', 'Domain', 'Admins')
       and ProcessCommandLine contains '/d'
     | where ProcessCommandLine !contains '/add'
