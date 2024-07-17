@@ -1,0 +1,45 @@
+---
+detect:
+  title: registryt1562_pid_0001_anti_spyware_disable
+  description:
+    - Powershell Used to Modify Registry
+    - Disable Anit Spyware
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+  references:
+    - art_t1562001_test18_uid_1b3e0146-a1e5-4c5c-89fb-1bb2ffe8fc45
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_any (@'HKLM\system ', @'HKEY_LOCAL_MACHINE\system ')
+      and ProcessCommandLine has_all('Set', 'ItemProperty', 'DisableAntiSpyWare')

@@ -1,6 +1,6 @@
 ---
 detect:
-  title: registry_pid_0001_save_sam
+  title: regt1003_pid_0001_save_sam
   description:
     - reg.exe used to save SAM file for potential enumeration
     - Also for offline cred dumping attack

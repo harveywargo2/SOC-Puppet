@@ -22,6 +22,7 @@ import socpuppet.detectpy.windows_endpoint.keymgr
 import socpuppet.detectpy.windows_endpoint.lsass
 import socpuppet.detectpy.windows_endpoint.mavinject
 import socpuppet.detectpy.windows_endpoint.mimikatz
+import socpuppet.detectpy.windows_endpoint.mpcmdrun
 import socpuppet.detectpy.windows_endpoint.msdt
 import socpuppet.detectpy.windows_endpoint.mshta
 import socpuppet.detectpy.windows_endpoint.net

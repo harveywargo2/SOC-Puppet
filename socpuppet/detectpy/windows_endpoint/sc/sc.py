@@ -115,3 +115,25 @@ def sc_pid_0005_disable_tanium_service(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
+
+
+def sc_pid_0006_disable_defender_service(*, logic='mde', lookback='1d'):
+    """
+    sc
+
+    param logic: Logic Selection
+    :param lookback: Lookback Time
+    :return: Pandas Dataframe of Results
+    """
+
+    if logic == 'mde':
+        with open(os.path.join(mpath,
+                               'sc_pid_0006_disable_defender_service.yaml'), 'r') as file:
+            data = yaml.safe_load(file)
+
+        query = soc.detectpy.mde_query_builder(data, lookback)
+
+    else:
+        query = f'pointer={logic} not supported'
+
+    return query

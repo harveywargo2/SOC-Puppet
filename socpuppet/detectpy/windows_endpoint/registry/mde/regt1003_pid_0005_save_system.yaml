@@ -1,9 +1,9 @@
 ---
 detect:
-  title: registry_pid_0007_save_lsa_secrets
+  title: regt1003_pid_0005_save_system
   description:
-    - reg.exe used to dump LSA secrets
-    - LSA secrets are stored in the registry
+    - reg.exe used to save security hive file for potential enumeration
+    - Also for offline cred dumping attack
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -21,7 +21,7 @@ intel:
   references:
     - ref_registry.md
   emulation:
-    - art_t1003004_test1_uid_55295ab0-a703-433b-9ca4-ae13807de12f
+    - art_t1003002_test1_uid_5c2571d0-1572-416d-9676-812e64ca9f44
   pattern:
     -
 dataRequirements:
@@ -41,6 +41,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('secrets', 'security')
-      and ProcessCommandLine has_any ('HKLM', 'HKEY_LOCAL_MACHINE')
-      and ProcessCommandLine has_any  ('save', 'export')
+    | where ProcessCommandLine has_any (@'HKLM\system ', @'HKEY_LOCAL_MACHINE\system ')
+      and ProcessCommandLine has_any('save', 'export')

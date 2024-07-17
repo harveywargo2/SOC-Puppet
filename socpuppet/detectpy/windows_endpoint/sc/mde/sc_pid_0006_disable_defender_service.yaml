@@ -1,27 +1,28 @@
 ---
 detect:
-  title: net_pid_0024_stop_defender
+  title: sc_pid_0005_disable_tanium_service
   description:
-    - net CLT used to stop Windows/MSFT defender services
+    - Disable Service with Service Control Manager
+    - Tanium Client Service Stop
+    - Tanium Client Service Config Disable
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 2
+  detectCon: 3
   urgency:
   inTheWild:
   noiseProjection:
   regressionVolume:
-  responseEffort:
+  analysisEffort:
   confidence:
 intel:
   tags:
     -
   attackId:
     - t1562
-    - s0039
   references:
-    - ref_net.md
-  emulation:
     -
+  emulation:
+    - art_t1562_test15_uid_a1230893-56ac-4c81-b644-2108e982f8f5
   pattern:
       - sc stop "Windows Defender Advanced Threat Protection Service"
       - sc stop "Microsoft Defender Antivirus Service"
@@ -31,7 +32,7 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - process_created
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
@@ -44,11 +45,12 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName has_any ('net', 'net1')
-      and FileName endswith '.exe'
-      and ProcessCommandLine has 'stop'
+    | where FileName =~ 'sc.exe'
+      or ProcessVersionInfoOriginalFileName =~ 'sc.exe'
     | where ProcessCommandLine has_all ('defender', 'advanced', 'threat')
       or ProcessCommandLine has_all ('defender', 'antivirus')
       or ProcessCommandLine has_all ('microsoft', 'core', 'service')
       or ProcessCommandLine has_all ('windows', 'security', 'service')
       or ProcessCommandLine has_all ('security', 'center')
+    | where ProcessCommandLine has_all ('config', 'start', 'disabled')
+      or ProcessCommandLine has 'stop'
