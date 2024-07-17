@@ -1,12 +1,13 @@
 ---
 detect:
-  title: registryt1562_pid_0001_anti_spyware_disable
+  title: mppreference_pid_0004_set_dbaf
   description:
-    - Powershell Used to Modify Registry
-    - Disable Anit Spyware
+    - Disable Defender Service with PowerShell
+    - Set-MpPreference
+    - DisableBlockAtFirstSeen
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
+  detectCon: 2
   urgency:
   inTheWild:
   noiseProjection:
@@ -19,11 +20,13 @@ intel:
   attackId:
     - t1562
   references:
-    - art_t1562001_test18_uid_1b3e0146-a1e5-4c5c-89fb-1bb2ffe8fc45
+    -
   emulation:
-    -
+    - art_t1562_test16_uid_6b8df440-51ec-4d53-bf83-899591c9b5d7
+    - art_t1562_test31_uid_c531aa6e-9c97-4b29-afee-9b7be6fc8a64
   pattern:
-    -
+    - Set-MpPreference -DisableBlockAtFirstSeen 1
+    - Set-MpPreference -dbaf $True
 dataRequirements:
   dataSource:
     - windows_os
@@ -41,5 +44,6 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_any (@'HKLM\system ', @'HKEY_LOCAL_MACHINE\system ')
-      and ProcessCommandLine has_all('Set', 'ItemProperty', 'DisableAntiSpyWare')
+    | where ProcessCommandLine has_all ('Set', 'MpPreference')
+    | where ProcessCommandLine has_any ('-DisableBlockAtFirstSeen', '-dbaf')
+    | where ProcessCommandLine has_any ('1', 'true')

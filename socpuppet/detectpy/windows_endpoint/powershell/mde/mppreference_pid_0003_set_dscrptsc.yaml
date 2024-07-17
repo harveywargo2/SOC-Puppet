@@ -1,12 +1,13 @@
 ---
 detect:
-  title: mpcmdrun_pid_0001_remove_definitions
+  title: mppreference_pid_0003_set_dscrptsc.yaml
   description:
-    - mpcmdrun
-    -
+    - Disable Defender Service with PowerShell
+    - Set-MpPreference
+    - DisableScriptScanning
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 3
+  detectCon: 2
   urgency:
   inTheWild:
   noiseProjection:
@@ -21,9 +22,11 @@ intel:
   references:
     -
   emulation:
-    - art_t1562_test20_uid_3d47daaa-2f56-43e0-94cc-caf5d8d52a68
+    - art_t1562_test16_uid_6b8df440-51ec-4d53-bf83-899591c9b5d7
+    - rt_t1562_test31_uid_c531aa6e-9c97-4b29-afee-9b7be6fc8a64
   pattern:
-    -
+    - Set-MpPreference -DisableScriptScanning 1
+    - Set-MpPreference -dscrptsc $True
 dataRequirements:
   dataSource:
     - windows_os
@@ -41,4 +44,6 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('mpcmdrun', 'removedefinitions')
+    | where ProcessCommandLine has_all ('Set', 'MpPreference')
+    | where ProcessCommandLine has_any ('-DisableScriptScanning', '-dscrptsc')
+    | where ProcessCommandLine has_any ('1', 'true')

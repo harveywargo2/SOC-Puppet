@@ -51,7 +51,7 @@ def nltest_pid_0002_domain_trust(*, logic='mde', lookback='1d'):
     return query
 
 
-def nltest_pid_0003_dcgetdc(*, logic='mde', lookback='1d'):
+def nltest_pid_0003_dsgetdc(*, logic='mde', lookback='1d'):
     """
     nltest
 
@@ -62,7 +62,7 @@ def nltest_pid_0003_dcgetdc(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'nltest_pid_0003_dcgetdc.yaml'), 'r') as file:
+                               'nltest_pid_0003_dsgetdc.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)

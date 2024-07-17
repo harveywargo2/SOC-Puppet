@@ -7,9 +7,9 @@ cpath = os.path.dirname(os.path.abspath(__file__))
 mpath = os.path.join(cpath, 'mde')
 
 
-def mpcmdrun_pid_0001_remove_definitions(*, logic='mde', lookback='1d'):
+def pwsht1562_pid_0001_anti_spyware_disable(*, logic='mde', lookback='1d'):
     """
-    MpCmdRun
+    PowerShell Registry Command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -18,7 +18,7 @@ def mpcmdrun_pid_0001_remove_definitions(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mpcmdrun_pid_0001_remove_definitions.yaml'), 'r') as file:
+                               'pwsht1562_pid_0001_anti_spyware_disable.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -27,7 +27,5 @@ def mpcmdrun_pid_0001_remove_definitions(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
-
-
 
 

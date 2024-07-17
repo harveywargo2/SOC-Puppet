@@ -1,12 +1,12 @@
 ---
 detect:
-  title: mpcmdrun_pid_0001_remove_definitions
+  title: registryt1562_pid_0001_anti_spyware_disable
   description:
-    - mpcmdrun
-    -
+    - Powershell Used to Modify Registry
+    - Disable Anit Spyware
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 3
+  detectCon: 1
   urgency:
   inTheWild:
   noiseProjection:
@@ -19,9 +19,9 @@ intel:
   attackId:
     - t1562
   references:
-    -
+    - art_t1562001_test18_uid_1b3e0146-a1e5-4c5c-89fb-1bb2ffe8fc45
   emulation:
-    - art_t1562_test20_uid_3d47daaa-2f56-43e0-94cc-caf5d8d52a68
+    -
   pattern:
     -
 dataRequirements:
@@ -41,4 +41,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('mpcmdrun', 'removedefinitions')
+    | where ProcessCommandLine has_any ('HKLM', 'HKEY_LOCAL_MACHINE')
+      and ProcessCommandLine has_all ('Set', 'ItemProperty', 'DisableAntiSpyWare')
