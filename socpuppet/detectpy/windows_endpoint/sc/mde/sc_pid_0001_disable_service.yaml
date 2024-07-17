@@ -1,27 +1,26 @@
 ---
 detect:
-  title: registry_pid_0004_security_commandline
+  title: sc_pid_0001_disable_service
   description:
-    - Security Hive in CommandLine for potential enumeration
-    - Also for offline cred dumping attack
+    - Disable Arbitrary Service with Service Control Manager
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
-  inTheWild: very_common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
-  analysisEffort: low
-  confidence: certain
+  detectCon: 5
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1562
   references:
-    - ref_registry.md
+    -
   emulation:
-    - art_t1003002_test1_uid_5c2571d0-1572-416d-9676-812e64ca9f44
+    - art_t1562_test15_uid_a1230893-56ac-4c81-b644-2108e982f8f5
   pattern:
     -
 dataRequirements:
@@ -41,4 +40,6 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_any (@'HKLM\security ', @'HKEY_LOCAL_MACHINE\security ')
+    | where FileName =~ 'sc.exe'
+      or ProcessVersionInfoOriginalFileName =~ 'sc.exe'
+    | where ProcessCommandLine has_all ('config', 'start', 'disabled')

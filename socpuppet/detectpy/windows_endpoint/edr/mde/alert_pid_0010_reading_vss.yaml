@@ -1,6 +1,6 @@
 ---
 detect:
-  title: alert_pid_0009_malicious_pshell
+  title: alert_pid_0010_reading_vss
   description:
     - MDE EDR Behavior Alert
     - Reading files from volume shadown copies
@@ -41,5 +41,4 @@ logic:
   kqlVar:
   kqlTable: AlertEvidence
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
-      and Title =~ 'Reading files from volume shadow copies'
+    | where Title =~ 'Reading files from volume shadow copies'

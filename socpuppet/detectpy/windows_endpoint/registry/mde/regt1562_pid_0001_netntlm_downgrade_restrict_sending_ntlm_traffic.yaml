@@ -1,6 +1,6 @@
 ---
 detect:
-  title: registry_pid_0008_netntlm_downgrade_restrictsendingntlmtraffic
+  title: regt1562_pid_0001_netntlm_downgrade_restrict_sending_ntlm_traffic
   description:
     - Registry Modification of Key HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0
     - Property = RestrictSendingNTLMTraffic

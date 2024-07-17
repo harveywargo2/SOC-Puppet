@@ -1,0 +1,46 @@
+---
+detect:
+  title: net_pid_0025_stop_sysmon
+  description:
+    - net CLT used to stop sysmon service
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  responseEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+    - s0039
+  references:
+    - ref_net.md
+  emulation:
+    -
+  pattern:
+      - net stop "sysmon"
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_created
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has_any ('net', 'net1')
+      and FileName endswith '.exe'
+      and ProcessCommandLine has_all ('stop', 'sysmon')

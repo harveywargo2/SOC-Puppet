@@ -1,0 +1,55 @@
+---
+detect:
+  title: powerview_pid_0007_get_ldap_modules
+  description:
+    - powerview
+    - LDAP/Domain Get- Modules
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency: rapid
+  inTheWild: common
+  noiseProjection:
+  regressionVolume:
+  responseEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1059
+    - s0194
+  references:
+    - ref_powersploit_powerview.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - powershell_command
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'PowerShellCommand'
+    | where AdditionalFields has ('get')
+      or InitiatingProcessCommandLine has ('get')
+    | where AdditionalFields has_any ('DomainDNSZone', 'DomainDNSRecord', 'Domain', 'DomainController'
+        'Forest', 'ForestDomain', 'ForestGlobalCatalog', 'DomainUser', 'DomainUserEvent', 'DomainComputer', 
+        'DomainObject', 'DomainObjectAcl', 'DomainOU', 'DomainSite', 'DomainSubnet', 'DomainSID', 'DomainGroup'
+        'DomainManagedSecurityGroup', 'DomainGroupMember', 'DomainFileServer', 'DomainDFSShare')
+      or InitiatingProcessCommandLine has_any ('DomainDNSZone', 'DomainDNSRecord', 'Domain', 'DomainController'
+        'Forest', 'ForestDomain', 'ForestGlobalCatalog', 'DomainUser', 'DomainUserEvent', 'DomainComputer', 
+        'DomainObject', 'DomainObjectAcl', 'DomainOU', 'DomainSite', 'DomainSubnet', 'DomainSID', 'DomainGroup'
+        'DomainManagedSecurityGroup', 'DomainGroupMember', 'DomainFileServer', 'DomainDFSShare')

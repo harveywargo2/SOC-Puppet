@@ -1,0 +1,45 @@
+---
+detect:
+  title: amsi_pid_0001_pshell_bypass_initfalied
+  description:
+    - bypass AMSI inspection
+    - https://www.mdsec.co.uk/2018/06/exploring-powershell-amsi-and-logging-evasion/
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+  references:
+    -
+  emulation:
+    - art_t1562_test13_uid_695eed40-e949-40e5-b306-b4031e4154bd
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('Automation', 'AmsiUtils', 'amsiInitFailed', 'setValue')
+      and ProcessCommandLine has_any ('null', 'true')

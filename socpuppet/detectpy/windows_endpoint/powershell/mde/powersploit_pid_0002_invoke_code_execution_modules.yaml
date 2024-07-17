@@ -17,7 +17,8 @@ intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1059
+    - s0194
   references:
     - ref_powersploit_powerview.md
   emulation:

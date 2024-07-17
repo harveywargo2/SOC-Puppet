@@ -1,27 +1,28 @@
 ---
 detect:
-  title: registry_pid_0003_sam_commandline
+  title: fltmc_pid_0001_unloading_sysmon
   description:
-    - SAM Hive in Command Line
-    - Also for offline cred dumping attack
+    - Filter Manager Control Program
+    - Unloading Sysmon
+    - SysmonDrv name may change
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 1
-  urgency: rapid
-  inTheWild: very_common
-  noiseProjection: zero
-  regressionVolume: only attack pattern match
-  analysisEffort: low
-  confidence: certain
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
 intel:
   tags:
     -
   attackId:
-    - t1003
+    - t1562
   references:
-    - ref_registry.md
+    -
   emulation:
-    - art_t1003002_test1_uid_5c2571d0-1572-416d-9676-812e64ca9f44
+    - art_t1562_test11_uid_811b3e76-c41b-430c-ac0d-e2380bfaa164
   pattern:
     -
 dataRequirements:
@@ -41,4 +42,5 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_any (@'HKLM\sam ', @'HKEY_LOCAL_MACHINE\sam ')
+    | where ProcessCommandLine has_all ('fltmc', 'unload')
+      and ProcessCommandLine has_any ('SysmonDrv')

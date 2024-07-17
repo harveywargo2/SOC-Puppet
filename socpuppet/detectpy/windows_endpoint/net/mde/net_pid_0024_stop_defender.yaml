@@ -1,0 +1,54 @@
+---
+detect:
+  title: net_pid_0024_stop_defender
+  description:
+    - net CLT used to stop Windows/MSFT defender services
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  responseEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+    - s0039
+  references:
+    - ref_net.md
+  emulation:
+    -
+  pattern:
+      - sc stop "Windows Defender Advanced Threat Protection Service"
+      - sc stop "Microsoft Defender Antivirus Service"
+      - sc stop "Microsoft Defender Network Inspection Service"
+      - sc stop "Microsoft Core Service"
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_created
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName has_any ('net', 'net1')
+      and FileName endswith '.exe'
+      and ProcessCommandLine has 'stop'
+    | where ProcessCommandLine has_all ('defender', 'advanced', 'threat')
+      or ProcessCommandLine has_all ('defender', 'antivirus')
+      or ProcessCommandLine has_all ('microsoft', 'core', 'service')
+      or ProcessCommandLine has_all ('windows', 'security', 'service')
+      or ProcessCommandLine has_all ('security', 'center')

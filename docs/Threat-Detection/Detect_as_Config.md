@@ -1,6 +1,7 @@
 
 # Detect-as-Config 
 
+
 ## Categorization 
 ### Types of Detections
 - Known Threat Activity 
@@ -23,6 +24,7 @@
 - https://www.dragos.com/wp-content/uploads/The_Four_Types-of_Threat_Detection.pdf
 - https://www.xcitium.com/what-are-types-of-detection/
 
+
 ## Intel & Meta Data
 
 
@@ -30,5 +32,9 @@
 - See DetectCon
 
 
-
 ## Inventory & Map
+- Keep an Inventory of Patterns
+- Map Patterns to Data Sources 
+- Map Patterns to Attack Emulations
+- Map Patterns to Threat Actors 
+- Map Patterns to Mitre Attack

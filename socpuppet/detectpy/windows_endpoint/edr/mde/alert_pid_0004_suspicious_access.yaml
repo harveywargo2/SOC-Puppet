@@ -44,5 +44,4 @@ logic:
   kqlVar:
   kqlTable: AlertEvidence
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
-      and Title =~ 'Suspicious access to LSASS service'
+    | where Title =~ 'Suspicious access to LSASS service'

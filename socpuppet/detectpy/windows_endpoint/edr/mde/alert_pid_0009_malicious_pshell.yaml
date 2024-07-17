@@ -42,5 +42,4 @@ logic:
   kqlVar:
   kqlTable: AlertEvidence
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
-      and Title =~ 'A malicious Powershell Cmdlet was invoked on the machine'
+    | where Title =~ 'A malicious Powershell Cmdlet was invoked on the machine'

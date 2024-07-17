@@ -41,5 +41,4 @@ logic:
   kqlVar:
   kqlTable: AlertEvidence
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
-      and Title =~ 'Suspicious registry export'
+    | where Title =~ 'Suspicious registry export'

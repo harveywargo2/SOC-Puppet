@@ -1,0 +1,1 @@
+from socpuppet.detectpy.windows_endpoint.sc.sc import *

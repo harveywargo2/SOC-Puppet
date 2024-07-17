@@ -41,5 +41,4 @@ logic:
   kqlVar:
   kqlTable: AlertEvidence
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
-      and Title =~ 'Sensitive information theft activity via Security Account Manager'
+    | where Title =~ 'Sensitive information theft activity via Security Account Manager'
