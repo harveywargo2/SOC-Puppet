@@ -7,9 +7,9 @@ cpath = os.path.dirname(os.path.abspath(__file__))
 mpath = os.path.join(cpath, 'mde')
 
 
-def mppreference_pid_0001_set_drtm(*, logic='mde', lookback='1d'):
+def pwsht1003_pid_0001_export_sam(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    PowerShell Registry Command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -18,7 +18,7 @@ def mppreference_pid_0001_set_drtm(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0001_set_drtm.yaml'), 'r') as file:
+                               'pwsht1003_pid_0001_export_sam.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -29,9 +29,9 @@ def mppreference_pid_0001_set_drtm(*, logic='mde', lookback='1d'):
     return query
 
 
-def mppreference_pid_0002_set_dbm(*, logic='mde', lookback='1d'):
+def pwsht1003_pid_0002_export_security(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    PowerShell Registry Command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -40,7 +40,7 @@ def mppreference_pid_0002_set_dbm(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0002_set_dbm.yaml'), 'r') as file:
+                               'pwsht1003_pid_0002_export_security.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,9 +51,9 @@ def mppreference_pid_0002_set_dbm(*, logic='mde', lookback='1d'):
     return query
 
 
-def mppreference_pid_0003_set_dscriptsc(*, logic='mde', lookback='1d'):
+def pwsht1003_pid_0003_export_system(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    PowerShell Registry Command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -62,7 +62,7 @@ def mppreference_pid_0003_set_dscriptsc(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0003_set_dscriptsc.yaml'), 'r') as file:
+                               'pwsht1003_pid_0003_export_system.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,9 +73,9 @@ def mppreference_pid_0003_set_dscriptsc(*, logic='mde', lookback='1d'):
     return query
 
 
-def mppreference_pid_0004_set_dbaf(*, logic='mde', lookback='1d'):
+def pwsht1003_pid_0004_export_lsa_secrets(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    PowerShell Registry Command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -84,7 +84,7 @@ def mppreference_pid_0004_set_dbaf(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0004_set_dbaf.yaml'), 'r') as file:
+                               'pwsht1003_pid_0004_export_lsa_secrets.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -93,4 +93,3 @@ def mppreference_pid_0004_set_dbaf(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
-
