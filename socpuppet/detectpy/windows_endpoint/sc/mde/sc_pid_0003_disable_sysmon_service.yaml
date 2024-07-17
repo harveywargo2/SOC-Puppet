@@ -1,0 +1,50 @@
+---
+detect:
+  title: sc_pid_0003_disable_sysmon_service
+  description:
+    - Disable Service with Service Control Manager
+    - Sysmon Service Stop
+    - Sysmon Service Config Disable
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+  references:
+    -
+  emulation:
+    - art_t1562_test15_uid_a1230893-56ac-4c81-b644-2108e982f8f5
+  pattern:
+    - sc config Sysmon start=disabled
+    - sc stop Sysmon
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where FileName =~ 'sc.exe'
+      or ProcessVersionInfoOriginalFileName =~ 'sc.exe'
+    | where ProcessCommandLine has 'Sysmon'
+    | where ProcessCommandLine has_all ('config', 'start', 'disabled')
+      or ProcessCommandLine has 'stop'

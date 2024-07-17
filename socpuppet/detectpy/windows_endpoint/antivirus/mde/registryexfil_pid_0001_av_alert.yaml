@@ -41,6 +41,6 @@ logic:
   kqlVar:
   kqlTable: AlertEvidence
   kqlQuery: | 
-    | where DetectionSource !~ 'Custom detection'
+    | where DetectionSource =~ 'Antivirus'
     | where Title contains 'registryexfil'
       or ThreatFamily contains 'registryexfil'

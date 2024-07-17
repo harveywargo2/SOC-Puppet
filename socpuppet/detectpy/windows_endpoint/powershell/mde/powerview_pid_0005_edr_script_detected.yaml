@@ -1,0 +1,44 @@
+---
+detect:
+  title: powerview_pid_0005_edr_script_detected.yaml
+  description:
+    - MDE EDR Behavior Alert
+    - PowerView script detect
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where Title =~ 'PowerView script detected'

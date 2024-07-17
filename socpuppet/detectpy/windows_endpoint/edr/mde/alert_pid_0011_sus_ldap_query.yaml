@@ -1,0 +1,44 @@
+---
+detect:
+  title: alert_pid_0011_sus_ldap_query
+  description:
+    - MDE EDR Behavior Alert
+    - Suspicious LDAP query
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    -
+  references:
+    -
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where Title =~ 'Suspicious LDAP Query'

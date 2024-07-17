@@ -1,0 +1,44 @@
+---
+detect:
+  title: adfind_pid_0006_edr_uncommon_tool_launch
+  description:
+    - MDE EDR Behavior Alert
+    - Uncommon Adfind Tool Launch
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - s0552
+  references:
+    - ref_adfind.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - alert_evidence
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: alert_evidence
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: AlertEvidence
+  kqlQuery: | 
+    | where Title =~ 'Uncommon Adfind tool launch'

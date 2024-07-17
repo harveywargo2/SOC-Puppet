@@ -1,0 +1,46 @@
+---
+detect:
+  title: fltmc_pid_0001_unloading_sysmon
+  description:
+    - Filter Manager Control Program
+    - Unloading Sysmon
+    - SysmonDrv name may change
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 3
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1562
+  references:
+    -
+  emulation:
+    - art_t1562_test11_uid_811b3e76-c41b-430c-ac0d-e2380bfaa164
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('fltmc', 'unload')
+      and ProcessCommandLine has_any ('SysmonDrv')

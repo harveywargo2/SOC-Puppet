@@ -1,0 +1,45 @@
+---
+detect:
+  title: adfind_pid_0001_domain_trust
+  description:
+    - Adfind domain trust
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency:
+  inTheWild: common
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - s0552
+    - t1482
+  references:
+    - ref_adfind.md
+  emulation:
+    - art_t1482_test5_uid_15fe436d-e771-4ff3-b655-2dca9ba52834
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_creation
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has_all ('adfind', 'trustdmp')
+      and ProcessCommandLine has_any ('-sc', '-gcb', '-gc')

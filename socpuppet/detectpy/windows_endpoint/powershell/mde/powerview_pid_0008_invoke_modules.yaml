@@ -1,0 +1,46 @@
+---
+detect:
+  title: powerview_pid_0008_invoke_modules
+  description:
+    - powerview
+    - Invoke Modules
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 2
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  responseEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1059
+    - s0194
+  references:
+    - ref_powersploit_powerview.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - process_create
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_process_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar: | 
+  kqlTable: DeviceProcessEvents
+  kqlQuery: | 
+    | where ProcessCommandLine has 'Invoke'
+      and ProcessCommandLine has_any ('UserImpersonation', 'RevertToSelf', 'Kerberoast')

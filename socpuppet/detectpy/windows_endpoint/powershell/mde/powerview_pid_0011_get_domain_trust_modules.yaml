@@ -1,0 +1,51 @@
+---
+detect:
+  title: powerview_pid_0011_get_domain_trust_modules
+  description:
+    - powerview
+    - get Modules
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  responseEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1059
+    - s0194
+  references:
+    - ref_powersploit_powerview.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - powershell_command
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'PowerShellCommand'
+    | where AdditionalFields has ('Invoke')
+      or InitiatingProcessCommandLine has ('Invoke')
+    | where AdditionalFields has_any ('DomainTrust', 'ForestTrust', 'DomainForeignUser', 'DomainForeignGroupMember', 
+        'DomainTrustMapping')
+      or InitiatingProcessCommandLine has_any ('DomainTrust', 'ForestTrust', 'DomainForeignUser', 
+        'DomainForeignGroupMember', 'DomainTrustMapping')

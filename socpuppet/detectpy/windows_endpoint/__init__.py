@@ -1,3 +1,6 @@
+
+import socpuppet.detectpy.windows_endpoint.adfind
+import socpuppet.detectpy.windows_endpoint.amsi
 import socpuppet.detectpy.windows_endpoint.antivirus
 import socpuppet.detectpy.windows_endpoint.appcmd
 import socpuppet.detectpy.windows_endpoint.appinstaller
@@ -8,6 +11,7 @@ import socpuppet.detectpy.windows_endpoint.comsvcs
 import socpuppet.detectpy.windows_endpoint.control
 import socpuppet.detectpy.windows_endpoint.createdump
 import socpuppet.detectpy.windows_endpoint.devtunnels
+import socpuppet.detectpy.windows_endpoint.dsquery
 import socpuppet.detectpy.windows_endpoint.edr
 import socpuppet.detectpy.windows_endpoint.esentutl
 import socpuppet.detectpy.windows_endpoint.gsecdump
@@ -31,7 +35,9 @@ import socpuppet.detectpy.windows_endpoint.pypykatz
 import socpuppet.detectpy.windows_endpoint.rdrleakdiag
 import socpuppet.detectpy.windows_endpoint.registry
 import socpuppet.detectpy.windows_endpoint.rpcping
+import socpuppet.detectpy.windows_endpoint.sc
 import socpuppet.detectpy.windows_endpoint.static_ioc
+import socpuppet.detectpy.windows_endpoint.sysmon
 import socpuppet.detectpy.windows_endpoint.vss
 import socpuppet.detectpy.windows_endpoint.wuaclt
 
