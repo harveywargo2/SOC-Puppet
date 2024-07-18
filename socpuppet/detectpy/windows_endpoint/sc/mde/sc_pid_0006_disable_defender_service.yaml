@@ -24,10 +24,16 @@ intel:
   emulation:
     - art_t1562_test15_uid_a1230893-56ac-4c81-b644-2108e982f8f5
   pattern:
-      - sc stop "Windows Defender Advanced Threat Protection Service"
-      - sc stop "Microsoft Defender Antivirus Service"
-      - sc stop "Microsoft Defender Network Inspection Service"
-      - sc stop "Microsoft Core Service"
+      - sc stop (service name)
+      - sc config (service_name) start= disabled
+      - Microsoft Defender Antivirus Service
+      - Microsoft Defender Core Service
+      - Microsoft Defender Network Inspection Service
+      - Microsoft Defender Core Service
+      - Windows Defender Advanced Threat Protection Service
+      - Windows Security Service
+      - Security Center
+
 dataRequirements:
   dataSource:
     - windows_os
@@ -47,10 +53,9 @@ logic:
   kqlQuery: | 
     | where FileName =~ 'sc.exe'
       or ProcessVersionInfoOriginalFileName =~ 'sc.exe'
-    | where ProcessCommandLine has_all ('defender', 'advanced', 'threat')
-      or ProcessCommandLine has_all ('defender', 'antivirus')
-      or ProcessCommandLine has_all ('microsoft', 'core', 'service')
-      or ProcessCommandLine has_all ('windows', 'security', 'service')
-      or ProcessCommandLine has_all ('security', 'center')
     | where ProcessCommandLine has_all ('config', 'start', 'disabled')
       or ProcessCommandLine has 'stop'
+    | where ProcessCommandLine has_all ('microsoft', 'defender')
+      or ProcessCommandLine has_all ('threat', 'protection', 'advanced')
+      or ProcessCommandLine has_all ('windows', 'security', 'service')
+      or ProcessCommandLine has_all ('security', 'center')
