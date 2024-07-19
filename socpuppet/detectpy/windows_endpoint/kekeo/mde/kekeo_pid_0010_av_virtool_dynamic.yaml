@@ -1,15 +1,17 @@
 ---
 detect:
-  title: builtin_pid_0020_av_hacktool_mimikatz_alert
+  title: builtin_pid_0021_av_hacktool_mimikatz_dynamic
   description:
     - MDE AV Client Heuristic
     - Hacktool Mimikatz
-  detectType: single_line_match
+  detectType:
+    - single_line_match
   detectLanguage: kql
   detectCon: 1
-  urgency: rapid
+  urgency: high
   inTheWild: not common
-  noiseProjection: low
+  noiseProjection:
+    - low
   regressionVolume: minimal av matches
   analysisEffort: medium
   confidence: high
@@ -18,7 +20,7 @@ intel:
     -
   attackId:
     - t1003
-    - s0002
+    - s0003
   references:
     - ref_mimikatz.md
   emulation:
@@ -30,19 +32,18 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - alert_evidence
+    - other_alert_related_activity
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: alert_evidence
+  dataTable: device_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: AlertEvidence
+  kqlTable: DeviceEvents
   kqlQuery: | 
-    | where DetectionSource =~ 'Antivirus'
-    | where Title contains 'mimikatz'
-      or ThreatFamily contains 'mimikatz'
+    | where ActionType =~ 'OtherAlertRelatedActivity'
+      and AdditionalFields contains 'mimikatz'

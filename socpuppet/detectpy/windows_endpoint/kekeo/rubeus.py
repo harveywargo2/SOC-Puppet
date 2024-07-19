@@ -7,9 +7,9 @@ cpath = os.path.dirname(os.path.abspath(__file__))
 mpath = os.path.join(cpath, 'mde')
 
 
-def mppreference_pid_0001_set_drtm(*, logic='mde', lookback='1d'):
+def rubeus_pid_0001_kerberoast(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    rubeus command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -18,7 +18,7 @@ def mppreference_pid_0001_set_drtm(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0001_set_drtm.yaml'), 'r') as file:
+                               'rubeus_pid_0001_kerberoast.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -29,9 +29,9 @@ def mppreference_pid_0001_set_drtm(*, logic='mde', lookback='1d'):
     return query
 
 
-def mppreference_pid_0002_set_dbm(*, logic='mde', lookback='1d'):
+def rubeus_pid_0002_kerberoast(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    rubeus command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -40,7 +40,7 @@ def mppreference_pid_0002_set_dbm(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0002_set_dbm.yaml'), 'r') as file:
+                               'rubeus_pid_0002_kerberoast.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -51,9 +51,9 @@ def mppreference_pid_0002_set_dbm(*, logic='mde', lookback='1d'):
     return query
 
 
-def mppreference_pid_0003_set_dscrptsc(*, logic='mde', lookback='1d'):
+def rubeus_pid_0003_asreproast(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    rubeus command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -62,7 +62,7 @@ def mppreference_pid_0003_set_dscrptsc(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0003_set_dscrptsc.yaml'), 'r') as file:
+                               'rubeus_pid_0003_asreproast.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -73,9 +73,9 @@ def mppreference_pid_0003_set_dscrptsc(*, logic='mde', lookback='1d'):
     return query
 
 
-def mppreference_pid_0004_set_dbaf(*, logic='mde', lookback='1d'):
+def rubeus_pid_0004_asreproast(*, logic='mde', lookback='1d'):
     """
-    Set-MpPreference
+    rubeus command
 
     param logic: Logic Selection
     :param lookback: Lookback Time
@@ -84,7 +84,7 @@ def mppreference_pid_0004_set_dbaf(*, logic='mde', lookback='1d'):
 
     if logic == 'mde':
         with open(os.path.join(mpath,
-                               'mppreference_pid_0004_set_dbaf.yaml'), 'r') as file:
+                               'rubeus_pid_0004_asreproast.yaml'), 'r') as file:
             data = yaml.safe_load(file)
 
         query = soc.detectpy.mde_query_builder(data, lookback)
@@ -93,4 +93,3 @@ def mppreference_pid_0004_set_dbaf(*, logic='mde', lookback='1d'):
         query = f'pointer={logic} not supported'
 
     return query
-

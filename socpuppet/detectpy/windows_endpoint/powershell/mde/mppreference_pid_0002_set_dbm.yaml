@@ -44,6 +44,7 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where ProcessCommandLine has_all ('Set', 'MpPreference')
-    | where ProcessCommandLine has_any ('-DisableBehaviorMonitoring', '-dbm')
+    | where FileName has 'powershell'
+      and ProcessCommandLine has_all ('Set', 'MpPreference')
+      and ProcessCommandLine has_any ('-DisableBehaviorMonitoring', '-dbm')
     | where ProcessCommandLine has_any ('1', 'true')
