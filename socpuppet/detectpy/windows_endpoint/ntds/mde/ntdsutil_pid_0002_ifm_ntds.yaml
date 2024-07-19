@@ -44,4 +44,6 @@ logic:
   kqlQuery: | 
     | where ProcessCommandLine has_all ('ac', 'i', 'ntds')
       or ProcessCommandLine has_all ('activate', 'instance', 'ntds')
-    | where ProcessCommandLine has_all ('ifm', 'create')
+    | where ProcessCommandLine has 'ifm'
+      or ProcessCommandLine has_all ('Install', 'From', 'Media')
+    | where ProcessCommand has 'create'

@@ -44,3 +44,4 @@ logic:
     | where ProcessCommandLine has_all ('ac', 'i', 'ntds')
       or ProcessCommandLine has_all ('activate', 'instance', 'ntds')
     | where ProcessCommandLine has 'ifm'
+      or ProcessCommandLine has_all ('Install', 'From', 'Media')

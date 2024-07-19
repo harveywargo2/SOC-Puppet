@@ -1,13 +1,11 @@
 ---
 detect:
-  title: mppreference_pid_0004_set_dbaf
+  title: rubeus_pid_0001_kerberoast
   description:
-    - Disable Defender Service with PowerShell
-    - Set-MpPreference
-    - DisableBlockAtFirstSeen
+    - rubeus indicators
   detectType: single_line_match
   detectLanguage: kql
-  detectCon: 2
+  detectCon: 1
   urgency:
   inTheWild:
   noiseProjection:
@@ -18,15 +16,14 @@ intel:
   tags:
     -
   attackId:
-    - t1562
+    - t1558
+    - s1071
   references:
-    -
+    - ref_kekeo.md
   emulation:
-    - art_t1562_test16_uid_6b8df440-51ec-4d53-bf83-899591c9b5d7
-    - art_t1562_test31_uid_c531aa6e-9c97-4b29-afee-9b7be6fc8a64
+    -
   pattern:
-    - Set-MpPreference -DisableBlockAtFirstSeen 1
-    - Set-MpPreference -dbaf $True
+    -
 dataRequirements:
   dataSource:
     - windows_os
@@ -44,7 +41,4 @@ logic:
   kqlVar:
   kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where FileName has 'powershell'
-      ProcessCommandLine has_all ('Set', 'MpPreference')
-      and ProcessCommandLine has_any ('-DisableBlockAtFirstSeen', '-dbaf')
-    | where ProcessCommandLine has_any ('1', 'true')
+    | where ProcessCommandLine has 'kerberoast'

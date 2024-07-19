@@ -3,7 +3,7 @@ detect:
   title: builtin_pid_0020_av_hacktool_mimikatz_alert
   description:
     - MDE AV Client Heuristic
-    - Hacktool Mimikatz
+    - VirTool Kekeo
   detectType: single_line_match
   detectLanguage: kql
   detectCon: 1
@@ -17,13 +17,12 @@ intel:
   tags:
     -
   attackId:
-    - t1003
-    - s0002
+    - t1558
+    - s1071
   references:
-    - ref_mimikatz.md
+    - ref_kekeo.md
   emulation:
-    - art_t1003001_test6_uid_66fb0bc1-3c3f-47e9-a298-550ecfefacbc
-    - art_t1003001_test10_uid_453acf13-1dbd-47d7-b28a-172ce9228023
+    -
   pattern:
     -
 dataRequirements:
@@ -44,5 +43,5 @@ logic:
   kqlTable: AlertEvidence
   kqlQuery: | 
     | where DetectionSource =~ 'Antivirus'
-    | where Title contains 'mimikatz'
-      or ThreatFamily contains 'mimikatz'
+    | where Title contains 'Kekeo'
+      or ThreatFamily contains 'Kekeo'

@@ -1,0 +1,45 @@
+---
+detect:
+  title: rubeus_pid_0002_kerberoast
+  description:
+    - rubeus indicators
+  detectType: single_line_match
+  detectLanguage: kql
+  detectCon: 1
+  urgency:
+  inTheWild:
+  noiseProjection:
+  regressionVolume:
+  analysisEffort:
+  confidence:
+intel:
+  tags:
+    -
+  attackId:
+    - t1558
+    - s1071
+  references:
+    - ref_kekeo.md
+  emulation:
+    -
+  pattern:
+    -
+dataRequirements:
+  dataSource:
+    - windows_os
+  dataType:
+    - ldap_search
+  dataCollector: m365d_agent
+  dataForwardTo: m365d_security_center
+  dataParser:
+  dataStorage: m365d_security_center
+  dataTable: device_events
+  dataIndex:
+  dataAccess: api_advanced_hunting
+  dataMap:
+logic:
+  kqlVar:
+  kqlTable: DeviceEvents
+  kqlQuery: | 
+    | where ActionType =~ 'LdapSearch'
+      and InitiatingProcessCommandLine has 'kerberoast'
