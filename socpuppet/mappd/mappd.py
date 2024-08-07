@@ -31,14 +31,13 @@ def yaml_to_df():
             yaml_dict = yaml.safe_load(yaml_stream)
         df_index += 1
 
-        output_df.loc[df_index, 'title'] = yaml_dict['title']
-        output_df.loc[df_index, 'description'] = yaml_dict['intel']['description']
-        output_df.loc[df_index, 'detectCon'] = yaml_dict['intel']['detectType']
-        output_df.loc[df_index, 'detectCon'] = yaml_dict['intel']['detectCon']
-        output_df.loc[df_index, 'detectLanguage'] = yaml_dict['intel']['detectLanguage']
+        output_df.loc[df_index, 'title'] = yaml_dict['detect']['title']
+        output_df.loc[df_index, 'description'] = yaml_dict['detect']['description']
+        output_df.loc[df_index, 'detectType'] = yaml_dict['detect']['detectType']
+        output_df.loc[df_index, 'detectCon'] = yaml_dict['detect']['detectCon']
+        output_df.loc[df_index, 'detectLanguage'] = yaml_dict['detect']['detectLanguage']
         output_df.loc[df_index, 'tags'] = yaml_dict['intel']['tags']
-        output_df.loc[df_index, 'attackTechnique'] = yaml_dict['intel']['attackTechnique']
-        output_df.loc[df_index, 'attackSoftware'] = yaml_dict['intel']['attackSoftware']
+        output_df.loc[df_index, 'attackTechnique'] = yaml_dict['intel']['attackId']
         output_df.loc[df_index, 'references'] = yaml_dict['intel']['references']
         output_df.loc[df_index, 'pattern'] = yaml_dict['intel']['pattern']
         output_df.loc[df_index, 'dataSource'] = yaml_dict['dataRequirements']['dataSource']
@@ -56,6 +55,15 @@ def yaml_to_df():
 
 
     return output_df
+
+
+def detectpy_index():
+    output = yaml_to_df()
+
+    return output
+
+
+detectpy_index().to_csv('detectpy_index.csv')
 
 
 def detectpy_index():
