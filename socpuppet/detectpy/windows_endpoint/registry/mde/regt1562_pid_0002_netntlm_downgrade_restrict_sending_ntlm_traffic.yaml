@@ -1,6 +1,6 @@
 ---
 detect:
-  title: regt1562_pid_0001_netntlm_downgrade_restrict_sending_ntlm_traffic
+  title: regt1562_pid_0002_netntlm_downgrade_restrict_sending_ntlm_traffic
   description:
     - Registry Modification of Key HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0
     - Property = RestrictSendingNTLMTraffic
@@ -30,20 +30,18 @@ dataRequirements:
   dataSource:
     - windows_os
   dataType:
-    - registry_event
+    - process_creation
   dataCollector: m365d_agent
   dataForwardTo: m365d_security_center
   dataParser:
   dataStorage: m365d_security_center
-  dataTable: device_registry_events
+  dataTable: device_process_events
   dataIndex:
   dataAccess: api_advanced_hunting
   dataMap:
 logic:
   kqlVar:
-  kqlTable: DeviceRegistryEvents
+  kqlTable: DeviceProcessEvents
   kqlQuery: | 
-    | where RegistryKey has_all ('system', 'control', 'lsa')
-      and RegistryKey has_any ('HKLM', 'HKEY_LOCAL_MACHINE')
-      and RegistryValueName =~ 'RestrictSendingNTLMTraffic'
-      and RegistryValueData =~ '0'
+    | where ProcessCommandLine has 'RestrictSendingNTLMTraffic'
+      and ProcessCommandLine contains '0'
