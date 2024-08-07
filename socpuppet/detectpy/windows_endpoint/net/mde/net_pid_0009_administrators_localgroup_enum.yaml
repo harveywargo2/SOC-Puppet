@@ -10,7 +10,7 @@ detect:
   inTheWild: common
   noiseProjection: medium
   regressionVolume: admin or benign activity
-  responseEffort: medium
+  analysisEffort: medium
   confidence: certain
 intel:
   tags:

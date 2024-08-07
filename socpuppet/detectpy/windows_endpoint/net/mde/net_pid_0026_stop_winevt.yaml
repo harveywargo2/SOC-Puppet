@@ -10,7 +10,7 @@ detect:
   inTheWild:
   noiseProjection:
   regressionVolume:
-  responseEffort:
+  analysisEffort:
   confidence:
 intel:
   tags:

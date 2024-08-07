@@ -11,7 +11,7 @@ detect:
   inTheWild: common
   noiseProjection: zero
   regressionVolume: only attack pattern match
-  responseEffort: low
+  analysisEffort: low
   confidence: certain
 intel:
   tags:

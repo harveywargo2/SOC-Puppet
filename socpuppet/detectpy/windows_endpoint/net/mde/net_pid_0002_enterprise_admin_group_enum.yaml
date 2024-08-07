@@ -10,7 +10,7 @@ detect:
   inTheWild: common
   noiseProjection: low
   regressionVolume: admin user activity
-  responseEffort: medium
+  analysisEffort: medium
   confidence: certain
 intel:
   tags:

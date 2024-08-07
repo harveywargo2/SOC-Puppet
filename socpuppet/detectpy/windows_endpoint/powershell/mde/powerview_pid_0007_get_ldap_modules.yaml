@@ -11,7 +11,7 @@ detect:
   inTheWild: common
   noiseProjection:
   regressionVolume:
-  responseEffort:
+  analysisEffort:
   confidence:
 intel:
   tags:

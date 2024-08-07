@@ -18,7 +18,8 @@ def yaml_to_df():
 
     data_list = yaml_file_list()
     output_df = pd.DataFrame(columns=['title', 'description', 'detectType', 'detectCon', 'detectLanguage',
-                                      'tags', 'attackTechnique', 'attackSoftware', 'references', 'pattern',
+                                      'urgency', 'inTheWild', 'noiseProjection', 'regressionVolume', 'analysisEffort',
+                                      'confidence', 'tags', 'attackTechnique', 'attackSoftware', 'references', 'pattern',
                                       'dataSource', 'dataType', 'dataCollector', 'dataForwardTo', 'dataparser',
                                       'dataParser', 'dataStorage', 'dataTable', 'dataIndex', 'dataAccess', 'dataMap',
                                       'kqlVar', 'kqlTable', 'kqlQuery'])
@@ -36,6 +37,12 @@ def yaml_to_df():
         output_df.loc[df_index, 'detectType'] = yaml_dict['detect']['detectType']
         output_df.loc[df_index, 'detectCon'] = yaml_dict['detect']['detectCon']
         output_df.loc[df_index, 'detectLanguage'] = yaml_dict['detect']['detectLanguage']
+        output_df.loc[df_index, 'urgency'] = yaml_dict['detect']['urgency']
+        output_df.loc[df_index, 'inTheWild'] = yaml_dict['detect']['inTheWild']
+        output_df.loc[df_index, 'noiseProjection'] = yaml_dict['detect']['noiseProjection']
+        output_df.loc[df_index, 'regressionVolume'] = yaml_dict['detect']['regressionVolume']
+        output_df.loc[df_index, 'analysisEffort'] = yaml_dict['detect']['analysisEffort']
+        output_df.loc[df_index, 'confidence'] = yaml_dict['detect']['confidence']
         output_df.loc[df_index, 'tags'] = yaml_dict['intel']['tags']
         output_df.loc[df_index, 'attackTechnique'] = yaml_dict['intel']['attackId']
         output_df.loc[df_index, 'references'] = yaml_dict['intel']['references']

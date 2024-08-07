@@ -12,7 +12,7 @@ detect:
   inTheWild: common
   noiseProjection: low
   regressionVolume: benign werfault activity
-  responseEffort: medium
+  analysisEffort: medium
   confidence: certain
 intel:
   tags:

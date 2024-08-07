@@ -11,7 +11,7 @@ detect:
   inTheWild: unknown pre 2020
   noiseProjection: zero
   regressionVolume: only attack pattern match
-  responseEffort: low
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
