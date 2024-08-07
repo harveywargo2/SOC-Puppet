@@ -11,7 +11,7 @@ detect:
   inTheWild: common
   noiseProjection: high
   regressionVolume: benign process and user activity
-  responseEffort: high
+  analysisEffort: high
   confidence: certain
 intel:
   tags:

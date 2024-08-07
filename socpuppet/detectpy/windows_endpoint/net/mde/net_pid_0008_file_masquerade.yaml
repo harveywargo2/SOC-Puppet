@@ -10,7 +10,7 @@ detect:
   inTheWild: unknown
   noiseProjection: low
   regressionVolume: only attack pattern
-  responseEffort: low
+  analysisEffort: low
   confidence: certain
 intel:
   tags:
